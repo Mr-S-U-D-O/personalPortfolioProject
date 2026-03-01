@@ -74,7 +74,7 @@ body, html {
     height: 100%;
 }
 
-#screen-content {
+.screen-content {
     /* Match the aspect ratio and size of the laptop screen inside the 3D model */
     width: 416px;
     height: 280px;
@@ -91,9 +91,10 @@ body, html {
 .skeleton-loader {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 15px;
-    width: 300px;
-    max-width: 80vw;
+    width: 80%;
+    max-width: 300px;
     opacity: 1;
     transition: opacity 0.8s ease-in-out;
 }
@@ -759,4 +760,131 @@ body, html {
 .about-slide:nth-child(even) .slide-connector {
     right: auto;
     left: -60px;
+}
+
+/* =========================================
+   Mobile Responsiveness
+========================================= */
+@media (max-width: 768px) {
+    /* --- Splash Screen --- */
+    .quote-container {
+        padding: 0 20px;
+    }
+    .quote-text {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+    }
+
+    /* --- Top Navigation (formerly Sidebar) --- */
+    /* Target the main sidebar specifically so we don't stretch the cv-nav */
+    .sidebar-nav:not(.cv-nav) {
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: auto !important; /* Override the hover expansion script logic */
+        padding: 10px 20px;
+        border-radius: 30px;
+    }
+    
+    .nav-menu {
+        flex-direction: row;
+        gap: 20px;
+    }
+    
+    .nav-text {
+        display: none; /* Never show text on mobile nav */
+    }
+    
+    .nav-item:not(:last-child)::after {
+        left: 20px; /* Shift to middle of gap */
+        bottom: 50%; /* Center vertically */
+        transform: translateY(50%);
+        width: 1px;
+        height: 15px; /* Vertical connector line */
+    }
+
+    /* --- Theme Toggle & CV Nav --- */
+    .theme-toggle {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        z-index: 100; /* Ensure it stays above content but below top nav */
+    }
+
+    .cv-nav {
+        top: auto; /* Reset inherited top bounds from sidebar-nav */
+        left: auto; /* Reset left centering */
+        transform: none;
+        bottom: 20px;
+        right: 80px; /* Move next to theme toggle */
+        padding: 8px 12px;
+        width: auto !important;
+    }
+    
+    /* Show CV text on mobile? Actually better as an icon. */
+    .cv-nav .nav-text {
+        display: none;
+    }
+    
+    .cv-nav:hover {
+        width: auto;
+    }
+
+    /* --- Hero Layout Stack --- */
+    .hero-layout-wrapper {
+        flex-direction: column;
+        padding: 0 30px;
+        gap: 30px;
+        margin-top: 60px; /* Clear top nav */
+    }
+
+    .hero-text-content {
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-image-container {
+        width: 180px;
+    }
+
+    .tech-carousel-wrapper {
+        margin-top: 20px;
+    }
+
+    /* --- About Slides Stack --- */
+    .about-slide {
+        height: auto;
+        min-height: 100vh;
+        padding: 80px 0; /* Add scrolling padding */
+    }
+
+    .slide-container,
+    .about-slide:nth-child(even) .slide-container {
+        flex-direction: column;
+        padding: 0 30px;
+        gap: 30px;
+    }
+
+    .slide-timeline,
+    .slide-connector {
+        display: none; /* Hide confusing horizontal visual logic on slim vertical screens */
+    }
+
+    .slide-text,
+    .about-slide:nth-child(even) .slide-text {
+        text-align: center;
+    }
+
+    .slide-image-wrapper {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        aspect-ratio: 16 / 9; /* Keep a nice rectangular container for the SVG */
+    }
+
+    .slide-image-wrapper img {
+        max-width: 80%;
+        max-height: 80%;
+    }
 }

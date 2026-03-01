@@ -26,7 +26,8 @@ const DEVICE_CONFIG = {
         },
         lidClosedRotationX: Math.PI / 2,
         lidOpenRotationX: 0,
-        hasLid: true
+        hasLid: true,
+        screenCSSOffset: { x: 0, y: 0, z: 0 }
     },
     iphone: {
         file: "./models/iphone.glb",
@@ -36,7 +37,8 @@ const DEVICE_CONFIG = {
             scale: { x: 250, y: 250, z: 250 }, 
             targetY: 80
         },
-        hasLid: false
+        hasLid: false,
+        screenCSSOffset: { x: 0, y: -45, z: 0 } // Pull it down to center visually in the bezels
     }
 };
 
@@ -245,9 +247,18 @@ const syncLaptopScreen = () => {
     laptopScreenScene.mesh.position.copy(position);
     laptopScreenScene.mesh.quaternion.copy(quaternion);
     
+    const config = DEVICE_CONFIG[laptopScene.deviceType];
+
     // The laptop screen explicitly needs a -PI/2 rotation due to its local mesh space
-    if (DEVICE_CONFIG[laptopScene.deviceType].hasLid) {
+    if (config.hasLid) {
         laptopScreenScene.mesh.rotateOnAxis(new THREE.Vector3(1, 0, 0), (Math.PI / 2) * -1);
+    }
+    
+    // Apply optional alignment offsets
+    if (config.screenCSSOffset) {
+        laptopScreenScene.mesh.translateX(config.screenCSSOffset.x);
+        laptopScreenScene.mesh.translateY(config.screenCSSOffset.y);
+        laptopScreenScene.mesh.translateZ(config.screenCSSOffset.z);
     }
 };
 
