@@ -271,7 +271,7 @@ const updateAnimation = (timestamp) => {
                         }, 1500); 
                     }, 1700);
                     
-                }, 3000);
+                }, 3500);
             }, 800); 
         }, SKELETON_VISIBLE_TIME); 
     }
