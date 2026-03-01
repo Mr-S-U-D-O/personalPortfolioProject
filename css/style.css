@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
 
 :root {
     /* Dark Theme Palette (Easy to change later) */
@@ -108,10 +108,25 @@ body, html {
 }
 
 .quote-text {
-    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    margin: 0 0 15px 0;
+    color: var(--text-light);
+    text-shadow: 0 4px 30px rgba(255, 255, 255, 0.4); /* High definition soft glow */
+}
+
+.quote-author {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
     font-weight: 300;
-    letter-spacing: 1px;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+    text-transform: uppercase;
     margin: 0;
+    opacity: 0.8;
 }
 
 /* Animation out: Zooming INTO the quote */
@@ -131,6 +146,7 @@ body, html {
     justify-content: center;
     align-items: center;
     text-align: center;
+    visibility: hidden;
     
     /* Initially hidden behind splash */
     opacity: 0;
@@ -139,25 +155,171 @@ body, html {
 }
 
 .hero-section.show {
+    visibility: visible;
     opacity: 1;
     transform: scale(1);
 }
 
-.hero-title {
-    font-size: clamp(3rem, 8vw, 6rem);
+/* =========================================
+   Sidebar Navigation
+========================================= */
+.sidebar-nav {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(20, 20, 20, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 40px;
+    padding: 20px 15px;
+    width: 20px; /* Initial collapsed width */
+    overflow: hidden;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+}
+
+.sidebar-nav:hover {
+    width: 150px; /* Expanded Width */
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.nav-item {
+    position: relative;
+}
+
+/* Connecting line between dots */
+.nav-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 8px; /* Center with the 16px icon */
+    top: 24px; 
+    height: 20px;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-light);
+    gap: 15px;
+    white-space: nowrap;
+}
+
+.nav-icon {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid var(--accent-primary);
+    flex-shrink: 0;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover .nav-icon {
+    background-color: var(--accent-primary);
+    box-shadow: 0 0 10px var(--accent-primary);
+}
+
+.nav-text {
+    opacity: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-nav:hover .nav-text {
+    opacity: 1;
+    transition-delay: 0.1s; /* Delay text appearance slightly */
+}
+
+
+/* =========================================
+   Hero Section Layout
+========================================= */
+.hero-layout-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 100px; /* Space for sidebar */
+}
+
+/* --- Hero Image --- */
+.hero-image-container {
+    width: clamp(250px, 30vw, 400px);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 4px solid var(--accent-primary); /* The red/purple circle from sketch */
+    padding: 10px;
+    flex-shrink: 0;
+}
+
+.hero-profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* --- Hero Typography --- */
+.hero-text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 10px;
+}
+
+.hero-line {
+    margin: 0;
+}
+
+/* Lines 1, 3, 5 share this font size */
+.line-small {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 300;
+    color: var(--text-light);
+    letter-spacing: 2px;
+}
+
+/* Lines 2 & 4 share this massive font size */
+.line-large {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 6vw, 6rem);
     font-weight: 700;
-    margin: 0 0 10px 0;
+    line-height: +1.1;
     letter-spacing: -1px;
+}
+
+/* Specific text styling modifiers */
+.gradient-text {
     background: linear-gradient(135deg, var(--text-light), var(--text-muted));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.hero-subtitle {
-    font-size: clamp(1rem, 2vw, 1.5rem);
+.text-primary {
     color: var(--accent-primary);
-    margin: 0;
-    font-weight: 400;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+}
+
+.text-muted {
+    color: var(--text-muted);
 }

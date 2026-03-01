@@ -37,4 +37,25 @@ document.addEventListener("DOMContentLoaded", () => {
             splashScreen.style.display = 'none'; 
         }, 1500); 
     }, HERO_IN_DELAY);
+
+    // --- Dynamic Greeting Logic ---
+    function updateGreeting() {
+        const greetingElement = document.getElementById("dynamicGreeting");
+        if (!greetingElement) return;
+
+        const currentHour = new Date().getHours();
+        let greetingText = "Good evening";
+
+        if (currentHour >= 5 && currentHour < 12) {
+            greetingText = "Good morning";
+        } else if (currentHour >= 12 && currentHour < 18) {
+            greetingText = "Good afternoon";
+        }
+
+        greetingElement.textContent = greetingText;
+    }
+
+    // Set greeting on load
+    updateGreeting();
+
 });
