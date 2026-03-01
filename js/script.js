@@ -263,6 +263,8 @@ const updateAnimation = (timestamp) => {
                         document.documentElement.style.overflowX = "hidden";
                         document.body.style.overflowY = "auto";
                         document.body.style.overflowX = "hidden";
+                        document.documentElement.style.height = "auto";
+                        document.body.style.height = "auto";
                         
                         setTimeout(() => {
                             splashScreen.style.display = 'none'; 
