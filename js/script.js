@@ -11,17 +11,34 @@ const laptopContainer = document.getElementById("laptop");
 const laptopScreen = document.getElementById("laptop-screen");
 const laptopScreenContainer = document.getElementById("screen-content");
 
-// --- Constants ---
-const LAPTOP_FILE = "./models/laptop.glb";
+// --- Constants & Config ---
 const DRACO_DECODER_URL = "https://www.gstatic.com/draco/versioned/decoders/1.5.6/";
-const LAPTOP_INIT = {
-    position: { x: 0, y: -400, z: 0 }, 
-    rotation: { x: Math.PI / 20, y: 0, z: 0 },
-    scale: { x: 50, y: 50, z: 50 },
-};
-const LAPTOP_LID_ROTATION_X_CLOSED = Math.PI / 2;
-const LAPTOP_LID_ROTATION_X_OPEN = 0;
 const LAPTOP_SCENE_CAMERA_INIT_Z_POSITION = 750;
+
+const DEVICE_CONFIG = {
+    laptop: {
+        file: "./models/laptop.glb",
+        init: {
+            position: { x: 0, y: -400, z: 0 }, 
+            rotation: { x: Math.PI / 20, y: 0, z: 0 },
+            scale: { x: 50, y: 50, z: 50 },
+            targetY: -70
+        },
+        lidClosedRotationX: Math.PI / 2,
+        lidOpenRotationX: 0,
+        hasLid: true
+    },
+    iphone: {
+        file: "./models/iphone.glb",
+        init: {
+            position: { x: 0, y: -500, z: 0 }, 
+            rotation: { x: 0, y: Math.PI, z: 0 }, // Rotate 180deg to face forwards
+            scale: { x: 250, y: 250, z: 250 }, 
+            targetY: 80
+        },
+        hasLid: false
+    }
+};
 
 // Sequence timing variables (in milliseconds)
 // The skeleton runs inside the screen. We animate the Macbook first.
@@ -31,6 +48,7 @@ const SKELETON_VISIBLE_TIME = 2000;
 
 // --- Three.js State ---
 const laptopScene = {
+    deviceType: 'laptop', // Determined at runtime
     geometryFile: null,
     container: null,
     mesh: null, // { base, lid, screen }
@@ -83,8 +101,11 @@ const load3DModels = async () => {
 
     dracoLoader.setDecoderPath(DRACO_DECODER_URL);
     gltfLoader.setDRACOLoader(dracoLoader);
+    
+    laptopScene.deviceType = window.innerWidth < 768 ? "iphone" : "laptop";
+    const config = DEVICE_CONFIG[laptopScene.deviceType];
 
-    laptopScene.geometryFile = await gltfLoader.loadAsync(LAPTOP_FILE);
+    laptopScene.geometryFile = await gltfLoader.loadAsync(config.file);
 };
 
 const setLaptopMeshMaterials = (mesh) => {
@@ -105,17 +126,29 @@ const setLaptopMeshMaterials = (mesh) => {
 
 const createLaptopMesh = (geometryFile) => {
     const base = geometryFile.scene;
-    setLaptopMeshMaterials(base);
+    const config = DEVICE_CONFIG[laptopScene.deviceType];
 
-    const lid = base.children[0];
-    const screen = lid.children[0].children[2];
-
-    base.position.set(LAPTOP_INIT.position.x, LAPTOP_INIT.position.y, LAPTOP_INIT.position.z);
-    base.rotation.set(LAPTOP_INIT.rotation.x, LAPTOP_INIT.rotation.y, LAPTOP_INIT.rotation.z);
-    base.scale.set(LAPTOP_INIT.scale.x, LAPTOP_INIT.scale.y, LAPTOP_INIT.scale.z);
+    base.position.set(config.init.position.x, config.init.position.y, config.init.position.z);
+    base.rotation.set(config.init.rotation.x, config.init.rotation.y, config.init.rotation.z);
+    base.scale.set(config.init.scale.x, config.init.scale.y, config.init.scale.z);
     
-    // Start with closed lid
-    lid.rotation.set(LAPTOP_LID_ROTATION_X_CLOSED, 0, 0);
+    let lid = null;
+    let screen = null;
+
+    if (config.hasLid) {
+        setLaptopMeshMaterials(base);
+        lid = base.children[0];
+        screen = lid.children[0].children[2];
+        lid.rotation.set(config.lidClosedRotationX, 0, 0); // Start with closed lid
+    } else {
+        // iPhone specific setup
+        screen = base.getObjectByName("Screen");
+        
+        // If the screen node isn't found exactly by name, fallback to children
+        if (!screen && base.children.length > 0) {
+            screen = base.children[0];
+        }
+    }
 
     return { base, lid, screen };
 };
@@ -127,6 +160,22 @@ const addCss3dToObject = (container, obj) => {
     const css3dObject = new CSS3DObject(containerClone);
     obj.css3dObject = css3dObject;
     obj.add(css3dObject);
+
+    // Calculate exact physical dimensions of the screen face for CSS scaling
+    const boundingBox = new THREE.Box3().setFromObject(obj);
+    const size = new THREE.Vector3();
+    boundingBox.getSize(size);
+    
+    // Dynamically set CSS container scale based on the 3D model bounds
+    // We multiply by the mesh scale since the bounds are local
+    const baseScale = DEVICE_CONFIG[laptopScene.deviceType].init.scale.x;
+    
+    // Width is always X. Height is usually Y, but for the laptop lid it's Z since it was rotated.
+    const physicalWidth = size.x * baseScale;
+    const physicalHeight = (size.y > size.z ? size.y : size.z) * baseScale;
+    
+    containerClone.style.width = `${Math.floor(physicalWidth)}px`;
+    containerClone.style.height = `${Math.floor(physicalHeight)}px`;
 
     // Invisible plane to block WebGL behind the screen
     obj.material = new THREE.MeshPhongMaterial({
@@ -195,7 +244,11 @@ const syncLaptopScreen = () => {
 
     laptopScreenScene.mesh.position.copy(position);
     laptopScreenScene.mesh.quaternion.copy(quaternion);
-    laptopScreenScene.mesh.rotateOnAxis(new THREE.Vector3(1, 0, 0), (Math.PI / 2) * -1);
+    
+    // The laptop screen explicitly needs a -PI/2 rotation due to its local mesh space
+    if (DEVICE_CONFIG[laptopScene.deviceType].hasLid) {
+        laptopScreenScene.mesh.rotateOnAxis(new THREE.Vector3(1, 0, 0), (Math.PI / 2) * -1);
+    }
 };
 
 
@@ -221,8 +274,8 @@ const updateAnimation = (timestamp) => {
     // Phase 1: MacBook rises into view (0 -> 15%)
     const riseProgress = Math.min(1, progress / 0.15);
     const riseEased = easeOutCubic(riseProgress);
-    const startY = LAPTOP_INIT.position.y;
-    const targetY = -70; // Center position
+    const startY = DEVICE_CONFIG[laptopScene.deviceType].init.position.y;
+    const targetY = DEVICE_CONFIG[laptopScene.deviceType].init.targetY; // Center position
     laptopScene.mesh.base.position.y = startY + ((targetY - startY) * riseEased);
 
     // Phase 2: Lid Opens (15% -> 35%)
@@ -231,7 +284,11 @@ const updateAnimation = (timestamp) => {
         lidProgress = Math.max(0, Math.min(1, (progress - 0.15) / 0.20));
     }
     const lidEased = easeInOutQuad(lidProgress);
-    laptopScene.mesh.lid.rotation.x = LAPTOP_LID_ROTATION_X_CLOSED - ((LAPTOP_LID_ROTATION_X_CLOSED - LAPTOP_LID_ROTATION_X_OPEN) * lidEased);
+    
+    const config = DEVICE_CONFIG[laptopScene.deviceType];
+    if (config.hasLid && laptopScene.mesh.lid) {
+        laptopScene.mesh.lid.rotation.x = config.lidClosedRotationX - ((config.lidClosedRotationX - config.lidOpenRotationX) * lidEased);
+    }
     
     // Phase 3: Huge zoom past the layout (60% -> 100%)
     let zoomProgress = 0;
