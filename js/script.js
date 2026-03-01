@@ -430,7 +430,7 @@ updateGreeting();
 // --- Blur Overlay Logic & Menu Audio ---
 const blurOverlay = document.getElementById("blurOverlay");
 const sidebarNav = document.querySelector(".sidebar-nav");
-const techTrack = document.querySelector(".tech-track");
+const techWrapper = document.querySelector(".tech-carousel-wrapper");
 
 function activateBlur() {
     if (blurOverlay) blurOverlay.classList.add("active");
@@ -446,9 +446,9 @@ if (sidebarNav) {
     sidebarNav.addEventListener("mouseleave", deactivateBlur);
 }
 
-if (techTrack) {
-    techTrack.addEventListener("mouseenter", activateBlur);
-    techTrack.addEventListener("mouseleave", deactivateBlur);
+if (techWrapper) {
+    techWrapper.addEventListener("mouseenter", activateBlur);
+    techWrapper.addEventListener("mouseleave", deactivateBlur);
 }
 
 const cvNav = document.querySelector(".cv-nav");

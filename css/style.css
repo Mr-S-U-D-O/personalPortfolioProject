@@ -518,51 +518,75 @@ body, html {
     animation-play-state: paused;
 }
 
-/* --- Custom Tooltip (Conversation box) --- */
-.tech-item::before {
-    content: attr(data-tooltip);
+/* --- Dropdown Menu (on hover) --- */
+.tech-dropdown {
     position: absolute;
-    top: -45px;
+    top: 60px; /* Below the header line / track area */
     left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: var(--tooltip-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--tooltip-border);
-    color: var(--text-light);
-    padding: 5px 12px;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    font-family: 'Inter', sans-serif;
-    font-weight: 500;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-/* Little triangle pointer for the conversation box */
-.tech-item::after {
-    content: '';
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    border-width: 6px;
-    border-style: solid;
-    border-color: var(--tooltip-bg) transparent transparent transparent;
-    opacity: 0;
-
-    visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.tech-item:hover::before,
-.tech-item:hover::after {
-    opacity: 1;
+    transform: translateX(-50%) translateY(-20px);
+    width: max-content;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    padding: 20px 40px;
     
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 40px;
+    
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 70;
+}
+
+/* Hovering the wrapper triggers the dropdown */
+.tech-carousel-wrapper:hover .tech-dropdown {
+    opacity: 1;
     visibility: visible;
+    pointer-events: auto;
     transform: translateX(-50%) translateY(0);
 }
+
+/* Fade out the sliding track when the dropdown is active */
+.tech-carousel-wrapper:hover .tech-scroller {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tech-dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    cursor: default;
+}
+
+.tech-dropdown-item i {
+    font-size: 1.8rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.tech-dropdown-item:hover {
+    color: var(--text-light);
+}
+
+.tech-dropdown-item:hover i {
+    transform: scale(1.1);
+}
+
+/* Brand Colors */
+.tech-dropdown-item:hover i.fa-html5 { color: #E34F26; }
+.tech-dropdown-item:hover i.fa-css3-alt { color: #1572B6; }
+.tech-dropdown-item:hover i.fa-js { color: #F7DF1E; }
+.tech-dropdown-item:hover i.fa-git-alt { color: #F05032; }
+.tech-dropdown-item:hover i.fa-github { color: #FFFFFF; }
 
 @keyframes scrollSlide {
     0% {
@@ -804,20 +828,21 @@ body, html {
 
     /* --- Theme Toggle & CV Nav --- */
     .theme-toggle {
-        top: auto;
-        bottom: 20px;
-        right: 20px;
+        top: 20px;
+        bottom: auto;
+        left: 20px;
+        right: auto;
         width: 40px;
         height: 40px;
         z-index: 100; /* Ensure it stays above content but below top nav */
     }
 
     .cv-nav {
-        top: auto; /* Reset inherited top bounds from sidebar-nav */
+        top: 20px; /* Reset inherited top bounds from sidebar-nav */
+        bottom: auto;
         left: auto; /* Reset left centering */
         transform: none;
-        bottom: 20px;
-        right: 80px; /* Move next to theme toggle */
+        right: 20px; /* Move next to theme toggle */
         padding: 8px 12px;
         width: auto !important;
     }
@@ -861,30 +886,33 @@ body, html {
 
     .slide-container,
     .about-slide:nth-child(even) .slide-container {
-        flex-direction: column;
-        padding: 0 30px;
-        gap: 30px;
+        flex-direction: row-reverse; /* Force side-by-side but with timeline on the left */
+        padding: 0 20px;
+        gap: 20px; /* smaller gap */
+        align-items: flex-start; /* align top instead of center */
     }
 
-    .slide-timeline,
-    .slide-connector {
-        display: none; /* Hide confusing horizontal visual logic on slim vertical screens */
-    }
+    /* We keep timeline and connector visible now */
 
     .slide-text,
     .about-slide:nth-child(even) .slide-text {
-        text-align: center;
+        text-align: left; /* Always left align text next to timeline on mobile */
+        padding-top: 15px; /* align text with the number node */
     }
 
     .slide-image-wrapper {
-        width: 100%;
-        height: auto;
-        padding: 20px;
-        aspect-ratio: 16 / 9; /* Keep a nice rectangular container for the SVG */
+        display: none; /* Hide images on mobile per user request */
+    }
+    
+    /* When row-reversed, the connector shoots left natively, but we need it right to point to the text */
+    .slide-connector,
+    .about-slide:nth-child(even) .slide-connector {
+        right: -20px; /* Push it towards the text on the right */
+        left: auto;
+        width: 20px;
     }
 
-    .slide-image-wrapper img {
-        max-width: 80%;
-        max-height: 80%;
+    .slide-timeline {
+        height: 100vh; /* force the tracking line to stretch the parent */
     }
 }
