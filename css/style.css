@@ -214,12 +214,14 @@ body, html {
     backdrop-filter: blur(8px);
     z-index: 50; /* Sits below sidebar (100) and focused elements */
     opacity: 0;
+    overflow: hidden;
     pointer-events: none;
     transition: opacity 0.4s ease;
 }
 
 .content-overlay.active {
     opacity: 1;
+    overflow: hidden;
 }
 
 /* =========================================
@@ -229,6 +231,7 @@ body, html {
     position: relative;
     height: 150vh; /* Determines scroll distance for the zoom */
     width: 100%;
+    
 }
 
 /* =========================================
@@ -252,7 +255,7 @@ body, html {
 
 .hero-section.show {
     visibility: visible;
-    overflow-x: hidden; /* Avoid side-scrolling edge bugs */
+    overflow: hidden; /* Avoid side-scrolling edge bugs */
     opacity: 1;
     transform: none; /* Changed from scale(1) to avoid breaking position: fixed for sidebars */
 }
@@ -378,6 +381,7 @@ body, html {
     border: 4px solid var(--accent-primary); /* The red/purple circle from sketch */
     padding: 5px;
     flex-shrink: 0;
+
 }
 
 .hero-profile-img {
@@ -489,7 +493,6 @@ body, html {
 /* Dim entire track when any item is hovered */
 .tech-track:hover .tech-item {
     opacity: 0.3;
-    filter: blur(2px);
 }
 
 .tech-item {
@@ -619,13 +622,65 @@ body, html {
 }
 
 /* =========================================
-   About Section Slides
+   About Section
 ========================================= */
 .about-section {
     position: relative;
     background: var(--bg-dark);
 }
 
+/* --- About Header & Ghost Text --- */
+.about-section-header {
+    text-align: center;
+    padding: 120px 20px 80px; /* Space above and below the header */
+    background: var(--bg-dark);
+    position: relative;
+    z-index: 10;
+}
+
+.about-subtitle {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}
+
+.about-title {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+}
+
+.about-main-text {
+    position: relative;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    color: var(--accent-primary);
+    z-index: 2;
+}
+
+.about-ghost-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(4.5rem, 12vw, 9rem);
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    color: var(--text-muted);
+    opacity: 0.05;
+    z-index: 1;
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* --- About Section Slides --- */
 .about-slide {
     position: sticky;
     top: 0;

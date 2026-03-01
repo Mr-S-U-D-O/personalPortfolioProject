@@ -570,11 +570,14 @@ window.addEventListener("scroll", () => {
             scrollProgress = Math.max(0, Math.min(1, -rigRect.top / scrollDistance));
         }
 
-        const scaleFactor = 1 + Math.pow(scrollProgress, 3) * 80; 
+        // By making the scale an exponent of scrollProgress, the perceived zoom velocity remains constant
+        // giving the user perfect 1:1 control over the movement without an explosive finish.
+        const scaleFactor = Math.pow(81, scrollProgress); 
         
         let opacityProgress = 1;
-        if (scrollProgress > 0.5) {
-            opacityProgress = 1 - ((scrollProgress - 0.5) / 0.3);
+        // Fade out slightly later (60% to 90%) to keep content visible during the controlled zoom
+        if (scrollProgress > 0.6) {
+            opacityProgress = 1 - ((scrollProgress - 0.6) / 0.3);
             opacityProgress = Math.max(0, Math.min(1, opacityProgress));
         }
 
