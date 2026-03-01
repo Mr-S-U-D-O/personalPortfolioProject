@@ -11,7 +11,9 @@ const laptopContainer = document.getElementById("laptop");
 const laptopScreen = document.getElementById("laptop-screen");
 const laptopScreenContainer = document.getElementById("screen-content");
 
-// --- Constants & Config ---
+// =========================================
+// Constants & Config
+// =========================================
 const DRACO_DECODER_URL = "https://www.gstatic.com/draco/versioned/decoders/1.5.6/";
 const LAPTOP_SCENE_CAMERA_INIT_Z_POSITION = window.innerWidth < 768 ? 1100 : 750;
 
@@ -48,7 +50,9 @@ const ANIMATION_START_DELAY = 500;
 const ANIMATION_DURATION = 6000;
 const SKELETON_VISIBLE_TIME = 2000; 
 
-// --- Three.js State ---
+// =========================================
+// Three.js State
+// =========================================
 const laptopScene = {
     deviceType: 'laptop', // Determined at runtime
     geometryFile: null,
@@ -106,13 +110,19 @@ const playMenuSound = () => {
     menuAudio.play().catch(e => console.log('Audio playback prevented:', e));
 };
 
-// --- Three.js Setup Functions ---
+// =========================================
+// Three.js Setup Functions
+// =========================================
 
 const getWindowSize = () => ({
     height: window.innerHeight,
     width: window.innerWidth,
 });
 
+/**
+ * Asynchronously loads the required GLTF/GLB models using standard and DRACO loaders.
+ * Resolves the device type based on window width and stores the geometry in state.
+ */
 const load3DModels = async () => {
     const gltfLoader = new GLTFLoader();
     const dracoLoader = new DRACOLoader();
@@ -126,6 +136,11 @@ const load3DModels = async () => {
     laptopScene.geometryFile = await gltfLoader.loadAsync(config.file);
 };
 
+/**
+ * Recursively applies custom MeshPhongMaterials to specific parts of the loaded laptop 3D model.
+ * 
+ * @param {THREE.Object3D} mesh - The root or child mesh to apply materials to.
+ */
 const setLaptopMeshMaterials = (mesh) => {
     if (mesh.name === "Cube008_2") {
         mesh.material.side = THREE.FrontSide;
@@ -142,6 +157,13 @@ const setLaptopMeshMaterials = (mesh) => {
     (mesh.children || []).forEach((child) => setLaptopMeshMaterials(child));
 };
 
+/**
+ * Configures the loaded 3D geometry into a usable mesh structure (base, lid, screen).
+ * Applies initial position, rotation, and scale transformations defined in configuration.
+ * 
+ * @param {Object} geometryFile - The loaded GLTF object containing the scene.
+ * @returns {Object} An object containing references to the base, lid (if applicable), and screen meshes.
+ */
 const createLaptopMesh = (geometryFile) => {
     const base = geometryFile.scene;
     const config = DEVICE_CONFIG[laptopScene.deviceType];
@@ -171,6 +193,14 @@ const createLaptopMesh = (geometryFile) => {
     return { base, lid, screen };
 };
 
+/**
+ * Clones a DOM element (screen content) and attaches it as a CSS3DObject to a 3D mesh.
+ * This links the interactive DOM elements to the 3D space of the laptop/phone screen.
+ * Dimensions are automatically calculated based on the bounding box of the target mesh.
+ * 
+ * @param {HTMLElement} container - The HTML DOM element to render in 3D space.
+ * @param {THREE.Object3D} obj - The 3D target mesh that will hold the CSS3DObject.
+ */
 const addCss3dToObject = (container, obj) => {
     const containerClone = container.cloneNode(true);
     container.remove();
@@ -216,6 +246,10 @@ const addCss3dToObject = (container, obj) => {
     }
 };
 
+/**
+ * Initializes the WebGL and CSS3D scenes, sets up the camera, lighting, and appends
+ * the renderers to the DOM. Starts the initial placement of all meshes.
+ */
 const initAllScenes = () => {
     const { height, width } = getWindowSize();
     
@@ -256,6 +290,11 @@ const initAllScenes = () => {
     laptopScreenScene.scene.add(laptopScreenScene.mesh);
 };
 
+/**
+ * Synchronizes the position, rotation, and transforms of the CSS3D object 
+ * with the WebGL screen mesh, ensuring the DOM element stays perfectly aligned 
+ * within the 3D device frame.
+ */
 const syncLaptopScreen = () => {
     const position = new THREE.Vector3();
     const quaternion = new THREE.Quaternion();
@@ -280,7 +319,9 @@ const syncLaptopScreen = () => {
 };
 
 
-// --- Animation Timeline Logic ---
+// =========================================
+// Animation Timeline Logic
+// =========================================
 
 // Ease Out Cubic function
 const easeOutCubic = (x) => 1 - Math.pow(1 - x, 3);
@@ -289,6 +330,13 @@ const easeInExpo = (x) => x === 0 ? 0 : Math.pow(2, 10 * x - 10);
 // Ease In Out Quad function
 const easeInOutQuad = (x) => x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
 
+/**
+ * The core animation loop for the cinematic intro sequence.
+ * Uses requestAnimationFrame to calculate progressed states based on timestamps.
+ * Handles the raising of the laptop, the lid opening, and the camera zooming past the screen.
+ * 
+ * @param {DOMHighResTimeStamp} timestamp - High resolution time provided by requestAnimationFrame.
+ */
 const updateAnimation = (timestamp) => {
     if (!animationStartTime) animationStartTime = timestamp;
     
@@ -640,7 +688,10 @@ const projectModal = document.getElementById('projectModal');
 const modalCloseBtn = document.getElementById('modalCloseBtn');
 let projectsData = [];
 
-// Fetch JSON data
+/**
+ * Fetches the projects configuration from the local JSON file.
+ * Automatically triggers the rendering of the Bento Grid upon success.
+ */
 async function loadProjects() {
     try {
         const response = await fetch('./data/projects.json');
@@ -653,7 +704,12 @@ async function loadProjects() {
     }
 }
 
-// Render the grid
+/**
+ * Iterates through the provided project data and dynamically builds the 
+ * Bento Grid UI structure, injecting it into the DOM.
+ * 
+ * @param {Array<Object>} projects - Array of project data objects loaded from JSON.
+ */
 function renderBentoGrid(projects) {
     if (!bentoGrid) return;
     bentoGrid.innerHTML = ''; // Clear skeleton/empty state if any
@@ -696,7 +752,12 @@ function renderBentoGrid(projects) {
     });
 }
 
-// Open Modal Logic
+/**
+ * Populates and displays the cinematic project modal with details 
+ * from the selected project index.
+ * 
+ * @param {number} index - Index of the selected project in the loaded projectsData array.
+ */
 function openProjectModal(index) {
     if (!projectsData[index]) return;
     const project = projectsData[index];
@@ -733,7 +794,9 @@ function openProjectModal(index) {
     playHoverSound(); // Optionally play the nice UI sound
 }
 
-// Close Modal Logic
+/**
+ * Closes the cinematic project modal and resets its state.
+ */
 function closeProjectModal() {
     projectModal.classList.remove('active');
 }
