@@ -1,7 +1,7 @@
 [
     {
         "id": "1",
-        "image": "",
+        "image": "my pictures/dark mode.webp",
         "date": "MARCH 2, 2026",
         "topic": "Multilingual Websites",
         "description": "Sed ut unde omnis iste natus sit voluptatem accus antium laudantium totam aperiam inventore veritatis et architecto beatae.",
@@ -12,7 +12,7 @@
     },
     {
         "id": "2",
-        "image": "",
+        "image": "my pictures/light mode.webp",
         "date": "MARCH 2, 2026",
         "topic": "Online Feedbacks",
         "description": "Sed ut unde omnis iste natus sit voluptatem accus antium laudantium totam aperiam inventore veritatis et architecto beatae.",
@@ -23,7 +23,7 @@
     },
     {
         "id": "3",
-        "image": "",
+        "image": "my pictures/dark mode.webp",
         "date": "MARCH 2, 2026",
         "topic": "Features Integration",
         "description": "Sed ut unde omnis iste natus sit voluptatem accus antium laudantium totam aperiam inventore veritatis et architecto beatae.",

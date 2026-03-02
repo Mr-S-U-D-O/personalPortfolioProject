@@ -1,13 +1,19 @@
 const fs = require('fs');
 const path = require('path');
 
-// Paths
+// Configuration
+const BASE_URL = 'https://yourportfolio.com'; // Adjust this when deploying
+const ROOT_DIR = path.join(__dirname, '../');
 const DATA_PATH = path.join(__dirname, '../data/blog.json');
 const INDEX_PATH = path.join(__dirname, '../index.html');
 const TEMPLATE_PATH = path.join(__dirname, 'blog-template.html');
-const ROOT_DIR = path.join(__dirname, '../');
+const SITEMAP_XML_PATH = path.join(__dirname, '../sitemap.xml');
+const SITEMAP_HTML_PATH = path.join(__dirname, '../sitemap.html');
 
-console.log('Starting static blog generation...');
+console.log('Starting unified build process...');
+
+// Track all generated pages for the sitemap
+const sitePages = ['index.html'];
 
 // 1. Read Data
 let blogData = [];
@@ -96,6 +102,73 @@ blogData.forEach(post => {
     const outputPath = path.join(ROOT_DIR, post.link);
     fs.writeFileSync(outputPath, pageHtml, 'utf8');
     console.log(`Generated page: ${post.link}`);
+    
+    // Track page for sitemaps
+    sitePages.push(post.link);
 });
 
 console.log('Blog generation complete!');
+
+// 5. Generate sitemap.xml
+let xmlContent = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
+sitePages.forEach(page => {
+    const loc = `${BASE_URL}/${page}`;
+    xmlContent += `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>\n  </url>\n`;
+});
+xmlContent += `</urlset>`;
+
+try {
+    fs.writeFileSync(SITEMAP_XML_PATH, xmlContent, 'utf8');
+    console.log('Successfully generated sitemap.xml');
+} catch (err) {
+    console.error('Error generating sitemap.xml:', err);
+}
+
+// 6. Generate sitemap.html
+let htmlContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap | Mosa Moleleki</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 { color: #008cff; }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 10px; }
+        a {
+            color: #a3a3a3;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover { color: #008cff; }
+    </style>
+</head>
+<body>
+    <h1>Sitemap</h1>
+    <ul>
+`;
+
+sitePages.forEach(page => {
+    htmlContent += `        <li><a href="${page}">${page}</a></li>\n`;
+});
+
+htmlContent += `    </ul>
+</body>
+</html>`;
+
+try {
+    fs.writeFileSync(SITEMAP_HTML_PATH, htmlContent, 'utf8');
+    console.log('Successfully generated sitemap.html');
+} catch (err) {
+    console.error('Error generating sitemap.html:', err);
+}
+
+console.log('Unified build process completed entirely.');

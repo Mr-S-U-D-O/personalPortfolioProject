@@ -709,6 +709,25 @@ if (contentGroups.length > 0) {
     contentGroups.forEach(group => observer.observe(group));
 }
 
+// 4. Scroll Fade-Up Animation for Blog Cards
+const blogItems = document.querySelectorAll('.blog-gallery-item');
+if (blogItems.length > 0) {
+    const blogObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Optional: Stop observing once faded in, or keep it to reverse when scrolling away
+                blogObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    });
+    
+    blogItems.forEach(item => blogObserver.observe(item));
+}
+
 // --- Projects Bento Grid Logic ---
 const bentoGrid = document.getElementById('bentoGrid');
 const projectModal = document.getElementById('projectModal');

@@ -61,6 +61,18 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.blog-gallery-item:nth-child(1) { transition-delay: 0.1s; }
+.blog-gallery-item:nth-child(2) { transition-delay: 0.2s; }
+.blog-gallery-item:nth-child(3) { transition-delay: 0.3s; }
+
+.blog-gallery-item.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .blog-gallery-image-wrapper {
