@@ -1548,7 +1548,7 @@ body, html {
 
 /* Base button styling closely resembling the mockup's solid block approach */
 .lets-talk-btn {
-    background-color: #7b3fe4; /* using a solid purple block as seen in screenshot */
+    background-color: var(--accent-primary);
     color: #ffffff;
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
@@ -1556,24 +1556,24 @@ body, html {
     padding: 16px 40px;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    border-radius: 4px; /* Optional slight rounding or set to 0 to match edge-to-edge square */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    border-radius: 4px;
 }
 
 /* Light mode support: button remains visually distinct */
 [data-theme="light"] .lets-talk-btn {
-    background-color: #632fc2;
+    background-color: var(--accent-primary); /* Uses light mode accent if different */
 }
 
 .lets-talk-btn:hover {
-    background-color: #632fc2;
+    filter: brightness(0.85);
     transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(123, 63, 228, 0.2);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .lets-talk-btn:active {
     transform: translateY(0);
-    box-shadow: 0 5px 10px rgba(123, 63, 228, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .contact-info-grid {
@@ -1595,7 +1595,7 @@ body, html {
 .contact-info-label {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #7b3fe4; /* Accent color matching button */
+    color: var(--accent-primary);
     margin: 0;
 }
 
@@ -1613,18 +1613,20 @@ body, html {
 }
 
 .contact-info-value a:hover {
-    color: #7b3fe4;
+    color: var(--accent-primary);
 }
 
 .contact-modal-wrapper {
-    max-width: 600px; /* Thinner standard web-practice modal */
-    background: #ffffff !important;
+    max-width: 600px;
+    background: var(--bg-dark);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
 .contact-close-btn {
     top: 20px;
     right: 20px;
-    color: #000;
+    color: var(--text-muted);
     background: transparent;
     border: none;
     font-size: 1.5rem;
@@ -1650,7 +1652,7 @@ body, html {
 .contact-modal-title {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #7b3fe4; /* Purple as requested in the design */
+    color: var(--accent-primary);
     margin: 0 0 40px 0;
 }
 
@@ -1679,31 +1681,32 @@ body, html {
 .form-group label {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #4a4a4a;
+    color: var(--text-light);
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
     padding: 15px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--glass-border);
     border-radius: 4px;
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
-    color: #4a4a4a;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s ease;
+    color: var(--text-light);
+    background-color: var(--skeleton-highlight);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
     box-sizing: border-box;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #7b3fe4;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(0, 140, 255, 0.2);
 }
 
 .contact-submit-btn {
-    background-color: #7b3fe4; 
+    background-color: var(--accent-primary); 
     color: #ffffff;
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
@@ -1712,12 +1715,12 @@ body, html {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease, filter 0.3s ease;
     margin-top: 10px;
 }
 
 .contact-submit-btn:hover {
-    background-color: #632fc2;
+    filter: brightness(0.85);
     transform: translateY(-2px);
 }
 
