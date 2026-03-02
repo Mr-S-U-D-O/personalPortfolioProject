@@ -589,6 +589,11 @@ function setTheme(themeName) {
             themeToggleIcon.className = 'fa-solid fa-moon';
         }
     }
+
+    const heroImg = document.querySelector('.hero-profile-img');
+    if (heroImg) {
+        heroImg.src = themeName === 'light' ? 'my pictures/light mode.webp' : 'my pictures/dark mode.webp';
+    }
 }
 
 function toggleTheme() {

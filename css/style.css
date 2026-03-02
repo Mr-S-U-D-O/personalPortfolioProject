@@ -5,7 +5,7 @@
     --bg-dark: #0a0a0a;
     --text-light: #ffffff;
     --text-muted: #a3a3a3;
-    --accent-primary: #6366f1;
+    --accent-primary: #008cff;
     
     /* Skeleton Loader Colors */
     --skeleton-base: #171717;
@@ -21,13 +21,13 @@
 }
 
 [data-theme="light"] {
-    --bg-dark: #f0f0f5;  /* Soft, warm white background */
-    --text-light: #18181b; /* Charcoal for high contrast but softer than black */
-    --text-muted: #62626e;
-    --accent-primary: #4f46e5;
+    --bg-dark: #e2e8f0;  /* Soft, warm white background */
+    --text-light: #000000; /* Charcoal for high contrast but softer than black */
+    --text-muted: #64748b;
+    --accent-primary: #008cff;
     
-    --skeleton-base: #e4e4e7;
-    --skeleton-highlight: #f4f4f5;
+    --skeleton-base: #cbd5e1;
+    --skeleton-highlight: #e2e8f0;
 
     --glass-bg: rgba(255, 255, 255, 0.6);
     --glass-border: rgba(0, 0, 0, 0.05);
