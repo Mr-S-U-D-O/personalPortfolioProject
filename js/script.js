@@ -37,7 +37,7 @@ const DEVICE_CONFIG = {
             position: { x: 0, y: -500, z: 0 }, 
             rotation: { x: 0, y: Math.PI, z: 0 }, // Rotate 180deg to face forwards
             scale: { x: 250, y: 250, z: 250 }, 
-            targetY: 80
+            targetY: -50
         },
         hasLid: false,
         screenCSSOffset: { x: 0, y: -45, z: 0 } // Pull it down to center visually in the bezels
@@ -80,19 +80,24 @@ const hoverAudio = new Audio('./audio sounds/button hover.mp3');
 // Group audio and lower volume
 const allAudio = [startupAudio, quoteAudio, menuAudio, hoverAudio];
 allAudio.forEach(a => {
-    a.volume = 0.3;
+    a.volume = 0; // Muted by default
     a.load();
 });
 
 // --- Mute Toggle Logic ---
 const muteToggleBtn = document.getElementById("muteToggle");
-let isMuted = false;
+let isMuted = true; // Muted by default properly
 
 if (muteToggleBtn) {
+    // Set initial icon correctly
+    const icon = muteToggleBtn.querySelector("i");
+    if (icon) {
+        icon.className = "fa-solid fa-volume-xmark";
+    }
+
     muteToggleBtn.addEventListener("click", () => {
         isMuted = !isMuted;
-        allAudio.forEach(a => a.volume = isMuted ? 0 : 0.3);
-        const icon = muteToggleBtn.querySelector("i");
+        allAudio.forEach(a => a.volume = isMuted ? 0 : 0.2); // Lowered max volume to 20%
         if (icon) {
             icon.className = isMuted ? "fa-solid fa-volume-xmark" : "fa-solid fa-volume-high";
         }
@@ -517,8 +522,7 @@ if (sidebarNav) {
 }
 
 if (techWrapper) {
-    techWrapper.addEventListener("mouseenter", activateBlur);
-    techWrapper.addEventListener("mouseleave", deactivateBlur);
+    // Blur listeners removed per user request, keeping hover tooltips and slowdown intact
 }
 
 // --- Tech Carousel Hover Slowdown & Tooltips ---
