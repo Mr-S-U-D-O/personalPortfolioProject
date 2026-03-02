@@ -422,6 +422,7 @@ const updateAnimation = (timestamp) => {
                     // Wait for quote zoom out, then bring in hero
                     setTimeout(() => {
                         heroSection.classList.add("show");
+                        document.getElementById('globalUi')?.classList.add("show");
                         document.documentElement.style.overflowY = "auto";
                         document.documentElement.style.overflowX = "hidden";
                         document.body.style.overflowY = "auto";

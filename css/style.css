@@ -261,6 +261,21 @@ body, html {
 }
 
 /* =========================================
+   Global UI Layer
+========================================= */
+.global-ui {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s ease, visibility 1.5s;
+    z-index: 9999;
+}
+
+.global-ui.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =========================================
    Sidebar Navigation
 ========================================= */
 .sidebar-nav {
