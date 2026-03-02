@@ -18,6 +18,7 @@
     --tooltip-bg: rgba(255, 255, 255, 0.1);
     --tooltip-border: rgba(255, 255, 255, 0.1);
     --overlay-bg: rgba(10, 10, 10, 0.3);
+    --ghost-opacity: 0.05;
 }
 
 [data-theme="light"] {
@@ -35,6 +36,7 @@
     --tooltip-bg: rgba(255, 255, 255, 0.85);
     --tooltip-border: rgba(0, 0, 0, 0.08);
     --overlay-bg: rgba(255, 255, 255, 0.3);
+    --ghost-opacity: 0.2;
 }
 
 body, html {
@@ -695,7 +697,7 @@ body, html {
     font-family: 'Inter', sans-serif;
     font-weight: 800;
     color: var(--text-muted);
-    opacity: 0.05;
+    opacity: var(--ghost-opacity);
     z-index: 1;
     white-space: nowrap;
     user-select: none;
@@ -967,7 +969,7 @@ body, html {
     font-size: clamp(3.5rem, 10vw, 7rem);
     font-weight: 800;
     color: var(--text-muted);
-    opacity: 0.05;
+    opacity: var(--ghost-opacity);
     z-index: 1;
     white-space: nowrap;
     user-select: none;
@@ -1523,7 +1525,7 @@ body, html {
     font-size: clamp(3.5rem, 10vw, 7rem);
     font-weight: 800;
     color: var(--text-muted);
-    opacity: 0.05;
+    opacity: var(--ghost-opacity);
     z-index: 1;
     white-space: nowrap;
     user-select: none;
@@ -1789,7 +1791,7 @@ body, html {
     font-size: clamp(3rem, 8vw, 5rem);
     font-weight: 800;
     color: var(--text-muted);
-    opacity: 0.05;
+    opacity: var(--ghost-opacity);
     z-index: 1;
     white-space: nowrap;
     user-select: none;
@@ -1840,23 +1842,19 @@ body, html {
 
 /* GitHub Specific Button */
 .github-btn {
-    background: linear-gradient(to right, #1f2937, #000000); /* bg-gradient-to-r from-gray-800 to-black */
+    background-color: #24292e; /* Solid GitHub brand color */
 }
 
 /* LinkedIn Specific Button */
 .linkedin-btn {
-    background: linear-gradient(to right, #1f2937, #0077b5); /* bg-[#0077b5] from-gray-800 */
+    background-color: #0077b5; /* Solid LinkedIn brand color */
 }
 
 /* Hover States for all Social Buttons */
 .social-btn:hover {
-    transform: translateY(-12px); /* hover:translate-y-3 */
-    border-radius: 50%; /* hover:rounded-[50%] */
-}
-
-/* Hover Gradient Changes */
-.github-btn:hover, .linkedin-btn:hover {
-    background: linear-gradient(to right, #331029, #310413); /* hover:from-[#331029] hover:to-[#310413] */
+    transform: translateY(-12px); 
+    border-radius: 50%;
+    filter: brightness(1.2); /* Brighten instead of changing to a purple gradient */
 }
 
 /* Tooltip (Replicating Tailwind group-hover spans) */

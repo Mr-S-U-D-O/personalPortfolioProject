@@ -41,7 +41,7 @@
     font-size: clamp(3.5rem, 10vw, 7rem);
     font-weight: 800;
     color: var(--text-muted);
-    opacity: 0.05;
+    opacity: var(--ghost-opacity);
     z-index: 1;
     white-space: nowrap;
     user-select: none;
