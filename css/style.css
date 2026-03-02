@@ -702,150 +702,199 @@ body, html {
     pointer-events: none;
 }
 
-/* --- About Section Slides --- */
-.about-slide {
-    position: sticky;
-    top: 0;
-    height: 100vh;
+/* =========================================
+   Horizontal Snaking Timeline
+========================================= */
+.snake-timeline-container {
     width: 100%;
-    background: var(--bg-dark); /* crucial for covering the previous slide */
-    overflow: hidden;
-    z-index: 10;
-}
-/* Ensure slides stack neatly natively */
-.about-slide:nth-child(1) { z-index: 11; }
-.about-slide:nth-child(2) { z-index: 12; }
-.about-slide:nth-child(3) { z-index: 13; }
-
-.slide-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 60px;
-    height: 100%;
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 100px 20px;
 }
 
-/* ODD (1, 3) Layout defaults */
-.slide-text { 
-    flex: 1; 
-    text-align: right; 
+.snake-row {
+    position: relative;
+    height: 350px; /* Provides enough vertical scroll space to 'scrub' the horizontal line */
 }
 
-.slide-text .year {
-    color: var(--accent-primary);
-    font-family: 'Inter', sans-serif;
-    font-size: 3rem;
-    font-weight: 700;
-    margin: 0;
-}
-
-.slide-text .heading {
-    color: var(--accent-primary);
-    font-family: 'Inter', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin: 10px 0 20px 0;
-}
-
-.slide-text p {
-    color: var(--text-muted);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 0;
-}
-
-.slide-image-wrapper { 
-    flex: 1.5; 
-    position: relative; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    height: 55vh; 
-    background: var(--glass-bg); /* Use glass panel for the illustration background */
-    border: 1px solid var(--glass-border);
-    border-radius: 12px;
-}
-
-.slide-image-wrapper img {
-    max-width: 70%;
-    max-height: 70%;
-    opacity: 0.9;
-}
-
-.slide-timeline { 
-    width: 60px; 
-    height: 100%; 
-    position: relative; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-}
-
-/* Continuous vertical timeline line */
-.slide-timeline::before {
-    content: '';
+/* Base style for all physical path fragments */
+.snake-segment {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
     background: var(--glass-line);
     z-index: 0;
 }
 
-/* Timeline Number */
-.timeline-num {
-    background: var(--bg-dark); /* matches parent background to cut the line cleanly */
-    padding: 20px 0;
-    color: var(--accent-primary);
-    font-size: 1.2rem;
-    font-weight: 700;
-    z-index: 2; /* Sits above the fill line */
-    position: relative;
-    font-family: 'Inter', sans-serif;
+/* Horizontal track in the row */
+.seg-h {
+    top: 250px;
+    left: 16.666%; 
+    right: 16.666%;
+    height: 2px;
 }
 
-/* Timeline scroll progress fill */
-.timeline-fill {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 0%;
-    background-color: var(--accent-primary);
-    z-index: 1; /* Sits above the faint background line but below the number node */
+/* Vertical track dropping in from the top (Only Row 1) */
+.seg-start {
+    top: 0; 
+    left: 16.666%; 
+    width: 2px; 
+    height: 250px; /* Connects down exactly to the horizontal line */
 }
 
-/* Connector Line */
-.slide-connector {
+/* Vertical track dropping out on the right (End of Row 1 into Row 2) */
+.seg-right {
+    top: 250px; 
+    right: 16.666%; 
+    width: 2px; 
+    height: 350px; /* Spans the remaining 100px of this row + 250px of the next row */
+}
+
+/* Vertical track dropping out on the left (End of Row 2 into Row 3) */
+.seg-left {
+    top: 250px; 
+    left: 16.666%; 
+    width: 2px; 
+    height: 350px;
+}
+
+/* Special ending */
+.snake-row.end-row {
+    height: 300px; /* Doesn't need full drop height */
+}
+
+/* --- Fills --- */
+.segment-fill {
     position: absolute;
-    top: 50%;
-    right: -60px; /* reaches exactly across the 60px gap */
-    width: 60px;
-    height: 1px; /* The mockups use an ultra-thin line */
+    top: 0; left: 0; right: 0; bottom: 0;
     background: var(--accent-primary);
-    opacity: 0.9;
+    box-shadow: 0 0 10px var(--accent-primary);
     z-index: 1;
 }
 
-/* EVEN (2) Layout Reverse */
-.about-slide:nth-child(even) .slide-container {
+.seg-ltr .segment-fill {
+    transform-origin: left;
+    transform: scaleX(0); /* JS Scroll driven */
+}
+
+.seg-rtl .segment-fill {
+    transform-origin: right;
+    transform: scaleX(0); /* JS Scroll driven */
+}
+
+.seg-v .segment-fill {
+    transform-origin: top;
+    transform: scaleY(0); /* JS Scroll driven */
+}
+
+/* --- Items Holder --- */
+.snake-items {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    right: 0;
+    height: 250px; /* Items sit entirely above the horizontal line (which is at 250px) */
+    display: flex;
+    justify-content: space-between;
+    z-index: 5;
+}
+
+.snake-items.ltr {
+    flex-direction: row;
+}
+
+.snake-items.rtl {
     flex-direction: row-reverse;
 }
 
-.about-slide:nth-child(even) .slide-text {
-    text-align: left;
+/* --- Individual Node --- */
+.snake-item {
+    width: 33.333%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 40px; /* Space for the tick line under text */
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-.about-slide:nth-child(even) .slide-connector {
-    right: auto;
-    left: -60px;
+/* Raw Text Styling (No Card Border per request) */
+.item-content {
+    opacity: 0.5; /* Default inactive */
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.item-content.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.item-date {
+    color: var(--accent-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.item-topic {
+    color: var(--text-light);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.item-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Tick line connecting text down to dot */
+.item-tick {
+    position: absolute;
+    bottom: 0px; 
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 40px;
+    background: var(--glass-line);
+}
+.item-tick .segment-fill {
+    transform-origin: bottom; /* Fills upwards to the text! */
+    transform: scaleY(0);
+}
+
+/* The physical dot residing ON the horizontal segment */
+.item-dot {
+    position: absolute;
+    top: 100%; /* Corresponds exactly to 250px from parent height, matching seg-h */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--bg-dark);
+    border: 3px solid var(--glass-line);
+    transition: border-color 0.4s ease, background-color 0.4s ease, transform 0.4s ease;
+}
+
+.item-dot.filled {
+    border-color: var(--accent-primary);
+    background: var(--bg-dark);
+    box-shadow: 0 0 15px var(--accent-primary);
+    transform: translate(-50%, -50%) scale(1.3);
+}
+
+/* Special End Oval */
+.item-dot.oval {
+    width: 24px;
+    height: 12px;
+    border-radius: 6px;
 }
 
 /* =========================================
@@ -1340,43 +1389,56 @@ body, html {
         margin-top: 20px;
     }
 
-    /* --- About Slides Stack --- */
-    .about-slide {
-        height: auto;
-        min-height: 100vh;
-        padding: 80px 0; /* Add scrolling padding */
-    }
-
-    .slide-container,
-    .about-slide:nth-child(even) .slide-container {
-        flex-direction: row-reverse; /* Force side-by-side but with timeline on the left */
-        padding: 0 20px;
-        gap: 20px; /* smaller gap */
-        align-items: center; /* Perfect vertical center */
-    }
-
-    /* We keep timeline and connector visible now */
-
-    .slide-text,
-    .about-slide:nth-child(even) .slide-text {
-        text-align: left; /* Always left align text next to timeline on mobile */
-        padding-top: 15px; /* align text with the number node */
-    }
-
-    .slide-image-wrapper {
-        display: none; /* Hide images on mobile per user request */
+    /* --- About Timeline Mobile Stack --- */
+    .snake-timeline-container {
+        padding: 40px 20px;
     }
     
-    /* When row-reversed, the connector shoots left natively, but we need it right to point to the text */
-    .slide-connector,
-    .about-slide:nth-child(even) .slide-connector {
-        right: -20px; /* Push it towards the text on the right */
-        left: auto;
-        width: 20px;
+    .snake-row {
+        height: auto; /* Let content dictate height */
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Hide the horizontal and tracking lines on mobile for simplicity */
+    .seg-h, .seg-start, .seg-right, .seg-left, .end-drop {
+        display: none;
+    }
+    
+    .snake-items {
+        position: relative;
+        height: auto;
+        flex-direction: column !important; /* Force all rows to stack vertically top-to-bottom */
+    }
+    
+    .snake-item {
+        width: 100%;
+        align-items: flex-start;
+        text-align: left;
+        padding: 0 0 40px 30px; /* Space for the left-aligned track */
+    }
+    
+    /* Draw a simple vertical line on the left inside snake-items */
+    .snake-items::before {
+        content: ''; 
+        position: absolute; 
+        left: 6px; /* align with dot */
+        top: 0; 
+        bottom: 0; 
+        width: 2px; 
+        background: var(--glass-line);
+        z-index: 0;
+    }
+    
+    /* Modify dot to sit on this left line */
+    .item-dot {
+        top: 20px; /* Align with text */
+        left: 7px; /* Align with line */
+        transform: translate(-50%, -50%);
     }
 
-    .slide-timeline {
-        height: 100vh; /* force the tracking line to stretch the parent */
+    .item-tick {
+        display: none; /* Removed the connection tick on mobile */
     }
 
     /* --- Projects Mobile --- */

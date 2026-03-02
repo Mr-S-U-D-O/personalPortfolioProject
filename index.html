@@ -159,68 +159,121 @@
             </h2>
         </div>
 
-        <!-- Slide 1 -->
-        <article class="about-slide glow-container">
-            <div class="slide-container">
-                <div class="slide-text">
-                    <h2 class="year">1994</h2>
-                    <h3 class="heading">The Beginning</h3>
-                    <p>Quis autem reprehenderit in velit esse nihil molestia illum dolorem fugiat voluptas pariatur.</p>
-                </div>
-                <div class="slide-image-wrapper glow-card">
-                    <div class="glow-content" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-                        <img src="https://cdn.jsdelivr.net/gh/KaterinaLupacheva/undraw-urls@master/SVGs/undraw_boy_1ffo.svg" alt="Childhood Origin">
-                    </div>
-                    <div class="slide-connector"></div>
-                </div>
-                <div class="slide-timeline">
-                    <span class="timeline-num">01</span>
-                    <div class="timeline-fill"></div>
-                </div>
-            </div>
-        </article>
+        <!-- Horizontal Snaking Timeline -->
+        <div class="snake-timeline-container" id="snakeTimeline">
+            
+            <!-- Row 1: Left to Right -->
+            <div class="snake-row">
+                <div class="snake-segment seg-v seg-start"><div class="segment-fill"></div></div>
+                <div class="snake-segment seg-h seg-ltr"><div class="segment-fill"></div></div>
+                <div class="snake-segment seg-v seg-right"><div class="segment-fill"></div></div>
 
-        <!-- Slide 2 -->
-        <article class="about-slide glow-container">
-            <div class="slide-container">
-                <div class="slide-text">
-                    <h2 class="year">2013</h2>
-                    <h3 class="heading">First Lines of Code</h3>
-                    <p>Quis autem reprehenderit in velit esse nihil molestia illum dolorem fugiat voluptas pariatur.</p>
-                </div>
-                <div class="slide-image-wrapper glow-card">
-                    <div class="glow-content" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-                        <img src="https://cdn.jsdelivr.net/gh/KaterinaLupacheva/undraw-urls@master/SVGs/undraw_programming_2svr.svg" alt="Discovering Programming">
+                <div class="snake-items ltr">
+                    <div class="snake-item">
+                        <div class="item-content">
+                            <div class="item-date">2022/11</div>
+                            <div class="item-topic">The Foundation</div>
+                            <div class="item-desc">Completed my matriculation, actively exploring career paths and laying the groundwork.</div>
+                        </div>
+                        <div class="item-tick"><div class="segment-fill"></div></div>
+                        <div class="item-dot"></div>
                     </div>
-                    <div class="slide-connector"></div>
-                </div>
-                <div class="slide-timeline">
-                    <span class="timeline-num">02</span>
-                    <div class="timeline-fill"></div>
+                    
+                    <div class="snake-item">
+                        <div class="item-content">
+                            <div class="item-date">2023/05</div>
+                            <div class="item-topic">Discovering Code</div>
+                            <div class="item-desc">Discovered a deep passion for technology. Wrote my first lines of code.</div>
+                        </div>
+                        <div class="item-tick"><div class="segment-fill"></div></div>
+                        <div class="item-dot"></div>
+                    </div>
+                    
+                    <div class="snake-item">
+                        <div class="item-content">
+                            <div class="item-date">2023/11</div>
+                            <div class="item-topic">The Need for Structure</div>
+                            <div class="item-desc">Realized that to build scalable applications, I needed formal engineering principles.</div>
+                        </div>
+                        <div class="item-tick"><div class="segment-fill"></div></div>
+                        <div class="item-dot"></div>
+                    </div>
                 </div>
             </div>
-        </article>
 
-        <!-- Slide 3 -->
-        <article class="about-slide glow-container">
-            <div class="slide-container">
-                <div class="slide-text">
-                    <h2 class="year">2024</h2>
-                    <h3 class="heading">Web Developer</h3>
-                    <p>Quis autem reprehenderit in velit esse nihil molestia illum dolorem fugiat voluptas pariatur.</p>
-                </div>
-                <div class="slide-image-wrapper glow-card">
-                    <div class="glow-content" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">
-                        <img src="https://cdn.jsdelivr.net/gh/KaterinaLupacheva/undraw-urls@master/SVGs/undraw_web_developer_p3e5.svg" alt="Professional Web Developer">
+            <!-- Row 2: Right to Left -->
+            <div class="snake-row">
+                <div class="snake-segment seg-h seg-rtl"><div class="segment-fill"></div></div>
+                <div class="snake-segment seg-v seg-left"><div class="segment-fill"></div></div>
+
+                <div class="snake-items rtl">
+                    <!-- DOM Order: 4 sits on the Right, 6 sits on the Left -->
+                    <div class="snake-item">
+                        <div class="item-content">
+                            <div class="item-date">2024/01</div>
+                            <div class="item-topic">Funding the Vision</div>
+                            <div class="item-desc">Took calculated action to finance my goals by working outside tech for a year.</div>
+                        </div>
+                        <div class="item-tick"><div class="segment-fill"></div></div>
+                        <div class="item-dot"></div>
                     </div>
-                    <div class="slide-connector"></div>
-                </div>
-                <div class="slide-timeline">
-                    <span class="timeline-num">03</span>
-                    <div class="timeline-fill"></div>
+
+                    <div class="snake-item">
+                        <div class="item-content">
+                            <div class="item-date">2025/01</div>
+                            <div class="item-topic">Academic Excellence</div>
+                            <div class="item-desc">Enrolled in software development at Rosebank College. Mastered the curriculum.</div>
+                        </div>
+                        <div class="item-tick"><div class="segment-fill"></div></div>
+                        <div class="item-dot"></div>
+                    </div>
+
+                    <div class="snake-item">
+                        <div class="item-content">
+                            <div class="item-date">2025/04</div>
+                            <div class="item-topic">Building for the World</div>
+                            <div class="item-desc">Began engineering free websites for local businesses, sparking LaunchPad Studio.</div>
+                        </div>
+                        <div class="item-tick"><div class="segment-fill"></div></div>
+                        <div class="item-dot"></div>
+                    </div>
                 </div>
             </div>
-        </article>
+
+            <!-- Row 3: Left to Right -->
+            <div class="snake-row">
+                <div class="snake-segment seg-h seg-ltr"><div class="segment-fill"></div></div>
+                <div class="snake-segment seg-v seg-right end-drop"><div class="segment-fill"></div></div>
+
+                <div class="snake-items ltr">
+                    <div class="snake-item">
+                        <div class="item-content">
+                            <div class="item-date">2025/11</div>
+                            <div class="item-topic">The Strategic Pivot</div>
+                            <div class="item-desc">Recognized traditional academia didn't align with my drive for deep mastery.</div>
+                        </div>
+                        <div class="item-tick"><div class="segment-fill"></div></div>
+                        <div class="item-dot"></div>
+                    </div>
+
+                    <div class="snake-item">
+                        <div class="item-content">
+                            <div class="item-date">2026/01</div>
+                            <div class="item-topic">Forging My Path</div>
+                            <div class="item-desc">Committed entirely to self-directed engineering and scaling LaunchPad Studio.</div>
+                        </div>
+                        <div class="item-tick"><div class="segment-fill"></div></div>
+                        <div class="item-dot"></div>
+                    </div>
+
+                    <!-- Special End Oval Node (No text, just dot) -->
+                    <div class="snake-item end-node">
+                        <div class="item-dot oval"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
         <!-- More About Me Button -->
         <div class="about-more-container" style="text-align: center; margin-top: 60px;">

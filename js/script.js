@@ -615,7 +615,6 @@ if (themeToggleBtn) {
 // --- Scroll Zoom Logic & Timeline Animation ---
 const heroScrollRig = document.getElementById("heroScrollRig");
 const heroContentGroup = document.getElementById("heroContentGroup");
-const aboutSlides = document.querySelectorAll('.about-slide');
 
 window.addEventListener("scroll", () => {
     // 1. Zoom Logic for Hero
@@ -649,25 +648,73 @@ window.addEventListener("scroll", () => {
         }
     }
 
-    // 2. Timeline Fill Logic
-    if (aboutSlides.length > 0) {
-        const viewportHeight = window.innerHeight;
-        aboutSlides.forEach(slide => {
-            const rect = slide.getBoundingClientRect();
-            // Fill based on how far the slide has passed through the center of the viewport
-            let fillPercentage = 0;
-            // The active zone is when the top of the slide reaches the middle of the screen
-            if (rect.top <= viewportHeight / 2 && rect.bottom >= viewportHeight / 2) {
-                const passedCenterDistance = (viewportHeight / 2) - rect.top;
-                fillPercentage = Math.min(100, Math.max(0, (passedCenterDistance / rect.height) * 100));
-            } else if (rect.bottom < viewportHeight / 2) {
-                fillPercentage = 100; // passed completely into history
-            }
+    // 2. Horizontal Snaking Timeline Fill Logic
+    const snakeRows = document.querySelectorAll('.snake-row');
+    const midScreen = window.innerHeight / 2;
+    
+    // Offset applied to make lines begin drawing slightly before hitting exact dead center, keeping it feeling responsive
+    const triggerOffset = 50; 
+
+    if (snakeRows.length > 0) {
+        snakeRows.forEach(row => {
+            const rect = row.getBoundingClientRect();
             
-            const fillEl = slide.querySelector('.timeline-fill');
-            if (fillEl) {
-                fillEl.style.height = `${fillPercentage}%`;
+            // Progress within the horizontal row bounds
+            let rowProgress = (midScreen + triggerOffset - rect.top) / rect.height;
+            rowProgress = Math.max(0, Math.min(1, rowProgress));
+
+            // Animate horizontal segment mapping exactly to row scroll progress
+            const segH = row.querySelector('.seg-h .segment-fill');
+            if (segH) {
+                segH.style.transform = `scaleX(${rowProgress})`;
             }
+
+            // Animate vertical drop start (only Row 1)
+            const segStart = row.querySelector('.seg-start .segment-fill');
+            if (segStart) {
+                // seg-start is the top 250px of row 1, so it fills during the very first part of scrolling into row 1
+                let startProgress = (midScreen + triggerOffset - rect.top) / 250;
+                startProgress = Math.max(0, Math.min(1, startProgress));
+                segStart.style.transform = `scaleY(${startProgress})`;
+            }
+
+            // Animate vertical drop out to next row
+            // The drop to next row begins at 250px down the row and extends into the next row
+            const segDropOut = row.querySelector('.seg-right .segment-fill, .seg-left .segment-fill');
+            if (segDropOut) {
+                let dropProgress = (midScreen + triggerOffset - (rect.top + 250)) / 350;
+                dropProgress = Math.max(0, Math.min(1, dropProgress));
+                segDropOut.style.transform = `scaleY(${dropProgress})`;
+            }
+
+            // Check each item node dynamically
+            const items = row.querySelectorAll('.snake-item');
+            items.forEach(item => {
+                const dot = item.querySelector('.item-dot');
+                if (dot) {
+                    const dotRect = dot.getBoundingClientRect();
+                    // If the dot has reached midScreen
+                    if (dotRect.top < midScreen + triggerOffset) {
+                        dot.classList.add('filled');
+                        
+                        // Fill tick line up to text
+                        const tick = item.querySelector('.item-tick .segment-fill');
+                        if (tick) tick.style.transform = `scaleY(1)`;
+                        
+                        // Reveal Text
+                        const content = item.querySelector('.item-content');
+                        if (content) content.classList.add('visible');
+                    } else {
+                        dot.classList.remove('filled');
+                        
+                        const tick = item.querySelector('.item-tick .segment-fill');
+                        if (tick) tick.style.transform = `scaleY(0)`;
+                        
+                        const content = item.querySelector('.item-content');
+                        if (content) content.classList.remove('visible');
+                    }
+                }
+            });
         });
     }
 });
