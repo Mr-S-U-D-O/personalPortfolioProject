@@ -1,0 +1,176 @@
+
+
+/* =========================================
+   Blog / Articles Section (Static Grid)
+========================================= */
+.blog-gallery-section {
+    padding: 100px 20px;
+    background: var(--bg-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blog-section-header {
+    text-align: center;
+    margin-bottom: 80px;
+    position: relative;
+    width: 100%;
+}
+
+.blog-title {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+}
+
+.blog-main-text {
+    position: relative;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--accent-primary);
+    z-index: 2;
+}
+
+.blog-ghost-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    font-weight: 800;
+    color: var(--text-muted);
+    opacity: 0.05;
+    z-index: 1;
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+}
+
+.blog-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.blog-gallery-item {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.blog-gallery-image-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--glass-bg); /* Use glass bg as placeholder */
+    background: #888; /* specifically matching the grey from screenshot for the placeholder */
+    overflow: hidden;
+}
+
+.blog-gallery-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #888; /* A grey placeholder, you can swap with real images */
+}
+
+.blog-gallery-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.blog-gallery-item:hover .blog-gallery-image-wrapper img {
+    transform: scale(1.05);
+}
+
+.blog-gallery-content {
+    position: relative;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.blog-gallery-ghost-number {
+    position: absolute;
+    top: -45px;
+    left: -10px;
+    font-size: 8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    opacity: 0.15;
+    z-index: 1;
+    user-select: none;
+    pointer-events: none;
+    font-family: 'Inter', sans-serif;
+}
+
+.blog-gallery-text-content {
+    position: relative;
+    z-index: 2; /* To sit on top of the ghost number */
+}
+
+.blog-gallery-topic {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    margin: 0 0 10px 0;
+}
+
+.blog-gallery-date {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin: 0 0 15px 0;
+    text-transform: uppercase;
+}
+
+.blog-gallery-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin: 0 0 25px 0;
+}
+
+.blog-gallery-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-light); /* Or default dark tone in light mode */
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.blog-gallery-link i {
+    transition: transform 0.3s ease;
+}
+
+.blog-gallery-link:hover {
+    color: var(--accent-primary);
+}
+
+.blog-gallery-link:hover i {
+    transform: translateX(5px);
+}
+
+@media (max-width: 992px) {
+    .blog-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    .blog-gallery-ghost-number {
+        font-size: 6rem;
+        top: -30px;
+    }
+}

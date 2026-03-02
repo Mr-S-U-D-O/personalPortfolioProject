@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} | Mosa Moleleki</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .blog-post-container {
+            max-width: 800px;
+            margin: 120px auto 60px auto;
+            padding: 0 2rem;
+            color: var(--text-color, #333);
+        }
+        .blog-post-header {
+            margin-bottom: 3rem;
+        }
+        .blog-post-title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary-color, #4a00e0) 0%, #8e2de2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .blog-post-date {
+            color: #888;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .blog-post-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 4rem;
+        }
+        .blog-post-nav {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 2rem;
+            margin-top: 4rem;
+        }
+        .nav-btn {
+            text-decoration: none;
+            color: var(--primary-color, #4a00e0);
+            font-weight: 600;
+        }
+        .nav-btn.disabled {
+            color: #ccc;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            text-decoration: none;
+            color: #666;
+            transition: color 0.3s;
+        }
+        .back-home:hover {
+            color: var(--primary-color, #4a00e0);
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-post-container">
+        <a href="index.html#blog" class="back-home"><i class="fa-solid fa-arrow-left"></i> Back to Articles</a>
+        
+        <header class="blog-post-header">
+            <h1 class="blog-post-title">{{TITLE}}</h1>
+            <p class="blog-post-date">{{DATE}}</p>
+        </header>
+
+        <article class="blog-post-content">
+            {{CONTENT}}
+        </article>
+
+        <nav class="blog-post-nav">
+            {{PREV_LINK}}
+            {{NEXT_LINK}}
+        </nav>
+    </div>
+</body>
+</html>

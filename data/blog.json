@@ -1,26 +1,35 @@
 [
     {
+        "id": "1",
+        "image": "",
         "date": "MARCH 2, 2026",
-        "topic": "The Art of Modern Interfaces",
-        "description": "Exploring how responsive design and micro-interactions elevate user experience from functional to delightful.",
-        "link": "#"
+        "topic": "Multilingual Websites",
+        "description": "Sed ut unde omnis iste natus sit voluptatem accus antium laudantium totam aperiam inventore veritatis et architecto beatae.",
+        "link": "blog-1.html",
+        "content": "<p>Full content for Multilingual Websites will go here.</p>",
+        "prev": null,
+        "next": "2"
     },
     {
-        "date": "FEBRUARY 15, 2026",
-        "topic": "Mastering the DOM",
-        "description": "Deep dive into efficient DOM manipulation techniques for high-performance creative web applications.",
-        "link": "#"
+        "id": "2",
+        "image": "",
+        "date": "MARCH 2, 2026",
+        "topic": "Online Feedbacks",
+        "description": "Sed ut unde omnis iste natus sit voluptatem accus antium laudantium totam aperiam inventore veritatis et architecto beatae.",
+        "link": "blog-2.html",
+        "content": "<p>Full content for Online Feedbacks will go here.</p>",
+        "prev": "1",
+        "next": "3"
     },
     {
-        "date": "JANUARY 28, 2026",
-        "topic": "CSS Architecture at Scale",
-        "description": "Strategies for organizing and maintaining massive CSS codebases without losing your mind or specificity.",
-        "link": "#"
-    },
-    {
-        "date": "JANUARY 10, 2026",
-        "topic": "The Future of Web Typography",
-        "description": "How variable fonts and CSS clamp are fundamentally changing the way we design editorial layouts for the web.",
-        "link": "#"
+        "id": "3",
+        "image": "",
+        "date": "MARCH 2, 2026",
+        "topic": "Features Integration",
+        "description": "Sed ut unde omnis iste natus sit voluptatem accus antium laudantium totam aperiam inventore veritatis et architecto beatae.",
+        "link": "blog-3.html",
+        "content": "<p>Full content for Features Integration will go here.</p>",
+        "prev": "2",
+        "next": null
     }
 ]
