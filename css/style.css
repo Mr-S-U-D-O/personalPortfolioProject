@@ -1877,15 +1877,227 @@ body, html {
     transform: translate(-50%, calc(-50% - 50px)); /* Increased offset for larger button */
 }
 
+/* =========================================
+   Site Footer (Merged Socials)
+========================================= */
+.site-footer {
+    width: 100%;
+    background-color: var(--bg-dark);
+    border-top: 1px solid var(--glass-border);
+    padding-bottom: 60px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Adjusting existing socials section for merger */
+.site-footer .socials-section {
+    background-color: transparent;
+    padding: 80px 20px 40px;
+}
+
+.footer-separator {
+    width: 100%;
+    max-width: 1000px;
+    height: 1px;
+    background-color: var(--glass-border);
+    margin: 0 auto;
+}
+
+.footer-content {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 20px 0;
+}
+
+.footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.footer-top {
+    margin-bottom: 60px;
+}
+
+.footer-bottom {
+    padding-top: 40px;
+    border-top: 1px solid var(--glass-border);
+}
+
+/* S.U.D.O. Slogan Styling (Code Inspired) */
+.footer-slogan {
+    flex: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
+}
+
+.sudo-text {
+    font-family: inherit;
+    font-size: clamp(2.2rem, 5.5vw, 3.2rem);
+    font-weight: 800;
+    color: var(--accent-primary);
+    letter-spacing: 1px;
+    line-height: 1;
+}
+
+.sudo-expansion {
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem); /* Increased size to match better */
+    color: var(--text-light); /* Matching main text color for harmony */
+    letter-spacing: 1px;
+    font-weight: 700; /* Bolder weight */
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0.9; /* More prominent */
+}
+
+/* GitHub Star Button (Tailwind Conversion) */
+.github-star-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    height: 44px;
+    padding: 0 20px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light theme variation to maintain black/white contrast for GitHub specifically */
+[data-theme="light"] .github-star-btn {
+    background-color: #111;
+}
+
+.github-star-btn:hover {
+    outline: 2px solid #000;
+    outline-offset: 2px;
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+}
+
+.btn-shine {
+    position: absolute;
+    right: 0;
+    margin-top: -48px;
+    height: 128px;
+    width: 32px;
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateX(48px) rotate(12deg);
+    transition: transform 1s ease-out;
+    pointer-events: none;
+}
+
+.github-star-btn:hover .btn-shine {
+    transform: translateX(-180px) rotate(12deg);
+}
+
+.btn-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+}
+
+.github-icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.btn-stats {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding-left: 12px;
+    color: #fff;
+}
+
+.star-icon {
+    width: 16px;
+    height: 16px;
+    color: #9ca3af; /* Gray-400 equivalent */
+    transition: color 0.3s ease;
+}
+
+.github-star-btn:hover .star-icon {
+    color: #fde047; /* Yellow-300 equivalent */
+}
+
+.stat-count {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+}
+
+/* Footer Bottom Row Hooks */
+.footer-copyright {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.stylized-name {
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+.footer-nav {
+    display: flex;
+    gap: 25px;
+}
+
+.footer-nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-nav-link:hover {
+    color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+
 /* Mobile Adjustments */
 @media (max-width: 768px) {
-    .socials-container {
+    .site-footer .socials-section {
+        padding: 60px 20px 30px;
+    }
+
+    .footer-row {
         flex-direction: column;
-        gap: 30px;
+        text-align: center;
+        gap: 40px;
     }
     
-    .socials-animated-line {
-        width: 100%;
-        height: 1px;
+    .footer-top {
+        margin-bottom: 40px;
+    }
+
+    .footer-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px 25px;
+    }
+
+    .sudo-text {
+        font-size: 2.2rem;
     }
 }
