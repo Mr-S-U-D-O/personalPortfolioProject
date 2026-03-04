@@ -693,42 +693,20 @@ document.addEventListener('mouseenter', (e) => {
     }
 }, true); // Use capture phase to catch hover on elements that don't bubble mouseenter effectively
 
-// --- Theme Toggle Logic ---
-const themeToggleBtn = document.getElementById('themeToggle');
-const themeToggleIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
-
-function setTheme(themeName) {
-    document.documentElement.setAttribute('data-theme', themeName);
-    localStorage.setItem('theme', themeName);
-    
-    if (themeToggleIcon) {
-        if (themeName === 'light') {
-            themeToggleIcon.className = 'fa-solid fa-sun';
-        } else {
-            themeToggleIcon.className = 'fa-solid fa-moon';
-        }
-    }
-
+// --- Theme Integration (Hero Image Sync) ---
+document.addEventListener('themechange', (e) => {
+    const themeName = e.detail.theme;
     const heroImg = document.querySelector('.hero-profile-img');
     if (heroImg) {
         heroImg.src = themeName === 'light' ? 'my pictures/light mode.webp' : 'my pictures/dark mode.webp';
     }
-}
+});
 
-function toggleTheme() {
-    if (document.documentElement.getAttribute('data-theme') === 'light') {
-        setTheme('dark');
-    } else {
-        setTheme('light');
-    }
-}
-
-// Set up initial theme
-const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-setTheme(savedTheme);
-
-if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', toggleTheme);
+// Sync hero image on initial load
+const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+const heroImg = document.querySelector('.hero-profile-img');
+if (heroImg) {
+    heroImg.src = currentTheme === 'light' ? 'my pictures/light mode.webp' : 'my pictures/dark mode.webp';
 }
 
 // --- Scroll Zoom Logic & Timeline Animation ---
