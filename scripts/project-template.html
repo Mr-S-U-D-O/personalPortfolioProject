@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}} | Project Case Study</title>
+    <!-- Dynamic SEO Meta Tags -->
+    <meta name="description" content="{{DESCRIPTION}}">
+    <link rel="canonical" href="{{PAGE_URL}}">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{PAGE_URL}}">
+    <meta property="og:title" content="{{TITLE}} | Case Study">
+    <meta property="og:description" content="{{DESCRIPTION}}">
+    <meta property="og:image" content="{{OG_IMAGE}}">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/project.css">
+
+    <!-- GSAP for scroll animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="project-detail-page">
+    
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+    <!-- Utility Toggles -->
+    <div class="utility-toggles" style="z-index: 9999;">
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="right: 2rem; position: fixed;">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="project-container">
+        
+        <!-- Back Button -->
+        <a href="../index.html#projects" class="back-home-btn animate-fade-in"><i class="fa-solid fa-arrow-left"></i> Back to Projects</a>
+
+        <!-- Hero Section -->
+        <header class="project-hero animate-slide-up">
+            <div class="project-hero-image-container">
+                <img src="{{FULL_IMAGE}}" alt="{{TITLE}}" class="project-hero-img">
+                <div class="project-hero-overlay"></div>
+                <h1 class="project-hero-title gradient-text">{{TITLE}}</h1>
+                <div class="project-hero-badges">
+                    <span class="badge">{{CATEGORY}}</span>
+                    <span class="badge">{{YEAR}}</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Meta Data Grid -->
+        <section class="project-meta-grid animate-slide-up-delayed">
+            <div class="meta-item">
+                <h4>Role</h4>
+                <p>{{ROLE}}</p>
+            </div>
+            <div class="meta-item">
+                <h4>Year</h4>
+                <p>{{YEAR}}</p>
+            </div>
+            <div class="meta-item">
+                <h4>Category</h4>
+                <p>{{CATEGORY}}</p>
+            </div>
+            <div class="meta-item links">
+                <h4>Links</h4>
+                <div class="meta-links">
+                    {{LIVE_LINK_HTML}}
+                    {{GITHUB_LINK_HTML}}
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Overview -->
+        <section class="project-overview section-padding fade-element">
+            <div class="overview-content">
+                <span class="section-subtitle">OVERVIEW</span>
+                <h2>What is this project?</h2>
+                <p class="large-text">{{OVERVIEW}}</p>
+            </div>
+        </section>
+
+        <!-- The Narrative: Asymmetric Layout -->
+        <div class="narrative-container">
+            <!-- Animated Trailing Line -->
+            <div class="trailing-line-wrapper">
+                <div class="trailing-line"></div>
+                <div class="trailing-fill" id="trailingFill"></div>
+            </div>
+
+            <section class="asymmetric-section section-padding challenge-section fade-element">
+                <div class="sticky-side">
+                    <span class="section-subtitle">THE PROBLEM</span>
+                    <h2>The Challenge</h2>
+                </div>
+                <div class="scrolling-side">
+                    <div class="content-card glass-panel">
+                        <i class="fa-solid fa-triangle-exclamation section-icon text-primary"></i>
+                        <p>{{CHALLENGES}}</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="asymmetric-section reverse section-padding solution-section fade-element">
+                <div class="sticky-side">
+                    <span class="section-subtitle">THE APPROACH</span>
+                    <h2>The Solution</h2>
+                </div>
+                <div class="scrolling-side">
+                    <div class="content-card glass-panel highlight-panel">
+                        <i class="fa-solid fa-lightbulb section-icon text-primary"></i>
+                        <p>{{SOLUTIONS}}</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Technologies Used -->
+        <section class="project-tech section-padding fade-element">
+            <div class="tech-header text-center">
+                <span class="section-subtitle">TOOLS & STACK</span>
+                <h2>Technologies Used</h2>
+            </div>
+            <div class="tech-pills-container">
+                {{TECHNOLOGIES_HTML}}
+            </div>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="project-bottom-nav">
+            {{PREV_LINK}}
+            {{NEXT_LINK}}
+        </nav>
+
+        <!-- Simplified Footer -->
+        <footer class="project-footer">
+            <p>2026 | Created by Mosa "S.U.D.O" Moleleki</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 1. Scroll Progress Bar
+            gsap.to('#scrollProgressBar', {
+                width: '100%',
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: document.body,
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    scrub: 0.2
+                }
+            });
+
+            // 2. Trailing Line Animation
+            const trailingWrapper = document.querySelector('.trailing-line-wrapper');
+            if (trailingWrapper) {
+                gsap.to('#trailingFill', {
+                    height: '100%',
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.narrative-container',
+                        start: 'top center',
+                        end: 'bottom center',
+                        scrub: 0.5
+                    }
+                });
+            }
+
+            // 3. Fade Up Elements on Scroll
+            const fadeElements = document.querySelectorAll('.fade-element');
+            fadeElements.forEach(el => {
+                gsap.fromTo(el, 
+                    { opacity: 0, y: 50 },
+                    {
+                        opacity: 1, 
+                        y: 0,
+                        duration: 0.8,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 85%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    }
+                );
+            });
+
+            // 4. Stagger Technology Pills
+            gsap.from('.tech-pill', {
+                opacity: 0,
+                y: 20,
+                stagger: 0.1,
+                duration: 0.6,
+                ease: 'back.out(1.7)',
+                scrollTrigger: {
+                    trigger: '.tech-pills-container',
+                    start: 'top 90%'
+                }
+            });
+
+            // Theme Toggle Logic
+            const themeToggleBtn = document.getElementById('themeToggle');
+            const toggleIcon = themeToggleBtn.querySelector('i');
+            
+            function updateThemeIcon(isDark) {
+                if (isDark) {
+                    toggleIcon.classList.remove('fa-moon');
+                    toggleIcon.classList.add('fa-sun');
+                } else {
+                    toggleIcon.classList.remove('fa-sun');
+                    toggleIcon.classList.add('fa-moon');
+                }
+            }
+
+            // Init based on localStorage or OS pref
+            let savedTheme = localStorage.getItem('theme');
+            let prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            let isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+            
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+            }
+            updateThemeIcon(isDark);
+
+            themeToggleBtn.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                
+                const isNowDark = document.body.classList.contains('dark-mode');
+                localStorage.setItem('theme', isNowDark ? 'dark' : 'light');
+                updateThemeIcon(isNowDark);
+            });
+        });
+    </script>
+</body>
+</html>

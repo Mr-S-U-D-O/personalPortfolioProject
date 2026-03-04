@@ -132,10 +132,40 @@ blogData.forEach(post => {
     // SEO Replacements
     const pageUrl = `${BASE_URL}/posts/${post.slug}.html`;
     const ogImage = post.image ? `${BASE_URL}/${post.image}` : '';
+    const author = "Mosa Moleleki";
+    
+    let publishedDate = new Date().toISOString();
+    try {
+        if (post.date) publishedDate = new Date(post.date).toISOString();
+    } catch(e) {}
+
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": post.topic,
+        "image": ogImage || `${BASE_URL}/my pictures/dark mode.webp`,
+        "author": {
+            "@type": "Person",
+            "name": author,
+            "url": `${BASE_URL}/`
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Mosa Moleleki",
+            "logo": {
+                "@type": "ImageObject",
+                "url": `${BASE_URL}/my pictures/dark mode.webp`
+            }
+        },
+        "datePublished": publishedDate,
+        "description": post.description || ''
+    };
     
     pageHtml = pageHtml.replace(/{{DESCRIPTION}}/g, post.description || '');
+    pageHtml = pageHtml.replace(/{{AUTHOR}}/g, author);
     pageHtml = pageHtml.replace(/{{PAGE_URL}}/g, pageUrl);
     pageHtml = pageHtml.replace(/{{OG_IMAGE}}/g, ogImage);
+    pageHtml = pageHtml.replace(/{{JSON_LD}}/g, `<script type="application/ld+json">\n${JSON.stringify(jsonLd, null, 2)}\n</script>`);
     
     // Previous Link
     if (post.prevSlug) {
@@ -219,7 +249,113 @@ try {
 
 console.log('Blog generation complete!');
 
-// 5. Generate sitemap.xml
+// ==========================================
+// 6. Generate Project Pages
+// ==========================================
+console.log('Starting project pages generation...');
+const PROJECTS_DATA_PATH = path.join(__dirname, '../data/projects.json');
+const PROJECT_TEMPLATE_PATH = path.join(__dirname, 'project-template.html');
+const PROJECTS_OUT_DIR = path.join(__dirname, '../projects');
+
+let projectsData = [];
+try {
+    const rawProjData = fs.readFileSync(PROJECTS_DATA_PATH, 'utf8');
+    projectsData = JSON.parse(rawProjData);
+    console.log(`Loaded ${projectsData.length} projects from data/projects.json`);
+} catch (err) {
+    console.error('Error reading data/projects.json:', err);
+}
+
+// Add slug and links
+projectsData = projectsData.map(proj => {
+    return {
+        ...proj,
+        slug: createSlug(proj.title)
+    };
+});
+
+projectsData.forEach((proj, index) => {
+    proj.link = `projects/${proj.slug}.html`;
+    proj.prevSlug = index > 0 ? projectsData[index - 1].slug : null;
+    proj.nextSlug = index < projectsData.length - 1 ? projectsData[index + 1].slug : null;
+});
+
+// Write the updated data back to projects.json so the client-side index.js picks up the correct links
+try {
+    fs.writeFileSync(PROJECTS_DATA_PATH, JSON.stringify(projectsData, null, 4), 'utf8');
+    console.log('Updated data/projects.json with generated slugs and links.');
+} catch (err) {
+    console.error('Error writing to data/projects.json:', err);
+}
+
+if (fs.existsSync(PROJECTS_OUT_DIR)) {
+    fs.rmSync(PROJECTS_OUT_DIR, { recursive: true, force: true });
+    console.log('Purged old projects/ folder.');
+}
+fs.mkdirSync(PROJECTS_OUT_DIR, { recursive: true });
+
+let projectTemplateBlock = '';
+try {
+    projectTemplateBlock = fs.readFileSync(PROJECT_TEMPLATE_PATH, 'utf8');
+} catch (err) {
+    console.error('Error reading project-template.html:', err);
+}
+
+if (projectTemplateBlock && projectsData.length > 0) {
+    projectsData.forEach(proj => {
+        let pageHtml = projectTemplateBlock;
+        
+        pageHtml = pageHtml.replace(/{{TITLE}}/g, proj.title || '');
+        pageHtml = pageHtml.replace(/{{DESCRIPTION}}/g, proj.description || '');
+        pageHtml = pageHtml.replace(/{{CATEGORY}}/g, proj.category || '');
+        pageHtml = pageHtml.replace(/{{ROLE}}/g, proj.role || '');
+        pageHtml = pageHtml.replace(/{{YEAR}}/g, proj.year || '');
+        pageHtml = pageHtml.replace(/{{OVERVIEW}}/g, proj.overview || '');
+        pageHtml = pageHtml.replace(/{{CHALLENGES}}/g, proj.challenges || '');
+        pageHtml = pageHtml.replace(/{{SOLUTIONS}}/g, proj.solutions || '');
+        
+        const pageUrl = `${BASE_URL}/projects/${proj.slug}.html`;
+        const ogImage = proj.fullImage.startsWith('http') ? proj.fullImage : `${BASE_URL}/${proj.fullImage}`;
+        
+        pageHtml = pageHtml.replace(/{{PAGE_URL}}/g, pageUrl);
+        pageHtml = pageHtml.replace(/{{OG_IMAGE}}/g, ogImage);
+        pageHtml = pageHtml.replace(/{{FULL_IMAGE}}/g, proj.fullImage || '');
+        
+        // Links
+        let liveLinkHtml = proj.liveLink && proj.liveLink !== '#' ? `<a href="${proj.liveLink}" target="_blank" class="project-link-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>` : '';
+        let githubLinkHtml = proj.githubLink && proj.githubLink !== '#' ? `<a href="${proj.githubLink}" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> GitHub Repo</a>` : '';
+        pageHtml = pageHtml.replace(/{{LIVE_LINK_HTML}}/g, liveLinkHtml);
+        pageHtml = pageHtml.replace(/{{GITHUB_LINK_HTML}}/g, githubLinkHtml);
+        
+        // Technologies
+        let techHtml = (proj.technologies || []).map(tech => `<span class="tech-pill">${tech}</span>`).join('\n                ');
+        pageHtml = pageHtml.replace(/{{TECHNOLOGIES_HTML}}/g, techHtml);
+        
+        // Prev / Next Links
+        if (proj.prevSlug) {
+            let prevProj = projectsData.find(p => p.slug === proj.prevSlug);
+            pageHtml = pageHtml.replace(/{{PREV_LINK}}/g, `<a href="${proj.prevSlug}.html" class="nav-direction-btn prev-btn"><span class="direction-label">Previous</span><span class="target-title">${prevProj.title}</span></a>`);
+        } else {
+            pageHtml = pageHtml.replace(/{{PREV_LINK}}/g, `<div></div>`);
+        }
+        
+        if (proj.nextSlug) {
+            let nextProj = projectsData.find(p => p.slug === proj.nextSlug);
+            pageHtml = pageHtml.replace(/{{NEXT_LINK}}/g, `<a href="${proj.nextSlug}.html" class="nav-direction-btn next-btn"><span class="direction-label">Next</span><span class="target-title">${nextProj.title}</span></a>`);
+        } else {
+            pageHtml = pageHtml.replace(/{{NEXT_LINK}}/g, `<div></div>`);
+        }
+        
+        const outputPath = path.join(PROJECTS_OUT_DIR, `${proj.slug}.html`);
+        fs.writeFileSync(outputPath, pageHtml, 'utf8');
+        console.log(`Generated project page: ${proj.link}`);
+        
+        sitePages.push(proj.link);
+    });
+}
+console.log('Project generation complete!');
+
+// 7. Generate sitemap.xml
 let xmlContent = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n`;
 sitePages.forEach(page => {
     const loc = `${BASE_URL}/${page}`;

@@ -1,0 +1,478 @@
+/* ========================================= */
+/*  Project Template Specific Styling        */
+/* ========================================= */
+
+/* Global and Container adjustments */
+.project-detail-page {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+}
+
+.project-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+}
+
+/* Scroll Progress Tracker */
+.scroll-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color) 0%, rgba(142, 45, 226, 1) 100%);
+    z-index: 10000;
+}
+
+/* Back Button */
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.back-home-btn:hover {
+    color: var(--text-color);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-5px);
+}
+
+.dark-mode .back-home-btn {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.light-mode .back-home-btn,
+body:not(.dark-mode) .back-home-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body:not(.dark-mode) .back-home-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Hero Section */
+.project-hero {
+    margin-bottom: 4rem;
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.project-hero-image-container {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 400px;
+    max-height: 700px;
+}
+
+.project-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 10s ease; /* Super slow ambient zoom */
+}
+
+.project-hero:hover .project-hero-img {
+    transform: scale(1.08); /* Gentle scale inward on hover */
+}
+
+/* Gradient overlay to ensure text is always readable over images */
+.project-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);
+    z-index: 1;
+}
+
+.project-hero-title {
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    font-size: clamp(3rem, 6vw, 5rem);
+    margin: 0;
+    z-index: 2;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    line-height: 1.1;
+    color: white; /* Force white on hero regardless of theme */
+}
+
+/* Badges floating on hero */
+.project-hero-badges {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    display: flex;
+    gap: 1rem;
+    z-index: 2;
+}
+
+.badge {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.5rem 1.25rem;
+    border-radius: 50px;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Meta Data Grid (4 Columns) */
+.project-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding: 3rem;
+    background: var(--card-bg, rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.05));
+    border-radius: 20px;
+    margin-bottom: 6rem;
+    position: relative;
+    z-index: 10;
+}
+
+body:not(.dark-mode) .project-meta-grid {
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+.meta-item h4 {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.75rem;
+    margin-top: 0;
+}
+
+.meta-item p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.meta-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.project-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.project-link-btn:hover {
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+.project-link-btn i {
+    font-size: 0.85rem;
+}
+
+/* Typography elements */
+.section-subtitle {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.section-padding {
+    padding: 5rem 0;
+}
+
+.large-text {
+    font-size: 1.35rem;
+    line-height: 1.8;
+    color: var(--text-color);
+    font-weight: 400;
+}
+
+/* The Narrative Container (Asymmetric setup) */
+.narrative-container {
+    position: relative;
+    margin: 4rem 0;
+}
+
+/* The Trailing Line Animation between Challenge & Solution */
+.trailing-line-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    z-index: 0;
+}
+
+.trailing-line {
+    position: absolute;
+    inset: 0;
+    background: var(--border-color, rgba(255,255,255,0.1));
+}
+
+.trailing-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(180deg, var(--primary-color) 0%, #8e2de2 100%);
+    box-shadow: 0 0 15px var(--primary-color);
+    border-radius: 2px;
+}
+
+body:not(.dark-mode) .trailing-line {
+    background: rgba(0,0,0,0.1);
+}
+
+.asymmetric-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+    position: relative;
+    z-index: 5;
+}
+
+.asymmetric-section.reverse {
+    flex-direction: row-reverse;
+}
+
+.sticky-side {
+    flex: 0 0 40%;
+    position: sticky;
+    top: 150px;
+}
+
+.scrolling-side {
+    flex: 0 0 50%;
+}
+
+.sticky-side h2 {
+    font-size: 3rem;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.content-card {
+    padding: 3rem;
+    border-radius: 24px;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-muted);
+}
+
+.glass-panel {
+    background: var(--card-bg, rgba(255, 255, 255, 0.03));
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.05));
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+body:not(.dark-mode) .glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Icon floating in card */
+.section-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.highlight-panel {
+    border-color: rgba(74, 0, 224, 0.3);
+    box-shadow: 0 20px 50px rgba(74, 0, 224, 0.1);
+}
+
+.highlight-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), #8e2de2);
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+}
+
+/* Technologies Section */
+.tech-pills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.tech-pill {
+    padding: 1rem 2rem;
+    background: var(--card-bg, rgba(255, 255, 255, 0.05));
+    border: 1px solid var(--border-color, rgba(255,255,255,0.1));
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: default;
+}
+
+body:not(.dark-mode) .tech-pill {
+    background: rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
+.tech-pill:hover {
+    transform: translateY(-5px) scale(1.05);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 20px rgba(74, 0, 224, 0.2);
+    background: rgba(74, 0, 224, 0.05);
+    color: var(--primary-color);
+}
+
+/* Project Footer Navigation */
+.project-bottom-nav {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    padding: 3rem 0;
+    margin-top: 5rem;
+}
+
+.nav-direction-btn {
+    text-decoration: none;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.nav-direction-btn .direction-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-direction-btn .target-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.nav-direction-btn.prev-btn:hover {
+    transform: translateX(-10px);
+}
+
+.nav-direction-btn.next-btn {
+    text-align: right;
+}
+
+.nav-direction-btn.next-btn:hover {
+    transform: translateX(10px);
+}
+
+.project-footer {
+    text-align: center;
+    padding: 2rem 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-top: 1px dashed var(--border-color, rgba(255,255,255,0.1));
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 992px) {
+    .project-meta-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+    
+    .project-hero-title {
+        font-size: 3.5rem;
+        bottom: 2rem;
+        left: 2rem;
+    }
+    
+    .project-hero-badges {
+        top: 1.5rem;
+        right: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-meta-grid {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+        gap: 1.5rem;
+    }
+    
+    .asymmetric-section, 
+    .asymmetric-section.reverse {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .sticky-side {
+        position: static;
+        flex: none;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .scrolling-side {
+        flex: none;
+        width: 100%;
+    }
+    
+    /* Hide trailing line on mobile for a cleaner single-column view */
+    .trailing-line-wrapper {
+        display: none;
+    }
+    
+    .project-hero-image-container {
+        height: 50vh;
+        min-height: 350px;
+    }
+    
+    .project-hero-title {
+        font-size: 2.5rem;
+    }
+}

@@ -3,80 +3,193 @@
         "id": 1,
         "title": "E-Commerce Platform",
         "category": "Full Stack",
+        "role": "Lead Engineer",
+        "year": "2026",
         "description": "A fully functional e-commerce platform with a custom 3D product view using Three.js and a robust backend for order management.",
+        "overview": "The E-Commerce Platform project aimed to redefine the standard online shopping experience by introducing an immersive, interactive 3D product viewing feature. Traditional 2D image galleries lack the depth needed for high-ticket items. This platform solves the problem of online purchase hesitation by allowing users to inspect products from every angle in real-time before adding them to their cart, all while maintaining lightning-fast performance and a seamless checkout flow.",
+        "challenges": "The primary challenge was integrating heavy 3D rendering capabilities (Three.js) within a React-based frontend without degrading page load times or mobile performance. Additionally, synchronizing the complex state of a 3D canvas with standard UI components (like the shopping cart or variants selector) posed significant architectural hurdles.",
+        "solutions": "I leveraged React Three Fiber to declaratively manage 3D components and optimize rendering loops. By utilizing DRACO compression for geometries and aggressively lazy-loading textures, load times were reduced by 60%. State synchronization was achieved by abstracting the cart logic into a global Zustand store, creating a seamless bridge between the immersive canvas and the 2D interface.",
+        "githubLink": "https://github.com/Mr-Shoez",
+        "liveLink": "https://example.com/ecommerce",
         "thumbnail": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=400&h=400&auto=format&fit=crop",
         "fullImage": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&h=800&auto=format&fit=crop",
-        "technologies": ["React", "Three.js", "Node.js", "MongoDB"],
-        "link": "#"
+        "technologies": [
+            "React",
+            "Three.js",
+            "Node.js",
+            "MongoDB"
+        ],
+        "slug": "e-commerce-platform",
+        "link": "projects/e-commerce-platform.html",
+        "prevSlug": null,
+        "nextSlug": "finance-dashboard"
     },
     {
         "id": 2,
         "title": "Finance Dashboard",
         "category": "Frontend",
+        "role": "UI/UX Developer",
+        "year": "2025",
         "description": "An interactive analytics dashboard for financial data visualization with real-time updates and interactive charts.",
+        "overview": "This Finance Dashboard was built to address the overwhelming complexity of modern data analysis. Financial analysts often struggle with fragmented tools that make it difficult to spot trends quickly. This project consolidates raw financial streams into a single, beautifully designed interface, providing real-time data visualization and customizable widget layouts to improve decision-making speed.",
+        "challenges": "Handling high-frequency data streams (WebSocket) and rendering thousands of data points simultaneously without dropping browser frames. The UI needed to remain completely responsive while dynamic charts continuously updated in the background.",
+        "solutions": "I implemented D3.js paired with Canvas API fallbacks for complex scatter plots to bypass the DOM's rendering limitations. I optimized the React render cycle using precise memoization and debounced resize observers. The CSS architecture was overhauled utilizing Tailwind CSS to create a highly modular and customizable atomic design system.",
+        "githubLink": "https://github.com/Mr-Shoez",
+        "liveLink": "https://example.com/finance",
         "thumbnail": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=400&h=400&auto=format&fit=crop",
         "fullImage": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&h=800&auto=format&fit=crop",
-        "technologies": ["Vue.js", "D3.js", "Tailwind CSS"],
-        "link": "#"
+        "technologies": [
+            "Vue.js",
+            "D3.js",
+            "Tailwind CSS"
+        ],
+        "slug": "finance-dashboard",
+        "link": "projects/finance-dashboard.html",
+        "prevSlug": "e-commerce-platform",
+        "nextSlug": "social-media-app"
     },
     {
         "id": 3,
         "title": "Social Media App",
         "category": "Mobile App",
+        "role": "Mobile Developer",
+        "year": "2025",
         "description": "A cross-platform mobile application for community engagement with instant messaging and live feed capabilities.",
+        "overview": "A community-focused social application designed to bring localized groups together. The app solves the problem of decentralized communication in local communities by providing a unified cross-platform hub for instant messaging, event planning, and a live engagement feed. It focuses on privacy and intuitive UI patterns.",
+        "challenges": "Creating a flawlessly smooth infinite feed scrolling experience on lower-end Android devices. Furthermore, implementing reliable offline-first capabilities for instant messaging required complex data synchronization strategies.",
+        "solutions": "Utilized React Native's FlatList with extensive memory optimization, pre-caching images, and windowing techniques. For the offline-first experience, I integrated Firebase Firestore's offline persistence combined with Redux to handle optimistic UI updates, ensuring messages appear instantly even with a spotty connection.",
+        "githubLink": "https://github.com/Mr-Shoez",
+        "liveLink": "#",
         "thumbnail": "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?q=80&w=400&h=400&auto=format&fit=crop",
         "fullImage": "https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?q=80&w=1200&h=800&auto=format&fit=crop",
-        "technologies": ["React Native", "Firebase", "Redux"],
-        "link": "#"
+        "technologies": [
+            "React Native",
+            "Firebase",
+            "Redux"
+        ],
+        "slug": "social-media-app",
+        "link": "projects/social-media-app.html",
+        "prevSlug": "finance-dashboard",
+        "nextSlug": "smart-home-iot"
     },
     {
         "id": 4,
         "title": "Smart Home IoT",
         "category": "UI/UX",
+        "role": "Product Designer",
+        "year": "2024",
         "description": "Design system and interface prototype for a smart home device management application.",
+        "overview": "This project involved designing the complete user interface for a next-generation smart home ecosystem. The core problem was the fragmentation and clunky UX of existing IoT apps. This design system provides a centralized, ultra-intuitive interface allowing users to control lighting, climate, and security with minimal friction and engaging micro-interactions.",
+        "challenges": "Designing an interface that is simple enough for non-technical users but powerful enough for automation power-users. Creating a cohesive visual language that translates well across both mobile screens and larger wall-mounted tablet displays.",
+        "solutions": "Developed a comprehensive component library in Figma utilizing auto-layout and strict design tokens. I introduced a 'progressive disclosure' pattern where advanced automation settings are tucked behind intuitive gestures. Advanced prototyping with Framer Motion was used to validate micro-interactions and the spatial model of the interface before any code was written.",
+        "githubLink": "#",
+        "liveLink": "https://example.com/smarthome",
         "thumbnail": "https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=400&h=400&auto=format&fit=crop",
         "fullImage": "https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=1200&h=800&auto=format&fit=crop",
-        "technologies": ["Figma", "Framer Motion", "React"],
-        "link": "#"
+        "technologies": [
+            "Figma",
+            "Framer Motion",
+            "React"
+        ],
+        "slug": "smart-home-iot",
+        "link": "projects/smart-home-iot.html",
+        "prevSlug": "social-media-app",
+        "nextSlug": "travel-blog"
     },
     {
         "id": 5,
         "title": "Travel Blog",
         "category": "Web Design",
+        "role": "Frontend Architect",
+        "year": "2024",
         "description": "A minimalist, high-performance travel blog platform optimized for SEO and readability.",
+        "overview": "A visually stunning, content-first travel blog built to handle massive amounts of high-resolution photography without compromising speed. The project aimed to solve the poor Core Web Vitals often seen on media-heavy blogs, providing an SEO-optimized architecture that delivers a magazine-like reading experience on the web.",
+        "challenges": "Serving dozens of high-res images per post while maintaining a perfect Google Lighthouse score. The architectural challenge was building a flexible CMS schema that allowed for complex, editorial-style article layouts rather than standard linear text blocks.",
+        "solutions": "Leveraged Next.js Static Site Generation (SSG) in combination with an edge-caching CDN. I implemented progressive image loading with blurred placeholders and the native `<picture>` element for responsive art direction. A Headless CMS (GraphQL) was integrated, allowing editors to compose dynamic page blocks directly.",
+        "githubLink": "https://github.com/Mr-Shoez",
+        "liveLink": "https://example.com/travel",
         "thumbnail": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=400&h=600&auto=format&fit=crop",
         "fullImage": "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1200&h=800&auto=format&fit=crop",
-        "technologies": ["Next.js", "GraphQL", "Tailwind CSS"],
-        "link": "#"
+        "technologies": [
+            "Next.js",
+            "GraphQL",
+            "Tailwind CSS"
+        ],
+        "slug": "travel-blog",
+        "link": "projects/travel-blog.html",
+        "prevSlug": "smart-home-iot",
+        "nextSlug": "task-manager"
     },
     {
         "id": 6,
         "title": "Task Manager",
         "category": "Web Application",
+        "role": "Full Stack Dev",
+        "year": "2023",
         "description": "A productivity tool with drag-and-drop Kanban boards and team collaboration features.",
+        "overview": "A comprehensive project management web application designed to boost team productivity through intuitive Kanban boards and real-time collaboration. The app solves the clutter and learning curve associated with enterprise task managers by focusing on extremely fast interactions and a clean, distraction-free environment.",
+        "challenges": "Implementing perfectly smooth, 60fps drag-and-drop mechanics for the Kanban board across different browsers and devices. Additionally, managing concurrent updates when multiple team members edit the same board simultaneously.",
+        "solutions": "Built a custom drag-and-drop engine using standard HTML5 APIs paired with heavily optimized Angular directives mapping directly to DOM transformations. For concurrency, I established a WebSocket connection for real-time diffing, implementing a last-write-wins conflict resolution strategy backed by a robust transactional backend layer.",
+        "githubLink": "https://github.com/Mr-Shoez",
+        "liveLink": "#",
         "thumbnail": "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?q=80&w=400&h=400&auto=format&fit=crop",
         "fullImage": "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?q=80&w=1200&h=800&auto=format&fit=crop",
-        "technologies": ["Angular", "TypeScript", "SCSS"],
-        "link": "#"
+        "technologies": [
+            "Angular",
+            "TypeScript",
+            "SCSS"
+        ],
+        "slug": "task-manager",
+        "link": "projects/task-manager.html",
+        "prevSlug": "travel-blog",
+        "nextSlug": "ai-image-gen"
     },
     {
         "id": 7,
         "title": "AI Image Gen",
         "category": "Machine Learning",
+        "role": "AI Integrator",
+        "year": "2023",
         "description": "Interface for generating images from text using advanced stable diffusion models.",
+        "overview": "A web-based interface providing seamless access to advanced generative AI image models. The project solves the accessibility barrier of AI generation by wrapping complex command-line parameters and GPU clustering into a surprisingly simple, beautiful web UI where users can type prompts and receive high-fidelity images in seconds.",
+        "challenges": "Managing long-running autonomous server tasks without losing the client connection or providing a poor UX. Communicating inference progress back to the user in a meaningful way while handling high-throughput GPU queue scheduling.",
+        "solutions": "Architected an asynchronous worker queue utilizing FastAPI and Celery. The React frontend implements a polling mechanism and WebSocket fallback that visually displays generation progress through a mesmerizing loading animation. This prevents user drop-off during the 10-20 second inference windows and ensures stable server degradation under load.",
+        "githubLink": "https://github.com/Mr-Shoez",
+        "liveLink": "https://example.com/ai",
         "thumbnail": "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=400&h=400&auto=format&fit=crop",
         "fullImage": "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&h=800&auto=format&fit=crop",
-        "technologies": ["Python", "FastAPI", "React"],
-        "link": "#"
+        "technologies": [
+            "Python",
+            "FastAPI",
+            "React"
+        ],
+        "slug": "ai-image-gen",
+        "link": "projects/ai-image-gen.html",
+        "prevSlug": "task-manager",
+        "nextSlug": "portfolio-v1"
     },
     {
         "id": 8,
         "title": "Portfolio v1",
         "category": "Archived",
+        "role": "Developer",
+        "year": "2022",
         "description": "The previous iteration of my personal portfolio, built focusing on brutalist design principles.",
+        "overview": "The very first iteration of my personal portfolio. Designed to be deliberately raw, it adopted brutalist design principles to stand out in a sea of standard corporate templates. It solved the problem of establishing an initial web presence while serving as an experimental playground for vanilla JavaScript and CSS grid layouts.",
+        "challenges": "Achieving complex, responsive grid layouts utilizing pure CSS without the aid of modern frameworks. Writing lightweight vanilla JavaScript to handle smooth scroll behaviors and simple animations while ensuring absolute maximum performance and zero dependencies.",
+        "solutions": "Relied heavily on CSS Variables (Custom Properties) and CSS Grid to construct a rigid but fully responsive typographic layout. I wrote custom, minimalistic JavaScript observer classes to handle lazy-loading for images and trigger threshold-based scroll animations, resulting in a perfect 100/100 Lighthouse score.",
+        "githubLink": "https://github.com/Mr-Shoez",
+        "liveLink": "https://example.com/v1",
         "thumbnail": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=400&h=400&auto=format&fit=crop",
         "fullImage": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&h=800&auto=format&fit=crop",
-        "technologies": ["HTML", "CSS", "Vanilla JS"],
-        "link": "#"
+        "technologies": [
+            "HTML",
+            "CSS",
+            "Vanilla JS"
+        ],
+        "slug": "portfolio-v1",
+        "link": "projects/portfolio-v1.html",
+        "prevSlug": "ai-image-gen",
+        "nextSlug": null
     }
 ]

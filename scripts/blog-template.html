@@ -6,21 +6,27 @@
     <title>{{TITLE}} | Mosa Moleleki</title>
     <!-- Dynamic SEO Meta Tags -->
     <meta name="description" content="{{DESCRIPTION}}">
+    <meta name="author" content="{{AUTHOR}}">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0a0a0a">
     <link rel="canonical" href="{{PAGE_URL}}">
     
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph (LinkedIn/Discord/Facebook) -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{PAGE_URL}}">
     <meta property="og:title" content="{{TITLE}} | Mosa Moleleki">
     <meta property="og:description" content="{{DESCRIPTION}}">
     <meta property="og:image" content="{{OG_IMAGE}}">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="{{PAGE_URL}}">
-    <meta property="twitter:title" content="{{TITLE}} | Mosa Moleleki">
-    <meta property="twitter:description" content="{{DESCRIPTION}}">
-    <meta property="twitter:image" content="{{OG_IMAGE}}">
+    <!-- Twitter Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{PAGE_URL}}">
+    <meta name="twitter:title" content="{{TITLE}} | Mosa Moleleki">
+    <meta name="twitter:description" content="{{DESCRIPTION}}">
+    <meta name="twitter:image" content="{{OG_IMAGE}}">
+    
+    <!-- Schema.org JSON-LD -->
+    {{JSON_LD}}
     
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -39,6 +45,7 @@
             margin-bottom: 0.5rem;
             background: linear-gradient(135deg, var(--primary-color, #4a00e0) 0%, #8e2de2 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         .blog-post-date {

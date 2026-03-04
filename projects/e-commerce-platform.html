@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Platform | Project Case Study</title>
+    <!-- Dynamic SEO Meta Tags -->
+    <meta name="description" content="A fully functional e-commerce platform with a custom 3D product view using Three.js and a robust backend for order management.">
+    <link rel="canonical" href="https://yourportfolio.com/projects/e-commerce-platform.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://yourportfolio.com/projects/e-commerce-platform.html">
+    <meta property="og:title" content="E-Commerce Platform | Case Study">
+    <meta property="og:description" content="A fully functional e-commerce platform with a custom 3D product view using Three.js and a robust backend for order management.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&h=800&auto=format&fit=crop">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/project.css">
+
+    <!-- GSAP for scroll animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="project-detail-page">
+    
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+    <!-- Utility Toggles -->
+    <div class="utility-toggles" style="z-index: 9999;">
+        <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode" style="right: 2rem; position: fixed;">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Main Container -->
+    <div class="project-container">
+        
+        <!-- Back Button -->
+        <a href="../index.html#projects" class="back-home-btn animate-fade-in"><i class="fa-solid fa-arrow-left"></i> Back to Projects</a>
+
+        <!-- Hero Section -->
+        <header class="project-hero animate-slide-up">
+            <div class="project-hero-image-container">
+                <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200&h=800&auto=format&fit=crop" alt="E-Commerce Platform" class="project-hero-img">
+                <div class="project-hero-overlay"></div>
+                <h1 class="project-hero-title gradient-text">E-Commerce Platform</h1>
+                <div class="project-hero-badges">
+                    <span class="badge">Full Stack</span>
+                    <span class="badge">2026</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Meta Data Grid -->
+        <section class="project-meta-grid animate-slide-up-delayed">
+            <div class="meta-item">
+                <h4>Role</h4>
+                <p>Lead Engineer</p>
+            </div>
+            <div class="meta-item">
+                <h4>Year</h4>
+                <p>2026</p>
+            </div>
+            <div class="meta-item">
+                <h4>Category</h4>
+                <p>Full Stack</p>
+            </div>
+            <div class="meta-item links">
+                <h4>Links</h4>
+                <div class="meta-links">
+                    <a href="https://example.com/ecommerce" target="_blank" class="project-link-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                    <a href="https://github.com/Mr-Shoez" target="_blank" class="project-link-btn"><i class="fa-brands fa-github"></i> GitHub Repo</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Overview -->
+        <section class="project-overview section-padding fade-element">
+            <div class="overview-content">
+                <span class="section-subtitle">OVERVIEW</span>
+                <h2>What is this project?</h2>
+                <p class="large-text">The E-Commerce Platform project aimed to redefine the standard online shopping experience by introducing an immersive, interactive 3D product viewing feature. Traditional 2D image galleries lack the depth needed for high-ticket items. This platform solves the problem of online purchase hesitation by allowing users to inspect products from every angle in real-time before adding them to their cart, all while maintaining lightning-fast performance and a seamless checkout flow.</p>
+            </div>
+        </section>
+
+        <!-- The Narrative: Asymmetric Layout -->
+        <div class="narrative-container">
+            <!-- Animated Trailing Line -->
+            <div class="trailing-line-wrapper">
+                <div class="trailing-line"></div>
+                <div class="trailing-fill" id="trailingFill"></div>
+            </div>
+
+            <section class="asymmetric-section section-padding challenge-section fade-element">
+                <div class="sticky-side">
+                    <span class="section-subtitle">THE PROBLEM</span>
+                    <h2>The Challenge</h2>
+                </div>
+                <div class="scrolling-side">
+                    <div class="content-card glass-panel">
+                        <i class="fa-solid fa-triangle-exclamation section-icon text-primary"></i>
+                        <p>The primary challenge was integrating heavy 3D rendering capabilities (Three.js) within a React-based frontend without degrading page load times or mobile performance. Additionally, synchronizing the complex state of a 3D canvas with standard UI components (like the shopping cart or variants selector) posed significant architectural hurdles.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="asymmetric-section reverse section-padding solution-section fade-element">
+                <div class="sticky-side">
+                    <span class="section-subtitle">THE APPROACH</span>
+                    <h2>The Solution</h2>
+                </div>
+                <div class="scrolling-side">
+                    <div class="content-card glass-panel highlight-panel">
+                        <i class="fa-solid fa-lightbulb section-icon text-primary"></i>
+                        <p>I leveraged React Three Fiber to declaratively manage 3D components and optimize rendering loops. By utilizing DRACO compression for geometries and aggressively lazy-loading textures, load times were reduced by 60%. State synchronization was achieved by abstracting the cart logic into a global Zustand store, creating a seamless bridge between the immersive canvas and the 2D interface.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Technologies Used -->
+        <section class="project-tech section-padding fade-element">
+            <div class="tech-header text-center">
+                <span class="section-subtitle">TOOLS & STACK</span>
+                <h2>Technologies Used</h2>
+            </div>
+            <div class="tech-pills-container">
+                <span class="tech-pill">React</span>
+                <span class="tech-pill">Three.js</span>
+                <span class="tech-pill">Node.js</span>
+                <span class="tech-pill">MongoDB</span>
+            </div>
+        </section>
+
+        <!-- Bottom Navigation -->
+        <nav class="project-bottom-nav">
+            <div></div>
+            <a href="finance-dashboard.html" class="nav-direction-btn next-btn"><span class="direction-label">Next</span><span class="target-title">Finance Dashboard</span></a>
+        </nav>
+
+        <!-- Simplified Footer -->
+        <footer class="project-footer">
+            <p>2026 | Created by Mosa "S.U.D.O" Moleleki</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // 1. Scroll Progress Bar
+            gsap.to('#scrollProgressBar', {
+                width: '100%',
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: document.body,
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    scrub: 0.2
+                }
+            });
+
+            // 2. Trailing Line Animation
+            const trailingWrapper = document.querySelector('.trailing-line-wrapper');
+            if (trailingWrapper) {
+                gsap.to('#trailingFill', {
+                    height: '100%',
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.narrative-container',
+                        start: 'top center',
+                        end: 'bottom center',
+                        scrub: 0.5
+                    }
+                });
+            }
+
+            // 3. Fade Up Elements on Scroll
+            const fadeElements = document.querySelectorAll('.fade-element');
+            fadeElements.forEach(el => {
+                gsap.fromTo(el, 
+                    { opacity: 0, y: 50 },
+                    {
+                        opacity: 1, 
+                        y: 0,
+                        duration: 0.8,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 85%',
+                            toggleActions: 'play none none reverse'
+                        }
+                    }
+                );
+            });
+
+            // 4. Stagger Technology Pills
+            gsap.from('.tech-pill', {
+                opacity: 0,
+                y: 20,
+                stagger: 0.1,
+                duration: 0.6,
+                ease: 'back.out(1.7)',
+                scrollTrigger: {
+                    trigger: '.tech-pills-container',
+                    start: 'top 90%'
+                }
+            });
+
+            // Theme Toggle Logic
+            const themeToggleBtn = document.getElementById('themeToggle');
+            const toggleIcon = themeToggleBtn.querySelector('i');
+            
+            function updateThemeIcon(isDark) {
+                if (isDark) {
+                    toggleIcon.classList.remove('fa-moon');
+                    toggleIcon.classList.add('fa-sun');
+                } else {
+                    toggleIcon.classList.remove('fa-sun');
+                    toggleIcon.classList.add('fa-moon');
+                }
+            }
+
+            // Init based on localStorage or OS pref
+            let savedTheme = localStorage.getItem('theme');
+            let prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            let isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+            
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+            }
+            updateThemeIcon(isDark);
+
+            themeToggleBtn.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                
+                const isNowDark = document.body.classList.contains('dark-mode');
+                localStorage.setItem('theme', isNowDark ? 'dark' : 'light');
+                updateThemeIcon(isNowDark);
+            });
+        });
+    </script>
+</body>
+</html>

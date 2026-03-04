@@ -2,22 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://yourportfolio.com/index.html</loc>
-    <lastmod>2026-03-02</lastmod>
+    <lastmod>2026-03-04</lastmod>
   </url>
   <url>
     <loc>https://yourportfolio.com/posts/multilingual-websites.html</loc>
-    <lastmod>2026-03-02</lastmod>
+    <lastmod>2026-03-04</lastmod>
   </url>
   <url>
     <loc>https://yourportfolio.com/posts/online-feedbacks.html</loc>
-    <lastmod>2026-03-02</lastmod>
+    <lastmod>2026-03-04</lastmod>
   </url>
   <url>
     <loc>https://yourportfolio.com/posts/features-integration.html</loc>
-    <lastmod>2026-03-02</lastmod>
+    <lastmod>2026-03-04</lastmod>
   </url>
   <url>
     <loc>https://yourportfolio.com/articles.html</loc>
-    <lastmod>2026-03-02</lastmod>
+    <lastmod>2026-03-04</lastmod>
+  </url>
+  <url>
+    <loc>https://yourportfolio.com/projects/e-commerce-platform.html</loc>
+    <lastmod>2026-03-04</lastmod>
+  </url>
+  <url>
+    <loc>https://yourportfolio.com/projects/finance-dashboard.html</loc>
+    <lastmod>2026-03-04</lastmod>
+  </url>
+  <url>
+    <loc>https://yourportfolio.com/projects/social-media-app.html</loc>
+    <lastmod>2026-03-04</lastmod>
+  </url>
+  <url>
+    <loc>https://yourportfolio.com/projects/smart-home-iot.html</loc>
+    <lastmod>2026-03-04</lastmod>
+  </url>
+  <url>
+    <loc>https://yourportfolio.com/projects/travel-blog.html</loc>
+    <lastmod>2026-03-04</lastmod>
+  </url>
+  <url>
+    <loc>https://yourportfolio.com/projects/task-manager.html</loc>
+    <lastmod>2026-03-04</lastmod>
+  </url>
+  <url>
+    <loc>https://yourportfolio.com/projects/ai-image-gen.html</loc>
+    <lastmod>2026-03-04</lastmod>
+  </url>
+  <url>
+    <loc>https://yourportfolio.com/projects/portfolio-v1.html</loc>
+    <lastmod>2026-03-04</lastmod>
   </url>
 </urlset>

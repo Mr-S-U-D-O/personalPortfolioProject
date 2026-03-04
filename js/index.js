@@ -34,10 +34,10 @@ const DEVICE_CONFIG = {
     iphone: {
         file: "./models/iphone.glb",
         init: {
-            position: { x: 0, y: -500, z: 0 }, 
+            position: { x: 0, y: -350, z: 0 }, 
             rotation: { x: 0, y: Math.PI, z: 0 }, // Rotate 180deg to face forwards
             scale: { x: 250, y: 250, z: 250 }, 
-            targetY: -50
+            targetY: 45
         },
         hasLid: false,
         screenCSSOffset: { x: 0, y: -45, z: 0 } // Pull it down to center visually in the bezels
@@ -86,21 +86,45 @@ allAudio.forEach(a => {
 
 // --- Mute Toggle Logic ---
 const muteToggleBtn = document.getElementById("muteToggle");
-let isMuted = true; // Muted by default properly
+// Load initial state from localStorage, default to true (muted)
+const savedMuteState = localStorage.getItem('isMuted');
+let isMuted = savedMuteState !== null ? savedMuteState === 'true' : true;
 
-if (muteToggleBtn) {
-    // Set initial icon correctly
-    const icon = muteToggleBtn.querySelector("i");
-    if (icon) {
-        icon.className = "fa-solid fa-volume-xmark";
-    }
-
-    muteToggleBtn.addEventListener("click", () => {
-        isMuted = !isMuted;
-        allAudio.forEach(a => a.volume = isMuted ? 0 : 0.2); // Lowered max volume to 20%
+// Helper to update volumes and icons
+const updateMuteState = () => {
+    allAudio.forEach(a => {
+        a.volume = isMuted ? 0 : 0.2;
+    });
+    
+    if (muteToggleBtn) {
+        const icon = muteToggleBtn.querySelector("i");
         if (icon) {
             icon.className = isMuted ? "fa-solid fa-volume-xmark" : "fa-solid fa-volume-high";
         }
+    }
+    
+    localStorage.setItem('isMuted', isMuted);
+
+    // If unmuting during the intro sequence, trigger the relevant audios if they are currently relevant
+    if (!isMuted) {
+        // If the quote is visible but audio was muted, try playing it now
+        if (quoteContainer.classList.contains("show") && quoteAudio.paused) {
+            quoteAudio.play().catch(e => console.log('Audio playback resumed:', e));
+        }
+        // If splash is still up, try playing startup audio
+        if (splashScreen.style.display !== 'none' && startupAudio.paused) {
+             startupAudio.play().catch(e => console.log('Audio playback resumed:', e));
+        }
+    }
+};
+
+// Initial Sync
+updateMuteState();
+
+if (muteToggleBtn) {
+    muteToggleBtn.addEventListener("click", () => {
+        isMuted = !isMuted;
+        updateMuteState();
     });
 }
 
@@ -114,6 +138,28 @@ const playMenuSound = () => {
     menuAudio.currentTime = 0;
     menuAudio.play().catch(e => console.log('Audio playback prevented:', e));
 };
+
+// --- GitHub Stars Logic ---
+const updateGithubStars = async () => {
+    const starCountElement = document.getElementById("github-star-count");
+    if (!starCountElement) return;
+
+    try {
+        const response = await fetch('https://api.github.com/repos/Mr-Shoez/personalPortfolioProject');
+        if (!response.ok) throw new Error('GitHub API response not ok');
+        
+        const data = await response.json();
+        if (data && typeof data.stargazers_count === 'number') {
+            starCountElement.textContent = data.stargazers_count;
+        }
+    } catch (error) {
+        console.error('Error fetching GitHub stars:', error);
+        // Fallback or keep the hardcoded number
+    }
+};
+
+// Initial calls
+updateGithubStars();
 
 // =========================================
 // Three.js Setup Functions
@@ -568,11 +614,13 @@ if (cvNav) {
     cvNav.addEventListener("mouseleave", deactivateBlur);
 }
 
-// Bind hover audio to common interactive elements
-const interactiveElements = document.querySelectorAll('.nav-link, .tech-item, .theme-toggle');
-interactiveElements.forEach(el => {
-    el.addEventListener('mouseenter', playHoverSound);
-});
+// Global delegated hover audio for all interactive elements
+document.addEventListener('mouseenter', (e) => {
+    const target = e.target;
+    if (target.matches?.('button, a, .tech-item, .bento-item, .nav-link')) {
+        playHoverSound();
+    }
+}, true); // Use capture phase to catch hover on elements that don't bubble mouseenter effectively
 
 // --- Theme Toggle Logic ---
 const themeToggleBtn = document.getElementById('themeToggle');
