@@ -522,7 +522,7 @@ const shouldSkipIntro = () => {
     const navEntries = performance.getEntriesByType("navigation");
     const isReload = navEntries.length > 0 && navEntries[0].type === "reload";
     
-    const hasSeenIntro = sessionStorage.getItem('introPlayed') === 'true';
+    const hasSeenIntro = localStorage.getItem('introPlayed') === 'true';
     const comingFromProject = window.location.hash === '#projects' && document.referrer.includes('/projects/');
     const comingFromBlog = window.location.hash === '#blog' && (document.referrer.includes('/posts/') || document.referrer.includes('articles.html'));
     const isHashNavigationOnly = window.location.hash && !isReload;
@@ -538,7 +538,7 @@ const initApp = () => {
     if (shouldSkipIntro()) {
         skipIntroSequence();
     } else {
-        sessionStorage.setItem('introPlayed', 'true');
+        localStorage.setItem('introPlayed', 'true');
         setTimeout(() => {
             load3DModels().then(() => {
                 initAllScenes();
