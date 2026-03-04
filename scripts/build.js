@@ -254,15 +254,15 @@ const articlesHTML = `<!DOCTYPE html>
         </button>
     </div>
 
+    <!-- Back Button — fixed top-left via blog.css -->
+    <a href="index.html#blog" class="back-home-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+
     <section class="blog-gallery-section" style="padding-top: 120px;">
         <div class="blog-section-header">
             <h2 class="blog-title">
                 <span class="blog-main-text">All Articles</span>
                 <span class="blog-ghost-text">Articles</span>
             </h2>
-        </div>
-        <div style="text-align: center; margin-bottom: 3rem;">
-            <a href="index.html#blog" class="back-home-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
         </div>
         <div class="blog-gallery-grid">
             ${allCardsHTML}

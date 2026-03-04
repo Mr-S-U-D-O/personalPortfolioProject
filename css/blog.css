@@ -1,10 +1,51 @@
 
-
 /* Override global style.css overflow hiding for articles */
 html, body {
     overflow-y: auto !important;
     overflow-x: hidden;
     height: auto !important;
+}
+
+/* =========================================
+   Back Button (shared style with project.css)
+========================================= */
+.back-home-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    border-radius: 50px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.9rem;
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 9999;
+}
+
+.back-home-btn:hover {
+    color: var(--text-light);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-5px);
+}
+
+[data-theme="light"] .back-home-btn:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 768px) {
+    .back-home-btn {
+        top: 1rem;
+        left: 1rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
 }
 
 /* =========================================

@@ -11,6 +11,14 @@
 /* =========================================
    Page Base
 ========================================= */
+/* Reset the global overflow:hidden so the about page scrolls normally */
+html:has(body.about-page),
+body.about-page {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    height: auto !important;
+}
+
 .about-page {
     min-height: 100vh;
     background: var(--bg-dark);
