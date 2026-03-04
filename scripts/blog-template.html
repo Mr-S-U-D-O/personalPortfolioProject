@@ -34,8 +34,17 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/all.min.css">
     <link rel="stylesheet" href="../css/blog-post.css">
+    <!-- Universal Theme System (non-deferred to prevent flash) -->
+    <script src="../js/theme.js"></script>
 </head>
 <body class="blog-post-page">
+
+    <!-- Theme Toggle -->
+    <div class="utility-toggles" style="z-index: 9999;">
+        <button class="theme-toggle" data-theme-toggle aria-label="Toggle Dark Mode">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </div>
 
     <!-- Progress Bar -->
     <div class="post-progress-bar" id="postProgressBar"></div>
@@ -256,6 +265,8 @@
                     });
                 });
             }
+            // 7. Wire up universal theme toggle
+            if (window.ThemeSystem) window.ThemeSystem.init();
         });
     </script>
 </body>

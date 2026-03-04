@@ -235,11 +235,25 @@ const articlesHTML = `<!DOCTYPE html>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Articles | Mosa Moleleki</title>
+    <meta name="description" content="All articles and blog posts by Mosa Moleleki, Front-End Web Developer.">
+    <link rel="canonical" href="https://www.sudo.co.za/articles.html">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.sudo.co.za/articles.html">
+    <meta property="og:title" content="All Articles | Mosa Moleleki">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/blog.css">
+    <!-- Universal Theme System (non-deferred to prevent flash) -->
+    <script src="js/theme.js"><\/script>
 </head>
 <body>
+    <!-- Theme Toggle -->
+    <div class="utility-toggles" style="z-index: 10000;">
+        <button class="theme-toggle" data-theme-toggle aria-label="Toggle Dark Mode">
+            <i class="fa-solid fa-moon"></i>
+        </button>
+    </div>
+
     <section class="blog-gallery-section" style="padding-top: 120px;">
         <div class="blog-section-header">
             <h2 class="blog-title">
@@ -248,12 +262,18 @@ const articlesHTML = `<!DOCTYPE html>
             </h2>
         </div>
         <div style="text-align: center; margin-bottom: 3rem;">
-            <a href="index.html#blog" class="blog-gallery-link" style="font-size: 1.2rem;"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+            <a href="index.html#blog" class="back-home-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
         </div>
         <div class="blog-gallery-grid">
             ${allCardsHTML}
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.ThemeSystem) window.ThemeSystem.init();
+        });
+    <\/script>
 </body>
 </html>`;
 

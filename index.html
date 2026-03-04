@@ -71,6 +71,8 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/blog.css">
+    <!-- Universal Theme System (non-deferred — applies theme before first paint) -->
+    <script src="js/theme.js"></script>
     <!-- ===================== EmailJS ===================== -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
@@ -89,7 +91,7 @@
         <button id="muteToggle" class="mute-toggle" aria-label="Toggle Audio">
             <i class="fa-solid fa-volume-high"></i>
         </button>
-        <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+        <button id="themeToggle" class="theme-toggle" data-theme-toggle aria-label="Toggle Dark Mode">
             <i class="fa-solid fa-moon"></i>
         </button>
     </div>
@@ -711,51 +713,12 @@
     </script>
     <script src="js/index.js" type="module"></script>
 
-    <!-- Favicon theme swapper -->
+    <!-- Favicon + Theme Toggle wired via universal ThemeSystem (theme.js loaded in <head>) -->
     <script>
-        (function () {
-            const LIGHT = 'asserts/light mode favicon/';
-            const DARK  = 'asserts/dark mode favicon/';
-
-            const faviconMap = [
-                { id: 'favicon-32',  file: 'favicon-32x32.png' },
-                { id: 'favicon-16',  file: 'favicon-16x16.png' },
-                { id: 'favicon-ico', file: 'favicon.ico'        },
-                { id: 'favicon-apple', file: 'apple-touch-icon.png' }
-            ];
-
-            function setFavicons(base) {
-                faviconMap.forEach(function (f) {
-                    var el = document.getElementById(f.id);
-                    if (el) el.href = base + f.file;
-                });
-            }
-
-            // Apply correct set on initial page load based on the saved theme
-            var savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                setFavicons(DARK);
-            } else if (savedTheme === 'light') {
-                setFavicons(LIGHT);
-            } else {
-                // No saved preference – respect OS preference
-                var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                setFavicons(prefersDark ? DARK : LIGHT);
-            }
-
-            // Watch for theme toggle clicks
-            var toggleBtn = document.getElementById('themeToggle');
-            if (toggleBtn) {
-                toggleBtn.addEventListener('click', function () {
-                    // The toggle button flips the class on <body> – check after a brief tick
-                    setTimeout(function () {
-                        var isDark = document.body.classList.contains('dark-mode') ||
-                                     document.documentElement.classList.contains('dark-mode');
-                        setFavicons(isDark ? DARK : LIGHT);
-                    }, 50);
-                });
-            }
-        })();
+        document.addEventListener('DOMContentLoaded', function () {
+            if (window.ThemeSystem) window.ThemeSystem.init();
+        });
     </script>
+
 </body>
 </html>

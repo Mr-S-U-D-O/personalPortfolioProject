@@ -20,53 +20,26 @@ console.log(
 // ────────────────────────────────────────────────────────────────────────────
 
 // =========================================
-// Theme System (mirrors index.js)
+// Theme System — wired via universal ThemeSystem (js/theme.js loaded in <head>)
 // =========================================
-const themeToggleBtn = document.getElementById('themeToggle');
-const themeToggleIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
+document.addEventListener('DOMContentLoaded', function () {
+    if (window.ThemeSystem) {
+        window.ThemeSystem.init();
 
-function setTheme(themeName) {
-    document.documentElement.setAttribute('data-theme', themeName);
-    localStorage.setItem('theme', themeName);
-
-    if (themeToggleIcon) {
-        themeToggleIcon.className = themeName === 'light' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        // Also sync profile photo to theme on load and on change
+        function syncPhoto(theme) {
+            const heroPhoto = document.querySelector('.about-hero-photo');
+            if (heroPhoto) {
+                heroPhoto.src = theme === 'light' ? 'my pictures/light mode.webp' : 'my pictures/dark mode.webp';
+            }
+        }
+        syncPhoto(window.ThemeSystem.get());
+        document.addEventListener('themechange', function (e) {
+            syncPhoto(e.detail.theme);
+        });
     }
+});
 
-    // Sync profile photo
-    const heroPhoto = document.querySelector('.about-hero-photo');
-    if (heroPhoto) {
-        heroPhoto.src = themeName === 'light' ? 'my pictures/light mode.webp' : 'my pictures/dark mode.webp';
-    }
-
-    // Sync favicon ids (same logic as index)
-    const LIGHT = 'asserts/light mode favicon/';
-    const DARK  = 'asserts/dark mode favicon/';
-    const faviconMap = [
-        { id: 'favicon-32',    file: 'favicon-32x32.png' },
-        { id: 'favicon-16',    file: 'favicon-16x16.png' },
-        { id: 'favicon-ico',   file: 'favicon.ico' },
-        { id: 'favicon-apple', file: 'apple-touch-icon.png' },
-    ];
-    const base = themeName === 'dark' ? DARK : LIGHT;
-    faviconMap.forEach(f => {
-        const el = document.getElementById(f.id);
-        if (el) el.href = base + f.file;
-    });
-}
-
-function toggleTheme() {
-    const current = document.documentElement.getAttribute('data-theme');
-    setTheme(current === 'light' ? 'dark' : 'light');
-}
-
-const savedTheme = localStorage.getItem('theme') ||
-    (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-setTheme(savedTheme);
-
-if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', toggleTheme);
-}
 
 // =========================================
 // Scroll Animations — Fade Up
