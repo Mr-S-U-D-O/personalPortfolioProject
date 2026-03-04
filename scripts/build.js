@@ -1,4 +1,4 @@
-﻿const fs = require('fs');
+const fs = require('fs');
 const path = require('path');
 const { marked } = require('marked');
 
@@ -626,7 +626,7 @@ let htmlContent = `<!DOCTYPE html>
             
             <div class="file-tree-container">
                 <div class="project-root">
-                    <i class="fa-solid fa-globe"></i> yourportfolio.com
+                    <i class="fa-solid fa-globe"></i> www.sudo.co.za
                 </div>
                 ${renderTreeBranch(fileTree, 0)}
             </div>

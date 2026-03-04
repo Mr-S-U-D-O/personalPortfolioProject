@@ -1,4 +1,4 @@
-﻿const fs = require('fs');
+const fs = require('fs');
 const path = require('path');
 
 const PROJECTS_DATA_PATH = path.join(__dirname, '../data/projects.json');

@@ -1,4 +1,4 @@
-﻿let sitePages = [
+let sitePages = [
     'index.html',
     'articles.html',
     'posts/online-feedbacks.html',
