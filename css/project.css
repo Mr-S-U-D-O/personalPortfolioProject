@@ -5,7 +5,7 @@
 /* Global and Container adjustments */
 .project-detail-page {
     background-color: var(--bg-color);
-    color: var(--text-color);
+    color: var(--text-light);
     font-family: 'Inter', sans-serif;
 }
 
@@ -27,7 +27,7 @@ body.project-detail-page {
     left: 0;
     width: 0%;
     height: 4px;
-    background: linear-gradient(90deg, var(--accent-primary) 0%, rgba(142, 45, 226, 1) 100%);
+    background: var(--accent-primary);
     z-index: 10000;
 }
 
@@ -40,9 +40,9 @@ body.project-detail-page {
     margin-bottom: 2rem;
     padding: 0.75rem 1.5rem;
     border-radius: 50px;
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--glass-bg);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
     color: var(--text-muted);
     text-decoration: none;
     transition: all 0.3s ease;
@@ -50,18 +50,9 @@ body.project-detail-page {
 }
 
 .back-home-btn:hover {
-    color: var(--text-color);
+    color: var(--text-light); /* Enforces consistency with global variables */
     background: rgba(255, 255, 255, 0.1);
     transform: translateX(-5px);
-}
-
-.dark-mode .back-home-btn {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-[data-theme="light"] .back-home-btn {
-    background: rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="light"] .back-home-btn:hover {
@@ -173,7 +164,7 @@ body.project-detail-page {
 .meta-item p {
     font-size: 1.1rem;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-light);
     margin: 0;
 }
 
@@ -191,7 +182,7 @@ body.project-detail-page {
     font-size: 0.95rem;
     font-weight: 600;
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--text-light);
     transition: all 0.3s ease;
     padding: 0.75rem 1.25rem;
     background: var(--card-bg, rgba(255, 255, 255, 0.05));
@@ -209,7 +200,7 @@ body.project-detail-page {
     color: var(--accent-primary);
     border-color: var(--accent-primary);
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(74, 0, 224, 0.15);
+    box-shadow: 0 8px 25px rgba(0, 140, 255, 0.15);
 }
 
 .project-link-btn i {
@@ -234,7 +225,7 @@ body.project-detail-page {
 .large-text {
     font-size: 1.35rem;
     line-height: 1.8;
-    color: var(--text-color);
+    color: var(--text-light);
     font-weight: 400;
 }
 
@@ -349,7 +340,7 @@ body.project-detail-page {
     min-width: 0; /* Prevents flex blowout */
     font-size: 1.15rem;
     line-height: 1.8;
-    color: var(--text-color);
+    color: var(--text-light);
     opacity: 0.9;
 }
 
@@ -358,7 +349,7 @@ body.project-detail-page {
     margin-top: 2.5em;
     margin-bottom: 1em;
     font-weight: 700;
-    color: var(--text-color);
+    color: var(--text-light);
 }
 
 .project-content-wrapper h3 {
@@ -366,7 +357,7 @@ body.project-detail-page {
     margin-top: 2em;
     margin-bottom: 1em;
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text-light);
 }
 
 .project-content-wrapper p {
@@ -422,7 +413,7 @@ body.project-detail-page {
     border-radius: 50px;
     font-size: 1.1rem;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text-light);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: default;
 }
@@ -435,8 +426,8 @@ body.project-detail-page {
 .tech-pill:hover {
     transform: translateY(-5px) scale(1.05);
     border-color: var(--accent-primary);
-    box-shadow: 0 10px 20px rgba(74, 0, 224, 0.2);
-    background: rgba(74, 0, 224, 0.05);
+    box-shadow: 0 10px 20px rgba(0, 140, 255, 0.2);
+    background: rgba(0, 140, 255, 0.05);
     color: var(--accent-primary);
 }
 
@@ -451,7 +442,7 @@ body.project-detail-page {
 
 .nav-direction-btn {
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--text-light);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;

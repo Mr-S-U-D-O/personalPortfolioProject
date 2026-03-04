@@ -210,22 +210,22 @@ blogData.forEach(post => {
 // 5. Generate articles.html (Archive Page)
 let allCardsHTML = '\n';
 [...blogData].reverse().forEach((post, index) => {
-    const actualPostNumber = blogData.length - index;
-    const ghostNumber = actualPostNumber.toString().padStart(2, '0');
+    // We use the bento/glow layout structure but customized for blogs
     allCardsHTML += `
-            <div class="blog-gallery-item">
-                <div class="blog-gallery-image-wrapper">
-                    ${post.image ? `<img src="${post.image}" alt="${post.topic}">` : `<div class="blog-gallery-placeholder"></div>`}
-                </div>
-                <div class="blog-gallery-content">
-                    <div class="blog-gallery-ghost-number">${ghostNumber}</div>
-                    <div class="blog-gallery-text-content">
-                        <h3 class="blog-gallery-topic">${post.topic}</h3>
-                        <p class="blog-gallery-date">${post.date}</p>
-                        <p class="blog-gallery-desc">${post.description}</p>
-                        <a href="${post.link}" class="blog-gallery-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+            <div class="blog-card glow-card">
+                <a href="${post.link}" class="glow-content" style="text-decoration: none; display: flex; flex-direction: column;">
+                    <div class="blog-gallery-image-wrapper">
+                        ${post.image ? `<img src="${post.image}" alt="${post.topic}">` : `<div class="blog-gallery-placeholder"></div>`}
                     </div>
-                </div>
+                    <div class="blog-gallery-content">
+                        <div class="blog-gallery-text-content">
+                            <h3 class="blog-gallery-topic">${post.topic}</h3>
+                            <p class="blog-gallery-date">${post.date}</p>
+                            <p class="blog-gallery-desc">${post.description}</p>
+                            <span class="blog-gallery-link">Read Article <i class="fa-solid fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+                </a>
             </div>`;
 });
 

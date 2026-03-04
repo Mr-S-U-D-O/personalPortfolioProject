@@ -1062,3 +1062,43 @@ if (socialsSection && socialsLine) {
 
     socialsObserver.observe(socialsSection);
 }
+
+// =========================================
+// Contact Form EmailJS Integration
+// =========================================
+const contactForm = document.getElementById("contactForm");
+const contactSubmitBtn = contactForm ? contactForm.querySelector(".contact-submit-btn") : null;
+
+if (contactForm && contactSubmitBtn) {
+    contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Change button state to loading
+        const originalText = contactSubmitBtn.textContent;
+        contactSubmitBtn.textContent = "Sending...";
+        contactSubmitBtn.disabled = true;
+
+        const serviceID = "service_fklvlrs";
+        const templateID = "template_zjkrkz8";
+
+        // Send the form data using EmailJS
+        emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+                // Success: reset form, show message, close modal
+                alert("Message sent successfully! I will get back to you soon.");
+                contactForm.reset();
+                contactSubmitBtn.textContent = originalText;
+                contactSubmitBtn.disabled = false;
+                
+                const closeBtn = document.getElementById('contactModalCloseBtn');
+                if (closeBtn) closeBtn.click();
+            })
+            .catch((error) => {
+                // Error: show error, reset button
+                console.error("EmailJS Error:", error);
+                alert("Failed to send message. Please try again later or email me directly.");
+                contactSubmitBtn.textContent = originalText;
+                contactSubmitBtn.disabled = false;
+            });
+    });
+}

@@ -61,6 +61,15 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/blog.css">
+    <!-- ===================== EmailJS ===================== -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init({
+            publicKey: "lF650APp6agq2Kb7v",
+          });
+       })();
+    </script>
 </head>
 <body>
     <!-- ========================================= -->
@@ -589,7 +598,7 @@
                 <h4 class="contact-modal-subtitle">GET IN TOUCH</h4>
                 <h2 class="contact-modal-title">Let's Have a Chat</h2>
                 
-                <form class="contact-form" id="contactForm" onsubmit="event.preventDefault(); alert('Message sent successfully!'); document.getElementById('contactModalCloseBtn').click();">
+                <form class="contact-form" id="contactForm">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="firstName">First name</label>
