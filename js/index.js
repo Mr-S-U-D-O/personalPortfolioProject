@@ -226,7 +226,7 @@ const I = () => ({ height: window.innerHeight, width: window.innerWidth }),
     y || (y = t);
     const o = t - y,
       n = Math.max(0, o - 300),
-      s = Math.min(1, n / 3e3),
+      s = Math.min(1, n / 5e3),
       d = Math.min(1, s / 0.15),
       p = ((f = d), 1 - Math.pow(1 - f, 3));
     var f;
@@ -298,9 +298,9 @@ const I = () => ({ height: window.innerHeight, width: window.innerWidth }),
                           i.style.display = "none";
                         }, 500));
                     }, 500));
-                }, 1200));
-            }, 500));
-        }, 800));
+                }, 2000));
+            }, 800));
+        }, 2500));
     }
   };
 let k = !1;

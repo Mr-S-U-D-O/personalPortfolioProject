@@ -3,7 +3,8 @@
   color: var(--text-light);
   font-family: Inter, sans-serif;
 }
-body.project-detail-page {
+body.project-detail-page,
+body.projects-gallery-page {
   overflow-y: auto !important;
   overflow-x: hidden;
 }
