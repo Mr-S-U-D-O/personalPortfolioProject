@@ -119,20 +119,26 @@
                     <div class="metrics-grid">
                         
                             <div class="metric-card">
-                                <span class="ghost-text">100</span>
-                                <h3 class="metric-val text-primary">100</h3>
+                                <h3 class="metric-val text-primary">
+                                    <span class="val-main">100</span>
+                                    <span class="val-ghost">100</span>
+                                </h3>
                                 <p class="metric-label">Lighthouse Score</p>
                             </div>
                         
                             <div class="metric-card">
-                                <span class="ghost-text">0.8s</span>
-                                <h3 class="metric-val text-primary">0.8s</h3>
+                                <h3 class="metric-val text-primary">
+                                    <span class="val-main">0.8s</span>
+                                    <span class="val-ghost">0.8s</span>
+                                </h3>
                                 <p class="metric-label">Load Time</p>
                             </div>
                         
                             <div class="metric-card">
-                                <span class="ghost-text">20+</span>
-                                <h3 class="metric-val text-primary">20+</h3>
+                                <h3 class="metric-val text-primary">
+                                    <span class="val-main">20+</span>
+                                    <span class="val-ghost">20+</span>
+                                </h3>
                                 <p class="metric-label">Devices Tested</p>
                             </div>
                         
@@ -140,8 +146,12 @@
                 </section>
                 
                 <section class="project-features-section fade-element">
-                    <span class="ghost-text">Features</span>
-                    <h2 class="section-title">Key Features</h2>
+                    <div class="project-section-header">
+                        <h2 class="section-title">
+                            <span class="title-main">Key Features</span>
+                            <span class="title-ghost">Features</span>
+                        </h2>
+                    </div>
                     <ul class="results-list">
                         <li>Seamless Responsive Design Architecture</li>
 <li>Performance Optimized Asset Loading</li>
@@ -151,8 +161,12 @@
                 </section>
                 
                 <section class="project-videos-section fade-element">
-                    <span class="ghost-text">Motion</span>
-                    <h2 class="section-title">In Motion</h2>
+                    <div class="project-section-header">
+                        <h2 class="section-title">
+                            <span class="title-main">In Motion</span>
+                            <span class="title-ghost">Motion</span>
+                        </h2>
+                    </div>
                     <div class="videos-container">
                         
                             <div class="video-wrapper premium-media-container">
@@ -164,8 +178,12 @@
                 
                 
                 <section class="project-responsive-section fade-element">
-                    <span class="ghost-text">Devices</span>
-                    <h2 class="section-title">Responsive Design</h2>
+                    <div class="project-section-header">
+                        <h2 class="section-title">
+                            <span class="title-main">Responsive Design</span>
+                            <span class="title-ghost">Devices</span>
+                        </h2>
+                    </div>
                     <p class="section-desc">A seamless experience across desktop, tablet, and mobile devices.</p>
                     <div class="responsive-showcase">
                         <div class="responsive-frames">
@@ -177,8 +195,12 @@
                 </section>
                 
                 <section class="project-gallery-section fade-element">
-                    <span class="ghost-text">Visuals</span>
-                    <h2 class="section-title">Gallery</h2>
+                    <div class="project-section-header">
+                        <h2 class="section-title">
+                            <span class="title-main">Gallery</span>
+                            <span class="title-ghost">Visuals</span>
+                        </h2>
+                    </div>
                     <div class="premium-gallery-grid">
                         
                             <div class="gallery-item premium-media-container">
@@ -201,8 +223,12 @@
                 </section>
                 
                 <section class="project-challenges-section fade-element">
-                    <span class="ghost-text">Core</span>
-                    <h2 class="section-title">Technical Challenges</h2>
+                    <div class="project-section-header">
+                        <h2 class="section-title">
+                            <span class="title-main">Technical Challenges</span>
+                            <span class="title-ghost">Core</span>
+                        </h2>
+                    </div>
                     <div class="challenges-grid">
                         
                             <div class="challenge-pair">
@@ -227,8 +253,12 @@
                 </section>
                 
             <section class="project-results-section fade-element">
-                <span class="ghost-text">Impact</span>
-                <h2 class="section-title">Project Outcomes</h2>
+                <div class="project-section-header">
+                    <h2 class="section-title">
+                        <span class="title-main">Project Outcomes</span>
+                        <span class="title-ghost">Impact</span>
+                    </h2>
+                </div>
                 <div class="results-container">
                     <ul class="results-list">
                         <li>Achieved pixel-perfect responsive scaling across 15+ tested device physical profiles.</li>
@@ -294,7 +324,11 @@
                     const li = document.createElement('li');
                     const a = document.createElement('a');
                     a.href = `#${id}`;
-                    a.textContent = heading.textContent.trim();
+                    
+                    // Extract text: Prioritize .title-main if present, otherwise use heading text
+                    const mainText = heading.querySelector('.title-main');
+                    a.textContent = mainText ? mainText.textContent.trim() : heading.textContent.trim();
+                    
                     a.setAttribute('data-heading', heading.tagName.toLowerCase());
                     if (heading.tagName.toLowerCase() === 'h3') {
                         a.style.paddingLeft = '12px';

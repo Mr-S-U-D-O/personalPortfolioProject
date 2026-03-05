@@ -166,7 +166,11 @@
                     const li = document.createElement('li');
                     const a = document.createElement('a');
                     a.href = `#${id}`;
-                    a.textContent = heading.textContent.trim();
+                    
+                    // Extract text: Prioritize .title-main if present, otherwise use heading text
+                    const mainText = heading.querySelector('.title-main');
+                    a.textContent = mainText ? mainText.textContent.trim() : heading.textContent.trim();
+                    
                     a.setAttribute('data-heading', heading.tagName.toLowerCase());
                     if (heading.tagName.toLowerCase() === 'h3') {
                         a.style.paddingLeft = '12px';

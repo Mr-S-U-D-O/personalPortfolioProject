@@ -491,15 +491,42 @@ body.project-detail-page {
   font-size: 0.9rem;
   border-top: 1px dashed var(--border-color, rgba(255, 255, 255, 0.1));
 }
+.project-section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  width: 100%;
+}
 .section-title {
-  font-size: 2.2rem;
-  margin-top: 4rem;
-  margin-bottom: 2rem;
-  font-weight: 700;
-  color: var(--text-light);
-  border-bottom: 2px solid var(--accent-primary);
+  position: relative;
   display: inline-block;
-  padding-bottom: 0.5rem;
+  margin: 0;
+  z-index: 2;
+}
+.title-main {
+  position: relative;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--accent-primary);
+  z-index: 2;
+}
+.title-ghost {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(4.5rem, 12vw, 9rem);
+  font-weight: 800;
+  color: var(--text-muted);
+  opacity: var(--ghost-opacity, 0.05);
+  z-index: 1;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+[data-theme="light"] .title-ghost {
+  opacity: var(--ghost-opacity, 0.2);
 }
 .section-desc {
   color: var(--text-muted);
@@ -817,26 +844,8 @@ body.project-detail-page {
   margin-bottom: 7rem;
   position: relative;
 }
-.ghost-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: clamp(4rem, 12vw, 8.5rem);
-  font-weight: 900;
-  color: var(--text-muted);
-  opacity: 0.05;
-  text-transform: uppercase;
-  white-space: nowrap;
-  pointer-events: none;
-  z-index: 1;
-  user-select: none;
-  transition: opacity 0.3s ease;
-  line-height: 1;
-}
-[data-theme="light"] .ghost-text {
-  opacity: 0.15;
-}
+/* Ghost text removed in favor of structure-centric titles */
+.ghost-text { display: none; }
 .section-title {
   position: relative;
   z-index: 2;
@@ -872,13 +881,36 @@ body.project-detail-page {
 }
 .metric-val {
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.val-main {
+  position: relative;
   display: block;
   font-size: 3.5rem;
   font-weight: 800;
   color: var(--accent-primary);
-  margin-bottom: 0.5rem;
   z-index: 2;
-  line-height: 1;
+}
+.val-ghost {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 6rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  opacity: 0.1;
+  z-index: 1;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+}
+[data-theme="light"] .val-ghost {
+  opacity: 0.2;
 }
 .metric-label {
   position: relative;

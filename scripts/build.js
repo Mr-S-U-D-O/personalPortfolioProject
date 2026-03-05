@@ -392,8 +392,10 @@ if (projectTemplateBlock && projectsData.length > 0) {
                     <div class="metrics-grid">
                         ${proj.metrics.map(m => `
                             <div class="metric-card">
-                                <span class="ghost-text">${m.value}</span>
-                                <h3 class="metric-val text-primary">${m.value}</h3>
+                                <h3 class="metric-val text-primary">
+                                    <span class="val-main">${m.value}</span>
+                                    <span class="val-ghost">${m.value}</span>
+                                </h3>
                                 <p class="metric-label">${m.label}</p>
                             </div>
                         `).join('')}
@@ -407,8 +409,12 @@ if (projectTemplateBlock && projectsData.length > 0) {
         if (proj.keyFeatures && proj.keyFeatures.length > 0) {
             featuresHtml = `
                 <section class="project-features-section fade-element">
-                    <span class="ghost-text">Features</span>
-                    <h2 class="section-title">Key Features</h2>
+                    <div class="project-section-header">
+                        <h2 class="section-title">
+                            <span class="title-main">Key Features</span>
+                            <span class="title-ghost">Features</span>
+                        </h2>
+                    </div>
                     <ul class="results-list">
                         ${proj.keyFeatures.map(f => `<li>${f}</li>`).join('\n')}
                     </ul>
@@ -421,8 +427,12 @@ if (projectTemplateBlock && projectsData.length > 0) {
         if (proj.videos && proj.videos.length > 0) {
             videosHtml = `
                 <section class="project-videos-section fade-element">
-                    <span class="ghost-text">Motion</span>
-                    <h2 class="section-title">In Motion</h2>
+                    <div class="project-section-header">
+                        <h2 class="section-title">
+                            <span class="title-main">In Motion</span>
+                            <span class="title-ghost">Motion</span>
+                        </h2>
+                    </div>
                     <div class="videos-container">
                         ${proj.videos.map(v => `
                             <div class="video-wrapper premium-media-container">
@@ -439,8 +449,12 @@ if (projectTemplateBlock && projectsData.length > 0) {
         if (proj.gallery && proj.gallery.length > 0) {
             galleryHtml = `
                 <section class="project-gallery-section fade-element">
-                    <span class="ghost-text">Visuals</span>
-                    <h2 class="section-title">Gallery</h2>
+                    <div class="project-section-header">
+                        <h2 class="section-title">
+                            <span class="title-main">Gallery</span>
+                            <span class="title-ghost">Visuals</span>
+                        </h2>
+                    </div>
                     <div class="premium-gallery-grid">
                         ${proj.gallery.map(img => `
                             <div class="gallery-item premium-media-container">
@@ -486,8 +500,12 @@ if (projectTemplateBlock && projectsData.length > 0) {
         if (proj.beforeAfter) {
             beforeAfterHtml = `
                 <section class="project-visual-comparison fade-element">
-                    <span class="ghost-text">Evolution</span>
-                    <h2 class="section-title">Visual Evolution</h2>
+                    <div class="project-section-header">
+                        <h2 class="section-title">
+                            <span class="title-main">Visual Evolution</span>
+                            <span class="title-ghost">Evolution</span>
+                        </h2>
+                    </div>
                     <p class="section-desc">Comparing the initial wireframes/concepts with the final polished implementation.</p>
                     <div class="before-after-container">
                         <div class="comparison-slider-wrapper">
@@ -509,8 +527,12 @@ if (projectTemplateBlock && projectsData.length > 0) {
         if (proj.responsiveViews) {
             responsiveHtml = `
                 <section class="project-responsive-section fade-element">
-                    <span class="ghost-text">Devices</span>
-                    <h2 class="section-title">Responsive Design</h2>
+                    <div class="project-section-header">
+                        <h2 class="section-title">
+                            <span class="title-main">Responsive Design</span>
+                            <span class="title-ghost">Devices</span>
+                        </h2>
+                    </div>
                     <p class="section-desc">A seamless experience across desktop, tablet, and mobile devices.</p>
                     <div class="responsive-showcase">
                         <div class="responsive-frames">
@@ -528,8 +550,12 @@ if (projectTemplateBlock && projectsData.length > 0) {
         if (proj.challengesStructured && proj.challengesStructured.length > 0) {
             challengesHtml = `
                 <section class="project-challenges-section fade-element">
-                    <span class="ghost-text">Core</span>
-                    <h2 class="section-title">Technical Challenges</h2>
+                    <div class="project-section-header">
+                        <h2 class="section-title">
+                            <span class="title-main">Technical Challenges</span>
+                            <span class="title-ghost">Core</span>
+                        </h2>
+                    </div>
                     <div class="challenges-grid">
                         ${proj.challengesStructured.map(ch => `
                             <div class="challenge-pair">
@@ -550,8 +576,12 @@ if (projectTemplateBlock && projectsData.length > 0) {
         // 4. Project Outcomes — clean unordered list (no cards)
         let resultsHtml = `
             <section class="project-results-section fade-element">
-                <span class="ghost-text">Impact</span>
-                <h2 class="section-title">Project Outcomes</h2>
+                <div class="project-section-header">
+                    <h2 class="section-title">
+                        <span class="title-main">Project Outcomes</span>
+                        <span class="title-ghost">Impact</span>
+                    </h2>
+                </div>
                 <div class="results-container">
                     <ul class="results-list">
                         ${(proj.outcomes || []).map(res => `<li>${res}</li>`).join('\n')}
