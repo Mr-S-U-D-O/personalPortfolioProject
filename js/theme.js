@@ -118,6 +118,46 @@
           updateFavicon(e.detail.theme);
         });
       }
+
+      // Initialize Back to Top Logic
+      this.initBackToTop();
+    },
+
+    /**
+     * Initializes the Back to Top button functionality.
+     * Shows the button when scrolling down or nearing the bottom.
+     */
+    initBackToTop: function () {
+      const backToTopBtn = document.getElementById("backToTop");
+      if (!backToTopBtn) return;
+
+      const handleScroll = () => {
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const fullHeight = document.documentElement.scrollHeight;
+        
+        // Show if scrolled down more than 400px OR within 300px of the bottom
+        const isNearBottom = (scrollY + windowHeight) > (fullHeight - 300);
+        const isScrolledDown = scrollY > 400;
+
+        if (isScrolledDown || isNearBottom) {
+          backToTopBtn.classList.add("visible");
+        } else {
+          backToTopBtn.classList.remove("visible");
+        }
+      };
+
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      
+      backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+
+      // Run once initially
+      handleScroll();
     },
   };
 

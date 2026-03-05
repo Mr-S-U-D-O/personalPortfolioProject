@@ -63,23 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /**
    * Back to Top Button Interaction
-   * Shows/hides a floating action button based on scroll position
-   * and scrolls smoothly to the top of the page when clicked.
+   * Moved to global theme.js
    */
-  const backToTopBtn = document.getElementById("backToTop");
-  if (backToTopBtn) {
-    window.addEventListener("scroll", function () {
-      if (window.scrollY > 400) {
-        backToTopBtn.classList.add("visible");
-      } else {
-        backToTopBtn.classList.remove("visible");
-      }
-    });
-
-    backToTopBtn.addEventListener("click", function () {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
 
   /**
    * Education Timeline Scroll Animations

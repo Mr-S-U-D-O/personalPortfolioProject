@@ -729,40 +729,7 @@ html:has(body.about-page) {
 /* ==========================================================================
    BACK TO TOP BUTTON
    ========================================================================== */
-.back-to-top {
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(10px);
-  color: var(--text-light);
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9000;
-  opacity: 0;
-  transform: translateY(20px);
-  transition:
-    opacity 0.3s ease,
-    transform 0.3s ease,
-    border-color 0.3s ease;
-  pointer-events: none;
-}
-.back-to-top.visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: all;
-}
-.back-to-top:hover {
-  border-color: var(--accent-primary);
-  color: var(--accent-primary);
-}
+/* Moved to global style.css */
 @media (max-width: 900px) {
   .about-hero {
     grid-template-columns: 1fr;

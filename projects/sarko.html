@@ -15,18 +15,18 @@
     <meta property="og:description" content="A tailored web project demonstrating immersive and responsive design principles.">
     <meta property="og:image" content="https://www.sudo.co.za/projects/sarko/mockup-desktop-framed.png">
 
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js?v=1772750173261" as="script">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js?v=1772750173261" as="script">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js?v=1772751148639" as="script">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js?v=1772751148639" as="script">
     <link rel="preload" as="image" href="../projects/sarko/mockup-desktop-framed.png">
-    <link rel="stylesheet" href="../css/min/style.min.css?v=1772750173261">
-    <link rel="stylesheet" href="../css/all.min.css?v=1772750173261">
-    <link rel="stylesheet" href="../css/min/project.min.css?v=1772750173261">
+    <link rel="stylesheet" href="../css/min/style.min.css?v=1772751148639">
+    <link rel="stylesheet" href="../css/all.min.css?v=1772751148639">
+    <link rel="stylesheet" href="../css/min/project.min.css?v=1772751148639">
     <!-- Universal Theme System (must be non-deferred to prevent flash) -->
-    <script src="../js/min/theme.min.js?v=1772750173261"></script>
+    <script src="../js/min/theme.min.js?v=1772751148639"></script>
 
     <!-- GSAP for scroll animations -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js?v=1772750173261"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js?v=1772750173261"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js?v=1772751148639"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js?v=1772751148639"></script>
 </head>
 <body class="project-detail-page">
     
@@ -35,7 +35,7 @@
 
     <!-- Utility Toggles -->
     <div class="utility-toggles" style="z-index: 9999;">
-        <button id="themeToggle" class="theme-toggle" data-theme-toggle aria-label="Toggle Dark Mode" style="right: 2rem; position: fixed;">
+        <button id="themeToggle" class="theme-toggle" data-theme-toggle aria-label="Toggle Dark Mode">
             <i class="fa-solid fa-moon"></i>
         </button>
     </div>
@@ -473,5 +473,13 @@
             if (window.ThemeSystem) window.ThemeSystem.init();
         });
     </script>
+
+    <!-- ========================================= -->
+    <!-- Back to Top                               -->
+    <!-- ========================================= -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fa-solid fa-chevron-up"></i>
+    </button>
+
 </body>
 </html>
