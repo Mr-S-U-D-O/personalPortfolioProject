@@ -15,6 +15,9 @@ const SITEMAP_HTML_PATH = path.join(__dirname, '../sitemap.html');
 const POSTS_DIR = path.join(__dirname, '../posts');
 const ARTICLES_PATH = path.join(__dirname, '../articles.html');
 
+// Cache Busting Version
+const VERSION = Date.now();
+
 console.log('Starting unified build process...');
 
 // Utility to create URL-friendly slug
@@ -93,8 +96,13 @@ try {
     
     if (regex.test(indexData)) {
         indexData = indexData.replace(regex, replacement);
+        
+        // Cache Busting for index.html
+        indexData = indexData.replace(/\.css(\?v=\d+)?/g, `.css?v=${VERSION}`);
+        indexData = indexData.replace(/\.js(\?v=\d+)?/g, `.js?v=${VERSION}`);
+        
         fs.writeFileSync(INDEX_PATH, indexData, 'utf8');
-        console.log('Successfully injected blog cards into index.html');
+        console.log('Successfully injected blog cards and updated cache busting in index.html');
     } else {
         console.error('Could not find BLOG_GALLERY_START/END injection markers in index.html!');
     }
@@ -176,6 +184,10 @@ blogData.forEach(post => {
     pageHtml = pageHtml.replace(/{{HERO_IMAGE}}/g, heroImage);
     pageHtml = pageHtml.replace(/{{JSON_LD}}/g, `<script type="application/ld+json">\n${JSON.stringify(jsonLd, null, 2)}\n</script>`);
     
+    // Cache Busting
+    pageHtml = pageHtml.replace(/\.css"/g, `.css?v=${VERSION}"`);
+    pageHtml = pageHtml.replace(/\.js"/g, `.js?v=${VERSION}"`);
+    
     // Previous Link
     if (post.prevSlug) {
         pageHtml = pageHtml.replace(/{{PREV_LINK}}/g, `<a href="${post.prevSlug}.html" class="nav-btn">&larr; Previous</a>`);
@@ -231,11 +243,11 @@ const articlesHTML = `<!DOCTYPE html>
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.sudo.co.za/articles.html">
     <meta property="og:title" content="All Articles | Mosa Moleleki">
-    <link rel="stylesheet" href="css/min/style.min.css">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/min/blog.min.css">
+    <link rel="stylesheet" href="css/min/style.min.css?v=${VERSION}">
+    <link rel="stylesheet" href="css/all.min.css?v=${VERSION}">
+    <link rel="stylesheet" href="css/min/blog.min.css?v=${VERSION}">
     <!-- Universal Theme System (non-deferred to prevent flash) -->
-    <script src="js/min/theme.min.js"><\/script>
+    <script src="js/min/theme.min.js?v=${VERSION}"><\/script>
 </head>
 <body>
     <!-- Theme Toggle -->
@@ -383,6 +395,10 @@ if (projectTemplateBlock && projectsData.length > 0) {
                 ${platStr ? `<div class="detail-item"><span class="detail-label">Platform</span><span class="detail-val">${platStr}</span></div>` : ''}
             </div>`;
         pageHtml = pageHtml.replace(/{{OVERVIEW_DETAILS_HTML}}/g, overviewDetailsHtml);
+        
+        // Cache Busting
+        pageHtml = pageHtml.replace(/\.css"/g, `.css?v=${VERSION}"`);
+        pageHtml = pageHtml.replace(/\.js"/g, `.js?v=${VERSION}"`);
 
         // Metrics
         let metricsHtml = '';
