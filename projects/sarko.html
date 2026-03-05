@@ -46,41 +46,34 @@
         <!-- Back Button -->
         <a href="../index.html#projects" class="back-home-btn animate-fade-in"><i class="fa-solid fa-arrow-left"></i> Back to Projects</a>
 
-        <!-- Hero Section -->
-        <header class="project-hero animate-slide-up">
-            <div class="project-hero-image-container">
-                <img src="../projects/sarko/mockup-desktop-framed.png" alt="Sarko" class="project-hero-img" fetchpriority="high">
-                <div class="project-hero-overlay"></div>
-                <h1 class="project-hero-title gradient-text">Sarko</h1>
-                <div class="project-hero-badges">
-                    <span class="badge">Web Design</span>
-                    <span class="badge">2026</span>
+        <!-- Premium Minimalist Hero Section -->
+        <header class="project-hero premium-hero animate-slide-up">
+            <div class="premium-hero-content">
+                <div class="hero-top-meta">
+                    <span class="premium-badge">Web Design</span>
+                    <div class="hero-links">
+                        <a href="https://www.sudo.co.za/sarko" target="_blank" rel="noopener noreferrer" class="project-link-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                        <a href="https://github.com/Mr-Shoez" target="_blank" rel="noopener noreferrer" class="project-link-btn"><i class="fa-brands fa-github"></i> GitHub Repo</a>
+                    </div>
                 </div>
+                <h1 class="premium-hero-title gradient-text">Sarko</h1>
+                <p class="premium-hero-desc">A tailored web project demonstrating immersive and responsive design principles.</p>
+                
+                <div class="premium-hero-overview fade-element">
+                    
+            <div class="overview-details-grid">
+                <div class="detail-item"><span class="detail-label">Role</span><span class="detail-val">Lead Engineer & Designer</span></div>
+                <div class="detail-item"><span class="detail-label">Timeline</span><span class="detail-val">3 Weeks</span></div>
+                <div class="detail-item"><span class="detail-label">Team</span><span class="detail-val">Solo Project</span></div>
+                <div class="detail-item"><span class="detail-label">Platform</span><span class="detail-val">Responsive Web</span></div>
+            </div>
+                </div>
+            </div>
+            
+            <div class="premium-hero-visual fade-element delayed">
+                <img src="../projects/sarko/mockup-desktop-framed.png" alt="Sarko" fetchpriority="high" class="premium-hero-img">
             </div>
         </header>
-
-        <!-- Meta Data Grid -->
-        <section class="project-meta-grid animate-slide-up-delayed">
-            <div class="meta-item">
-                <h4>Role</h4>
-                <p>Frontend Developer</p>
-            </div>
-            <div class="meta-item">
-                <h4>Year</h4>
-                <p>2026</p>
-            </div>
-            <div class="meta-item">
-                <h4>Category</h4>
-                <p>Web Design</p>
-            </div>
-            <div class="meta-item links">
-                <h4>Links</h4>
-                <div class="meta-links">
-                    <a href="https://www.sudo.co.za/sarko" target="_blank" rel="noopener noreferrer" class="project-link-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
-                    <a href="https://github.com/Mr-Shoez" target="_blank" rel="noopener noreferrer" class="project-link-btn"><i class="fa-brands fa-github"></i> GitHub Repo</a>
-                </div>
-            </div>
-        </section>
 
         <!-- The Narrative: Asymmetric Layout -->
         <div class="narrative-container">
@@ -114,17 +107,49 @@
                 <div class="project-tech-sidebar fade-element">
                     <h4>Tech Stack</h4>
                     <div class="tech-pills-container">
-                        <span class="tech-pill">HTML & CSS</span>
+                        <span class="tech-pill">HTML5</span>
+                <span class="tech-pill">Modern CSS</span>
                 <span class="tech-pill">Vanilla JS</span>
-                <span class="tech-pill">Responsive Web Design</span>
+                <span class="tech-pill">GSAP</span>
                     </div>
                 </div>
             </aside>
 
             <!-- Right Main Content -->
-            <article class="project-content-wrapper" id="projectContent">
+            <article class="project-content-wrapper premium-content" id="projectContent">
+                
+                
+                <section class="project-quote-section fade-element">
+                    <blockquote class="premium-quote">
+                        <p>"Simplicity is the ultimate sophistication. Sarko strips away the unnecessary, leaving only the essential experience."</p>
+                        <cite>&mdash; Mosa Moleleki</cite>
+                    </blockquote>
+                </section>
+
                 <section class="project-main-narrative fade-element">
-                    <p>Sarko is a modern web experience meant to demonstrate how to elegantly adapt interactive applications seamlessly across all device dimensions without compromising on aesthetics or performance.</p>
+                    <p>Sarko began as an exploration of the boundaries between minimalism and high-performance web architecture. In an era cluttered with excessive animations and over-engineered frameworks, I wanted to strip back the noise. The focus was entirely on typographic rhythm, refined spacing, and sub-second load times.</p><p>By leveraging purely native browser capabilities—CSS Grid, modern viewport units, and subtle CSS transitions—the site achieves a fluidity that feels organic. The design does not just 'respond' to screen sizes; it recalculates its proportions gracefully, ensuring the user is never distracted by layout shifts.</p>
+                </section>
+
+                
+                <section class="project-metrics-section fade-element">
+                    <div class="metrics-grid">
+                        
+                            <div class="metric-card">
+                                <h3 class="metric-value">100</h3>
+                                <p class="metric-label">Lighthouse Score</p>
+                            </div>
+                        
+                            <div class="metric-card">
+                                <h3 class="metric-value">0.8s</h3>
+                                <p class="metric-label">Load Time</p>
+                            </div>
+                        
+                            <div class="metric-card">
+                                <h3 class="metric-value">20+</h3>
+                                <p class="metric-label">Devices Tested</p>
+                            </div>
+                        
+                    </div>
                 </section>
 
                 <!-- Key Features Section -->
@@ -154,6 +179,22 @@
                     </div>
                 </section>
 
+                
+                <section class="project-videos-section fade-element">
+                    <h2 class="section-title">In Motion</h2>
+                    <div class="videos-container">
+                        
+                            <div class="video-wrapper premium-media-container">
+                                <video src="../projects/sarko/grid-demo.mp4" autoplay loop muted playsinline class="project-video"></video>
+                                <div class="video-caption">
+                                    <strong>Fluid Grids in Motion</strong>
+                                    <p>Watch how the grid recalculates effortlessly upon resize without jank or layout thrashing.</p>
+                                </div>
+                            </div>
+                        
+                    </div>
+                </section>
+
                 <!-- Comparative Visual Section (Before / After) -->
                 
 
@@ -171,6 +212,30 @@
                     </div>
                 </section>
 
+                
+                <section class="project-gallery-section fade-element">
+                    <h2 class="section-title">Gallery</h2>
+                    <div class="premium-gallery-grid">
+                        
+                            <div class="gallery-item premium-media-container">
+                                <img src="../projects/sarko/gallery-1.png" alt="Gallery Image" loading="lazy">
+                            </div>
+                        
+                            <div class="gallery-item premium-media-container">
+                                <img src="../projects/sarko/gallery-2.png" alt="Gallery Image" loading="lazy">
+                            </div>
+                        
+                            <div class="gallery-item premium-media-container">
+                                <img src="../projects/sarko/gallery-3.png" alt="Gallery Image" loading="lazy">
+                            </div>
+                        
+                            <div class="gallery-item premium-media-container">
+                                <img src="../projects/sarko/gallery-4.png" alt="Gallery Image" loading="lazy">
+                            </div>
+                        
+                    </div>
+                </section>
+
                 <!-- Challenges & Solutions Section -->
                 <section class="project-challenges-section fade-element">
                     <h2 class="section-title">Technical Challenges</h2>
@@ -179,14 +244,22 @@
             <div class="challenge-pair">
                 <div class="challenge-side">
                     <span class="side-label issue">The Problem</span>
-                    <p>Creating a unified layout that adapts perfectly from 4k monitors to tiny mobile screens.</p>
+                    <p>Creating a unified layout that adapts perfectly from 4k monitors to tiny mobile screens without heavy JS.</p>
                 </div>
                 <div class="solution-side">
                     <span class="side-label solution">The Solution</span>
-                    <p>Leveraged modern CSS Grid and custom container queries for fluid adjustments.</p>
+                    <p>Leveraged modern CSS Grid and custom container queries for fluid, hardware-accelerated adjustments.</p>
                 </div>
             </div>
                     </div>
+                </section>
+
+                
+                <section class="project-learnings-section fade-element">
+                    <h2 class="section-title">Key Takeaways</h2>
+                    <ul class="learnings-list">
+                        <li><i class="fa-solid fa-check list-icon"></i> <span>Mastering complex CSS container queries for component-level responsiveness rather than relying on global media queries.</span></li><li><i class="fa-solid fa-check list-icon"></i> <span>Deeply profiling native CSS transitions vs JavaScript animations to ensure 60fps across all devices.</span></li><li><i class="fa-solid fa-check list-icon"></i> <span>The psychological impact of ample negative space in guiding the user's eye and reducing cognitive load.</span></li>
+                    </ul>
                 </section>
 
                 <!-- Results & Impact Section -->
@@ -237,9 +310,19 @@
                 }
             });
 
-            // 2. Generate TOC from Markdown Content
+            // 2. Generate TOC from Section Titles only
             const content = document.getElementById('projectContent');
-            const headings = content.querySelectorAll('h2, h3');
+            // Only pick up real section-title headings — NOT metric values, gallery headers, etc.
+            // We specifically target h2.section-title to avoid pollution from metric h3s
+            const sectionHeadings = Array.from(content.querySelectorAll('h2.section-title'));
+            
+            // Also include any h2/h3 that live in the .project-main-narrative (from content field)
+            const narrativeHeadings = Array.from(content.querySelectorAll('.project-main-narrative h2, .project-main-narrative h3'));
+            
+            // Merge and de-duplicate, maintaining document order
+            const headingsSet = new Set([...narrativeHeadings, ...sectionHeadings]);
+            const headings = Array.from(content.querySelectorAll('h2, h3')).filter(h => headingsSet.has(h));
+            
             const tocList = document.getElementById('tocList');
             
             if (headings.length === 0) {
@@ -247,16 +330,18 @@
                 document.querySelector('.trailing-line-wrapper').style.display = 'none';
             } else {
                 headings.forEach((heading, index) => {
-                    const id = heading.id || `heading-${index}`;
+                    const id = heading.id || `section-${index}`;
                     heading.id = id;
 
                     const li = document.createElement('li');
                     const a = document.createElement('a');
                     a.href = `#${id}`;
-                    a.textContent = heading.textContent;
+                    a.textContent = heading.textContent.trim();
+                    a.setAttribute('data-heading', heading.tagName.toLowerCase());
                     if (heading.tagName.toLowerCase() === 'h3') {
-                        a.style.paddingLeft = '15px';
+                        a.style.paddingLeft = '12px';
                         a.style.fontSize = '0.85rem';
+                        a.style.opacity = '0.75';
                     }
                     li.appendChild(a);
                     tocList.appendChild(li);

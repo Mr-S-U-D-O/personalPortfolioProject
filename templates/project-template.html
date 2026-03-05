@@ -46,41 +46,28 @@
         <!-- Back Button -->
         <a href="../index.html#projects" class="back-home-btn animate-fade-in"><i class="fa-solid fa-arrow-left"></i> Back to Projects</a>
 
-        <!-- Hero Section -->
-        <header class="project-hero animate-slide-up">
-            <div class="project-hero-image-container">
-                <img src="{{FULL_IMAGE}}" alt="{{TITLE}}" class="project-hero-img" fetchpriority="high">
-                <div class="project-hero-overlay"></div>
-                <h1 class="project-hero-title gradient-text">{{TITLE}}</h1>
-                <div class="project-hero-badges">
-                    <span class="badge">{{CATEGORY}}</span>
-                    <span class="badge">{{YEAR}}</span>
+        <!-- Premium Minimalist Hero Section -->
+        <header class="project-hero premium-hero animate-slide-up">
+            <div class="premium-hero-content">
+                <div class="hero-top-meta">
+                    <span class="premium-badge">{{CATEGORY}}</span>
+                    <div class="hero-links">
+                        {{LIVE_LINK_HTML}}
+                        {{GITHUB_LINK_HTML}}
+                    </div>
                 </div>
+                <h1 class="premium-hero-title gradient-text">{{TITLE}}</h1>
+                <p class="premium-hero-desc">{{DESCRIPTION}}</p>
+                
+                <div class="premium-hero-overview fade-element">
+                    {{OVERVIEW_DETAILS_HTML}}
+                </div>
+            </div>
+            
+            <div class="premium-hero-visual fade-element delayed">
+                <img src="{{FULL_IMAGE}}" alt="{{TITLE}}" fetchpriority="high" class="premium-hero-img">
             </div>
         </header>
-
-        <!-- Meta Data Grid -->
-        <section class="project-meta-grid animate-slide-up-delayed">
-            <div class="meta-item">
-                <h4>Role</h4>
-                <p>{{ROLE}}</p>
-            </div>
-            <div class="meta-item">
-                <h4>Year</h4>
-                <p>{{YEAR}}</p>
-            </div>
-            <div class="meta-item">
-                <h4>Category</h4>
-                <p>{{CATEGORY}}</p>
-            </div>
-            <div class="meta-item links">
-                <h4>Links</h4>
-                <div class="meta-links">
-                    {{LIVE_LINK_HTML}}
-                    {{GITHUB_LINK_HTML}}
-                </div>
-            </div>
-        </section>
 
         <!-- The Narrative: Asymmetric Layout -->
         <div class="narrative-container">
@@ -120,10 +107,15 @@
             </aside>
 
             <!-- Right Main Content -->
-            <article class="project-content-wrapper" id="projectContent">
+            <article class="project-content-wrapper premium-content" id="projectContent">
+                
+                {{QUOTE_HTML}}
+
                 <section class="project-main-narrative fade-element">
                     {{CONTENT}}
                 </section>
+
+                {{METRICS_HTML}}
 
                 <!-- Key Features Section -->
                 <section class="project-features-section fade-element">
@@ -133,11 +125,15 @@
                     </div>
                 </section>
 
+                {{VIDEOS_HTML}}
+
                 <!-- Comparative Visual Section (Before / After) -->
                 {{BEFORE_AFTER_HTML}}
 
                 <!-- Responsive Device Showcase Section -->
                 {{RESPONSIVE_VIEWS_HTML}}
+
+                {{GALLERY_HTML}}
 
                 <!-- Challenges & Solutions Section -->
                 <section class="project-challenges-section fade-element">
@@ -146,6 +142,8 @@
                         {{CHALLENGES_HTML}}
                     </div>
                 </section>
+
+                {{LEARNINGS_HTML}}
 
                 <!-- Results & Impact Section -->
                 <section class="project-results-section fade-element">
@@ -186,9 +184,19 @@
                 }
             });
 
-            // 2. Generate TOC from Markdown Content
+            // 2. Generate TOC from Section Titles only
             const content = document.getElementById('projectContent');
-            const headings = content.querySelectorAll('h2, h3');
+            // Only pick up real section-title headings — NOT metric values, gallery headers, etc.
+            // We specifically target h2.section-title to avoid pollution from metric h3s
+            const sectionHeadings = Array.from(content.querySelectorAll('h2.section-title'));
+            
+            // Also include any h2/h3 that live in the .project-main-narrative (from content field)
+            const narrativeHeadings = Array.from(content.querySelectorAll('.project-main-narrative h2, .project-main-narrative h3'));
+            
+            // Merge and de-duplicate, maintaining document order
+            const headingsSet = new Set([...narrativeHeadings, ...sectionHeadings]);
+            const headings = Array.from(content.querySelectorAll('h2, h3')).filter(h => headingsSet.has(h));
+            
             const tocList = document.getElementById('tocList');
             
             if (headings.length === 0) {
@@ -196,16 +204,18 @@
                 document.querySelector('.trailing-line-wrapper').style.display = 'none';
             } else {
                 headings.forEach((heading, index) => {
-                    const id = heading.id || `heading-${index}`;
+                    const id = heading.id || `section-${index}`;
                     heading.id = id;
 
                     const li = document.createElement('li');
                     const a = document.createElement('a');
                     a.href = `#${id}`;
-                    a.textContent = heading.textContent;
+                    a.textContent = heading.textContent.trim();
+                    a.setAttribute('data-heading', heading.tagName.toLowerCase());
                     if (heading.tagName.toLowerCase() === 'h3') {
-                        a.style.paddingLeft = '15px';
+                        a.style.paddingLeft = '12px';
                         a.style.fontSize = '0.85rem';
+                        a.style.opacity = '0.75';
                     }
                     li.appendChild(a);
                     tocList.appendChild(li);

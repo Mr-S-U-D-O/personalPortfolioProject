@@ -368,6 +368,103 @@ if (projectTemplateBlock && projectsData.length > 0) {
         let techHtml = (proj.technologies || []).map(tech => `<span class="tech-pill">${tech}</span>`).join('\n                ');
         pageHtml = pageHtml.replace(/{{TECHNOLOGIES_HTML}}/g, techHtml);
 
+        // Overview Details with fallbacks
+        let overviewDetailsHtml = '';
+        const roleStr = (proj.overviewDetails && proj.overviewDetails.myRole) ? proj.overviewDetails.myRole : (proj.role || '');
+        const durStr = (proj.overviewDetails && proj.overviewDetails.duration) ? proj.overviewDetails.duration : (proj.year || '');
+        const teamStr = (proj.overviewDetails && proj.overviewDetails.teamSize) ? proj.overviewDetails.teamSize : '';
+        const platStr = (proj.overviewDetails && proj.overviewDetails.platform) ? proj.overviewDetails.platform : (proj.category || '');
+
+        overviewDetailsHtml = `
+            <div class="overview-details-grid">
+                ${roleStr ? `<div class="detail-item"><span class="detail-label">Role</span><span class="detail-val">${roleStr}</span></div>` : ''}
+                ${durStr ? `<div class="detail-item"><span class="detail-label">Timeline</span><span class="detail-val">${durStr}</span></div>` : ''}
+                ${teamStr ? `<div class="detail-item"><span class="detail-label">Team</span><span class="detail-val">${teamStr}</span></div>` : ''}
+                ${platStr ? `<div class="detail-item"><span class="detail-label">Platform</span><span class="detail-val">${platStr}</span></div>` : ''}
+            </div>`;
+        pageHtml = pageHtml.replace(/{{OVERVIEW_DETAILS_HTML}}/g, overviewDetailsHtml);
+
+        // Metrics
+        let metricsHtml = '';
+        if (proj.metrics && proj.metrics.length > 0) {
+            metricsHtml = `
+                <section class="project-metrics-section fade-element">
+                    <div class="metrics-grid">
+                        ${proj.metrics.map(m => `
+                            <div class="metric-card">
+                                <h3 class="metric-value">${m.value}</h3>
+                                <p class="metric-label">${m.label}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </section>`;
+        }
+        pageHtml = pageHtml.replace(/{{METRICS_HTML}}/g, metricsHtml);
+
+        // Videos Showcase
+        let videosHtml = '';
+        if (proj.videos && proj.videos.length > 0) {
+            videosHtml = `
+                <section class="project-videos-section fade-element">
+                    <h2 class="section-title">In Motion</h2>
+                    <div class="videos-container">
+                        ${proj.videos.map(v => `
+                            <div class="video-wrapper premium-media-container">
+                                <video src="../${v.src}" autoplay loop muted playsinline class="project-video"></video>
+                                ${v.title || v.description ? `<div class="video-caption">
+                                    ${v.title ? `<strong>${v.title}</strong>` : ''}
+                                    ${v.description ? `<p>${v.description}</p>` : ''}
+                                </div>` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                </section>`;
+        }
+        pageHtml = pageHtml.replace(/{{VIDEOS_HTML}}/g, videosHtml);
+
+        // Gallery
+        let galleryHtml = '';
+        if (proj.gallery && proj.gallery.length > 0) {
+            galleryHtml = `
+                <section class="project-gallery-section fade-element">
+                    <h2 class="section-title">Gallery</h2>
+                    <div class="premium-gallery-grid">
+                        ${proj.gallery.map(img => `
+                            <div class="gallery-item premium-media-container">
+                                <img src="../${img}" alt="Gallery Image" loading="lazy">
+                            </div>
+                        `).join('')}
+                    </div>
+                </section>`;
+        }
+        pageHtml = pageHtml.replace(/{{GALLERY_HTML}}/g, galleryHtml);
+
+        // Quote
+        let quoteHtml = '';
+        if (proj.quote) {
+            quoteHtml = `
+                <section class="project-quote-section fade-element">
+                    <blockquote class="premium-quote">
+                        <p>"${proj.quote.text}"</p>
+                        ${proj.quote.author ? `<cite>&mdash; ${proj.quote.author}</cite>` : ''}
+                    </blockquote>
+                </section>`;
+        }
+        pageHtml = pageHtml.replace(/{{QUOTE_HTML}}/g, quoteHtml);
+
+        // Learnings
+        let learningsHtml = '';
+        if (proj.learnings && proj.learnings.length > 0) {
+            learningsHtml = `
+                <section class="project-learnings-section fade-element">
+                    <h2 class="section-title">Key Takeaways</h2>
+                    <ul class="learnings-list">
+                        ${proj.learnings.map(l => `<li><i class="fa-solid fa-check list-icon"></i> <span>${l}</span></li>`).join('')}
+                    </ul>
+                </section>`;
+        }
+        pageHtml = pageHtml.replace(/{{LEARNINGS_HTML}}/g, learningsHtml);
+
         // 1. Key Features
         let featuresHtml = (proj.keyFeatures || []).map(feat => `
             <div class="feature-card">

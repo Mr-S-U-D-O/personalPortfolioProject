@@ -6,8 +6,51 @@
         "role": "Frontend Developer",
         "year": "2026",
         "description": "A tailored web project demonstrating immersive and responsive design principles.",
-        "overview": "Sarko is a modern web experience meant to demonstrate how to elegantly adapt interactive applications seamlessly across all device dimensions without compromising on aesthetics or performance.",
-        "content": "<p>Sarko is a modern web experience meant to demonstrate how to elegantly adapt interactive applications seamlessly across all device dimensions without compromising on aesthetics or performance.</p>",
+        "overview": "Sarko is a modern web experience meant to demonstrate how to elegantly adapt interactive applications seamlessly across all device dimensions without compromising on aesthetics or performance. Every interaction is calculated, and every white space is intentional.",
+        "overviewDetails": {
+            "duration": "3 Weeks",
+            "teamSize": "Solo Project",
+            "platform": "Responsive Web",
+            "myRole": "Lead Engineer & Designer"
+        },
+        "heroVideo": "",
+        "content": "<p>Sarko began as an exploration of the boundaries between minimalism and high-performance web architecture. In an era cluttered with excessive animations and over-engineered frameworks, I wanted to strip back the noise. The focus was entirely on typographic rhythm, refined spacing, and sub-second load times.</p><p>By leveraging purely native browser capabilities—CSS Grid, modern viewport units, and subtle CSS transitions—the site achieves a fluidity that feels organic. The design does not just 'respond' to screen sizes; it recalculates its proportions gracefully, ensuring the user is never distracted by layout shifts.</p>",
+        "metrics": [
+            {
+                "label": "Lighthouse Score",
+                "value": "100"
+            },
+            {
+                "label": "Load Time",
+                "value": "0.8s"
+            },
+            {
+                "label": "Devices Tested",
+                "value": "20+"
+            }
+        ],
+        "videos": [
+            {
+                "title": "Fluid Grids in Motion",
+                "src": "projects/sarko/grid-demo.mp4",
+                "description": "Watch how the grid recalculates effortlessly upon resize without jank or layout thrashing."
+            }
+        ],
+        "gallery": [
+            "projects/sarko/gallery-1.png",
+            "projects/sarko/gallery-2.png",
+            "projects/sarko/gallery-3.png",
+            "projects/sarko/gallery-4.png"
+        ],
+        "quote": {
+            "text": "Simplicity is the ultimate sophistication. Sarko strips away the unnecessary, leaving only the essential experience.",
+            "author": "Mosa Moleleki"
+        },
+        "learnings": [
+            "Mastering complex CSS container queries for component-level responsiveness rather than relying on global media queries.",
+            "Deeply profiling native CSS transitions vs JavaScript animations to ensure 60fps across all devices.",
+            "The psychological impact of ample negative space in guiding the user's eye and reducing cognitive load."
+        ],
         "keyFeatures": [
             "Seamless Responsive Design Architecture",
             "Performance Optimized Asset Loading",
@@ -16,8 +59,8 @@
         ],
         "challengesStructured": [
             {
-                "issue": "Creating a unified layout that adapts perfectly from 4k monitors to tiny mobile screens.",
-                "solution": "Leveraged modern CSS Grid and custom container queries for fluid adjustments."
+                "issue": "Creating a unified layout that adapts perfectly from 4k monitors to tiny mobile screens without heavy JS.",
+                "solution": "Leveraged modern CSS Grid and custom container queries for fluid, hardware-accelerated adjustments."
             }
         ],
         "outcomes": [
@@ -34,9 +77,10 @@
         "thumbnail": "projects/sarko/mockup-all-framed.png",
         "fullImage": "projects/sarko/mockup-desktop-framed.png",
         "technologies": [
-            "HTML & CSS",
+            "HTML5",
+            "Modern CSS",
             "Vanilla JS",
-            "Responsive Web Design"
+            "GSAP"
         ],
         "slug": "sarko",
         "link": "projects/sarko.html",
