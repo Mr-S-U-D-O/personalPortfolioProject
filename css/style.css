@@ -624,6 +624,8 @@ html {
   position: relative;
   display: inline-block;
   margin: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 .about-main-text {
   position: relative;
@@ -632,6 +634,7 @@ html {
   font-weight: 700;
   color: var(--accent-primary);
   z-index: 2;
+  word-break: break-word;
 }
 .about-ghost-text {
   position: absolute;
@@ -983,6 +986,8 @@ html {
   position: relative;
   display: inline-block;
   margin: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 .projects-main-text {
   position: relative;
@@ -990,6 +995,7 @@ html {
   font-weight: 700;
   color: var(--accent-primary);
   z-index: 2;
+  word-break: break-word;
 }
 .projects-ghost-text {
   position: absolute;

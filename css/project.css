@@ -129,6 +129,12 @@ body.projects-gallery-page {
   gap: 2rem;
   text-align: left;
 }
+@media (max-width: 600px) {
+  .overview-details-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
 @media (max-width: 900px) {
   .overview-details-grid {
     text-align: center;
@@ -175,6 +181,16 @@ body.projects-gallery-page {
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
+}
+@media (max-width: 600px) {
+  .hero-links {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-links .project-link-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 .meta-links {
   display: flex;
@@ -239,6 +255,13 @@ body.projects-gallery-page {
   align-items: flex-start;
   position: relative;
 }
+@media (max-width: 900px) {
+  .narrative-container {
+    flex-direction: column;
+    gap: 40px;
+    margin: 2rem auto;
+  }
+}
 .project-sidebar {
   width: 250px;
   flex-shrink: 0;
@@ -247,6 +270,14 @@ body.projects-gallery-page {
   display: flex;
   flex-direction: column;
   gap: 40px;
+}
+@media (max-width: 900px) {
+  .project-sidebar {
+    width: 100%;
+    position: relative;
+    top: 0;
+    order: 2;
+  }
 }
 .project-toc {
   display: flex;
@@ -1132,20 +1163,30 @@ body.projects-gallery-page {
 /* Gallery Grid Layout */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 30px;
   margin-top: 4rem;
+}
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Card Visual Fixes for Gallery */
 .projects-gallery-page .project-row {
   margin-bottom: 0; /* Override row margin */
   height: 100%;
-  min-height: 480px; /* Ensure space for title, meta, desc and actions */
+  min-height: auto; /* Allow content to dictate height on mobile */
   display: flex;
   flex-direction: column;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+@media (min-width: 481px) {
+  .projects-gallery-page .project-row {
+    min-height: 480px;
+  }
 }
 
 .projects-gallery-page .project-row:hover {
