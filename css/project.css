@@ -151,9 +151,7 @@ body.project-detail-page {
 }
 .premium-hero-visual {
   position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+  /* No border-radius or overflow so transparent PNGs render unclipped */
   transform: perspective(1000px) rotateY(-5deg);
   transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -162,9 +160,14 @@ body.project-detail-page {
 }
 .premium-hero-img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: contain;
   display: block;
+  /* Transparent PNGs use drop-shadow instead of box-shadow */
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.25));
+}
+[data-theme="light"] .premium-hero-img {
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.12));
 }
 .hero-links {
   display: flex;
@@ -269,23 +272,32 @@ body.project-detail-page {
   font-size: 0.95rem;
   transition:
     color 0.3s ease,
-    border-left-color 0.3s ease;
+    border-left-color 0.3s ease,
+    background 0.3s ease;
   border-left: 2px solid transparent;
   padding-left: 10px;
+  display: block;
+  padding: 4px 10px;
+  border-radius: 0 6px 6px 0;
 }
 .project-toc a.active,
 .project-toc a:hover {
   color: var(--accent-primary);
   border-left-color: var(--accent-primary);
+  background: rgba(var(--accent-primary-rgb), 0.07);
+}
+/* Light mode — same indicator, using opaque vars so it's always visible */
+[data-theme="light"] .project-toc a {
+  color: var(--text-muted);
+}
+[data-theme="light"] .project-toc a.active,
+[data-theme="light"] .project-toc a:hover {
+  color: var(--accent-primary);
+  border-left-color: var(--accent-primary);
+  background: rgba(var(--accent-primary-rgb), 0.08);
 }
 .trailing-line-wrapper {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: -30px;
-  width: 20px;
-  z-index: 0;
-  pointer-events: none;
+  display: none; /* Snake animation removed per design decision */
 }
 .snake-line-svg {
   width: 100%;
@@ -739,30 +751,43 @@ body.project-detail-page {
    RESULTS / IMPACT SECTION
    ========================================================================== */
 .results-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
   margin-bottom: 6rem;
 }
-.result-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1.5rem;
-  background: var(--glass-bg);
-  padding: 1.5rem 2rem;
-  border-radius: 16px;
-  border: 1px solid var(--glass-border);
-}
-.result-icon {
-  font-size: 1.4rem;
-  color: var(--accent-primary);
-  margin-top: 0.2rem;
-}
-.result-text {
+/* Unified minimal list style for Features and Outcomes */
+.results-list, .features-list {
+  list-style: none;
+  padding: 0;
   margin: 0;
-  font-size: 1.15rem;
-  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
+.results-list li, .features-list li {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  padding: 0.25rem 0 0.25rem 2rem;
+  position: relative;
+  border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.06));
+  padding-bottom: 1rem;
+  line-height: 1.6;
+}
+.results-list li:last-child, .features-list li:last-child {
+  border-bottom: none;
+}
+.results-list li::before, .features-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 8px;
+  height: 8px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+}
+[data-theme="light"] .results-list li, [data-theme="light"] .features-list li {
+  border-bottom-color: rgba(0,0,0,0.08);
+}
+.features-grid { display: none; } /* Hide old grid */
 @media (max-width: 900px) {
   .challenge-pair {
     grid-template-columns: 1fr;
@@ -789,7 +814,32 @@ body.project-detail-page {
    PREMIUM SECTIONS (METRICS, VIDEOS, GALLERY, QUOTE, LEARNINGS)
    ========================================================================== */
 .premium-content > section {
-  margin-bottom: 6rem;
+  margin-bottom: 7rem;
+  position: relative;
+}
+.ghost-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: clamp(4rem, 12vw, 8.5rem);
+  font-weight: 900;
+  color: var(--text-muted);
+  opacity: 0.05;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+  transition: opacity 0.3s ease;
+  line-height: 1;
+}
+[data-theme="light"] .ghost-text {
+  opacity: 0.15;
+}
+.section-title {
+  position: relative;
+  z-index: 2;
 }
 
 /* Metrics */
@@ -802,6 +852,42 @@ body.project-detail-page {
   border-radius: 24px;
   padding: 3rem;
   text-align: center;
+}
+.metric-card {
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.metric-card .ghost-text {
+  font-size: 6rem;
+  opacity: 0.1;
+  z-index: 1;
+}
+[data-theme="light"] .metric-card .ghost-text {
+  opacity: 0.2;
+}
+.metric-val {
+  position: relative;
+  display: block;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--accent-primary);
+  margin-bottom: 0.5rem;
+  z-index: 2;
+  line-height: 1;
+}
+.metric-label {
+  position: relative;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  font-weight: 600;
+  z-index: 2;
 }
 .metric-card {
   display: flex;
@@ -836,14 +922,7 @@ body.project-detail-page {
   object-fit: cover;
 }
 .video-caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 2rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-  color: #fff;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  display: none; /* Removed as requested */
 }
 .videos-container {
   display: flex;

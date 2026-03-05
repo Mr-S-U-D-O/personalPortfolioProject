@@ -87,22 +87,6 @@
                     </ul>
                 </div>
 
-                <!-- Animated Trailing Line (Z-Snake) anchored to TOC -->
-                <div class="trailing-line-wrapper">
-                    <svg class="snake-line-svg" viewBox="0 0 100 1400" preserveAspectRatio="none">
-                        <defs>
-                            <linearGradient id="snakeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="var(--accent-primary)" />
-                                <stop offset="100%" stop-color="var(--accent-primary)" />
-                            </linearGradient>
-                        </defs>
-                        <!-- The Background Track -->
-                        <path class="snake-track" d="M 50 0 V 300 Q 50 350 10 350 H 10 Q -30 350 -30 400 V 600 Q -30 650 10 650 H 90 Q 130 650 130 700 V 1000 Q 130 1050 90 1050 H 10 Q -30 1050 -30 1100 V 1400" />
-                        <!-- The Animated Fill -->
-                        <path class="snake-fill" id="snakeFill" d="M 50 0 V 300 Q 50 350 10 350 H 10 Q -30 350 -30 400 V 600 Q -30 650 10 650 H 90 Q 130 650 130 700 V 1000 Q 130 1050 90 1050 H 10 Q -30 1050 -30 1100 V 1400" />
-                    </svg>
-                </div>
-
                 <!-- Technologies Used -->
                 <div class="project-tech-sidebar fade-element">
                     <h4>Tech Stack</h4>
@@ -135,72 +119,52 @@
                     <div class="metrics-grid">
                         
                             <div class="metric-card">
-                                <h3 class="metric-value">100</h3>
+                                <span class="ghost-text">100</span>
+                                <h3 class="metric-val text-primary">100</h3>
                                 <p class="metric-label">Lighthouse Score</p>
                             </div>
                         
                             <div class="metric-card">
-                                <h3 class="metric-value">0.8s</h3>
+                                <span class="ghost-text">0.8s</span>
+                                <h3 class="metric-val text-primary">0.8s</h3>
                                 <p class="metric-label">Load Time</p>
                             </div>
                         
                             <div class="metric-card">
-                                <h3 class="metric-value">20+</h3>
+                                <span class="ghost-text">20+</span>
+                                <h3 class="metric-val text-primary">20+</h3>
                                 <p class="metric-label">Devices Tested</p>
                             </div>
                         
                     </div>
                 </section>
-
-                <!-- Key Features Section -->
+                
                 <section class="project-features-section fade-element">
+                    <span class="ghost-text">Features</span>
                     <h2 class="section-title">Key Features</h2>
-                    <div class="features-grid">
-                        
-            <div class="feature-card">
-                <i class="fa-solid fa-check feature-icon"></i>
-                <span class="feature-text">Seamless Responsive Design Architecture</span>
-            </div>
-
-            <div class="feature-card">
-                <i class="fa-solid fa-check feature-icon"></i>
-                <span class="feature-text">Performance Optimized Asset Loading</span>
-            </div>
-
-            <div class="feature-card">
-                <i class="fa-solid fa-check feature-icon"></i>
-                <span class="feature-text">Dynamic Interaction Elements</span>
-            </div>
-
-            <div class="feature-card">
-                <i class="fa-solid fa-check feature-icon"></i>
-                <span class="feature-text">Minimalist Content Presentation</span>
-            </div>
-                    </div>
+                    <ul class="results-list">
+                        <li>Seamless Responsive Design Architecture</li>
+<li>Performance Optimized Asset Loading</li>
+<li>Dynamic Interaction Elements</li>
+<li>Minimalist Content Presentation</li>
+                    </ul>
                 </section>
-
                 
                 <section class="project-videos-section fade-element">
+                    <span class="ghost-text">Motion</span>
                     <h2 class="section-title">In Motion</h2>
                     <div class="videos-container">
                         
                             <div class="video-wrapper premium-media-container">
-                                <video src="../projects/sarko/grid-demo.mp4" autoplay loop muted playsinline class="project-video"></video>
-                                <div class="video-caption">
-                                    <strong>Fluid Grids in Motion</strong>
-                                    <p>Watch how the grid recalculates effortlessly upon resize without jank or layout thrashing.</p>
-                                </div>
+                                <video src="../projects/sarko/sarko-video.mp4" autoplay loop muted playsinline class="project-video"></video>
                             </div>
                         
                     </div>
                 </section>
-
-                <!-- Comparative Visual Section (Before / After) -->
                 
-
-                <!-- Responsive Device Showcase Section -->
                 
                 <section class="project-responsive-section fade-element">
+                    <span class="ghost-text">Devices</span>
                     <h2 class="section-title">Responsive Design</h2>
                     <p class="section-desc">A seamless experience across desktop, tablet, and mobile devices.</p>
                     <div class="responsive-showcase">
@@ -211,9 +175,9 @@
                         </div>
                     </div>
                 </section>
-
                 
                 <section class="project-gallery-section fade-element">
+                    <span class="ghost-text">Visuals</span>
                     <h2 class="section-title">Gallery</h2>
                     <div class="premium-gallery-grid">
                         
@@ -235,49 +199,43 @@
                         
                     </div>
                 </section>
-
-                <!-- Challenges & Solutions Section -->
+                
                 <section class="project-challenges-section fade-element">
+                    <span class="ghost-text">Core</span>
                     <h2 class="section-title">Technical Challenges</h2>
                     <div class="challenges-grid">
                         
-            <div class="challenge-pair">
-                <div class="challenge-side">
-                    <span class="side-label issue">The Problem</span>
-                    <p>Creating a unified layout that adapts perfectly from 4k monitors to tiny mobile screens without heavy JS.</p>
-                </div>
-                <div class="solution-side">
-                    <span class="side-label solution">The Solution</span>
-                    <p>Leveraged modern CSS Grid and custom container queries for fluid, hardware-accelerated adjustments.</p>
-                </div>
-            </div>
+                            <div class="challenge-pair">
+                                <div class="challenge-side">
+                                    <span class="side-label issue">The Problem</span>
+                                    <p>Creating a unified layout that adapts perfectly from 4k monitors to tiny mobile screens without heavy JS.</p>
+                                </div>
+                                <div class="solution-side">
+                                    <span class="side-label solution">The Solution</span>
+                                    <p>Leveraged modern CSS Grid and custom container queries for fluid, hardware-accelerated adjustments.</p>
+                                </div>
+                            </div>
                     </div>
                 </section>
-
                 
                 <section class="project-learnings-section fade-element">
+                    <span class="ghost-text">Insights</span>
                     <h2 class="section-title">Key Takeaways</h2>
                     <ul class="learnings-list">
                         <li><i class="fa-solid fa-check list-icon"></i> <span>Mastering complex CSS container queries for component-level responsiveness rather than relying on global media queries.</span></li><li><i class="fa-solid fa-check list-icon"></i> <span>Deeply profiling native CSS transitions vs JavaScript animations to ensure 60fps across all devices.</span></li><li><i class="fa-solid fa-check list-icon"></i> <span>The psychological impact of ample negative space in guiding the user's eye and reducing cognitive load.</span></li>
                     </ul>
                 </section>
-
-                <!-- Results & Impact Section -->
-                <section class="project-results-section fade-element">
-                    <h2 class="section-title">Project Outcomes</h2>
-                    <div class="results-container">
-                        
-            <div class="result-item">
-                <i class="fa-solid fa-rocket result-icon"></i>
-                <p class="result-text">Achieved pixel-perfect responsive scaling across 15+ tested device physical profiles.</p>
-            </div>
-
-            <div class="result-item">
-                <i class="fa-solid fa-rocket result-icon"></i>
-                <p class="result-text">Sub-second load times due to aggressive asset optimization.</p>
-            </div>
-                    </div>
-                </section>
+                
+            <section class="project-results-section fade-element">
+                <span class="ghost-text">Impact</span>
+                <h2 class="section-title">Project Outcomes</h2>
+                <div class="results-container">
+                    <ul class="results-list">
+                        <li>Achieved pixel-perfect responsive scaling across 15+ tested device physical profiles.</li>
+<li>Sub-second load times due to aggressive asset optimization.</li>
+                    </ul>
+                </div>
+            </section>
             </article>
         </div>
 

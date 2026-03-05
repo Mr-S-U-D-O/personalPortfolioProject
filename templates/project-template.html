@@ -81,22 +81,6 @@
                     </ul>
                 </div>
 
-                <!-- Animated Trailing Line (Z-Snake) anchored to TOC -->
-                <div class="trailing-line-wrapper">
-                    <svg class="snake-line-svg" viewBox="0 0 100 1400" preserveAspectRatio="none">
-                        <defs>
-                            <linearGradient id="snakeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stop-color="var(--accent-primary)" />
-                                <stop offset="100%" stop-color="var(--accent-primary)" />
-                            </linearGradient>
-                        </defs>
-                        <!-- The Background Track -->
-                        <path class="snake-track" d="M 50 0 V 300 Q 50 350 10 350 H 10 Q -30 350 -30 400 V 600 Q -30 650 10 650 H 90 Q 130 650 130 700 V 1000 Q 130 1050 90 1050 H 10 Q -30 1050 -30 1100 V 1400" />
-                        <!-- The Animated Fill -->
-                        <path class="snake-fill" id="snakeFill" d="M 50 0 V 300 Q 50 350 10 350 H 10 Q -30 350 -30 400 V 600 Q -30 650 10 650 H 90 Q 130 650 130 700 V 1000 Q 130 1050 90 1050 H 10 Q -30 1050 -30 1100 V 1400" />
-                    </svg>
-                </div>
-
                 <!-- Technologies Used -->
                 <div class="project-tech-sidebar fade-element">
                     <h4>Tech Stack</h4>
@@ -116,42 +100,14 @@
                 </section>
 
                 {{METRICS_HTML}}
-
-                <!-- Key Features Section -->
-                <section class="project-features-section fade-element">
-                    <h2 class="section-title">Key Features</h2>
-                    <div class="features-grid">
-                        {{FEATURES_HTML}}
-                    </div>
-                </section>
-
+                {{FEATURES_HTML}}
                 {{VIDEOS_HTML}}
-
-                <!-- Comparative Visual Section (Before / After) -->
                 {{BEFORE_AFTER_HTML}}
-
-                <!-- Responsive Device Showcase Section -->
                 {{RESPONSIVE_VIEWS_HTML}}
-
                 {{GALLERY_HTML}}
-
-                <!-- Challenges & Solutions Section -->
-                <section class="project-challenges-section fade-element">
-                    <h2 class="section-title">Technical Challenges</h2>
-                    <div class="challenges-grid">
-                        {{CHALLENGES_HTML}}
-                    </div>
-                </section>
-
+                {{CHALLENGES_HTML}}
                 {{LEARNINGS_HTML}}
-
-                <!-- Results & Impact Section -->
-                <section class="project-results-section fade-element">
-                    <h2 class="section-title">Project Outcomes</h2>
-                    <div class="results-container">
-                        {{RESULTS_HTML}}
-                    </div>
-                </section>
+                {{RESULTS_HTML}}
             </article>
         </div>
 

@@ -32,7 +32,7 @@
         "videos": [
             {
                 "title": "Fluid Grids in Motion",
-                "src": "projects/sarko/grid-demo.mp4",
+                "src": "projects/sarko/sarko-video.mp4",
                 "description": "Watch how the grid recalculates effortlessly upon resize without jank or layout thrashing."
             }
         ],

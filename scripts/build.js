@@ -392,7 +392,8 @@ if (projectTemplateBlock && projectsData.length > 0) {
                     <div class="metrics-grid">
                         ${proj.metrics.map(m => `
                             <div class="metric-card">
-                                <h3 class="metric-value">${m.value}</h3>
+                                <span class="ghost-text">${m.value}</span>
+                                <h3 class="metric-val text-primary">${m.value}</h3>
                                 <p class="metric-label">${m.label}</p>
                             </div>
                         `).join('')}
@@ -401,22 +402,33 @@ if (projectTemplateBlock && projectsData.length > 0) {
         }
         pageHtml = pageHtml.replace(/{{METRICS_HTML}}/g, metricsHtml);
 
+        // Features Section
+        let featuresHtml = '';
+        if (proj.keyFeatures && proj.keyFeatures.length > 0) {
+            featuresHtml = `
+                <section class="project-features-section fade-element">
+                    <span class="ghost-text">Features</span>
+                    <h2 class="section-title">Key Features</h2>
+                    <ul class="results-list">
+                        ${proj.keyFeatures.map(f => `<li>${f}</li>`).join('\n')}
+                    </ul>
+                </section>`;
+        }
+        pageHtml = pageHtml.replace(/{{FEATURES_HTML}}/g, featuresHtml);
+
         // Videos Showcase
         let videosHtml = '';
         if (proj.videos && proj.videos.length > 0) {
             videosHtml = `
                 <section class="project-videos-section fade-element">
+                    <span class="ghost-text">Motion</span>
                     <h2 class="section-title">In Motion</h2>
                     <div class="videos-container">
                         ${proj.videos.map(v => `
                             <div class="video-wrapper premium-media-container">
                                 <video src="../${v.src}" autoplay loop muted playsinline class="project-video"></video>
-                                ${v.title || v.description ? `<div class="video-caption">
-                                    ${v.title ? `<strong>${v.title}</strong>` : ''}
-                                    ${v.description ? `<p>${v.description}</p>` : ''}
-                                </div>` : ''}
                             </div>
-                        `).join('')}
+                        `).join('\n')}
                     </div>
                 </section>`;
         }
@@ -427,6 +439,7 @@ if (projectTemplateBlock && projectsData.length > 0) {
         if (proj.gallery && proj.gallery.length > 0) {
             galleryHtml = `
                 <section class="project-gallery-section fade-element">
+                    <span class="ghost-text">Visuals</span>
                     <h2 class="section-title">Gallery</h2>
                     <div class="premium-gallery-grid">
                         ${proj.gallery.map(img => `
@@ -457,6 +470,7 @@ if (projectTemplateBlock && projectsData.length > 0) {
         if (proj.learnings && proj.learnings.length > 0) {
             learningsHtml = `
                 <section class="project-learnings-section fade-element">
+                    <span class="ghost-text">Insights</span>
                     <h2 class="section-title">Key Takeaways</h2>
                     <ul class="learnings-list">
                         ${proj.learnings.map(l => `<li><i class="fa-solid fa-check list-icon"></i> <span>${l}</span></li>`).join('')}
@@ -465,19 +479,14 @@ if (projectTemplateBlock && projectsData.length > 0) {
         }
         pageHtml = pageHtml.replace(/{{LEARNINGS_HTML}}/g, learningsHtml);
 
-        // 1. Key Features
-        let featuresHtml = (proj.keyFeatures || []).map(feat => `
-            <div class="feature-card">
-                <i class="fa-solid fa-check feature-icon"></i>
-                <span class="feature-text">${feat}</span>
-            </div>`).join('\n');
-        pageHtml = pageHtml.replace(/{{FEATURES_HTML}}/g, featuresHtml);
+
 
         // 2. Visual Evolution (Before / After Slider)
         let beforeAfterHtml = '';
         if (proj.beforeAfter) {
             beforeAfterHtml = `
                 <section class="project-visual-comparison fade-element">
+                    <span class="ghost-text">Evolution</span>
                     <h2 class="section-title">Visual Evolution</h2>
                     <p class="section-desc">Comparing the initial wireframes/concepts with the final polished implementation.</p>
                     <div class="before-after-container">
@@ -500,6 +509,7 @@ if (projectTemplateBlock && projectsData.length > 0) {
         if (proj.responsiveViews) {
             responsiveHtml = `
                 <section class="project-responsive-section fade-element">
+                    <span class="ghost-text">Devices</span>
                     <h2 class="section-title">Responsive Design</h2>
                     <p class="section-desc">A seamless experience across desktop, tablet, and mobile devices.</p>
                     <div class="responsive-showcase">
@@ -514,25 +524,40 @@ if (projectTemplateBlock && projectsData.length > 0) {
         pageHtml = pageHtml.replace(/{{RESPONSIVE_VIEWS_HTML}}/g, responsiveHtml);
 
         // 3. Technical Challenges
-        let challengesHtml = (proj.challengesStructured || []).map(ch => `
-            <div class="challenge-pair">
-                <div class="challenge-side">
-                    <span class="side-label issue">The Problem</span>
-                    <p>${ch.issue}</p>
-                </div>
-                <div class="solution-side">
-                    <span class="side-label solution">The Solution</span>
-                    <p>${ch.solution}</p>
-                </div>
-            </div>`).join('\n');
+        let challengesHtml = '';
+        if (proj.challengesStructured && proj.challengesStructured.length > 0) {
+            challengesHtml = `
+                <section class="project-challenges-section fade-element">
+                    <span class="ghost-text">Core</span>
+                    <h2 class="section-title">Technical Challenges</h2>
+                    <div class="challenges-grid">
+                        ${proj.challengesStructured.map(ch => `
+                            <div class="challenge-pair">
+                                <div class="challenge-side">
+                                    <span class="side-label issue">The Problem</span>
+                                    <p>${ch.issue}</p>
+                                </div>
+                                <div class="solution-side">
+                                    <span class="side-label solution">The Solution</span>
+                                    <p>${ch.solution}</p>
+                                </div>
+                            </div>`).join('\n')}
+                    </div>
+                </section>`;
+        }
         pageHtml = pageHtml.replace(/{{CHALLENGES_HTML}}/g, challengesHtml);
 
-        // 4. Project Outcomes
-        let resultsHtml = (proj.outcomes || []).map(res => `
-            <div class="result-item">
-                <i class="fa-solid fa-rocket result-icon"></i>
-                <p class="result-text">${res}</p>
-            </div>`).join('\n');
+        // 4. Project Outcomes — clean unordered list (no cards)
+        let resultsHtml = `
+            <section class="project-results-section fade-element">
+                <span class="ghost-text">Impact</span>
+                <h2 class="section-title">Project Outcomes</h2>
+                <div class="results-container">
+                    <ul class="results-list">
+                        ${(proj.outcomes || []).map(res => `<li>${res}</li>`).join('\n')}
+                    </ul>
+                </div>
+            </section>`;
         pageHtml = pageHtml.replace(/{{RESULTS_HTML}}/g, resultsHtml);
         
         // Prev / Next Links
