@@ -744,7 +744,7 @@ if (gallerySearch) {
       const matches = title.includes(searchTerm) || desc.includes(searchTerm) || tech.includes(searchTerm);
       
       if (matches) {
-        project.style.display = "";
+        project.style.display = "block"; // Changed from empty string to block for consistency
         project.classList.remove("filtered-out");
       } else {
         project.style.display = "none";
@@ -753,7 +753,7 @@ if (gallerySearch) {
     });
 
     // Check if no results
-    const visibleProjects = Array.from(projects).filter(p => !p.classList.contains("filtered-out"));
+    const visibleProjects = Array.from(projects).filter(p => p.style.display !== "none");
     const projectsStack = document.getElementById("projectsStack");
     
     let noResultsMsg = document.getElementById("noResultsMsg");

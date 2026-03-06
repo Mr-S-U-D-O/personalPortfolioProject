@@ -105,6 +105,9 @@ try {
         indexData = indexData.replace(/\.css(\?v=\d+)?/g, `.css?v=${VERSION}`);
         indexData = indexData.replace(/\.js(\?v=\d+)?/g, `.js?v=${VERSION}`);
         
+        // Ensure articles.html references are changed to blog.html
+        indexData = indexData.replace(/articles\.html/g, 'blog.html');
+
         fs.writeFileSync(INDEX_PATH, indexData, 'utf8');
         console.log('Successfully injected blog cards and updated cache busting in index.html');
     } else {
@@ -242,8 +245,8 @@ try {
     blogListTemplate = blogListTemplate.replace(/{{VERSION}}/g, VERSION);
     
     fs.writeFileSync(BLOG_PATH, blogListTemplate, 'utf8');
-    console.log('Successfully generated articles.html');
-    sitePages.push('articles.html');
+    console.log('Successfully generated blog.html');
+    sitePages.push('blog.html');
     
 } catch (err) {
     console.error('Error generating articles.html:', err);
