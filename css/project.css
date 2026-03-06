@@ -1183,7 +1183,7 @@ body.projects-gallery-page {
 }
 @media (min-width: 481px) {
   .projects-gallery-page .project-row {
-    min-height: 480px;
+    min-height: 520px; /* Increased from 480px to prevent clipping */
   }
 }
 
@@ -1203,6 +1203,7 @@ body.projects-gallery-page {
   display: flex;
   flex-direction: column;
   padding: 2rem;
+  justify-content: flex-start; /* Ensure content starts at top and flows down */
 }
 
 .projects-gallery-page .project-row-desc {
