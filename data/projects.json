@@ -5,15 +5,15 @@
         "category": "Web Design",
         "role": "Frontend Developer",
         "year": "2026",
-        "description": "A tailored web project demonstrating immersive and responsive design principles.",
+        "description": "A custom built wesite for a south african political party, it was built to demnstrate how ",
         "overview": "Sarko is a modern web experience meant to demonstrate how to elegantly adapt interactive applications seamlessly across all device dimensions without compromising on aesthetics or performance. Every interaction is calculated, and every white space is intentional.",
         "overviewDetails": {
             "duration": "3 Weeks",
             "teamSize": "Solo Project",
             "platform": "Responsive Web",
-            "myRole": "Lead Engineer & Designer"
+            "myRole": "Frontend Developer & UI/UX Designer"
         },
-        "heroVideo": "",
+        "heroVideo": "projects/sarko/sarko-video.mp4",
         "content": "<p>Sarko began as an exploration of the boundaries between minimalism and high-performance web architecture. In an era cluttered with excessive animations and over-engineered frameworks, I wanted to strip back the noise. The focus was entirely on typographic rhythm, refined spacing, and sub-second load times.</p><p>By leveraging purely native browser capabilities—CSS Grid, modern viewport units, and subtle CSS transitions—the site achieves a fluidity that feels organic. The design does not just 'respond' to screen sizes; it recalculates its proportions gracefully, ensuring the user is never distracted by layout shifts.</p>",
         "metrics": [
             {
@@ -37,10 +37,10 @@
             }
         ],
         "gallery": [
-            "projects/sarko/gallery-1.png",
-            "projects/sarko/gallery-2.png",
-            "projects/sarko/gallery-3.png",
-            "projects/sarko/gallery-4.png"
+            "../projects/sarko/gallery-1.jpeg",
+            "../projects/sarko/gallery-2.jpeg",
+            "../projects/sarko/gallery-3.jpeg",
+            "../projects/sarko/gallery-4.jpeg"
         ],
         "quote": {
             "text": "Simplicity is the ultimate sophistication. Sarko strips away the unnecessary, leaving only the essential experience.",
@@ -72,15 +72,14 @@
             "tablet": "projects/sarko/mockup-tablet-framed.png",
             "mobile": "projects/sarko/mockup-mobile-framed.png"
         },
-        "githubLink": "https://github.com/Mr-Shoez",
+        "githubLink": "https://github.com/Mr-S.U.D.O",
         "liveLink": "https://www.sudo.co.za/sarko",
         "thumbnail": "projects/sarko/mockup-all-framed.png",
         "fullImage": "projects/sarko/mockup-desktop-framed.png",
         "technologies": [
             "HTML5",
-            "Modern CSS",
-            "Vanilla JS",
-            "GSAP"
+            "CSS",
+            "JAVASCRIPT"
         ],
         "slug": "sarko",
         "link": "projects/sarko.html",
