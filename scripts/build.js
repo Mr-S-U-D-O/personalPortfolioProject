@@ -449,18 +449,8 @@ if (projectTemplateBlock && projectsData.length > 0) {
         }
         pageHtml = pageHtml.replace(/{{GALLERY_HTML}}/g, galleryHtml);
 
-        // Quote
-        let quoteHtml = '';
-        if (proj.quote) {
-            quoteHtml = `
-                <section class="project-quote-section fade-element">
-                    <blockquote class="premium-quote">
-                        <p>"${proj.quote.text}"</p>
-                        ${proj.quote.author ? `<cite>&mdash; ${proj.quote.author}</cite>` : ''}
-                    </blockquote>
-                </section>`;
-        }
-        pageHtml = pageHtml.replace(/{{QUOTE_HTML}}/g, quoteHtml);
+        // Quote removed by user request
+        pageHtml = pageHtml.replace(/{{QUOTE_HTML}}/g, '');
 
         // Learnings
         let learningsHtml = '';

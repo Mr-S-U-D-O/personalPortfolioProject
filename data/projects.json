@@ -1,32 +1,28 @@
 [
     {
         "id": 1,
-        "title": "Sarko",
-        "category": "Web Design",
+        "title": "SARKO",
+        "category": "Web Development",
         "role": "Frontend Developer",
         "year": "2026",
-        "description": "A custom built wesite for a south african political party, it was built to demnstrate how ",
-        "overview": "Sarko is a modern web experience meant to demonstrate how to elegantly adapt interactive applications seamlessly across all device dimensions without compromising on aesthetics or performance. Every interaction is calculated, and every white space is intentional.",
+        "description": "A digital political mobilization platform for the South African Royal Kingdoms Organization (SARKO), bridging traditional monarchical authority with modern governance.",
+        "overview": "The SARKO project was a complete transformation of a static brochure site into an interactive Political Mobilization Platform. Designed around the 'Regal Guardian' brand archetype, the application utilizes a 'Statutory yet Soulful' tone, featuring complex native CSS grid architectures, an interactive membership wizard, and high-performance animations without the bloat of heavy JavaScript frameworks.",
         "overviewDetails": {
             "duration": "3 Weeks",
-            "teamSize": "Solo Project",
+            "teamSize": "Solo Developer",
             "platform": "Responsive Web",
-            "myRole": "Frontend Developer & UI/UX Designer"
+            "myRole": "Frontend Developer & UI Engineer"
         },
         "heroVideo": "projects/sarko/sarko-video.mp4",
-        "content": "<p>Sarko began as an exploration of the boundaries between minimalism and high-performance web architecture. In an era cluttered with excessive animations and over-engineered frameworks, I wanted to strip back the noise. The focus was entirely on typographic rhythm, refined spacing, and sub-second load times.</p><p>By leveraging purely native browser capabilities—CSS Grid, modern viewport units, and subtle CSS transitions—the site achieves a fluidity that feels organic. The design does not just 'respond' to screen sizes; it recalculates its proportions gracefully, ensuring the user is never distracted by layout shifts.</p>",
+        "content": "<p>The SARKO website was built with a clear mandate: to serve as a digital stronghold for the organization. Rejecting heavy JavaScript frameworks, the project relies entirely on semantic HTML5, modern CSS3, and Vanilla JavaScript to deliver a highly interactive user experience.</p><p>Key technical highlights include a custom-built, hardware-accelerated interactive hero grid that recalculates effortlessly on hover, a multi-step membership induction wizard with live progress tracking, and exit-intent capture mechanisms. The UI heavily utilizes CSS Grid, modern Flexbox, and native transitions to ensure fluid 60fps performance across all device viewports.</p>",
         "metrics": [
             {
-                "label": "Lighthouse Score",
-                "value": "100"
+                "label": "Tech Stack",
+                "value": "Vanilla HTML/CSS/JS"
             },
             {
-                "label": "Load Time",
-                "value": "0.8s"
-            },
-            {
-                "label": "Devices Tested",
-                "value": "20+"
+                "label": "Performance",
+                "value": "GPU Accelerated"
             }
         ],
         "videos": [
@@ -43,29 +39,34 @@
             "../projects/sarko/gallery-4.jpeg"
         ],
         "quote": {
-            "text": "Simplicity is the ultimate sophistication. Sarko strips away the unnecessary, leaving only the essential experience.",
-            "author": "Mosa Moleleki"
+            "text": "Preserving the wealth and welfare of the Nations. We are the shield against the erosion of indigenous rights.",
+            "author": "SARKO 2026 Mandate"
         },
         "learnings": [
-            "Mastering complex CSS container queries for component-level responsiveness rather than relying on global media queries.",
-            "Deeply profiling native CSS transitions vs JavaScript animations to ensure 60fps across all devices.",
-            "The psychological impact of ample negative space in guiding the user's eye and reducing cognitive load."
+            "Engineered an interactive, expanding CSS Grid hero section utilizing translateZ(0) to force hardware acceleration and eliminate transition flicker.",
+            "Developed a lightweight, multi-step induction wizard in Vanilla JavaScript complete with HTML5 form validation and dynamic DOM manipulation.",
+            "Implemented an exit-intent detection system using mouseout event listeners tied to viewport coordinates to capture abandoning visitors."
         ],
         "keyFeatures": [
-            "Seamless Responsive Design Architecture",
-            "Performance Optimized Asset Loading",
-            "Dynamic Interaction Elements",
-            "Minimalist Content Presentation"
+            "Hardware-Accelerated Interactive Hero Grid",
+            "Multi-step Membership Induction Wizard",
+            "Responsive Bento-style Values Layout",
+            "Infinite Marquee Vote Ticker",
+            "Exit-Intent & POPIA Cookie Modals"
         ],
         "challengesStructured": [
             {
-                "issue": "Creating a unified layout that adapts perfectly from 4k monitors to tiny mobile screens without heavy JS.",
-                "solution": "Leveraged modern CSS Grid and custom container queries for fluid, hardware-accelerated adjustments."
+                "issue": "Creating an intricate, expanding 4-card grid in the hero section that animates seamlessly on desktop but gracefully degrades to a static grid on mobile touch devices.",
+                "solution": "Leveraged CSS absolute positioning with deliberate cubic-bezier transitions on desktop, combined with translateZ(0) for GPU acceleration. Media queries strip absolute positioning on mobile in favor of a standard CSS Grid."
+            },
+            {
+                "issue": "Managing multiple complex modals (Membership, Cookie Banner, Exit-Intent) without state management libraries like React.",
+                "solution": "Implemented a modular Vanilla JavaScript event listener system, using shared generic classes to centralize 'close' behaviors while isolating specific trigger logic."
             }
         ],
         "outcomes": [
-            "Achieved pixel-perfect responsive scaling across 15+ tested device physical profiles.",
-            "Sub-second load times due to aggressive asset optimization."
+            "Delivered a robust, highly interactive platform that perfectly aligns with the 'Regal Guardian' brand identity.",
+            "Created a seamless, multi-step digital membership application process, eliminating the friction of physical paperwork."
         ],
         "responsiveViews": {
             "desktop": "projects/sarko/mockup-desktop-framed.png",
@@ -78,12 +79,285 @@
         "fullImage": "projects/sarko/mockup-desktop-framed.png",
         "technologies": [
             "HTML5",
-            "CSS",
-            "JAVASCRIPT"
+            "CSS3",
+            "JavaScript"
         ],
         "slug": "sarko",
         "link": "projects/sarko.html",
         "prevSlug": null,
+        "nextSlug": "rn-inc"
+    },
+    {
+        "id": 2,
+        "title": "RN Inc",
+        "category": "Corporate Website",
+        "role": "Frontend Developer",
+        "year": "2026",
+        "description": "A premium, high-performance corporate platform for specialized infrastructure project attorneys, featuring dynamic content generation, complex conversational modals, and an interactive Training Academy.",
+        "overview": "RN Inc operates at the intersection of law and infrastructure, providing proactive legal engineering. The website serves as their primary digital presence, projecting authority, trust, and professional excellence. It bridges the gap between complex contractual matrices and the granular reality of construction sites, offering a robust Knowledge Hub, Training Academy, and comprehensive Legal Solutions.",
+        "overviewDetails": {
+            "duration": "/* Add project duration, e.g., 4 Weeks */",
+            "teamSize": "Solo Developer / LaunchPad Studio",
+            "platform": "Responsive Web",
+            "myRole": "Frontend Developer & UI/UX Engineer"
+        },
+        "heroVideo": "/* Add path to hero video here, e.g., projects/rn-inc/hero.mp4 */",
+        "content": "<p>The RN Inc website is a sophisticated corporate platform built to redefine digital presence in the legal infrastructure sector. Utilizing a custom static site generation approach via Node.js and Handlebars, the project ensures high performance and modular maintainability across dozens of dynamically generated attorney, service, and training pages.</p><p>Key UI/UX features include a complex responsive Mega Menu, logic-based multi-step contact modals, scroll-triggered reveal animations, and hardware-accelerated stacking card interactions, all built entirely with vanilla JavaScript and native CSS3 to ensure maximum speed without relying on heavy frameworks.</p>",
+        "metrics": [
+            {
+                "label": "Pages Generated",
+                "value": "20+"
+            },
+            {
+                "label": "Tech Stack",
+                "value": "Vanilla HTML/CSS/JS + Handlebars"
+            }
+        ],
+        "videos": [
+            {
+                "title": "Conversational Inquiry Modal",
+                "src": "/* Add path to video here, e.g., projects/rn-inc/modal-demo.mp4 */",
+                "description": "Demonstration of the logic-based multi-step inquiry modal navigating different user paths completely through Vanilla JavaScript."
+            }
+        ],
+        "gallery": [
+            "/* Add path to gallery image 1, e.g., projects/rn-inc/gallery-1.jpg */",
+            "/* Add path to gallery image 2, e.g., projects/rn-inc/gallery-2.jpg */",
+            "/* Add path to gallery image 3, e.g., projects/rn-inc/gallery-3.jpg */",
+            "/* Add path to gallery image 4, e.g., projects/rn-inc/gallery-4.jpg */"
+        ],
+        "quote": {
+            "text": "We don't just practice law; we deconstruct project risk. RN Inc was built to bridge the gap between complex contractual matrices and the granular reality of the construction site.",
+            "author": "RN Inc Paradigm"
+        },
+        "learnings": [
+            "Developed a custom static site generator script using Node.js and Handlebars to dynamically compile dozens of attorney, service, and training pages from JSON data, drastically improving long-term maintainability.",
+            "Engineered a logic-based, multi-step conversational inquiry modal that dynamically changes its flow based on user input, strictly utilizing Vanilla JavaScript state management.",
+            "Implemented advanced native CSS architectures, including sticky stacking cards (using position: sticky) and complex responsive CSS grids.",
+            "Created a real-time client-side search filtering system for the Knowledge Hub articles."
+        ],
+        "keyFeatures": [
+            "Custom Node.js & Handlebars Build System",
+            "Logic-Based Multi-Step Contact Modal",
+            "Sticky Stacking Service Cards Integration",
+            "Dynamic Mega Menu Navigation",
+            "Real-Time Knowledge Hub Search Filtering",
+            "Scroll-Triggered Reveal Animations"
+        ],
+        "challengesStructured": [
+            {
+                "issue": "Managing and updating dozens of individual attorney, service, and training pages manually in static HTML.",
+                "solution": "Built a custom static site generator script using Node.js, Handlebars, and JSON files to automatically compile and sync all pages from central data sources."
+            },
+            {
+                "issue": "Creating a complex, multi-path inquiry form without the overhead of React or heavy state-management libraries.",
+                "solution": "Designed a robust Vanilla JavaScript modal logic system utilizing array-based pathing and DOM manipulation to smoothly transition between steps based on selected radio inputs."
+            }
+        ],
+        "outcomes": [
+            "Delivered a premium, highly performant corporate website that perfectly balances architectural aesthetics with legal authority.",
+            "Streamlined content updates for the client by centralizing data into easily editable JSON files integrated with a custom Node.js build script."
+        ],
+        "responsiveViews": {
+            "desktop": "/* Add path to desktop mockup, e.g., projects/rn-inc/mockup-desktop.png */",
+            "tablet": "/* Add path to tablet mockup, e.g., projects/rn-inc/mockup-tablet.png */",
+            "mobile": "/* Add path to mobile mockup, e.g., projects/rn-inc/mockup-mobile.png */"
+        },
+        "githubLink": "https://github.com/Mr-Shoez/RN-INC-FIRM-SITE",
+        "liveLink": "https://rninc.co.za",
+        "thumbnail": "/* Add path to thumbnail image, e.g., projects/rn-inc/thumbnail.png */",
+        "fullImage": "/* Add path to full image cover, e.g., projects/rn-inc/full-cover.png */",
+        "technologies": [
+            "HTML5",
+            "CSS3",
+            "JavaScript",
+            "Node.js",
+            "Handlebars"
+        ],
+        "slug": "rn-inc",
+        "link": "projects/rn-inc.html",
+        "prevSlug": "sarko",
+        "nextSlug": "mcleod-associates"
+    },
+    {
+        "id": 3,
+        "title": "McLeod & Associates",
+        "category": "Corporate Website",
+        "role": "Frontend Developer",
+        "year": "2024",
+        "description": "A comprehensive, responsive corporate website for an Eastern Cape law firm, featuring a dynamic multi-step client intake questionnaire and seamless Google Forms integration.",
+        "overview": "McLeod & Associates provides comprehensive legal solutions with a commitment to integrity and excellence. This project aimed to establish a strong digital presence for the firm, showcasing their practice areas and experienced legal team. The platform incorporates sophisticated interactive features, including a dynamic client intake modal that streamlines the onboarding process while categorizing leads efficiently.",
+        "overviewDetails": {
+            "duration": "/* Add project duration, e.g., 3 Weeks */",
+            "teamSize": "Solo Developer / LaunchPad Studio",
+            "platform": "Responsive Web",
+            "myRole": "Frontend Developer & UI/UX Designer"
+        },
+        "heroVideo": "/* Add path to hero video here, e.g., projects/mcleod/hero-video.mp4 */",
+        "content": "<p>The McLeod & Associates website was developed using semantic HTML5, CSS3, and Vanilla JavaScript, emphasizing a professional and trustworthy aesthetic. The design language utilizes a deep maroon and grey color palette, complemented by custom SVG wave dividers and fluid CSS animations to create an engaging user experience without sacrificing performance.</p><p>A standout technical feature is the client intake modal. Built entirely in Vanilla JavaScript, it uses a logic-based multi-step architecture that dynamically renders specific follow-up questions based on the user's initial practice area selection (e.g., Commercial vs. Property Law). Furthermore, the form seamlessly submits data to a Google Form backend via a hidden iframe, ensuring a smooth, reload-free experience for the user.</p>",
+        "metrics": [
+            {
+                "label": "Performance Profile",
+                "value": "Vanilla JS (No Frameworks)"
+            },
+            {
+                "label": "Lead Capture",
+                "value": "Dynamic Multi-step"
+            }
+        ],
+        "videos": [
+            {
+                "title": "Client Intake Modal Walkthrough",
+                "src": "/* Add path to video here, e.g., projects/mcleod/intake-demo.mp4 */",
+                "description": "A demonstration of the dynamic multi-step form adapting to user selections and submitting via a hidden iframe."
+            }
+        ],
+        "gallery": [
+            "/* Add path to gallery image 1, e.g., projects/mcleod/gallery-1.jpg */",
+            "/* Add path to gallery image 2, e.g., projects/mcleod/gallery-2.jpg */",
+            "/* Add path to gallery image 3, e.g., projects/mcleod/gallery-3.jpg */",
+            "/* Add path to gallery image 4, e.g., projects/mcleod/gallery-4.jpg */"
+        ],
+        "quote": {
+            "text": "Our proactive and strategic approach is designed to anticipate challenges, mitigate risks, and achieve the best possible outcomes on your behalf.",
+            "author": "McLeod & Associates"
+        },
+        "learnings": [
+            "Integrated Google Forms as a headless backend using a hidden iframe to capture form submissions without page reloads, providing a robust and free database solution.",
+            "Engineered a logic-based multi-step modal for client intakes that dynamically renders HTML templates for secondary questions based on the user's primary selection.",
+            "Implemented a reusable vanilla JavaScript animation system, including Intersection Observer-based statistics counters and scroll-reveal elements.",
+            "Developed a GDPR/POPIA compliant cookie consent pop-up that conditionally loads tracking scripts only upon user approval."
+        ],
+        "keyFeatures": [
+            "Dynamic Multi-step Client Intake Form",
+            "Hidden Iframe Google Forms Integration",
+            "Intersection Observer Animated Counters",
+            "Responsive SVG Wave Section Dividers",
+            "Custom CSS Button Animations & Hover Effects"
+        ],
+        "challengesStructured": [
+            {
+                "issue": "Providing a reliable, cost-effective backend solution for the complex client intake form without relying on server-side code or paid third-party services.",
+                "solution": "Utilized Google Forms as a backend by mapping HTML input names to Google Form entry IDs, and submitted the data through a hidden iframe to bypass the default redirect behavior, triggering a custom 'Thank You' modal via the iframe's onload event."
+            },
+            {
+                "issue": "Ensuring the multi-step modal validated inputs efficiently while adapting its structure depending on the legal inquiry type selected.",
+                "solution": "Built a custom vanilla JavaScript state manager that dynamically injects specific HTML templates for 'Step 2', whilst enforcing strict HTML5 validation algorithms before allowing progression to the next step."
+            }
+        ],
+        "outcomes": [
+            "Delivered a professional, highly trustworthy web presence that reflects the firm's 25+ years of legal experience.",
+            "Streamlined the client onboarding process, allowing the legal team to receive categorized, detailed leads directly into a centralized spreadsheet."
+        ],
+        "responsiveViews": {
+            "desktop": "/* Add path to desktop mockup, e.g., projects/mcleod/mockup-desktop.png */",
+            "tablet": "/* Add path to tablet mockup, e.g., projects/mcleod/mockup-tablet.png */",
+            "mobile": "/* Add path to mobile mockup, e.g., projects/mcleod/mockup-mobile.png */"
+        },
+        "githubLink": "/* Add GitHub repository link here */",
+        "liveLink": "/* Add live website link here */",
+        "thumbnail": "/* Add path to thumbnail image, e.g., projects/mcleod/thumbnail.png */",
+        "fullImage": "/* Add path to full image cover, e.g., projects/mcleod/full-cover.png */",
+        "technologies": [
+            "HTML5",
+            "CSS3",
+            "Vanilla JavaScript",
+            "Google Forms API"
+        ],
+        "slug": "mcleod-associates",
+        "link": "projects/mcleod-associates.html",
+        "prevSlug": "rn-inc",
+        "nextSlug": "king-law-firm"
+    },
+    {
+        "id": 4,
+        "title": "King Law Firm",
+        "category": "Corporate Website",
+        "role": "Frontend Developer",
+        "year": "2026",
+        "description": "A modern, high-performance corporate website for a law firm, featuring headless CMS integration, complex scroll-linked stacking animations, and an infinite logo marquee.",
+        "overview": "King Law Firm required a digital presence that balanced professional authority with modern web aesthetics. This project acts as their primary client-facing portal, highlighting their core practice areas—Corporate, Family, and Criminal Defense—while building trust through dynamically loaded content and highly interactive, engaging UI elements.",
+        "overviewDetails": {
+            "duration": "/* Add project duration, e.g., 3 Weeks */",
+            "teamSize": "Solo Developer",
+            "platform": "Responsive Web",
+            "myRole": "Frontend Developer & UI Engineer"
+        },
+        "heroVideo": "/* Add path to hero video here, e.g., projects/king-law/hero.mp4 */",
+        "content": "<p>The King Law Firm website was constructed using a decoupled architecture, employing semantic HTML, custom CSS variables, and Vanilla JavaScript on the frontend, while utilizing Sanity CMS as a headless backend for content management.</p><p>Key technical implementations include a highly interactive scroll-linked stacking card animation for testimonials, an infinite-scrolling SVG logo marquee using CSS keyframes, and an Intersection Observer-based video autoplay system to ensure optimal performance. The site also features a dynamic, tabbed FAQ section and mobile navigation with background blur effects.</p>",
+        "metrics": [
+            {
+                "label": "Headless CMS",
+                "value": "Sanity.io"
+            },
+            {
+                "label": "Performance",
+                "value": "Vanilla JS"
+            }
+        ],
+        "videos": [
+            {
+                "title": "Scroll Stacking Testimonials",
+                "src": "/* Add path to video here, e.g., projects/king-law/testimonials-demo.mp4 */",
+                "description": "Demonstration of the complex scroll-linked stacking card animation built using vanilla JavaScript DOM rect calculations."
+            }
+        ],
+        "gallery": [
+            "/* Add path to gallery image 1, e.g., projects/king-law/gallery-1.jpg */",
+            "/* Add path to gallery image 2, e.g., projects/king-law/gallery-2.jpg */",
+            "/* Add path to gallery image 3, e.g., projects/king-law/gallery-3.jpg */",
+            "/* Add path to gallery image 4, e.g., projects/king-law/gallery-4.jpg */"
+        ],
+        "quote": {
+            "text": "Clarity in Complexity, Confidence for Tomorrow. We were founded on a simple principle: everyone deserves a dedicated guide when facing legal challenges.",
+            "author": "King Law Firm"
+        },
+        "learnings": [
+            "Integrated Sanity CMS as a headless backend via ESM imports directly in the browser to fetch and render dynamic hero content using GROQ queries.",
+            "Engineered a complex scroll-linked animation system using Vanilla JavaScript to stack and unstack testimonial cards interactively based on scroll progress mapped against the container's bounding rectangle.",
+            "Implemented an infinite-scrolling logo marquee purely in CSS, optimizing performance and eliminating the need for heavy JavaScript slider libraries.",
+            "Utilized the Intersection Observer API for intelligent video autoplay/pause functionality, ensuring media only plays when visible to preserve client resources."
+        ],
+        "keyFeatures": [
+            "Sanity CMS Headless Integration",
+            "Scroll-Linked Stacking Card Animations",
+            "Infinite CSS Logo Marquee",
+            "Intersection Observer Video Autoplay",
+            "Category-Filtered Interactive FAQ"
+        ],
+        "challengesStructured": [
+            {
+                "issue": "Creating a sticky, stacking card scroll effect for the testimonials section that works smoothly across different viewport heights without jank.",
+                "solution": "Utilized a combination of CSS 'position: sticky' on the parent container and custom JavaScript math tracking 'window.scrollY' mapped against the container's boundaries to calculate precise translation and scaling values for each card dynamically."
+            },
+            {
+                "issue": "Loading dynamic content efficiently without a traditional build step or server-side rendering framework.",
+                "solution": "Imported the '@sanity/client' directly via ESM modules ('https://esm.sh') in a script tag, executing GROQ queries in real-time to hydrate the DOM upon load."
+            }
+        ],
+        "outcomes": [
+            "Delivered a visually striking, highly interactive platform that establishes digital authority for the firm.",
+            "Empowered the client to manage critical site copy independently via the Sanity Studio dashboard without developer intervention."
+        ],
+        "responsiveViews": {
+            "desktop": "/* Add path to desktop mockup, e.g., projects/king-law/mockup-desktop.png */",
+            "tablet": "/* Add path to tablet mockup, e.g., projects/king-law/mockup-tablet.png */",
+            "mobile": "/* Add path to mobile mockup, e.g., projects/king-law/mockup-mobile.png */"
+        },
+        "githubLink": "/* Add GitHub repository link here, e.g., https://github.com/username/king-law */",
+        "liveLink": "/* Add live website link here, e.g., https://kinglawfirm.demo.com */",
+        "thumbnail": "/* Add path to thumbnail image, e.g., projects/king-law/thumbnail.png */",
+        "fullImage": "/* Add path to full image cover, e.g., projects/king-law/full-cover.png */",
+        "technologies": [
+            "HTML5",
+            "CSS3",
+            "Vanilla JavaScript",
+            "Sanity CMS",
+            "GROQ"
+        ],
+        "slug": "king-law-firm",
+        "link": "projects/king-law-firm.html",
+        "prevSlug": "mcleod-associates",
         "nextSlug": null
     }
 ]
