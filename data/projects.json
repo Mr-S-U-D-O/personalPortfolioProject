@@ -13,7 +13,7 @@
             "platform": "Responsive Web",
             "myRole": "Frontend Developer & UI Engineer"
         },
-        "heroVideo": "projects/sarko/sarko-video.mp4",
+        "heroVideo": "../projects/sarko/sarko-video/sarko-video.mp4",
         "content": "<p>The SARKO website was built with a clear mandate: to serve as a digital stronghold for the organization. Rejecting heavy JavaScript frameworks, the project relies entirely on semantic HTML5, modern CSS3, and Vanilla JavaScript to deliver a highly interactive user experience.</p><p>Key technical highlights include a custom-built, hardware-accelerated interactive hero grid that recalculates effortlessly on hover, a multi-step membership induction wizard with live progress tracking, and exit-intent capture mechanisms. The UI heavily utilizes CSS Grid, modern Flexbox, and native transitions to ensure fluid 60fps performance across all device viewports.</p>",
         "metrics": [
             {
@@ -28,15 +28,15 @@
         "videos": [
             {
                 "title": "Fluid Grids in Motion",
-                "src": "projects/sarko/sarko-video.mp4",
+                "src": "../projects/sarko/sarko-video/sarko-video.mp4",
                 "description": "Watch how the grid recalculates effortlessly upon resize without jank or layout thrashing."
             }
         ],
         "gallery": [
-            "../projects/sarko/gallery-1.jpeg",
-            "../projects/sarko/gallery-2.jpeg",
-            "../projects/sarko/gallery-3.jpeg",
-            "../projects/sarko/gallery-4.jpeg"
+            "../projects/sarko/gallery-images/gallery-1.jpeg",
+            "../projects/sarko/gallery-images/gallery-2.jpeg",
+            "../projects/sarko/gallery-images/gallery-3.jpeg",
+            "../projects/sarko/gallery-images/gallery-4.jpeg"
         ],
         "quote": {
             "text": "Preserving the wealth and welfare of the Nations. We are the shield against the erosion of indigenous rights.",
@@ -69,14 +69,17 @@
             "Created a seamless, multi-step digital membership application process, eliminating the friction of physical paperwork."
         ],
         "responsiveViews": {
-            "desktop": "projects/sarko/mockup-desktop-framed.png",
-            "tablet": "projects/sarko/mockup-tablet-framed.png",
-            "mobile": "projects/sarko/mockup-mobile-framed.png"
+            "desktop": "../projects/sarko/mockup-frames/mockup-desktop-framed.png",
+            "tablet": "../projects/sarko/mockup-frames/mockup-tablet-framed.png",
+            "mobile": "../projects/sarko/mockup-frames/mockup-mobile-framed.png"
         },
         "githubLink": "https://github.com/Mr-S.U.D.O",
         "liveLink": "https://www.sudo.co.za/sarko",
-        "thumbnail": "projects/sarko/mockup-all-framed.png",
-        "fullImage": "projects/sarko/mockup-desktop-framed.png",
+        "thumbnail": {
+            "light": "../projects/sarko/preview-img/sarko-preview-light.png",
+            "dark": "../projects/sarko/preview-img/sarko-preview-dark.jpeg"
+        },
+        "fullImage": "../projects/sarko/mockup-frames/mockup-desktop-framed.png",
         "technologies": [
             "HTML5",
             "CSS3",
@@ -96,12 +99,12 @@
         "description": "A premium, high-performance corporate platform for specialized infrastructure project attorneys, featuring dynamic content generation, complex conversational modals, and an interactive Training Academy.",
         "overview": "RN Inc operates at the intersection of law and infrastructure, providing proactive legal engineering. The website serves as their primary digital presence, projecting authority, trust, and professional excellence. It bridges the gap between complex contractual matrices and the granular reality of construction sites, offering a robust Knowledge Hub, Training Academy, and comprehensive Legal Solutions.",
         "overviewDetails": {
-            "duration": "/* Add project duration, e.g., 4 Weeks */",
+            "duration": "4 Weeks",
             "teamSize": "Solo Developer / LaunchPad Studio",
             "platform": "Responsive Web",
             "myRole": "Frontend Developer & UI/UX Engineer"
         },
-        "heroVideo": "/* Add path to hero video here, e.g., projects/rn-inc/hero.mp4 */",
+        "heroVideo": "../projects/rn-inc/rn-inc-video/rn-inc-video.mp4",
         "content": "<p>The RN Inc website is a sophisticated corporate platform built to redefine digital presence in the legal infrastructure sector. Utilizing a custom static site generation approach via Node.js and Handlebars, the project ensures high performance and modular maintainability across dozens of dynamically generated attorney, service, and training pages.</p><p>Key UI/UX features include a complex responsive Mega Menu, logic-based multi-step contact modals, scroll-triggered reveal animations, and hardware-accelerated stacking card interactions, all built entirely with vanilla JavaScript and native CSS3 to ensure maximum speed without relying on heavy frameworks.</p>",
         "metrics": [
             {
@@ -116,15 +119,15 @@
         "videos": [
             {
                 "title": "Conversational Inquiry Modal",
-                "src": "/* Add path to video here, e.g., projects/rn-inc/modal-demo.mp4 */",
+                "src": "../projects/rn-inc/rn-inc-video/rn-inc-video.mp4",
                 "description": "Demonstration of the logic-based multi-step inquiry modal navigating different user paths completely through Vanilla JavaScript."
             }
         ],
         "gallery": [
-            "/* Add path to gallery image 1, e.g., projects/rn-inc/gallery-1.jpg */",
-            "/* Add path to gallery image 2, e.g., projects/rn-inc/gallery-2.jpg */",
-            "/* Add path to gallery image 3, e.g., projects/rn-inc/gallery-3.jpg */",
-            "/* Add path to gallery image 4, e.g., projects/rn-inc/gallery-4.jpg */"
+            "../projects/rn-inc/gallery-images/gallery-1.jpeg",
+            "../projects/rn-inc/gallery-images/gallery-2.jpeg",
+            "../projects/rn-inc/gallery-images/gallery-3.jpeg",
+            "../projects/rn-inc/gallery-images/gallery-4.jpeg"
         ],
         "quote": {
             "text": "We don't just practice law; we deconstruct project risk. RN Inc was built to bridge the gap between complex contractual matrices and the granular reality of the construction site.",
@@ -159,14 +162,17 @@
             "Streamlined content updates for the client by centralizing data into easily editable JSON files integrated with a custom Node.js build script."
         ],
         "responsiveViews": {
-            "desktop": "/* Add path to desktop mockup, e.g., projects/rn-inc/mockup-desktop.png */",
-            "tablet": "/* Add path to tablet mockup, e.g., projects/rn-inc/mockup-tablet.png */",
-            "mobile": "/* Add path to mobile mockup, e.g., projects/rn-inc/mockup-mobile.png */"
+            "desktop": "../projects/rn-inc/mockup-frames/mockup-desktop-framed.png",
+            "tablet": "../projects/rn-inc/mockup-frames/mockup-tablet-framed.png",
+            "mobile": "../projects/rn-inc/mockup-frames/mockup-mobile-framed.png"
         },
-        "githubLink": "https://github.com/Mr-Shoez/RN-INC-FIRM-SITE",
-        "liveLink": "https://rninc.co.za",
-        "thumbnail": "/* Add path to thumbnail image, e.g., projects/rn-inc/thumbnail.png */",
-        "fullImage": "/* Add path to full image cover, e.g., projects/rn-inc/full-cover.png */",
+        "githubLink": "https://github.com/Mr-S-U-D-O/RN-INC-FIRM-SITE",
+        "liveLink": "https://mr-s-u-d-o.github.io/RN-INC-FIRM-SITE/index.html",
+        "thumbnail": {
+            "light": "../projects/rn-inc/preview-img/rn-inc-preview-light.png",
+            "dark": "../projects/rn-inc/preview-img/rn-inc-preview-dark.jpeg"
+        },
+        "fullImage": "../projects/rn-inc/mockup-frames/mockup-desktop-framed.png",
         "technologies": [
             "HTML5",
             "CSS3",
@@ -193,7 +199,7 @@
             "platform": "Responsive Web",
             "myRole": "Frontend Developer & UI/UX Designer"
         },
-        "heroVideo": "/* Add path to hero video here, e.g., projects/mcleod/hero-video.mp4 */",
+        "heroVideo": "../projects/mcleod/mcleod-video/mcleod-video.mp4",
         "content": "<p>The McLeod & Associates website was developed using semantic HTML5, CSS3, and Vanilla JavaScript, emphasizing a professional and trustworthy aesthetic. The design language utilizes a deep maroon and grey color palette, complemented by custom SVG wave dividers and fluid CSS animations to create an engaging user experience without sacrificing performance.</p><p>A standout technical feature is the client intake modal. Built entirely in Vanilla JavaScript, it uses a logic-based multi-step architecture that dynamically renders specific follow-up questions based on the user's initial practice area selection (e.g., Commercial vs. Property Law). Furthermore, the form seamlessly submits data to a Google Form backend via a hidden iframe, ensuring a smooth, reload-free experience for the user.</p>",
         "metrics": [
             {
@@ -208,15 +214,15 @@
         "videos": [
             {
                 "title": "Client Intake Modal Walkthrough",
-                "src": "/* Add path to video here, e.g., projects/mcleod/intake-demo.mp4 */",
+                "src": "../projects/mcleod/mcleod-video/mcleod-video.mp4",
                 "description": "A demonstration of the dynamic multi-step form adapting to user selections and submitting via a hidden iframe."
             }
         ],
         "gallery": [
-            "/* Add path to gallery image 1, e.g., projects/mcleod/gallery-1.jpg */",
-            "/* Add path to gallery image 2, e.g., projects/mcleod/gallery-2.jpg */",
-            "/* Add path to gallery image 3, e.g., projects/mcleod/gallery-3.jpg */",
-            "/* Add path to gallery image 4, e.g., projects/mcleod/gallery-4.jpg */"
+            "../projects/mcleod/gallery-images/gallery-1.jpg",
+            "../projects/mcleod/gallery-images/gallery-2.jpg",
+            "../projects/mcleod/gallery-images/gallery-3.jpg",
+            "../projects/mcleod/gallery-images/gallery-4.jpg"
         ],
         "quote": {
             "text": "Our proactive and strategic approach is designed to anticipate challenges, mitigate risks, and achieve the best possible outcomes on your behalf.",
@@ -250,14 +256,17 @@
             "Streamlined the client onboarding process, allowing the legal team to receive categorized, detailed leads directly into a centralized spreadsheet."
         ],
         "responsiveViews": {
-            "desktop": "/* Add path to desktop mockup, e.g., projects/mcleod/mockup-desktop.png */",
-            "tablet": "/* Add path to tablet mockup, e.g., projects/mcleod/mockup-tablet.png */",
-            "mobile": "/* Add path to mobile mockup, e.g., projects/mcleod/mockup-mobile.png */"
+            "desktop": "../projects/mcleod/mockup-frames/mockup-desktop-framed.png",
+            "tablet": "../projects/mcleod/mockup-frames/mockup-tablet-framed.png",
+            "mobile": "../projects/mcleod/mockup-frames/mockup-mobile-framed.png"
         },
         "githubLink": "/* Add GitHub repository link here */",
         "liveLink": "/* Add live website link here */",
-        "thumbnail": "/* Add path to thumbnail image, e.g., projects/mcleod/thumbnail.png */",
-        "fullImage": "/* Add path to full image cover, e.g., projects/mcleod/full-cover.png */",
+        "thumbnail": {
+            "light": "../projects/mcleod/preview-img/mcleod-preview-light.png",
+            "dark": "../projects/mcleod/preview-img/mcleod-preview-dark.jpeg"
+        },
+        "fullImage": "../projects/mcleod/mockup-frames/mockup-desktop-framed.png",
         "technologies": [
             "HTML5",
             "CSS3",
@@ -278,12 +287,12 @@
         "description": "A modern, high-performance corporate website for a law firm, featuring headless CMS integration, complex scroll-linked stacking animations, and an infinite logo marquee.",
         "overview": "King Law Firm required a digital presence that balanced professional authority with modern web aesthetics. This project acts as their primary client-facing portal, highlighting their core practice areas—Corporate, Family, and Criminal Defense—while building trust through dynamically loaded content and highly interactive, engaging UI elements.",
         "overviewDetails": {
-            "duration": "/* Add project duration, e.g., 3 Weeks */",
+            "duration": "3 Weeks",
             "teamSize": "Solo Developer",
             "platform": "Responsive Web",
             "myRole": "Frontend Developer & UI Engineer"
         },
-        "heroVideo": "/* Add path to hero video here, e.g., projects/king-law/hero.mp4 */",
+        "heroVideo": "../projects/king-law/king-law-video/king-law-video.mp4",
         "content": "<p>The King Law Firm website was constructed using a decoupled architecture, employing semantic HTML, custom CSS variables, and Vanilla JavaScript on the frontend, while utilizing Sanity CMS as a headless backend for content management.</p><p>Key technical implementations include a highly interactive scroll-linked stacking card animation for testimonials, an infinite-scrolling SVG logo marquee using CSS keyframes, and an Intersection Observer-based video autoplay system to ensure optimal performance. The site also features a dynamic, tabbed FAQ section and mobile navigation with background blur effects.</p>",
         "metrics": [
             {
@@ -298,15 +307,15 @@
         "videos": [
             {
                 "title": "Scroll Stacking Testimonials",
-                "src": "/* Add path to video here, e.g., projects/king-law/testimonials-demo.mp4 */",
+                "src": "../projects/king-law/king-law-video/king-law-video.mp4",
                 "description": "Demonstration of the complex scroll-linked stacking card animation built using vanilla JavaScript DOM rect calculations."
             }
         ],
         "gallery": [
-            "/* Add path to gallery image 1, e.g., projects/king-law/gallery-1.jpg */",
-            "/* Add path to gallery image 2, e.g., projects/king-law/gallery-2.jpg */",
-            "/* Add path to gallery image 3, e.g., projects/king-law/gallery-3.jpg */",
-            "/* Add path to gallery image 4, e.g., projects/king-law/gallery-4.jpg */"
+            "../projects/king-law/gallery-images/gallery-1.jpg",
+            "../projects/king-law/gallery-images/gallery-2.jpg",
+            "../projects/king-law/gallery-images/gallery-3.jpg",
+            "../projects/king-law/gallery-images/gallery-4.jpg"
         ],
         "quote": {
             "text": "Clarity in Complexity, Confidence for Tomorrow. We were founded on a simple principle: everyone deserves a dedicated guide when facing legal challenges.",
@@ -340,14 +349,17 @@
             "Empowered the client to manage critical site copy independently via the Sanity Studio dashboard without developer intervention."
         ],
         "responsiveViews": {
-            "desktop": "/* Add path to desktop mockup, e.g., projects/king-law/mockup-desktop.png */",
-            "tablet": "/* Add path to tablet mockup, e.g., projects/king-law/mockup-tablet.png */",
-            "mobile": "/* Add path to mobile mockup, e.g., projects/king-law/mockup-mobile.png */"
+            "desktop": "../projects/king-law/mockup-frames/mockup-desktop-framed.png",
+            "tablet": "../projects/king-law/mockup-frames/mockup-tablet-framed.png",
+            "mobile": "../projects/king-law/mockup-frames/mockup-mobile-framed.png"
         },
-        "githubLink": "/* Add GitHub repository link here, e.g., https://github.com/username/king-law */",
-        "liveLink": "/* Add live website link here, e.g., https://kinglawfirm.demo.com */",
-        "thumbnail": "/* Add path to thumbnail image, e.g., projects/king-law/thumbnail.png */",
-        "fullImage": "/* Add path to full image cover, e.g., projects/king-law/full-cover.png */",
+        "githubLink": "https://github.com/username/king-law",
+        "liveLink": "https://kinglawfirm.demo.com",
+        "thumbnail": {
+            "light": "../projects/king-law/preview-img/king-law-preview-light.png",
+            "dark": "../projects/king-law/preview-img/king-law-preview-dark.jpeg"
+        },
+        "fullImage": "../projects/king-law/mockup-frames/mockup-desktop-framed.png",
         "technologies": [
             "HTML5",
             "CSS3",

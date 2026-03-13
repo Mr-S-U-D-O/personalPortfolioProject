@@ -469,6 +469,9 @@ const F = document.querySelector(".cv-nav");
         "light" === t
           ? "my pictures/light mode.webp"
           : "my pictures/dark mode.webp");
+    document.querySelectorAll(".project-row-img[data-light]").forEach((img) => {
+      img.src = "light" === t ? img.getAttribute("data-light") : img.getAttribute("data-dark");
+    });
   }));
 const N = document.documentElement.getAttribute("data-theme") || "dark",
   Y = document.querySelector(".hero-profile-img");
@@ -477,6 +480,9 @@ Y &&
     "light" === N
       ? "my pictures/light mode.webp"
       : "my pictures/dark mode.webp");
+document.querySelectorAll(".project-row-img[data-light]").forEach((img) => {
+  img.src = "light" === N ? img.getAttribute("data-light") : img.getAttribute("data-dark");
+});
 const G = document.getElementById("heroScrollRig"),
   H = document.getElementById("heroContentGroup");
 // =========================================================================
@@ -626,7 +632,10 @@ const Q = document.querySelector(".modal-content-wrapper");
               if (modalTitle) modalTitle.textContent = project.title;
               if (modalDescription) modalDescription.textContent = project.description;
               if (modalCategory) modalCategory.textContent = project.category || "";
-              if (modalImage) modalImage.src = project.thumbnail;
+              if (modalImage) {
+                const themeVal = document.documentElement.getAttribute("data-theme") || "dark";
+                modalImage.src = themeVal === "light" ? project.thumbnail.light : project.thumbnail.dark;
+              }
               
               if (modalTechStack) {
                 modalTechStack.innerHTML = "";

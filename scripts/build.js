@@ -605,7 +605,7 @@ function generateProjectCard(proj, isGallery = false) {
     return `
                 <div class="project-row glow-card" data-index="${proj.id}">
                     <div class="project-row-img-container">
-                        <img src="${proj.thumbnail}" alt="${proj.title}" class="project-row-img" loading="lazy">
+                        <img src="${proj.thumbnail.dark}" alt="${proj.title}" class="project-row-img" data-light="${proj.thumbnail.light}" data-dark="${proj.thumbnail.dark}" loading="lazy">
                         ${proj.desktopVideoUrl ? `<video class="project-row-video" src="${proj.desktopVideoUrl}" muted loop playsinline></video>` : ''}
                     </div>
                     <div class="project-row-content">
