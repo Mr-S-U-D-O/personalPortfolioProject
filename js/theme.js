@@ -51,6 +51,22 @@
     });
   }
 
+  /**
+   * Swaps images on the page that have data-light and data-dark atttributes.
+   * Useful for preview images that should change with the theme.
+   * 
+   * @param {string} theme - The active theme ('light' or 'dark')
+   */
+  function updateThemeAwareImages(theme) {
+    const images = document.querySelectorAll('img[data-light][data-dark]');
+    images.forEach(img => {
+      const newSrc = theme === 'light' ? img.getAttribute('data-light') : img.getAttribute('data-dark');
+      if (newSrc && img.src !== newSrc) {
+        img.src = newSrc;
+      }
+    });
+  }
+
   // Expose ThemeSystem to global window object
   window.ThemeSystem = {
     KEY: THEME_STORAGE_KEY,
@@ -74,6 +90,7 @@
       });
 
       updateFavicon(themeName);
+      updateThemeAwareImages(themeName);
       document.dispatchEvent(new CustomEvent("themechange", { detail: { theme: themeName } }));
     },
 
@@ -110,17 +127,47 @@
       });
 
       updateFavicon(currentTheme);
-
-      // Listen for custom themechange events (fired by the system)
-      if (!isListenerAttached) {
-        isListenerAttached = true;
-        document.addEventListener("themechange", (e) => {
-          updateFavicon(e.detail.theme);
-        });
-      }
+      updateThemeAwareImages(currentTheme);
 
       // Initialize Back to Top Logic
       this.initBackToTop();
+
+      // Initialize Search Logic if present
+      this.initSearch();
+    },
+
+    /**
+     * Initializes the search functionality for the project gallery.
+     */
+    initSearch: function () {
+      const searchInput = document.getElementById("gallerySearch");
+      const clearBtn = document.getElementById("clearSearch");
+      if (!searchInput) return;
+
+      const updateClearBtn = () => {
+        if (clearBtn) {
+          if (searchInput.value.length > 0) {
+            clearBtn.classList.add("active");
+          } else {
+            clearBtn.classList.remove("active");
+          }
+        }
+      };
+
+      searchInput.addEventListener("input", updateClearBtn);
+
+      if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+          searchInput.value = "";
+          updateClearBtn();
+          searchInput.focus();
+          // Trigger input event to let other listeners (like filter logic) know
+          searchInput.dispatchEvent(new Event("input"));
+        });
+      }
+
+      // Initial check
+      updateClearBtn();
     },
 
     /**
@@ -132,9 +179,9 @@
       if (!backToTopBtn) return;
 
       const handleScroll = () => {
-        const scrollY = window.scrollY;
+        const scrollY = window.scrollY || document.body.scrollTop || document.documentElement.scrollTop || 0;
         const windowHeight = window.innerHeight;
-        const fullHeight = document.documentElement.scrollHeight;
+        const fullHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
         
         // Show if scrolled down more than 400px OR within 300px of the bottom
         const isNearBottom = (scrollY + windowHeight) > (fullHeight - 300);
@@ -148,12 +195,15 @@
       };
 
       window.addEventListener("scroll", handleScroll, { passive: true });
+      document.body.addEventListener("scroll", handleScroll, { passive: true });
       
       backToTopBtn.addEventListener("click", () => {
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth"
-        });
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        if (document.body.scrollTo) {
+          document.body.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          document.body.scrollTop = 0;
+        }
       });
 
       // Run once initially

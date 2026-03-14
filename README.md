@@ -81,3 +81,31 @@ Created by **Mosa "S.U.D.O" Moleleki**
 * **GitHub:** [@Mr-S-U-D-O](https://github.com/Mr-S-U-D-O)
 
 *Thank you for visiting! Don't forget to click the ⭐ button if you enjoy the codebase aesthetics!*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+i need you to create a preview image of this, like i want to use this as a preview image on my personal website, i need one with a light background   --bg-light: #e2e8f0; so find a creative way to really make this sleek and showcase the screen shot , dont turn it into a laptop or anything , just add padding and the make the out outside the colors i want , dont create a two sided image, create images separately
+
+
+ i need you to create a preview image of this, like i want to use this as a preview image on my personal website, i need one with a
+ dark background #0a0a0a, so find a creative way to really make this sleek and showcase the screen shot , dont turn it into a laptop or anything , just add padding and the make the out outside the colors i want , dont create a two sided image, create images separately

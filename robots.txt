@@ -1,4 +1,4 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
 
-Sitemap: https://www.sudo.co.za/sitemap.xml
+Sitemap: https://mr-sudo.dev/sitemap.xml

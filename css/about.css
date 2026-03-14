@@ -1,6 +1,6 @@
 body.about-page,
 html:has(body.about-page) {
-  overflow-y: auto !important;
+
   overflow-x: hidden !important;
   height: auto !important;
 }

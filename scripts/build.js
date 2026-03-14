@@ -5,7 +5,7 @@ const CleanCSS = require('clean-css');
 const terser = require('terser');
 
 // Configuration
-const BASE_URL = 'https://www.sudo.co.za'; // Adjust this when deploying
+const BASE_URL = 'https://mr-sudo.dev'; // Adjust this when deploying
 const ROOT_DIR = path.join(__dirname, '../');
 const DATA_PATH = path.join(__dirname, '../data/blog.json');
 const INDEX_PATH = path.join(__dirname, '../index.html');

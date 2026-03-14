@@ -74,10 +74,10 @@
             "mobile": "../projects/sarko/mockup-frames/mockup-mobile-framed.png"
         },
         "githubLink": "https://github.com/Mr-S.U.D.O",
-        "liveLink": "https://www.sudo.co.za/sarko",
+        "liveLink": "https://mr-sudo.dev/sarko",
         "thumbnail": {
             "light": "../projects/sarko/preview-img/sarko-preview-light.png",
-            "dark": "../projects/sarko/preview-img/sarko-preview-dark.jpeg"
+            "dark": "../projects/sarko/preview-img/sarko-preview-dark.png"
         },
         "fullImage": "../projects/sarko/mockup-frames/mockup-desktop-framed.png",
         "technologies": [
@@ -194,7 +194,7 @@
         "description": "A comprehensive, responsive corporate website for an Eastern Cape law firm, featuring a dynamic multi-step client intake questionnaire and seamless Google Forms integration.",
         "overview": "McLeod & Associates provides comprehensive legal solutions with a commitment to integrity and excellence. This project aimed to establish a strong digital presence for the firm, showcasing their practice areas and experienced legal team. The platform incorporates sophisticated interactive features, including a dynamic client intake modal that streamlines the onboarding process while categorizing leads efficiently.",
         "overviewDetails": {
-            "duration": "/* Add project duration, e.g., 3 Weeks */",
+            "duration": " 3 Weeks ",
             "teamSize": "Solo Developer / LaunchPad Studio",
             "platform": "Responsive Web",
             "myRole": "Frontend Developer & UI/UX Designer"
@@ -219,10 +219,13 @@
             }
         ],
         "gallery": [
-            "../projects/mcleod/gallery-images/gallery-1.jpg",
-            "../projects/mcleod/gallery-images/gallery-2.jpg",
-            "../projects/mcleod/gallery-images/gallery-3.jpg",
-            "../projects/mcleod/gallery-images/gallery-4.jpg"
+            "../projects/mcleod/gallery-images/gallery-1.jpeg",
+            "../projects/mcleod/gallery-images/gallery-2.jpeg",
+            "../projects/mcleod/gallery-images/gallery-3.jpeg",
+            "../projects/mcleod/gallery-images/gallery-4.jpeg",
+            "../projects/mcleod/gallery-images/gallery-5.jpeg",
+            "../projects/mcleod/gallery-images/gallery-6.jpeg",
+            "../projects/mcleod/gallery-images/gallery-7.jpeg"
         ],
         "quote": {
             "text": "Our proactive and strategic approach is designed to anticipate challenges, mitigate risks, and achieve the best possible outcomes on your behalf.",
@@ -261,10 +264,10 @@
             "mobile": "../projects/mcleod/mockup-frames/mockup-mobile-framed.png"
         },
         "githubLink": "/* Add GitHub repository link here */",
-        "liveLink": "/* Add live website link here */",
+        "liveLink": "https://mr-s-u-d-o.github.io/mcleon---attorneys/index.html",
         "thumbnail": {
             "light": "../projects/mcleod/preview-img/mcleod-preview-light.png",
-            "dark": "../projects/mcleod/preview-img/mcleod-preview-dark.jpeg"
+            "dark": "../projects/mcleod/preview-img/mcleod-preview-dark.png"
         },
         "fullImage": "../projects/mcleod/mockup-frames/mockup-desktop-framed.png",
         "technologies": [
