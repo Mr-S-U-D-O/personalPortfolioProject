@@ -7,489 +7,661 @@
   See LICENSE file for full terms. Contact: Molelekishoez@gmail.com
   ============================================================
 -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="copyright" content="Copyright (c) 2024-2026 Mosa Moleleki. All Rights Reserved.">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="copyright"
+      content="Copyright (c) 2024-2026 Mosa Moleleki. All Rights Reserved."
+    />
 
     <!-- ===================== Favicons ===================== -->
-    <link rel="icon" id="favicon-32" type="image/png" sizes="32x32" href="asserts/light mode favicon/favicon-32x32.png">
-    <link rel="icon" id="favicon-16" type="image/png" sizes="16x16" href="asserts/light mode favicon/favicon-16x16.png">
-    <link rel="shortcut icon" id="favicon-ico" href="asserts/light mode favicon/favicon.ico">
-    <link rel="apple-touch-icon" id="favicon-apple" sizes="180x180" href="asserts/light mode favicon/apple-touch-icon.png">
-    <link rel="manifest" href="asserts/light mode favicon/site.webmanifest">
+    <link
+      rel="icon"
+      id="favicon-32"
+      type="image/png"
+      sizes="32x32"
+      href="asserts/light mode favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      id="favicon-16"
+      type="image/png"
+      sizes="16x16"
+      href="asserts/light mode favicon/favicon-16x16.png"
+    />
+    <link
+      rel="shortcut icon"
+      id="favicon-ico"
+      href="asserts/light mode favicon/favicon.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      id="favicon-apple"
+      sizes="180x180"
+      href="asserts/light mode favicon/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="asserts/light mode favicon/site.webmanifest" />
 
     <!-- ===================== SEO ===================== -->
     <title>About Mosa Moleleki | Front-End Web Developer</title>
-    <meta name="description" content="The full story of Mosa Moleleki — self-taught developer, founder of LaunchPad Studio, based in Johannesburg. Learn about his journey, philosophy, and skills.">
-    <meta name="keywords" content="Mosa Moleleki, Front-End Developer, About, LaunchPad Studio, Johannesburg, S.U.D.O">
-    <meta name="author" content="Mosa Moleleki">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#0a0a0a">
-    <link rel="canonical" href="https://mr-sudo.dev/about.html">
+    <meta
+      name="description"
+      content="The full story of Mosa Moleleki — self-taught developer, founder of LaunchPad Studio, based in Johannesburg. Learn about his journey, philosophy, and skills."
+    />
+    <meta
+      name="keywords"
+      content="Mosa Moleleki, Front-End Developer, About, LaunchPad Studio, Johannesburg, S.U.D.O"
+    />
+    <meta name="author" content="Mosa Moleleki" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="canonical" href="https://mr-sudo.dev/about.html" />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mr-sudo.dev/about.html">
-    <meta property="og:title" content="About Mosa Moleleki | Front-End Web Developer">
-    <meta property="og:description" content="The full story of Mosa Moleleki — self-taught developer, founder of LaunchPad Studio.">
-    <meta property="og:image" content="https://mr-sudo.dev/my pictures/dark mode.webp">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://mr-sudo.dev/about.html" />
+    <meta
+      property="og:title"
+      content="About Mosa Moleleki | Front-End Web Developer"
+    />
+    <meta
+      property="og:description"
+      content="The full story of Mosa Moleleki — self-taught developer, founder of LaunchPad Studio."
+    />
+    <meta
+      property="og:image"
+      content="https://mr-sudo.dev/my pictures/dark mode.webp"
+    />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/min/style.min.css">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/min/about.min.css">
+    <link rel="stylesheet" href="css/min/style.min.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/min/about.min.css" />
 
     <!-- ===================== Universal Theme System (sync — prevents flash) ===================== -->
     <script src="js/min/theme.min.js"></script>
 
     <!-- ===================== Scroll Unlock (inline — before paint) ===================== -->
     <script>
-        // style.css sets overflow:hidden on html/body for the index page intro.
-        // Override immediately so the about page scrolls from the first interaction.
-        document.documentElement.style.overflow = 'auto';
-        document.documentElement.style.height   = 'auto';
+      // style.css sets overflow:hidden on html/body for the index page intro.
+      // Override immediately so the about page scrolls from the first interaction.
+      document.documentElement.style.overflow = "auto";
+      document.documentElement.style.height = "auto";
     </script>
-</head>
-<body class="about-page">
+  </head>
+  <body class="about-page">
     <script>
-        // Reinforce now that body exists in the DOM
-        document.body.style.overflow = 'auto';
-        document.body.style.height   = 'auto';
+      // Reinforce now that body exists in the DOM
+      document.body.style.overflow = "auto";
+      document.body.style.height = "auto";
     </script>
+
+    <!-- Trailing Line Wrapper -->
+    <div class="trailing-line-wrapper">
+      <svg
+        class="trailing-line-svg"
+        viewBox="0 0 2 1000"
+        preserveAspectRatio="none"
+      >
+        <line x1="1" y1="0" x2="1" y2="1000" class="base-line" />
+        <line x1="1" y1="0" x2="1" y2="1000" class="fill-line" id="snakeFill" />
+      </svg>
+    </div>
     <!-- ========================================= -->
     <!-- Top Navigation Bar                        -->
     <!-- ========================================= -->
     <header class="about-topbar">
-        <a href="index.html#about" class="about-back-link">
-            <i class="fa-solid fa-arrow-left"></i>
-            Back
-        </a>
-        <span class="about-topbar-name">Mosa Moleleki</span>
-        <div style="display: flex; gap: 12px; align-items: center;">
-            <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
-                <i class="fa-solid fa-moon"></i>
-            </button>
-        </div>
+      <a href="index.html#about" class="about-back-link">
+        <i class="fa-solid fa-arrow-left"></i>
+        Back
+      </a>
+      <span class="about-topbar-name">Mosa Moleleki</span>
+      <div style="display: flex; gap: 12px; align-items: center">
+        <button
+          id="themeToggle"
+          class="theme-toggle"
+          aria-label="Toggle Dark Mode"
+        >
+          <i class="fa-solid fa-moon"></i>
+        </button>
+      </div>
     </header>
 
     <!-- ========================================= -->
     <!-- 1. Hero Section                           -->
     <!-- ========================================= -->
     <section class="about-hero">
-        <!-- Photo -->
-        <div class="about-hero-photo-wrap ap-fade">
-            <img
-                src="my pictures/dark mode.webp"
-                alt="Mosa Moleleki"
-                class="about-hero-photo"
-                fetchpriority="high"
-            >
-            <div class="about-hero-photo-accent"></div>
+      <!-- Photo -->
+      <div class="about-hero-photo-wrap ap-fade">
+        <img
+          src="my pictures/dark mode.webp"
+          alt="Mosa Moleleki"
+          class="about-hero-photo"
+          fetchpriority="high"
+        />
+        <div class="about-hero-photo-accent"></div>
+      </div>
+
+      <!-- Copy -->
+      <div class="about-hero-text">
+        <span class="about-hero-label ap-fade ap-fade-delay-1"
+          >Get to know me</span
+        >
+        <h1 class="about-hero-name ap-fade ap-fade-delay-1">
+          Mosa<br />Moleleki
+        </h1>
+        <p class="about-hero-role ap-fade ap-fade-delay-2">
+          Front-End Web Developer &nbsp;·&nbsp;
+          <span>Johannesburg, South Africa</span>
+        </p>
+
+        <!-- Pill badges -->
+        <div class="about-hero-pills ap-fade ap-fade-delay-2">
+          <span class="about-pill">
+            <i class="fa-solid fa-code"></i>
+            Self-taught
+          </span>
+          <span class="about-pill">
+            <i class="fa-solid fa-location-dot"></i>
+            Based in JHB
+          </span>
+          <span class="about-pill">
+            <i class="fa-solid fa-earth-africa"></i>
+            Open to remote
+          </span>
+          <span class="about-pill">
+            <i class="fa-solid fa-rocket"></i>
+            Founder, LaunchPad Studio
+          </span>
         </div>
 
-        <!-- Copy -->
-        <div class="about-hero-text">
-            <span class="about-hero-label ap-fade ap-fade-delay-1">Get to know me</span>
-            <h1 class="about-hero-name ap-fade ap-fade-delay-1">Mosa<br>Moleleki</h1>
-            <p class="about-hero-role ap-fade ap-fade-delay-2">
-                Front-End Web Developer &nbsp;·&nbsp;
-                <span>Johannesburg, South Africa</span>
-            </p>
-
-            <!-- Pill badges -->
-            <div class="about-hero-pills ap-fade ap-fade-delay-2">
-                <span class="about-pill">
-                    <i class="fa-solid fa-code"></i>
-                    Self-taught
-                </span>
-                <span class="about-pill">
-                    <i class="fa-solid fa-location-dot"></i>
-                    Based in JHB
-                </span>
-                <span class="about-pill">
-                    <i class="fa-solid fa-earth-africa"></i>
-                    Open to remote
-                </span>
-                <span class="about-pill">
-                    <i class="fa-solid fa-rocket"></i>
-                    Founder, LaunchPad Studio
-                </span>
-            </div>
-
-            <!-- Short intro -->
-            <div class="about-hero-intro ap-fade ap-fade-delay-3">
-                <p>
-                    A self-taught developer who made the transition from curiosity to craft through
-                    <strong>pure discipline</strong> — and never stopped pushing.
-                </p>
-                <p>
-                    I finished matric in 2022 with no clear plan, just a sharp mind and a need to build things.
-                    A few months later I discovered programming — not through school,
-                    not through a recommendation — I just started. <strong>And I didn't stop.</strong>
-                </p>
-                <p>
-                    Three years of obsessive learning, real client work, formal study, and ultimately — a
-                    deliberate decision to commit fully to the craft. My standard is simple:
-                    <strong>I don't ship things I'm not proud of.</strong>
-                </p>
-            </div>
+        <!-- Short intro -->
+        <div class="about-hero-intro ap-fade ap-fade-delay-3">
+          <p>
+            A self-taught developer who made the transition from curiosity to
+            craft through
+            <strong>pure discipline</strong> — and never stopped pushing.
+          </p>
+          <p>
+            I finished matric in 2022 with no clear plan, just a sharp mind and
+            a need to build things. A few months later I discovered programming
+            — not through school, not through a recommendation — I just started.
+            <strong>And I didn't stop.</strong>
+          </p>
+          <p>
+            Three years of obsessive learning, real client work, formal study,
+            and ultimately — a deliberate decision to commit fully to the craft.
+            My standard is simple:
+            <strong>I don't ship things I'm not proud of.</strong>
+          </p>
         </div>
+      </div>
     </section>
 
     <!-- ========================================= -->
     <!-- 2. Stats Strip                            -->
     <!-- ========================================= -->
     <div class="about-stats-strip">
-        <div class="about-stats-inner">
-            <div class="about-stat-item ap-fade">
-                <span class="about-stat-number">3+</span>
-                <span class="about-stat-label">Years active</span>
-            </div>
-            <div class="about-stat-item ap-fade ap-fade-delay-1">
-                <span class="about-stat-number">10+</span>
-                <span class="about-stat-label">Projects delivered</span>
-            </div>
-            <div class="about-stat-item ap-fade ap-fade-delay-2">
-                <span class="about-stat-number">#1</span>
-                <span class="about-stat-label">Top of cohort, Rosebank College</span>
-            </div>
-            <div class="about-stat-item ap-fade ap-fade-delay-3">
-                <span class="about-stat-number">2026</span>
-                <span class="about-stat-label">Building LaunchPad Studio</span>
-            </div>
+      <div class="about-stats-inner">
+        <div class="about-stat-item ap-fade">
+          <span class="about-stat-number">3+</span>
+          <span class="about-stat-label">Years active</span>
         </div>
+        <div class="about-stat-item ap-fade ap-fade-delay-1">
+          <span class="about-stat-number">10+</span>
+          <span class="about-stat-label">Projects delivered</span>
+        </div>
+        <div class="about-stat-item ap-fade ap-fade-delay-2">
+          <span class="about-stat-number">#1</span>
+          <span class="about-stat-label">Top of cohort, Rosebank College</span>
+        </div>
+        <div class="about-stat-item ap-fade ap-fade-delay-3">
+          <span class="about-stat-number">2026</span>
+          <span class="about-stat-label">Building LaunchPad Studio</span>
+        </div>
+      </div>
     </div>
 
     <!-- ========================================= -->
     <!-- 3. Origin Story                           -->
     <!-- ========================================= -->
     <section class="about-origin">
-        <span class="about-origin-eyebrow ap-fade">Where it started</span>
-        <h2 class="about-origin-heading ap-fade">
-            The story behind<br>the developer.
-        </h2>
+      <span class="about-origin-eyebrow ap-fade">Where it started</span>
+      <h2 class="about-origin-heading ap-fade">
+        The story behind<br />the developer.
+      </h2>
 
-        <div class="about-origin-body">
-            <p class="ap-fade">
-                I didn't grow up in a household that talked about software or technology careers.
-                I finished my matric in November 2022, and for a while I sat with the same question everyone sits with —
-                <strong>what now?</strong> No roadmap, no mentor, no clear direction. Just a sharp mind
-                and a genuine need to do something meaningful with it.
-            </p>
+      <div class="about-origin-body">
+        <p class="ap-fade">
+          I didn't grow up in a household that talked about software or
+          technology careers. I finished my matric in November 2022, and for a
+          while I sat with the same question everyone sits with —
+          <strong>what now?</strong> No roadmap, no mentor, no clear direction.
+          Just a sharp mind and a genuine need to do something meaningful with
+          it.
+        </p>
 
-            <p class="ap-fade">
-                In early 2023, almost by accident, I started exploring programming. A YouTube video,
-                then a tutorial, then another, then three weeks deep into HTML and CSS with no
-                idea I'd just stumbled onto the thing that would define my next chapter.
-                <strong>It clicked fast.</strong> Not because it was easy — it wasn't — but because I was
-                completely absorbed in the logic of it.
-            </p>
+        <p class="ap-fade">
+          In early 2023, almost by accident, I started exploring programming. A
+          YouTube video, then a tutorial, then another, then three weeks deep
+          into HTML and CSS with no idea I'd just stumbled onto the thing that
+          would define my next chapter.
+          <strong>It clicked fast.</strong> Not because it was easy — it wasn't
+          — but because I was completely absorbed in the logic of it.
+        </p>
 
-            <div class="about-pull-quote ap-fade">
-                <p>"I didn't want to learn how to pass modules. I wanted to learn how to build systems."</p>
-            </div>
-
-            <p class="ap-fade">
-                By late 2023, I realized that passion alone wasn't going to be enough. I wanted to build
-                <strong>real, scalable applications</strong> — not just pretty pages. That meant understanding
-                the engineering behind the interfaces. So I made a calculated move: I worked outside of tech
-                for a full year, specifically to fund formal education and give myself a structured foundation.
-            </p>
-
-            <p class="ap-fade">
-                January 2025, I enrolled at Rosebank College. I took it seriously.
-                I topped my cohort consistently. But by November 2025, something became clear —
-                the curriculum was broad by design, built to serve the average student.
-                <strong>I wasn't interested in average.</strong> I wanted depth, not breadth.
-                I wanted real problems, not exercises. So I walked away — deliberately, not reluctantly.
-            </p>
-
-            <p class="ap-fade">
-                2026 is about building. LaunchPad Studio — a project I started to engineer free websites
-                for local businesses — has grown into something real. I now focus entirely on
-                delivering high-value digital solutions and growing into the engineer I set out to become.
-            </p>
+        <div class="about-pull-quote ap-fade">
+          <p>
+            "I didn't want to learn how to pass modules. I wanted to learn how
+            to build systems."
+          </p>
         </div>
+
+        <p class="ap-fade">
+          By late 2023, I realized that passion alone wasn't going to be enough.
+          I wanted to build
+          <strong>real, scalable applications</strong> — not just pretty pages.
+          That meant understanding the engineering behind the interfaces. So I
+          made a calculated move: I worked outside of tech for a full year,
+          specifically to fund formal education and give myself a structured
+          foundation.
+        </p>
+
+        <p class="ap-fade">
+          January 2025, I enrolled at Rosebank College. I took it seriously. I
+          topped my cohort consistently. But by November 2025, something became
+          clear — the curriculum was broad by design, built to serve the average
+          student.
+          <strong>I wasn't interested in average.</strong> I wanted depth, not
+          breadth. I wanted real problems, not exercises. So I walked away —
+          deliberately, not reluctantly.
+        </p>
+
+        <p class="ap-fade">
+          2026 is about building. LaunchPad Studio — a project I started to
+          engineer free websites for local businesses — has grown into something
+          real. I now focus entirely on delivering high-value digital solutions
+          and growing into the engineer I set out to become.
+        </p>
+      </div>
     </section>
 
     <!-- ========================================= -->
     <!-- 4. Education Decision                     -->
     <!-- ========================================= -->
     <section class="about-education ap-fade">
-        <!-- Left: mini timeline card -->
-        <div class="about-edu-card">
-            <div class="about-edu-entry">
-                <div class="about-edu-dot-col">
-                    <div class="about-edu-dot filled"></div>
-                    <div class="about-edu-dot-line"></div>
-                </div>
-                <div class="about-edu-info">
-                    <div class="about-edu-date">Jan 2025</div>
-                    <div class="about-edu-title">Enrolled — Rosebank College</div>
-                    <div class="about-edu-sub">Software Development programme. Began formal study alongside 2+ years of self-taught experience.</div>
-                </div>
+      <!-- Left: mini timeline card -->
+      <div class="about-edu-card">
+        <div class="about-edu-entry">
+          <div class="about-edu-dot-col">
+            <div class="about-edu-dot filled"></div>
+            <div class="about-edu-dot-line"></div>
+          </div>
+          <div class="about-edu-info">
+            <div class="about-edu-date">Jan 2025</div>
+            <div class="about-edu-title">Enrolled — Rosebank College</div>
+            <div class="about-edu-sub">
+              Software Development programme. Began formal study alongside 2+
+              years of self-taught experience.
             </div>
-            <div class="about-edu-entry">
-                <div class="about-edu-dot-col">
-                    <div class="about-edu-dot filled"></div>
-                    <div class="about-edu-dot-line"></div>
-                </div>
-                <div class="about-edu-info">
-                    <div class="about-edu-date">Mid 2025</div>
-                    <div class="about-edu-title">Top of the cohort</div>
-                    <div class="about-edu-sub">Consistently ranked among the highest-performing students in the programme.</div>
-                </div>
-            </div>
-            <div class="about-edu-entry">
-                <div class="about-edu-dot-col">
-                    <div class="about-edu-dot filled"></div>
-                </div>
-                <div class="about-edu-info">
-                    <div class="about-edu-date">Nov 2025</div>
-                    <div class="about-edu-title">The Strategic Exit</div>
-                    <div class="about-edu-sub">Made the deliberate decision to leave and pursue self-directed mastery full-time.</div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="about-edu-entry">
+          <div class="about-edu-dot-col">
+            <div class="about-edu-dot filled"></div>
+            <div class="about-edu-dot-line"></div>
+          </div>
+          <div class="about-edu-info">
+            <div class="about-edu-date">Mid 2025</div>
+            <div class="about-edu-title">Top of the cohort</div>
+            <div class="about-edu-sub">
+              Consistently ranked among the highest-performing students in the
+              programme.
+            </div>
+          </div>
+        </div>
+        <div class="about-edu-entry">
+          <div class="about-edu-dot-col">
+            <div class="about-edu-dot filled"></div>
+          </div>
+          <div class="about-edu-info">
+            <div class="about-edu-date">Nov 2025</div>
+            <div class="about-edu-title">The Strategic Exit</div>
+            <div class="about-edu-sub">
+              Made the deliberate decision to leave and pursue self-directed
+              mastery full-time.
+            </div>
+          </div>
+        </div>
+      </div>
 
-        <!-- Right: explanation -->
-        <div class="about-edu-text">
-            <span class="about-edu-eyebrow">On education</span>
-            <h2 class="about-edu-heading">
-                Leaving wasn't giving up.<br>It was upgrading the plan.
-            </h2>
-            <p>
-                Formal education gave me structure. I'm grateful for that. But the model was built
-                for broad intake — and I was already operating beyond the pace of the curriculum.
-            </p>
-            <p>
-                <strong>I left not because I was struggling, but because staying meant slowing down.</strong>
-                The decision wasn't emotional — it was strategic. Real engineers grow fastest on real problems,
-                not on prescribed assessments.
-            </p>
-            <p>
-                What I took with me: discipline, methodology, and the confidence that
-                I could learn anything if I approached it the right way. What I left behind:
-                the ceiling.
-            </p>
-        </div>
+      <!-- Right: explanation -->
+      <div class="about-edu-text">
+        <span class="about-edu-eyebrow">On education</span>
+        <h2 class="about-edu-heading">
+          Leaving wasn't giving up.<br />It was upgrading the plan.
+        </h2>
+        <p>
+          Formal education gave me structure. I'm grateful for that. But the
+          model was built for broad intake — and I was already operating beyond
+          the pace of the curriculum.
+        </p>
+        <p>
+          <strong
+            >I left not because I was struggling, but because staying meant
+            slowing down.</strong
+          >
+          The decision wasn't emotional — it was strategic. Real engineers grow
+          fastest on real problems, not on prescribed assessments.
+        </p>
+        <p>
+          What I took with me: discipline, methodology, and the confidence that
+          I could learn anything if I approached it the right way. What I left
+          behind: the ceiling.
+        </p>
+      </div>
     </section>
 
     <!-- ========================================= -->
     <!-- 5. Work Philosophy                        -->
     <!-- ========================================= -->
     <section class="about-philosophy">
-        <div class="about-philosophy-inner">
-            <div class="about-philosophy-header ap-fade">
-                <span class="about-philosophy-eyebrow">How I work</span>
-                <h2 class="about-philosophy-heading">Three things that don't change.</h2>
-            </div>
-
-            <div class="about-philosophy-grid">
-                <div class="about-philo-card ap-fade ap-fade-delay-1">
-                    <i class="fa-solid fa-magnifying-glass about-philo-icon"></i>
-                    <h3 class="about-philo-title">First, understand.</h3>
-                    <p class="about-philo-desc">
-                        I don't write a single line of code before I've understood the problem fully.
-                        Most bugs are just requirements in disguise. I read, I research, I ask
-                        the uncomfortable questions early — so they don't show up late.
-                    </p>
-                </div>
-                <div class="about-philo-card ap-fade ap-fade-delay-2">
-                    <i class="fa-regular fa-feather about-philo-icon"></i>
-                    <h3 class="about-philo-title">Build light, then right.</h3>
-                    <p class="about-philo-desc">
-                        I start with the minimal working version and scale from there.
-                        Premature optimization is a trap I've watched others fall into.
-                        Get it working, get it correct, then get it fast — in that order.
-                    </p>
-                </div>
-                <div class="about-philo-card ap-fade ap-fade-delay-3">
-                    <i class="fa-solid fa-arrows-spin about-philo-icon"></i>
-                    <h3 class="about-philo-title">Iterate without ego.</h3>
-                    <p class="about-philo-desc">
-                        Feedback isn't criticism — it's data. The work either solves the
-                        problem or it doesn't. I care about outcome, not attachment.
-                        The best version of anything gets built through honest iteration.
-                    </p>
-                </div>
-            </div>
+      <div class="about-philosophy-inner">
+        <div class="about-philosophy-header ap-fade">
+          <span class="about-philosophy-eyebrow">How I work</span>
+          <h2 class="about-philosophy-heading">
+            Three things that don't change.
+          </h2>
         </div>
+
+        <div class="about-philosophy-grid">
+          <div class="about-philo-card ap-fade ap-fade-delay-1">
+            <i class="fa-solid fa-magnifying-glass about-philo-icon"></i>
+            <h3 class="about-philo-title">First, understand.</h3>
+            <p class="about-philo-desc">
+              I don't write a single line of code before I've understood the
+              problem fully. Most bugs are just requirements in disguise. I
+              read, I research, I ask the uncomfortable questions early — so
+              they don't show up late.
+            </p>
+          </div>
+          <div class="about-philo-card ap-fade ap-fade-delay-2">
+            <i class="fa-regular fa-feather about-philo-icon"></i>
+            <h3 class="about-philo-title">Build light, then right.</h3>
+            <p class="about-philo-desc">
+              I start with the minimal working version and scale from there.
+              Premature optimization is a trap I've watched others fall into.
+              Get it working, get it correct, then get it fast — in that order.
+            </p>
+          </div>
+          <div class="about-philo-card ap-fade ap-fade-delay-3">
+            <i class="fa-solid fa-arrows-spin about-philo-icon"></i>
+            <h3 class="about-philo-title">Iterate without ego.</h3>
+            <p class="about-philo-desc">
+              Feedback isn't criticism — it's data. The work either solves the
+              problem or it doesn't. I care about outcome, not attachment. The
+              best version of anything gets built through honest iteration.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ========================================= -->
     <!-- 6. Core Competencies                      -->
     <!-- ========================================= -->
     <section class="about-skills">
-        <div class="about-skills-header ap-fade">
-            <span class="about-skills-eyebrow">What I bring</span>
-            <h2 class="about-skills-heading">Core Competencies</h2>
-            <p class="about-skills-intro">Here's what I actually know how to do — and do well.</p>
+      <div class="about-skills-header ap-fade">
+        <span class="about-skills-eyebrow">What I bring</span>
+        <h2 class="about-skills-heading">Core Competencies</h2>
+        <p class="about-skills-intro">
+          Here's what I actually know how to do — and do well.
+        </p>
+      </div>
+
+      <div class="about-skills-group">
+        <!-- Core skills -->
+        <div class="ap-fade">
+          <h3 class="about-skills-subheading">Fundamentals</h3>
+          <div class="about-skills-grid">
+            <div class="skill-card">
+              <i class="fa-solid fa-brain skill-icon"></i>
+              <span class="skill-text"
+                >Analytical mindset &amp; problem-solving</span
+              >
+            </div>
+            <div class="skill-card">
+              <i class="fa-solid fa-eye skill-icon"></i>
+              <span class="skill-text"
+                >Detail-oriented with a strong design sense</span
+              >
+            </div>
+            <div class="skill-card">
+              <i class="fa-solid fa-bolt skill-icon"></i>
+              <span class="skill-text"
+                >Performance optimization &amp; scalability</span
+              >
+            </div>
+            <div class="skill-card">
+              <i class="fa-solid fa-vial skill-icon"></i>
+              <span class="skill-text">Automated testing &amp; unit tests</span>
+            </div>
+            <div class="skill-card">
+              <i class="fa-solid fa-layer-group skill-icon"></i>
+              <span class="skill-text"
+                >Bridging design and technical implementation</span
+              >
+            </div>
+          </div>
         </div>
 
-        <div class="about-skills-group">
-            <!-- Core skills -->
-            <div class="ap-fade">
-                <h3 class="about-skills-subheading">Fundamentals</h3>
-                <div class="about-skills-grid">
-                    <div class="skill-card">
-                        <i class="fa-solid fa-brain skill-icon"></i>
-                        <span class="skill-text">Analytical mindset &amp; problem-solving</span>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fa-solid fa-eye skill-icon"></i>
-                        <span class="skill-text">Detail-oriented with a strong design sense</span>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fa-solid fa-bolt skill-icon"></i>
-                        <span class="skill-text">Performance optimization &amp; scalability</span>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fa-solid fa-vial skill-icon"></i>
-                        <span class="skill-text">Automated testing &amp; unit tests</span>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fa-solid fa-layer-group skill-icon"></i>
-                        <span class="skill-text">Bridging design and technical implementation</span>
-                    </div>
-                </div>
+        <!-- Additional knowledge -->
+        <div class="ap-fade ap-fade-delay-1">
+          <h3 class="about-skills-subheading">Additional Knowledge</h3>
+          <div class="about-skills-grid">
+            <div class="skill-card">
+              <i class="fa-brands fa-js skill-icon"></i>
+              <span class="skill-text"
+                >Frontend JS Frameworks (React, Vue, Angular)</span
+              >
             </div>
-
-            <!-- Additional knowledge -->
-            <div class="ap-fade ap-fade-delay-1">
-                <h3 class="about-skills-subheading">Additional Knowledge</h3>
-                <div class="about-skills-grid">
-                    <div class="skill-card">
-                        <i class="fa-brands fa-js skill-icon"></i>
-                        <span class="skill-text">Frontend JS Frameworks (React, Vue, Angular)</span>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fa-solid fa-code-branch skill-icon"></i>
-                        <span class="skill-text">CI/CD practices</span>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fa-solid fa-globe skill-icon"></i>
-                        <span class="skill-text">Cross-browser compatibility</span>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fa-brands fa-sass skill-icon"></i>
-                        <span class="skill-text">Server-side CSS pre-processing</span>
-                    </div>
-                </div>
+            <div class="skill-card">
+              <i class="fa-solid fa-code-branch skill-icon"></i>
+              <span class="skill-text">CI/CD practices</span>
             </div>
+            <div class="skill-card">
+              <i class="fa-solid fa-globe skill-icon"></i>
+              <span class="skill-text">Cross-browser compatibility</span>
+            </div>
+            <div class="skill-card">
+              <i class="fa-brands fa-sass skill-icon"></i>
+              <span class="skill-text">Server-side CSS pre-processing</span>
+            </div>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- ========================================= -->
     <!-- 7. Tools / Tech Stack                     -->
     <!-- ========================================= -->
     <section class="about-stack">
-        <div class="about-stack-inner">
-            <div class="about-stack-header ap-fade">
-                <span class="about-stack-eyebrow">The toolkit</span>
-                <h2 class="about-stack-heading">Technologies I reach for.</h2>
-            </div>
-
-            <div class="about-stack-group">
-                <!-- Core Web -->
-                <div class="ap-fade">
-                    <div class="about-stack-row-label">Core</div>
-                    <div class="about-stack-row">
-                        <span class="about-tech-pill"><i class="fa-brands fa-html5"></i> HTML5</span>
-                        <span class="about-tech-pill"><i class="fa-brands fa-css3-alt"></i> CSS3</span>
-                        <span class="about-tech-pill"><i class="fa-brands fa-js"></i> JavaScript</span>
-                        <span class="about-tech-pill">
-                            <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M0 64c0 35.348 28.652 64 64 64s64-28.652 64-64-28.652-64-64-64S0 28.652 0 64zm102.4-18.133c-.684-2.39-2.9-3.84-5.332-3.584l-12.8 1.366a1.643 1.643 0 00-1.451 1.152 1.618 1.618 0 00.597 1.75l3.543 2.73-8.106 9.643-11.52-11.52a4.27 4.27 0 00-3.2-1.195 4.307 4.307 0 00-3.03 1.536L43.263 67.41a4.266 4.266 0 106.613 5.376L60.16 60.972l11.349 11.349a4.282 4.282 0 006.144-.171l10.752-12.8 2.731 2.731c.511.512 1.28.64 1.877.256.64-.341 1.024-1.024.939-1.75z"/>
-                            </svg>
-                            Three.js
-                        </span>
-                        <span class="about-tech-pill"><i class="fa-brands fa-node-js"></i> Node.js</span>
-                    </div>
-                </div>
-
-                <div class="about-stack-divider"></div>
-
-                <!-- Tooling -->
-                <div class="ap-fade ap-fade-delay-1">
-                    <div class="about-stack-row-label">Tooling &amp; Deployment</div>
-                    <div class="about-stack-row">
-                        <span class="about-tech-pill"><i class="fa-brands fa-git-alt"></i> Git</span>
-                        <span class="about-tech-pill"><i class="fa-brands fa-github"></i> GitHub</span>
-                        <span class="about-tech-pill">
-                            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10.984 13.836a.5.5 0 0 1-.353-.146l-3.5-3.5a.5.5 0 0 1 .707-.707l3.146 3.146 7.14-7.14a.5.5 0 0 1 .707.707l-7.494 7.494a.5.5 0 0 1-.353.146zm-2.14 6.578a.5.5 0 0 1-.354-.147L5 16.777a.5.5 0 1 1 .707-.707l3.49 3.49a.5.5 0 0 1-.354.854zM12 2C6.477 2 2 6.477 2 12a10 10 0 0 0 6.834 9.486c.5.09.683-.216.683-.482 0-.238-.009-.869-.013-1.705-2.782.605-3.369-1.341-3.369-1.341-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.087 2.91.831.091-.646.349-1.086.635-1.337-2.22-.253-4.555-1.112-4.555-4.944 0-1.091.39-1.984 1.029-2.682-.103-.254-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.336c1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.394.1 2.646.64.699 1.026 1.591 1.026 2.682 0 3.841-2.337 4.687-4.565 4.935.359.307.679.917.679 1.852 0 1.335-.012 2.415-.012 2.741 0 .269.18.579.688.481A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10z"/>
-                            </svg>
-                            GitHub Actions
-                        </span>
-                        <span class="about-tech-pill">
-                            <svg viewBox="0 0 512 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M256 48L496 464H16L256 48z"/>
-                            </svg>
-                            Vercel
-                        </span>
-                        <span class="about-tech-pill">
-                            <svg viewBox="0 0 128 128" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M116.3 64.8c-.3-.9-1-1.5-1.9-1.7l-1.8-.3c.7-1.8 1.1-3.7 1.1-5.6 0-8.5-7-15.3-15.7-15.3-1.4 0-2.7.2-4 .5C92.2 37 87 33.5 81 33.5c-8.4 0-15.3 6.4-15.9 14.6-.8-.1-1.5-.2-2.3-.2-7.3 0-13.2 5.8-13.2 13s5.9 13 13.2 13h51.6c1 0 1.9-.6 2.2-1.6l-.3.5z"/>
-                                <path d="M85.3 72.7c.5-.5.7-1.2.5-1.9-.2-.7-.8-1.2-1.5-1.3l-2-.3c1.1-2.5 1.7-5.2 1.7-7.9 0-11.2-9.2-20.3-20.7-20.3-9.9 0-18.3 7-20.2 16.3-1.3-.5-2.7-.8-4.1-.8-6.5 0-11.8 5.2-11.8 11.6S32.5 80 39 80h44c.8 0 1.5-.4 2-.9l.3-.4z"/>
-                            </svg>
-                            Cloudflare
-                        </span>
-                    </div>
-                </div>
-
-                <div class="about-stack-divider"></div>
-
-                <!-- Exploring -->
-                <div class="ap-fade ap-fade-delay-2">
-                    <div class="about-stack-row-label">Exploring / Learning</div>
-                    <div class="about-stack-row">
-                        <span class="about-tech-pill exploring"><i class="fa-brands fa-react"></i> React</span>
-                        <span class="about-tech-pill exploring"><i class="fa-brands fa-vuejs"></i> Vue</span>
-                        <span class="about-tech-pill exploring"><i class="fa-brands fa-sass"></i> Sass / SCSS</span>
-                        <span class="about-tech-pill exploring"><i class="fa-solid fa-database"></i> SQL basics</span>
-                    </div>
-                </div>
-            </div>
+      <div class="about-stack-inner">
+        <div class="about-stack-header ap-fade">
+          <span class="about-stack-eyebrow">The toolkit</span>
+          <h2 class="about-stack-heading">Technologies I reach for.</h2>
         </div>
+
+        <div class="about-stack-group">
+          <!-- Core Web -->
+          <div class="ap-fade">
+            <div class="about-stack-row-label">Core</div>
+            <div class="about-stack-row">
+              <span class="about-tech-pill"
+                ><i class="fa-brands fa-html5"></i> HTML5</span
+              >
+              <span class="about-tech-pill"
+                ><i class="fa-brands fa-css3-alt"></i> CSS3</span
+              >
+              <span class="about-tech-pill"
+                ><i class="fa-brands fa-js"></i> JavaScript</span
+              >
+              <span class="about-tech-pill">
+                <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M0 64c0 35.348 28.652 64 64 64s64-28.652 64-64-28.652-64-64-64S0 28.652 0 64zm102.4-18.133c-.684-2.39-2.9-3.84-5.332-3.584l-12.8 1.366a1.643 1.643 0 00-1.451 1.152 1.618 1.618 0 00.597 1.75l3.543 2.73-8.106 9.643-11.52-11.52a4.27 4.27 0 00-3.2-1.195 4.307 4.307 0 00-3.03 1.536L43.263 67.41a4.266 4.266 0 106.613 5.376L60.16 60.972l11.349 11.349a4.282 4.282 0 006.144-.171l10.752-12.8 2.731 2.731c.511.512 1.28.64 1.877.256.64-.341 1.024-1.024.939-1.75z"
+                  />
+                </svg>
+                Three.js
+              </span>
+              <span class="about-tech-pill"
+                ><i class="fa-brands fa-node-js"></i> Node.js</span
+              >
+            </div>
+          </div>
+
+          <div class="about-stack-divider"></div>
+
+          <!-- Tooling -->
+          <div class="ap-fade ap-fade-delay-1">
+            <div class="about-stack-row-label">Tooling &amp; Deployment</div>
+            <div class="about-stack-row">
+              <span class="about-tech-pill"
+                ><i class="fa-brands fa-git-alt"></i> Git</span
+              >
+              <span class="about-tech-pill"
+                ><i class="fa-brands fa-github"></i> GitHub</span
+              >
+              <span class="about-tech-pill">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M10.984 13.836a.5.5 0 0 1-.353-.146l-3.5-3.5a.5.5 0 0 1 .707-.707l3.146 3.146 7.14-7.14a.5.5 0 0 1 .707.707l-7.494 7.494a.5.5 0 0 1-.353.146zm-2.14 6.578a.5.5 0 0 1-.354-.147L5 16.777a.5.5 0 1 1 .707-.707l3.49 3.49a.5.5 0 0 1-.354.854zM12 2C6.477 2 2 6.477 2 12a10 10 0 0 0 6.834 9.486c.5.09.683-.216.683-.482 0-.238-.009-.869-.013-1.705-2.782.605-3.369-1.341-3.369-1.341-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.087 2.91.831.091-.646.349-1.086.635-1.337-2.22-.253-4.555-1.112-4.555-4.944 0-1.091.39-1.984 1.029-2.682-.103-.254-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.336c1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.394.1 2.646.64.699 1.026 1.591 1.026 2.682 0 3.841-2.337 4.687-4.565 4.935.359.307.679.917.679 1.852 0 1.335-.012 2.415-.012 2.741 0 .269.18.579.688.481A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10z"
+                  />
+                </svg>
+                GitHub Actions
+              </span>
+              <span class="about-tech-pill">
+                <svg
+                  viewBox="0 0 512 512"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path d="M256 48L496 464H16L256 48z" />
+                </svg>
+                Vercel
+              </span>
+              <span class="about-tech-pill">
+                <svg
+                  viewBox="0 0 128 128"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M116.3 64.8c-.3-.9-1-1.5-1.9-1.7l-1.8-.3c.7-1.8 1.1-3.7 1.1-5.6 0-8.5-7-15.3-15.7-15.3-1.4 0-2.7.2-4 .5C92.2 37 87 33.5 81 33.5c-8.4 0-15.3 6.4-15.9 14.6-.8-.1-1.5-.2-2.3-.2-7.3 0-13.2 5.8-13.2 13s5.9 13 13.2 13h51.6c1 0 1.9-.6 2.2-1.6l-.3.5z"
+                  />
+                  <path
+                    d="M85.3 72.7c.5-.5.7-1.2.5-1.9-.2-.7-.8-1.2-1.5-1.3l-2-.3c1.1-2.5 1.7-5.2 1.7-7.9 0-11.2-9.2-20.3-20.7-20.3-9.9 0-18.3 7-20.2 16.3-1.3-.5-2.7-.8-4.1-.8-6.5 0-11.8 5.2-11.8 11.6S32.5 80 39 80h44c.8 0 1.5-.4 2-.9l.3-.4z"
+                  />
+                </svg>
+                Cloudflare
+              </span>
+            </div>
+          </div>
+
+          <div class="about-stack-divider"></div>
+
+          <!-- Exploring -->
+          <div class="ap-fade ap-fade-delay-2">
+            <div class="about-stack-row-label">Exploring / Learning</div>
+            <div class="about-stack-row">
+              <span class="about-tech-pill exploring"
+                ><i class="fa-brands fa-react"></i> React</span
+              >
+              <span class="about-tech-pill exploring"
+                ><i class="fa-brands fa-vuejs"></i> Vue</span
+              >
+              <span class="about-tech-pill exploring"
+                ><i class="fa-brands fa-sass"></i> Sass / SCSS</span
+              >
+              <span class="about-tech-pill exploring"
+                ><i class="fa-solid fa-database"></i> SQL basics</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ========================================= -->
     <!-- 8. Closing CTA                            -->
     <!-- ========================================= -->
     <section class="about-cta ap-fade">
-        <span class="about-cta-eyebrow">What's next</span>
-        <h2 class="about-cta-heading">Ready to build<br>something serious?</h2>
-        <p class="about-cta-sub">
-            Whether you have a clear brief or just an idea that needs shaping —
-            let's talk about it.
-        </p>
-        <div class="about-cta-buttons">
-            <a href="index.html#projects" class="about-cta-btn-primary">
-                <i class="fa-regular fa-folder"></i>
-                View My Projects
-            </a>
-            <a href="index.html#contact" class="about-cta-btn-secondary">
-                <i class="fa-regular fa-envelope"></i>
-                Let's Talk
-            </a>
-        </div>
+      <span class="about-cta-eyebrow">What's next</span>
+      <h2 class="about-cta-heading">Ready to build<br />something serious?</h2>
+      <p class="about-cta-sub">
+        Whether you have a clear brief or just an idea that needs shaping —
+        let's talk about it.
+      </p>
+      <div class="about-cta-buttons">
+        <a href="index.html#projects" class="about-cta-btn-primary">
+          <i class="fa-regular fa-folder"></i>
+          View My Projects
+        </a>
+        <a href="index.html#contact" class="about-cta-btn-secondary">
+          <i class="fa-regular fa-envelope"></i>
+          Let's Talk
+        </a>
+      </div>
     </section>
 
     <!-- ========================================= -->
     <!-- Back to Top                               -->
     <!-- ========================================= -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <i class="fa-solid fa-chevron-up"></i>
+      <i class="fa-solid fa-chevron-up"></i>
     </button>
 
     <!-- ========================================= -->
     <!-- Scripts                                   -->
     <!-- ========================================= -->
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <script src="js/min/about.min.js" defer></script>
 
-</body>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Trailing Line Animation
+        const snakeFill = document.getElementById("snakeFill");
+        if (snakeFill) {
+          // Initial state
+          gsap.set(snakeFill, {
+            strokeDasharray: 1000,
+            strokeDashoffset: 1000,
+          });
+
+          gsap.to(snakeFill, {
+            strokeDashoffset: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: "body",
+              start: "top top",
+              end: "bottom bottom",
+              scrub: 0.5,
+            },
+          });
+        }
+      });
+    </script>
+  </body>
 </html>
