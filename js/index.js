@@ -890,45 +890,46 @@ function renderBlogPage(page) {
 
   let html = '<div class="blog-grid-page">';
 
-  // Top row (up to 3 posts)
-  const topRowPosts = pagePosts.slice(0, 3);
-  if (topRowPosts.length > 0) {
-    html += '<div class="blog-top-row">';
-    topRowPosts.forEach((post, i) => {
-      html += createBlogCardHTML(post);
-    });
-    // Fill empty slots
-    for (let i = topRowPosts.length; i < 3; i++) {
-      html +=
-        '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
-    }
-    html += "</div>";
+  // Quadrant 1 (Top Left) - Large single post
+  html += '<div class="blog-q1">';
+  if (pagePosts[0]) html += createBlogCardHTML(pagePosts[0]);
+  else
+    html +=
+      '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
+  html += "</div>";
+
+  // Quadrant 2 (Top Right) - Split into two stacked posts
+  html += '<div class="blog-q2">';
+  if (pagePosts[1]) html += createBlogCardHTML(pagePosts[1]);
+  else
+    html +=
+      '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
+  if (pagePosts[2]) html += createBlogCardHTML(pagePosts[2]);
+  else
+    html +=
+      '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
+  html += "</div>";
+
+  // Quadrant 3 (Bottom Left) - Split into two stacked posts
+  html += '<div class="blog-q3">';
+  if (pagePosts[3]) html += createBlogCardHTML(pagePosts[3]);
+  else
+    html +=
+      '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
+  if (pagePosts[4]) html += createBlogCardHTML(pagePosts[4]);
+  else
+    html +=
+      '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
+  html += "</div>";
+
+  // Quadrant 4 (Bottom Right) - Single large image block (usually from post 1)
+  html += '<div class="blog-q4">';
+  if (pagePosts.length > 0) {
+    html += createBlogCardHTML(pagePosts[0], true);
+  } else {
+    html += '<div class="blog-black-cube"></div>';
   }
-
-  // Bottom row (up to 2 posts + 1 image box)
-  const bottomRowPosts = pagePosts.slice(3, 5);
-  if (bottomRowPosts.length > 0 || topRowPosts.length === 3) {
-    html += '<div class="blog-bottom-row">';
-
-    if (bottomRowPosts[0]) html += createBlogCardHTML(bottomRowPosts[0]);
-    else
-      html +=
-        '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
-
-    if (bottomRowPosts[1]) html += createBlogCardHTML(bottomRowPosts[1]);
-    else
-      html +=
-        '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
-
-    // Right-most image block
-    if (pagePosts.length > 0) {
-      html += createBlogCardHTML(pagePosts[pagePosts.length - 1], true);
-    } else {
-      html += '<div class="blog-black-cube"></div>';
-    }
-
-    html += "</div>";
-  }
+  html += "</div>";
 
   html += "</div>";
   blogGalleryContainer.innerHTML = html;
