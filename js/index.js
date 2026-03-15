@@ -858,12 +858,13 @@ function createBlogCardHTML(post, isImageBlock = false) {
   }
   return `
     <a href="${post.link}" class="blog-card-v2 glow-card">
+      <div class="card-line card-line-top"></div>
+      <div class="card-line card-line-right"></div>
+      <div class="card-line card-line-bottom"></div>
+      <div class="card-line card-line-left"></div>
       <div class="blog-card-cat-date">
         <span>${post.category || "Engineering"}</span>
         <span>${post.date}</span>
-      </div>
-      <div class="blog-card-icon-container">
-        <i class="fa-solid fa-crosshairs"></i>
       </div>
       <h3 class="blog-card-title">${post.topic}</h3>
       <p class="blog-card-excerpt">${post.description}</p>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="blog-post-html">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,14 +16,14 @@
     <meta property="og:url" content="https://mr-sudo.dev/posts/zero-downtime-migrations.html" />
     <meta property="og:title" content="Zero-Downtime Migrations | Mosa Moleleki" />
     <meta property="og:description" content="A structural approach to database schema evolution at scale without disrupting the active user base." />
-    <meta property="og:image" content="https://mr-sudo.dev/my pictures/blog_features.png" />
+    <meta property="og:image" content="https://mr-sudo.dev/my pictures/dark mode.webp" />
 
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://mr-sudo.dev/posts/zero-downtime-migrations.html" />
     <meta name="twitter:title" content="Zero-Downtime Migrations | Mosa Moleleki" />
     <meta name="twitter:description" content="A structural approach to database schema evolution at scale without disrupting the active user base." />
-    <meta name="twitter:image" content="https://mr-sudo.dev/my pictures/blog_features.png" />
+    <meta name="twitter:image" content="https://mr-sudo.dev/my pictures/dark mode.webp" />
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
@@ -31,7 +31,7 @@
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "headline": "Zero-Downtime Migrations",
-  "image": "https://mr-sudo.dev/my pictures/blog_features.png",
+  "image": "https://mr-sudo.dev/my pictures/dark mode.webp",
   "author": {
     "@type": "Person",
     "name": "Mosa Moleleki",
@@ -52,22 +52,26 @@
 
     <link
       rel="preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js?v=1773563875135"
+      href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js?v=1773586622428"
       as="script"
     />
     <link
       rel="preload"
-      href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js?v=1773563875135"
+      href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js?v=1773586622428"
       as="script"
     />
-    <link rel="preload" as="image" href="../my pictures/blog_features.png" />
-    <link rel="stylesheet" href="../css/min/style.min.css?v=1773563875135" />
-    <link rel="stylesheet" href="../css/all.min.css?v=1773563875135" />
-    <link rel="stylesheet" href="../css/blog-post-v2.css?v=1773563875135" />
+    <link rel="preload" as="image" href="../my pictures/dark mode.webp" />
+    <link rel="stylesheet" href="../css/min/style.min.css?v=1773586622428" />
+    <link rel="stylesheet" href="../css/all.min.css?v=1773586622428" />
+    <link rel="stylesheet" href="../css/blog-post-v2.css?v=1773586622428" />
     <!-- Universal Theme System (non-deferred to prevent flash) -->
-    <script src="../js/min/theme.min.js?v=1773563875135"></script>
+    <script src="../js/min/theme.min.js?v=1773586622428"></script>
   </head>
   <body class="blog-post-page">
+    <!-- Post Progress Bar -->
+    <div class="post-progress-container">
+      <div class="post-progress-bar" id="postProgressBar"></div>
+    </div>
     <!-- Structured Typographic Layout -->
     <div class="blog-post-grid-v2">
       <!-- Strict Left Sidebar -->
@@ -76,6 +80,25 @@
           <a href="../index.html#blog" class="blog-back-btn-v2"
             ><i class="fa-solid fa-arrow-left"></i> ALL POSTS</a
           >
+        </div>
+
+        <!-- Trailing Line Wrapper -->
+        <div class="trailing-line-wrapper">
+          <svg
+            class="trailing-line-svg"
+            viewBox="0 0 2 1000"
+            preserveAspectRatio="none"
+          >
+            <line x1="1" y1="0" x2="1" y2="1000" class="base-line" />
+            <line
+              x1="1"
+              y1="0"
+              x2="1"
+              y2="1000"
+              class="fill-line"
+              id="snakeFill"
+            />
+          </svg>
         </div>
 
         <div class="sidebar-meta-v2">
@@ -138,7 +161,32 @@
           <p class="blog-subtitle-v2">A structural approach to database schema evolution at scale without disrupting the active user base.</p>
         </header>
 
-        <article class="post-content-v2" id="postContent"><p>Content coming soon...</p></article>
+        <article class="post-content-v2" id="postContent"><h2>Building Scalable Layouts in Modern Web</h2>
+<p>Sed ut unde omnis iste natus sit voluptatem accusantium doloremque laudantium, totam aperiam inventore veritatis et architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
+
+<h3>The Challenge With Complex Designs</h3>
+<p>Many traditional architectures fail when stretched into large components that demand flexibility. We needed to solve the issue of grid expansion and contraction without causing DOM layout thrashing or repaints, rendering it exceptionally fast.</p>
+
+<blockquote>
+<p>[!NOTE] The Key to Fluidity</p>
+<p>Responsive design is not just breakpoints. It is fluid typography, fractional grid units (<code>fr</code>), variable constraints and CSS container queries.</p>
+</blockquote>
+
+<pre><code>// Example of grid flexibility logic
+const setupFluidGrid = (containerId) => {
+    const grid = document.getElementById(containerId);
+    grid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(250px, 1fr))';
+    grid.style.gap = '20px';
+};
+</code></pre>
+
+<p>I realized that when I started out, the primary blocker for most new developers was simply structural visualization. If you don't know the exact dimensions of your parent boundary, you can't realistically style the children without rigid breakpoints.</p>
+
+<h3>Designing for The Global User Ecosystem</h3>
+<p>Not every user is browsing over a fast fiber connection in dark mode. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<p>When engineering for optimal user retention, you have to measure paint cycles, the critical rendering path, and how many bytes of CSS you're actually loading. At LaunchPad Studio, I always prioritize minimizing the main thread blocking time. The result is pure, unadulterated performance.</p>
+</article>
 
         <!-- Bottom Navigation -->
         <nav class="post-bottom-nav-v2"><a href="the-architecture-of-modern-interfaces.html" class="nav-btn">&larr; Previous</a> <a href="micro-frontends-a-post-mortem.html" class="nav-btn">Next &rarr;</a></nav>
@@ -148,11 +196,11 @@
     <!-- GSAP for animations -->
     <script
       defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js?v=1773563875135"
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js?v=1773586622428"
     ></script>
     <script
       defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js?v=1773563875135"
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js?v=1773586622428"
     ></script>
 
     <script>

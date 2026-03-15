@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="blog-post-html">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -46,6 +46,10 @@
     <script src="../js/min/theme.min.js"></script>
   </head>
   <body class="blog-post-page">
+    <!-- Post Progress Bar -->
+    <div class="post-progress-container">
+      <div class="post-progress-bar" id="postProgressBar"></div>
+    </div>
     <!-- Structured Typographic Layout -->
     <div class="blog-post-grid-v2">
       <!-- Strict Left Sidebar -->
@@ -54,6 +58,25 @@
           <a href="../index.html#blog" class="blog-back-btn-v2"
             ><i class="fa-solid fa-arrow-left"></i> ALL POSTS</a
           >
+        </div>
+
+        <!-- Trailing Line Wrapper -->
+        <div class="trailing-line-wrapper">
+          <svg
+            class="trailing-line-svg"
+            viewBox="0 0 2 1000"
+            preserveAspectRatio="none"
+          >
+            <line x1="1" y1="0" x2="1" y2="1000" class="base-line" />
+            <line
+              x1="1"
+              y1="0"
+              x2="1"
+              y2="1000"
+              class="fill-line"
+              id="snakeFill"
+            />
+          </svg>
         </div>
 
         <div class="sidebar-meta-v2">

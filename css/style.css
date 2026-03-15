@@ -654,7 +654,6 @@ html {
    TIMELINE / SNAKE ANIMATION LOGIC
    ========================================================================== */
 .clean-timeline-container {
- 
   max-width: 900px;
   margin: 0 auto;
   padding: 100px 20px;
@@ -965,14 +964,16 @@ html {
   opacity: 1;
   transform: scale(1);
 }
-.projects-section-header {
+.projects-section-header,
+.blog-section-header {
   text-align: center;
   margin-top: 200px;
   margin-bottom: 200px;
   position: relative;
   z-index: 10;
 }
-.projects-subtitle {
+.projects-subtitle,
+.blog-subtitle {
   display: block;
   font-size: 0.9rem;
   color: var(--text-muted);
@@ -981,13 +982,15 @@ html {
   margin-bottom: 5px;
   font-weight: 600;
 }
-.projects-title {
+.projects-title,
+.blog-title {
   position: relative;
   display: inline-block;
   margin: 0;
   max-width: 100%;
 }
-.projects-main-text {
+.projects-main-text,
+.blog-main-text {
   position: relative;
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
@@ -995,7 +998,8 @@ html {
   z-index: 2;
   word-break: break-word;
 }
-.projects-ghost-text {
+.projects-ghost-text,
+.blog-ghost-text {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -1012,7 +1016,7 @@ html {
 .glow-card {
   position: relative;
   background: var(--glass-border);
-  border-radius: 16px;
+  border-radius: 0;
 }
 .glow-card::after,
 .glow-card::before {
@@ -1079,9 +1083,11 @@ html {
   display: flex;
   background: var(--glass-bg, rgba(255, 255, 255, 0.03));
   border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.05));
-  border-radius: 20px;
+  border-radius: 0;
   overflow: hidden;
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.3s ease;
   min-height: 380px;
 }
 .project-row:hover {
@@ -1092,16 +1098,18 @@ html {
   flex: 1 1 50%;
   position: relative;
   overflow: hidden;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
 }
-.project-row-img, .project-row-video {
-  
+.project-row-img,
+.project-row-video {
   height: 100%;
   object-fit: cover;
   position: absolute;
   top: 0;
   left: 0;
-  transition: opacity 0.4s ease, transform 0.5s ease;
+  transition:
+    opacity 0.4s ease,
+    transform 0.5s ease;
 }
 .project-row-video {
   opacity: 0;
