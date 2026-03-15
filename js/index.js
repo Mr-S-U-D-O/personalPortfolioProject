@@ -466,45 +466,9 @@ j &&
 const F = document.querySelector(".cv-nav");
 (F &&
   (F.addEventListener("mouseenter", A), F.addEventListener("mouseleave", P)),
-  // CV Download functionality
+  // Simple CV link handled by HTML <a> tag
   (() => {
-    const resumeLink = document.getElementById("resumeLink");
-    if (resumeLink) {
-      resumeLink.addEventListener("click", async (e) => {
-        e.preventDefault();
-
-        // 1. Open external digital resume in a new tab
-        window.open(
-          "https://rxresu.me/molelekishoez/junior-web-developer",
-          "_blank",
-          "noopener,noreferrer",
-        );
-
-        // 2. Force local PDF download
-        try {
-          const response = await fetch("./cv/mosa_moleleki_cv.pdf");
-          const blob = await response.blob();
-          const url = window.URL.createObjectURL(blob);
-          const downloadAnchor = document.createElement("a");
-          downloadAnchor.style.display = "none";
-          downloadAnchor.href = url;
-          downloadAnchor.download = "Mosa_Moleleki_CV.pdf";
-          document.body.appendChild(downloadAnchor);
-          downloadAnchor.click();
-          window.URL.revokeObjectURL(url);
-          document.body.removeChild(downloadAnchor);
-        } catch (err) {
-          console.error(
-            "Download failed, falling back to simple download:",
-            err,
-          );
-          const fallback = document.createElement("a");
-          fallback.href = "./cv/mosa_moleleki_cv.pdf";
-          fallback.download = "Mosa_Moleleki_CV.pdf";
-          fallback.click();
-        }
-      });
-    }
+    // No custom JS needed, default behavior of <a> tag in index.html will handle it
   })(),
   document.addEventListener(
     "mouseenter",
