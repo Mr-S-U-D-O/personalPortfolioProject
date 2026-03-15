@@ -4,10 +4,62 @@
     "image": "my pictures/blog_features.png",
     "date": "MARCH 2, 2026",
     "topic": "Multilingual Websites",
+    "category": "Development",
+    "author": "Mosa Moleleki",
     "description": "How to build websites that speak multiple languages — exploring i18n strategies, locale switching, and the UX considerations that make global audiences feel at home.",
-    "link": "blog-1.html",
+    "link": "posts/multilingual-websites.html",
     "content": "<h2>Building for a Global Audience</h2>\n<p>Sed ut unde omnis iste natus sit voluptatem accus antium laudantium totam aperiam inventore veritatis et architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\n<blockquote>\n<p>[!CAUTION] The Complexity of i18n\nThe hardest part about internationalization (i18n) isn&#39;t necessarily the translation itself, but ensuring the UI accommodates fluctuating string lengths, right-to-left languages (RTL), and different cultural dates or currency formats.</p>\n</blockquote>\n<blockquote>\n<p>[!TIP] CSS Logical Properties\nInstead of using <code>margin-left</code> or <code>padding-right</code>, switch over to <strong>CSS Logical Properties</strong> like <code>margin-inline-start</code> or <code>padding-inline-end</code>. This guarantees your layout will effortlessly flip when reading Arabic or Hebrew without writing an entirely new stylesheet!</p>\n</blockquote>\n<h3>Summary</h3>\n<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>\n",
     "prev": null,
     "next": "2"
+  },
+  {
+    "id": "2",
+    "image": "my pictures/blog_features.png",
+    "date": "MARCH 15, 2026",
+    "topic": "The Architecture of Modern Interfaces",
+    "category": "Design",
+    "author": "Mosa Moleleki",
+    "description": "By eliminating photography and relying entirely on typography, visible grids, and structural geometry, we create an aesthetic that feels raw.",
+    "link": "posts/multilingual-websites.html"
+  },
+  {
+    "id": "3",
+    "image": "my pictures/blog_features.png",
+    "date": "APRIL 5, 2026",
+    "topic": "Zero-Downtime Migrations",
+    "category": "Engineering",
+    "author": "Mosa Moleleki",
+    "description": "A structural approach to database schema evolution at scale without disrupting the active user base.",
+    "link": "posts/multilingual-websites.html"
+  },
+  {
+    "id": "4",
+    "image": "my pictures/blog_features.png",
+    "date": "MAY 12, 2026",
+    "topic": "Micro-Frontends: A Post-Mortem",
+    "category": "Engineering",
+    "author": "Mosa Moleleki",
+    "description": "Lessons learned from a two-year structural refactor moving our monolithic platform to a federated frontend approach.",
+    "link": "posts/multilingual-websites.html"
+  },
+  {
+    "id": "5",
+    "image": "my pictures/blog_features.png",
+    "date": "JUNE 20, 2026",
+    "topic": "State Management in 2026",
+    "category": "Engineering",
+    "author": "Mosa Moleleki",
+    "description": "Why we abandoned complex global stores for localized structural context.",
+    "link": "posts/multilingual-websites.html"
+  },
+  {
+    "id": "6",
+    "image": "my pictures/blog_features.png",
+    "date": "JULY 10, 2026",
+    "topic": "Optimizing CI/CD Pipelines",
+    "category": "Engineering",
+    "author": "Mosa Moleleki",
+    "description": "Reducing build times by 40% using modular container caching strategies.",
+    "link": "posts/multilingual-websites.html"
   }
 ]

@@ -839,3 +839,157 @@ if (clearSearchBtn && gallerySearch) {
     gallerySearch.focus();
   });
 }
+
+// =========================================================================
+// BLOG GRID PAGINATION & RENDERING
+// =========================================================================
+const blogGalleryContainer = document.getElementById("blogGalleryContainer");
+const blogPaginationControls = document.getElementById(
+  "blogPaginationControls",
+);
+
+let blogData = [];
+let currentBlogPage = 1;
+const blogsPerPage = 5;
+
+function createBlogCardHTML(post, isImageBlock = false) {
+  if (isImageBlock) {
+    return `<div class="blog-black-cube" style="background-image: url('${post.image}'); background-size: cover; background-position: center;"></div>`;
+  }
+  return `
+    <a href="${post.link}" class="blog-card-v2 glow-card">
+      <div class="blog-card-cat-date">
+        <span>${post.category || "Engineering"}</span>
+        <span>${post.date}</span>
+      </div>
+      <div class="blog-card-icon-container">
+        <i class="fa-solid fa-crosshairs"></i>
+      </div>
+      <h3 class="blog-card-title">${post.topic}</h3>
+      <p class="blog-card-excerpt">${post.description}</p>
+      <div class="blog-card-footer">
+        <span>By ${post.author || "Mosa Moleleki"}</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </div>
+    </a>
+  `;
+}
+
+function renderBlogPage(page) {
+  if (!blogGalleryContainer) return;
+
+  const startIndex = (page - 1) * blogsPerPage;
+  const endIndex = startIndex + blogsPerPage;
+  const pagePosts = blogData.slice(startIndex, endIndex);
+
+  if (pagePosts.length === 0) {
+    blogGalleryContainer.innerHTML =
+      '<p style="text-align:center; padding: 2rem;">No articles found.</p>';
+    return;
+  }
+
+  let html = '<div class="blog-grid-page">';
+
+  // Top row (up to 3 posts)
+  const topRowPosts = pagePosts.slice(0, 3);
+  if (topRowPosts.length > 0) {
+    html += '<div class="blog-top-row">';
+    topRowPosts.forEach((post, i) => {
+      html += createBlogCardHTML(post);
+    });
+    // Fill empty slots
+    for (let i = topRowPosts.length; i < 3; i++) {
+      html +=
+        '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
+    }
+    html += "</div>";
+  }
+
+  // Bottom row (up to 2 posts + 1 image box)
+  const bottomRowPosts = pagePosts.slice(3, 5);
+  if (bottomRowPosts.length > 0 || topRowPosts.length === 3) {
+    html += '<div class="blog-bottom-row">';
+
+    if (bottomRowPosts[0]) html += createBlogCardHTML(bottomRowPosts[0]);
+    else
+      html +=
+        '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
+
+    if (bottomRowPosts[1]) html += createBlogCardHTML(bottomRowPosts[1]);
+    else
+      html +=
+        '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
+
+    // Right-most image block
+    if (pagePosts.length > 0) {
+      html += createBlogCardHTML(pagePosts[pagePosts.length - 1], true);
+    } else {
+      html += '<div class="blog-black-cube"></div>';
+    }
+
+    html += "</div>";
+  }
+
+  html += "</div>";
+  blogGalleryContainer.innerHTML = html;
+
+  // Re-attach hover logic for glow effect
+  blogGalleryContainer.querySelectorAll(".glow-card").forEach((card) => {
+    card.addEventListener("pointermove", (e) => {
+      const o = card.getBoundingClientRect();
+      card.style.setProperty("--x", e.clientX - o.left + "px");
+      card.style.setProperty("--y", e.clientY - o.top + "px");
+    });
+  });
+}
+
+function updateBlogPaginationControls() {
+  if (!blogPaginationControls) return;
+  const totalPages = Math.ceil(blogData.length / blogsPerPage);
+
+  if (totalPages <= 1) {
+    blogPaginationControls.style.display = "none";
+    return;
+  }
+
+  blogPaginationControls.style.display = "flex";
+  blogPaginationControls.innerHTML = `
+    <button class="blog-page-btn" id="blogPrevBtn" ${currentBlogPage === 1 ? "disabled" : ""}>
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+    <div class="blog-page-info">PAGE ${currentBlogPage} OF ${totalPages}</div>
+    <button class="blog-page-btn" id="blogNextBtn" ${currentBlogPage === totalPages ? "disabled" : ""}>
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  `;
+
+  document.getElementById("blogPrevBtn")?.addEventListener("click", () => {
+    if (currentBlogPage > 1) {
+      if (typeof S === "function") S(); // sound
+      currentBlogPage--;
+      renderBlogPage(currentBlogPage);
+      updateBlogPaginationControls();
+    }
+  });
+
+  document.getElementById("blogNextBtn")?.addEventListener("click", () => {
+    if (currentBlogPage < totalPages) {
+      if (typeof S === "function") S(); // sound
+      currentBlogPage++;
+      renderBlogPage(currentBlogPage);
+      updateBlogPaginationControls();
+    }
+  });
+}
+
+// Fetch loop
+if (blogGalleryContainer) {
+  fetch("./data/blog.json")
+    .then((res) => res.json())
+    .then((data) => {
+      blogData = data;
+      renderBlogPage(currentBlogPage);
+      updateBlogPaginationControls();
+    })
+    .catch((err) => console.error("Error loading blog data:", err));
+}

@@ -1,281 +1,298 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{TITLE}} | Mosa Moleleki</title>
     <!-- Dynamic SEO Meta Tags -->
-    <meta name="description" content="{{DESCRIPTION}}">
-    <meta name="author" content="{{AUTHOR}}">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#0a0a0a">
-    <link rel="canonical" href="{{PAGE_URL}}">
-    
+    <meta name="description" content="{{DESCRIPTION}}" />
+    <meta name="author" content="{{AUTHOR}}" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <link rel="canonical" href="{{PAGE_URL}}" />
+
     <!-- Open Graph (LinkedIn/Discord/Facebook) -->
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="{{PAGE_URL}}">
-    <meta property="og:title" content="{{TITLE}} | Mosa Moleleki">
-    <meta property="og:description" content="{{DESCRIPTION}}">
-    <meta property="og:image" content="{{OG_IMAGE}}">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{PAGE_URL}}" />
+    <meta property="og:title" content="{{TITLE}} | Mosa Moleleki" />
+    <meta property="og:description" content="{{DESCRIPTION}}" />
+    <meta property="og:image" content="{{OG_IMAGE}}" />
 
     <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="{{PAGE_URL}}">
-    <meta name="twitter:title" content="{{TITLE}} | Mosa Moleleki">
-    <meta name="twitter:description" content="{{DESCRIPTION}}">
-    <meta name="twitter:image" content="{{OG_IMAGE}}">
-    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="{{PAGE_URL}}" />
+    <meta name="twitter:title" content="{{TITLE}} | Mosa Moleleki" />
+    <meta name="twitter:description" content="{{DESCRIPTION}}" />
+    <meta name="twitter:image" content="{{OG_IMAGE}}" />
+
     <!-- Schema.org JSON-LD -->
     {{JSON_LD}}
-    
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" as="script">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" as="script">
-    <link rel="preload" as="image" href="{{HERO_IMAGE}}">
-    <link rel="stylesheet" href="../css/min/style.min.css">
-    <link rel="stylesheet" href="../css/all.min.css">
-    <link rel="stylesheet" href="../css/min/blog-post.min.css">
+
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+      as="script"
+    />
+    <link
+      rel="preload"
+      href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+      as="script"
+    />
+    <link rel="preload" as="image" href="{{HERO_IMAGE}}" />
+    <link rel="stylesheet" href="../css/min/style.min.css" />
+    <link rel="stylesheet" href="../css/all.min.css" />
+    <link rel="stylesheet" href="../css/blog-post-v2.css" />
     <!-- Universal Theme System (non-deferred to prevent flash) -->
     <script src="../js/min/theme.min.js"></script>
-</head>
-<body class="blog-post-page">
-
-    <!-- Theme Toggle -->
-    <div class="utility-toggles">
-        <button class="theme-toggle" data-theme-toggle aria-label="Toggle Dark Mode">
-            <i class="fa-solid fa-moon"></i>
-        </button>
-    </div>
-
-    <!-- Progress Bar -->
-    <div class="post-progress-bar" id="postProgressBar"></div>
-
-    <!-- Back Button -->
-    <div class="back-home-wrapper fade-element">
-        <a href="../blog.html" class="back-home-btn"><i class="fa-solid fa-arrow-left"></i> Back to Blog</a>
-    </div>
-
-    <!-- Hero Section -->
-    <header class="post-hero">
-        <h1 class="post-hero-title gradient-text">{{TITLE}}</h1>
-        <div class="post-hero-meta">
-            <span class="post-date"><i class="fa-regular fa-calendar"></i> {{DATE}}</span>
-            <span class="post-reading-time" id="readingTime"><i class="fa-regular fa-clock"></i> 5 min read</span>
-        </div>
-        <div class="post-hero-image-container">
-            <img src="{{HERO_IMAGE}}" alt="{{TITLE}}" class="post-hero-img" fetchpriority="high" onerror="this.src='../my pictures/dark mode.webp'; this.onerror=null;">
-        </div>
-    </header>
-
-    <!-- Asymmetric Layout -->
-    <div class="post-layout">
-        
-        <!-- Sidebar -->
-        <aside class="post-sidebar">
-            <div class="post-author">
-                <img src="../my pictures/dark mode.webp" alt="Mosa Moleleki" class="post-author-img" loading="lazy">
-                <div class="post-author-info">
-                    <h4>Mosa Moleleki</h4>
-                    <p>Front-End Developer</p>
-                </div>
-            </div>
-
-            <div class="post-toc">
-                <h4>Table of Contents</h4>
-                <ul id="tocList">
-                    <!-- Injected by JS -->
-                </ul>
-            </div>
-
-            <!-- Animated Trailing Line (Z-Snake) anchored to TOC -->
-            <div class="trailing-line-wrapper">
-                <svg class="snake-line-svg" viewBox="0 0 100 1400" preserveAspectRatio="none">
-                    <defs>
-                        <linearGradient id="snakeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="var(--accent-color)" />
-                            <stop offset="100%" stop-color="var(--accent-color)" />
-                        </linearGradient>
-                    </defs>
-                    <path class="snake-track" d="M 50 0 V 300 Q 50 350 10 350 H 10 Q -30 350 -30 400 V 600 Q -30 650 10 650 H 90 Q 130 650 130 700 V 1000 Q 130 1050 90 1050 H 10 Q -30 1050 -30 1100 V 1400" />
-                    <path class="snake-fill" id="snakeFill" d="M 50 0 V 300 Q 50 350 10 350 H 10 Q -30 350 -30 400 V 600 Q -30 650 10 650 H 90 Q 130 650 130 700 V 1000 Q 130 1050 90 1050 H 10 Q -30 1050 -30 1100 V 1400" />
-                </svg>
-            </div>
-
-            <div class="post-share">
-                <a href="https://twitter.com/intent/tweet?url={{PAGE_URL}}&text={{TITLE}}" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Share on Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url={{PAGE_URL}}&title={{TITLE}}" target="_blank" rel="noopener noreferrer" class="share-btn" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <button class="share-btn" id="copyLinkBtn" aria-label="Copy Link"><i class="fa-solid fa-link"></i></button>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <div class="post-content-wrapper fade-element">
-            <article class="post-content" id="postContent">
-                {{CONTENT}}
-            </article>
-
-            <!-- Bottom Navigation -->
-            <nav class="post-bottom-nav">
-                {{PREV_LINK}}
-                {{NEXT_LINK}}
-            </nav>
+  </head>
+  <body class="blog-post-page">
+    <!-- Structured Typographic Layout -->
+    <div class="blog-post-grid-v2">
+      <!-- Strict Left Sidebar -->
+      <aside class="blog-sidebar-v2">
+        <div class="sidebar-top-v2">
+          <a href="../index.html#blog" class="blog-back-btn-v2"
+            ><i class="fa-solid fa-arrow-left"></i> ALL POSTS</a
+          >
         </div>
 
+        <div class="sidebar-meta-v2">
+          <div class="meta-item-v2">
+            <span class="meta-label-v2">DATE</span>
+            <span class="meta-value-v2">{{DATE}}</span>
+          </div>
+          <div class="meta-item-v2">
+            <span class="meta-label-v2">CATEGORY</span>
+            <span class="meta-value-v2">{{CATEGORY}}</span>
+          </div>
+          <div class="meta-item-v2">
+            <span class="meta-label-v2">READ TIME</span>
+            <span class="meta-value-v2" id="readingTime">5 min read</span>
+          </div>
+
+          <div class="meta-item-v2 author-block-v2">
+            <span class="meta-label-v2">AUTHOR</span>
+            <div class="author-display-v2">
+              <img
+                src="../my pictures/dark mode.webp"
+                alt="Author"
+                class="author-img-v2"
+              />
+              <span class="meta-value-v2" style="text-transform: none"
+                >{{AUTHOR}}</span
+              >
+            </div>
+          </div>
+
+          <div class="post-share-v2">
+            <span class="meta-label-v2">SHARE</span>
+            <div class="share-links-v2">
+              <a
+                href="https://twitter.com/intent/tweet?url={{PAGE_URL}}&text={{TITLE}}"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Share on Twitter"
+                ><i class="fa-brands fa-x-twitter"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url={{PAGE_URL}}&title={{TITLE}}"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Share on LinkedIn"
+                ><i class="fa-brands fa-linkedin-in"></i
+              ></a>
+              <button id="copyLinkBtn" aria-label="Copy Link">
+                <i class="fa-solid fa-link"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="blog-main-v2 fade-element">
+        <header class="blog-header-v2">
+          <h1 class="blog-massive-title">{{TITLE}}</h1>
+          <p class="blog-subtitle-v2">{{DESCRIPTION}}</p>
+        </header>
+
+        <article class="post-content-v2" id="postContent">{{CONTENT}}</article>
+
+        <!-- Bottom Navigation -->
+        <nav class="post-bottom-nav-v2">{{PREV_LINK}} {{NEXT_LINK}}</nav>
+      </main>
     </div>
 
     <!-- GSAP for animations -->
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
+    ></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            gsap.registerPlugin(ScrollTrigger);
+      document.addEventListener("DOMContentLoaded", () => {
+        gsap.registerPlugin(ScrollTrigger);
 
-            // 1. Progress Bar
-            gsap.to('#postProgressBar', {
-                width: '100%',
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: document.body,
-                    start: 'top top',
-                    end: 'bottom bottom',
-                    scrub: 0.2
-                }
-            });
-
-            // 2. Generate TOC & Calculate Reading Time
-            const content = document.getElementById('postContent');
-            const headings = content.querySelectorAll('h2, h3');
-            const tocList = document.getElementById('tocList');
-            
-            // Reading time
-            const text = content.innerText || content.textContent;
-            const words = text.trim().split(/\s+/).length;
-            const wpm = 225; // Average reading speed
-            const time = Math.max(1, Math.ceil(words / wpm));
-            document.getElementById('readingTime').innerHTML = `<i class="fa-regular fa-clock"></i> ${time} min read`;
-
-            if (headings.length === 0) {
-                document.querySelector('.post-toc').style.display = 'none';
-                if(document.querySelector('.trailing-line-wrapper')) {
-                    document.querySelector('.trailing-line-wrapper').style.display = 'none';
-                }
-            } else {
-                headings.forEach((heading, index) => {
-                    const id = heading.id || `heading-${index}`;
-                    heading.id = id;
-
-                    const li = document.createElement('li');
-                    const a = document.createElement('a');
-                    a.href = `#${id}`;
-                    a.textContent = heading.textContent;
-                    if (heading.tagName.toLowerCase() === 'h3') {
-                        a.style.paddingLeft = '15px';
-                        a.style.fontSize = '0.9rem';
-                    }
-                    li.appendChild(a);
-                    tocList.appendChild(li);
-                });
-
-                // 3. Highlight TOC on Scroll
-                const observerOptions = {
-                    root: null,
-                    rootMargin: '0px 0px -80% 0px',
-                    threshold: 0
-                };
-
-                const tocLinks = tocList.querySelectorAll('a');
-                
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            tocLinks.forEach(link => {
-                                link.classList.remove('active');
-                                if (link.getAttribute('href') === `#${entry.target.id}`) {
-                                    link.classList.add('active');
-                                }
-                            });
-                        }
-                    });
-                }, observerOptions);
-
-                headings.forEach(h => observer.observe(h));
-
-                // Smooth scroll for TOC links
-                tocLinks.forEach(link => {
-                    link.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const targetId = link.getAttribute('href').substring(1);
-                        const targetEl = document.getElementById(targetId);
-                        if (targetEl) {
-                            const yOffset = -80;
-                            const y = targetEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                            window.scrollTo({top: y, behavior: 'smooth'});
-                        }
-                    });
-                });
-            }
-
-            // 4. Trailing Line Animation (Snake SVG)
-            const snakeFill = document.getElementById('snakeFill');
-            if (snakeFill && headings.length > 0) {
-                const length = snakeFill.getTotalLength();
-                gsap.set(snakeFill, { strokeDasharray: length, strokeDashoffset: length });
-
-                gsap.to(snakeFill, {
-                    strokeDashoffset: 0,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: '.post-layout',
-                        start: 'top 100px',
-                        end: 'bottom center',
-                        scrub: 0.5
-                    }
-                });
-            }
-
-            // 5. Fade Up Elements on Scroll
-            const fadeElements = document.querySelectorAll('.fade-element, .post-content > h2, .post-content > p, .post-content > blockquote, .post-content > pre');
-            fadeElements.forEach(el => {
-                gsap.fromTo(el, 
-                    { opacity: 0, y: 40 },
-                    {
-                        opacity: 1, 
-                        y: 0,
-                        duration: 0.8,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: el,
-                            start: 'top 85%',
-                            toggleActions: 'play none none reverse'
-                        }
-                    }
-                );
-            });
-
-            // 6. Copy Link Button
-            const copyBtn = document.getElementById('copyLinkBtn');
-            if (copyBtn) {
-                copyBtn.addEventListener('click', () => {
-                    navigator.clipboard.writeText(window.location.href).then(() => {
-                        const icon = copyBtn.querySelector('i');
-                        icon.className = 'fa-solid fa-check';
-                        setTimeout(() => {
-                            icon.className = 'fa-solid fa-link';
-                        }, 2000);
-                    });
-                });
-            }
-            // 7. Wire up universal theme toggle
-            if (window.ThemeSystem) window.ThemeSystem.init();
+        // 1. Progress Bar
+        gsap.to("#postProgressBar", {
+          width: "100%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: document.body,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.2,
+          },
         });
+
+        // 2. Generate TOC & Calculate Reading Time
+        const content = document.getElementById("postContent");
+        const headings = content.querySelectorAll("h2, h3");
+        const tocList = document.getElementById("tocList");
+
+        // Reading time
+        const text = content.innerText || content.textContent;
+        const words = text.trim().split(/\s+/).length;
+        const wpm = 225; // Average reading speed
+        const time = Math.max(1, Math.ceil(words / wpm));
+        document.getElementById("readingTime").innerHTML =
+          `<i class="fa-regular fa-clock"></i> ${time} min read`;
+
+        if (headings.length === 0) {
+          document.querySelector(".post-toc").style.display = "none";
+          if (document.querySelector(".trailing-line-wrapper")) {
+            document.querySelector(".trailing-line-wrapper").style.display =
+              "none";
+          }
+        } else {
+          headings.forEach((heading, index) => {
+            const id = heading.id || `heading-${index}`;
+            heading.id = id;
+
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.href = `#${id}`;
+            a.textContent = heading.textContent;
+            if (heading.tagName.toLowerCase() === "h3") {
+              a.style.paddingLeft = "15px";
+              a.style.fontSize = "0.9rem";
+            }
+            li.appendChild(a);
+            tocList.appendChild(li);
+          });
+
+          // 3. Highlight TOC on Scroll
+          const observerOptions = {
+            root: null,
+            rootMargin: "0px 0px -80% 0px",
+            threshold: 0,
+          };
+
+          const tocLinks = tocList.querySelectorAll("a");
+
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                tocLinks.forEach((link) => {
+                  link.classList.remove("active");
+                  if (link.getAttribute("href") === `#${entry.target.id}`) {
+                    link.classList.add("active");
+                  }
+                });
+              }
+            });
+          }, observerOptions);
+
+          headings.forEach((h) => observer.observe(h));
+
+          // Smooth scroll for TOC links
+          tocLinks.forEach((link) => {
+            link.addEventListener("click", (e) => {
+              e.preventDefault();
+              const targetId = link.getAttribute("href").substring(1);
+              const targetEl = document.getElementById(targetId);
+              if (targetEl) {
+                const yOffset = -80;
+                const y =
+                  targetEl.getBoundingClientRect().top +
+                  window.pageYOffset +
+                  yOffset;
+                window.scrollTo({ top: y, behavior: "smooth" });
+              }
+            });
+          });
+        }
+
+        // 4. Trailing Line Animation (Snake SVG)
+        const snakeFill = document.getElementById("snakeFill");
+        if (snakeFill && headings.length > 0) {
+          const length = snakeFill.getTotalLength();
+          gsap.set(snakeFill, {
+            strokeDasharray: length,
+            strokeDashoffset: length,
+          });
+
+          gsap.to(snakeFill, {
+            strokeDashoffset: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".post-layout",
+              start: "top 100px",
+              end: "bottom center",
+              scrub: 0.5,
+            },
+          });
+        }
+
+        // 5. Fade Up Elements on Scroll
+        const fadeElements = document.querySelectorAll(
+          ".fade-element, .post-content > h2, .post-content > p, .post-content > blockquote, .post-content > pre",
+        );
+        fadeElements.forEach((el) => {
+          gsap.fromTo(
+            el,
+            { opacity: 0, y: 40 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 85%",
+                toggleActions: "play none none reverse",
+              },
+            },
+          );
+        });
+
+        // 6. Copy Link Button
+        const copyBtn = document.getElementById("copyLinkBtn");
+        if (copyBtn) {
+          copyBtn.addEventListener("click", () => {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+              const icon = copyBtn.querySelector("i");
+              icon.className = "fa-solid fa-check";
+              setTimeout(() => {
+                icon.className = "fa-solid fa-link";
+              }, 2000);
+            });
+          });
+        }
+        // 7. Wire up universal theme toggle
+        if (window.ThemeSystem) window.ThemeSystem.init();
+      });
     </script>
 
     <!-- ========================================= -->
     <!-- Back to Top                               -->
     <!-- ========================================= -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
-        <i class="fa-solid fa-chevron-up"></i>
+      <i class="fa-solid fa-chevron-up"></i>
     </button>
-
-</body>
+  </body>
 </html>

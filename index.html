@@ -76,7 +76,7 @@
     <!-- ===================================================== -->
     <link rel="stylesheet" href="css/min/style.min.css?v=1773556329307">
     <link rel="stylesheet" href="css/all.min.css?v=1773556329307">
-    <link rel="stylesheet" href="css/min/blog.min.css?v=1773556329307">
+    <link rel="stylesheet" href="css/blog-grid.css">
     <!-- Universal Theme System (non-deferred — applies theme before first paint) -->
     <script src="js/min/theme.min.js?v=1773556329307"></script>
     <!-- ===================== EmailJS ===================== -->
@@ -530,25 +530,11 @@
             </h2>
         </div>
         
-        <div class="blog-gallery-grid">
-            <!-- BLOG_GALLERY_START -->
-
-            <div class="blog-gallery-item">
-                <div class="blog-gallery-image-wrapper">
-                    <img src="my pictures/blog_features.png" alt="Multilingual Websites" loading="lazy">
-                </div>
-                <div class="blog-gallery-content">
-                    <div class="blog-gallery-ghost-number">01</div>
-                    <div class="blog-gallery-text-content">
-                        <h3 class="blog-gallery-topic">Multilingual Websites</h3>
-                        <p class="blog-gallery-date">MARCH 2, 2026</p>
-                        <p class="blog-gallery-desc">How to build websites that speak multiple languages — exploring i18n strategies, locale switching, and the UX considerations that make global audiences feel at home.</p>
-                        <a href="posts/multilingual-websites.html" class="blog-gallery-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 3rem; grid-column: 1 / -1; width: 100%;">
-                <a href="blog.html" class="lets-talk-btn" style="display: inline-block; text-decoration: none;">See All Posts</a>
+        <div class="blog-gallery-grid-v2" id="blogGalleryContainer">
+            <!-- Populated via Javascript into 5-post chunks -->
+        </div>
+            <div style="text-align: center; margin-top: 3rem; grid-column: 1 / -1; width: 100%;" class="blog-pagination-controls" id="blogPaginationControls">
+                <!-- Pagination arrows will be injected here via JS -->
             </div>
             <!-- BLOG_GALLERY_END -->
         </div>
@@ -661,7 +647,7 @@
                     <a href="#heroSection" class="footer-nav-link">Home</a>
                     <a href="#about" class="footer-nav-link">About</a>
                     <a href="#projects" class="footer-nav-link">Projects</a>
-                    <a href="blog.html" class="footer-nav-link">Articles</a>
+                    <a href="#blog" class="footer-nav-link">Articles</a>
                     <a href="#contact" class="footer-nav-link">Contact</a>
                     <a href="sitemap.html" class="footer-nav-link">Sitemap</a>
                 </nav>
