@@ -1,35 +1,13 @@
 [
-    {
-        "id": "1",
-        "image": "my pictures/blog_features.png",
-        "date": "MARCH 2, 2026",
-        "topic": "Multilingual Websites",
-        "description": "How to build websites that speak multiple languages — exploring i18n strategies, locale switching, and the UX considerations that make global audiences feel at home.",
-        "link": "blog-1.html",
-        "content": "<h2>Building for a Global Audience</h2>\n<p>Sed ut unde omnis iste natus sit voluptatem accus antium laudantium totam aperiam inventore veritatis et architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\n<blockquote>\n<p>[!CAUTION] The Complexity of i18n\nThe hardest part about internationalization (i18n) isn&#39;t necessarily the translation itself, but ensuring the UI accommodates fluctuating string lengths, right-to-left languages (RTL), and different cultural dates or currency formats.</p>\n</blockquote>\n<blockquote>\n<p>[!TIP] CSS Logical Properties\nInstead of using <code>margin-left</code> or <code>padding-right</code>, switch over to <strong>CSS Logical Properties</strong> like <code>margin-inline-start</code> or <code>padding-inline-end</code>. This guarantees your layout will effortlessly flip when reading Arabic or Hebrew without writing an entirely new stylesheet!</p>\n</blockquote>\n<h3>Summary</h3>\n<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>\n",
-        "prev": null,
-        "next": "2"
-    },
-    {
-        "id": "2",
-        "image": "my pictures/blog_feedback.png",
-        "date": "MARCH 2, 2026",
-        "topic": "Online Feedbacks",
-        "description": "A deep dive into collecting, analysing, and acting on user feedback online — from ratings and reviews to heatmaps and session recordings.",
-        "link": "blog-2.html",
-        "content": "<h2>Automating User Insights</h2>\n<p>Sed ut unde omnis iste natus sit voluptatem accus antium laudantium totam aperiam inventore veritatis et architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\n<blockquote>\n<p>[!CAUTION] The Noise Problem\nWhen you open the floodgates to online feedback, the sheer volume of noise can drown out the signal. You end up reading thousands of identical bug reports or generic complaints.</p>\n</blockquote>\n<blockquote>\n<p>[!TIP] The Solution: NLP Filtering\nWe implemented a lightweight NLP classifier over our incoming feedback ingest stream. It automatically categorizes feedback into <code>Feature Request</code>, <code>Bug Report</code>, and <code>UX Complaint</code>, and routes them to the correct PM&#39;s backlog.</p>\n</blockquote>\n<h3>Summary</h3>\n<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>\n",
-        "prev": "1",
-        "next": "3"
-    },
-    {
-        "id": "3",
-        "image": "my pictures/blog_multilingual.png",
-        "date": "MARCH 2, 2026",
-        "topic": "Features Integration",
-        "description": "A practical guide to integrating third-party features — APIs, auth, analytics, payments — into modern web apps without sacrificing performance or maintainability.",
-        "link": "blog-3.html",
-        "content": "<h2>Handling Dependencies Like a Pro</h2>\n<p>Sed ut unde omnis iste natus sit voluptatem accus antium laudantium totam aperiam inventore veritatis et architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\n<blockquote>\n<p>[!CAUTION] Integration Hell\nDropping a shiny new feature into an existing monolithic codebase often breaks three other unrelated things. Identifying the blast radius of a new integration is terrifying in a large repo.</p>\n</blockquote>\n<blockquote>\n<p>[!TIP] Feature Flags &amp; Strangler Fig\nUtilize feature flags to conditionally roll out the new integration. Pair this with the Strangler Fig pattern where you slowly route traffic to the new microservice instead of doing a risky &quot;Big Bang&quot; release.</p>\n</blockquote>\n<h3>Summary</h3>\n<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>\n",
-        "prev": "2",
-        "next": null
-    }
+  {
+    "id": "1",
+    "image": "my pictures/blog_features.png",
+    "date": "MARCH 2, 2026",
+    "topic": "Multilingual Websites",
+    "description": "How to build websites that speak multiple languages — exploring i18n strategies, locale switching, and the UX considerations that make global audiences feel at home.",
+    "link": "blog-1.html",
+    "content": "<h2>Building for a Global Audience</h2>\n<p>Sed ut unde omnis iste natus sit voluptatem accus antium laudantium totam aperiam inventore veritatis et architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>\n<blockquote>\n<p>[!CAUTION] The Complexity of i18n\nThe hardest part about internationalization (i18n) isn&#39;t necessarily the translation itself, but ensuring the UI accommodates fluctuating string lengths, right-to-left languages (RTL), and different cultural dates or currency formats.</p>\n</blockquote>\n<blockquote>\n<p>[!TIP] CSS Logical Properties\nInstead of using <code>margin-left</code> or <code>padding-right</code>, switch over to <strong>CSS Logical Properties</strong> like <code>margin-inline-start</code> or <code>padding-inline-end</code>. This guarantees your layout will effortlessly flip when reading Arabic or Hebrew without writing an entirely new stylesheet!</p>\n</blockquote>\n<h3>Summary</h3>\n<p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam.</p>\n",
+    "prev": null,
+    "next": "2"
+  }
 ]

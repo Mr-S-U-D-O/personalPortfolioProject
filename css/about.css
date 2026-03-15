@@ -1,8 +1,8 @@
 body.about-page,
 html:has(body.about-page) {
 
-  overflow-x: hidden !important;
-  height: auto !important;
+  /*overflow-x: hidden !important;
+  height: auto !important;*/
 }
 .about-page {
   min-height: 100vh;
@@ -89,14 +89,18 @@ html:has(body.about-page) {
    ABOUT HERO SECTION
    ========================================================================== */
 .about-hero {
-  padding-top: 160px;
+  padding-top: 120px;
   padding-bottom: 80px;
   max-width: 1100px;
-  margin: 0 auto;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-left: auto;
   padding-left: 40px;
   padding-right: 40px;
   display: grid;
   grid-template-columns: 300px 1fr;
+  
   gap: 70px;
   align-items: center;
 }

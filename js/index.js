@@ -44,7 +44,7 @@ const i = document.getElementById("splashScreen"),
       iphone: {
         file: "./models/iphone.glb",
         init: {
-          position: { x: 0, y: -350, z: 0 },
+          position: { x: 0, y: -150, z: 0 },
           rotation: { x: 0, y: Math.PI, z: 0 },
           scale: { x: 250, y: 250, z: 250 },
           targetY: 45,
@@ -93,10 +93,12 @@ const x = () => {
   }
   (sessionStorage.setItem("isMuted", L),
     L ||
-      (a && a.classList.contains("show") &&
+      (a &&
+        a.classList.contains("show") &&
         g.paused &&
         g.play().catch((e) => console.log("Audio playback resumed:", e)),
-      i && "none" !== i.style.display &&
+      i &&
+        "none" !== i.style.display &&
         p.paused &&
         p.play().catch((e) => console.log("Audio playback resumed:", e))));
 };
@@ -117,7 +119,7 @@ const S = () => {
   if (e)
     try {
       const t = await fetch(
-        "https://api.github.com/repos/Mr-Shoez/personalPortfolioProject",
+        "https://api.github.com/repos/mr-s-u-d-o/personalPortfolioProject",
       );
       if (!t.ok) throw new Error("GitHub API response not ok");
       const o = await t.json();
@@ -310,7 +312,9 @@ const z = () => {
   k = !0;
 
   // 1. Determine if we are on the homepage
-  const isHomePage = window.location.pathname === "/" || window.location.pathname.endsWith("index.html");
+  const isHomePage =
+    window.location.pathname === "/" ||
+    window.location.pathname.endsWith("index.html");
   if (!isHomePage) {
     // If not on homepage, just show content and skip splash logic
     if (i) i.style.display = "none";
@@ -325,13 +329,19 @@ const z = () => {
   const shouldSkipAnimation = (() => {
     const navEntries = performance.getEntriesByType("navigation");
     const navType = navEntries.length > 0 ? navEntries[0].type : "";
-    
+
     // Fallback for older browsers or inconsistent performance API
-    const isReload = navType === "reload" || 
-                     (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
-    const isBackForward = navType === "back_forward" || 
-                          (window.performance && window.performance.navigation && window.performance.navigation.type === 2);
-    
+    const isReload =
+      navType === "reload" ||
+      (window.performance &&
+        window.performance.navigation &&
+        window.performance.navigation.type === 1);
+    const isBackForward =
+      navType === "back_forward" ||
+      (window.performance &&
+        window.performance.navigation &&
+        window.performance.navigation.type === 2);
+
     const introPlayed = sessionStorage.getItem("introPlayed") === "true";
     const hasHash = !!window.location.hash;
 
@@ -352,7 +362,7 @@ const z = () => {
     document.getElementById("globalUi")?.classList.add("show");
     document.documentElement.style.overflowY = "auto";
     document.body.style.overflowY = "auto";
-    
+
     // If there's a hash, scroll to it immediately
     if (window.location.hash) {
       setTimeout(() => {
@@ -367,14 +377,17 @@ const z = () => {
       (async () => {
         const gltfLoader = new o();
         const dracoLoader = new t();
-        dracoLoader.setDecoderPath("https://www.gstatic.com/draco/versioned/decoders/1.5.6/");
+        dracoLoader.setDecoderPath(
+          "https://www.gstatic.com/draco/versioned/decoders/1.5.6/",
+        );
         gltfLoader.setDRACOLoader(dracoLoader);
         u.deviceType = window.innerWidth < 768 ? "iphone" : "laptop";
         const deviceConfig = m[u.deviceType];
         u.geometryFile = await gltfLoader.loadAsync(deviceConfig.file);
       })().then(() => {
         C();
-        if (!L) p.play().catch(e => console.log("Audio playback prevented:", e));
+        if (!L)
+          p.play().catch((e) => console.log("Audio playback prevented:", e));
         requestAnimationFrame(M);
       });
     }, 300);
@@ -453,6 +466,26 @@ j &&
 const F = document.querySelector(".cv-nav");
 (F &&
   (F.addEventListener("mouseenter", A), F.addEventListener("mouseleave", P)),
+  // CV Download functionality
+  (() => {
+    const resumeLink = document.getElementById("resumeLink");
+    if (resumeLink) {
+      resumeLink.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // Create a temporary anchor element for the download
+        const downloadAnchor = document.createElement("a");
+        downloadAnchor.href = "./curriculum vitae/mosamoleleki'sCv.pdf";
+        downloadAnchor.download = "Mosa_Moleleki_CV.pdf";
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        document.body.removeChild(downloadAnchor);
+
+        // Manually open the external link in a new tab
+        window.open(resumeLink.href, "_blank", "noopener,noreferrer");
+      });
+    }
+  })(),
   document.addEventListener(
     "mouseenter",
     (e) => {
@@ -470,7 +503,10 @@ const F = document.querySelector(".cv-nav");
           ? "my pictures/light mode.webp"
           : "my pictures/dark mode.webp");
     document.querySelectorAll(".project-row-img[data-light]").forEach((img) => {
-      img.src = "light" === t ? img.getAttribute("data-light") : img.getAttribute("data-dark");
+      img.src =
+        "light" === t
+          ? img.getAttribute("data-light")
+          : img.getAttribute("data-dark");
     });
   }));
 const N = document.documentElement.getAttribute("data-theme") || "dark",
@@ -481,7 +517,10 @@ Y &&
       ? "my pictures/light mode.webp"
       : "my pictures/dark mode.webp");
 document.querySelectorAll(".project-row-img[data-light]").forEach((img) => {
-  img.src = "light" === N ? img.getAttribute("data-light") : img.getAttribute("data-dark");
+  img.src =
+    "light" === N
+      ? img.getAttribute("data-light")
+      : img.getAttribute("data-dark");
 });
 const G = document.getElementById("heroScrollRig"),
   H = document.getElementById("heroContentGroup");
@@ -607,7 +646,7 @@ const Q = document.querySelector(".modal-content-wrapper");
       const e = await fetch("./data/projects.json");
       if (!e.ok) throw new Error("Failed to load projects data");
       Z = await e.json();
-      
+
       // We don't need to render cards anymore as they are SSG
       // But we do need to handle clicks on the existing cards
       if (V) {
@@ -619,27 +658,34 @@ const Q = document.querySelector(".modal-content-wrapper");
 
             const indexValue = card.getAttribute("data-index");
             // Find the project by ID since build.js uses proj.id for data-index
-            const project = Z.find(p => p.id == indexValue) || Z[indexValue];
-            
+            const project = Z.find((p) => p.id == indexValue) || Z[indexValue];
+
             if (project) {
               const modalImage = document.getElementById("modalImage");
               const modalCategory = document.getElementById("modalCategory");
               const modalTitle = document.getElementById("modalTitle");
-              const modalDescription = document.getElementById("modalDescription");
+              const modalDescription =
+                document.getElementById("modalDescription");
               const modalTechStack = document.getElementById("modalTechStack");
               const modalLink = document.getElementById("modalLink");
 
               if (modalTitle) modalTitle.textContent = project.title;
-              if (modalDescription) modalDescription.textContent = project.description;
-              if (modalCategory) modalCategory.textContent = project.category || "";
+              if (modalDescription)
+                modalDescription.textContent = project.description;
+              if (modalCategory)
+                modalCategory.textContent = project.category || "";
               if (modalImage) {
-                const themeVal = document.documentElement.getAttribute("data-theme") || "dark";
-                modalImage.src = themeVal === "light" ? project.thumbnail.light : project.thumbnail.dark;
+                const themeVal =
+                  document.documentElement.getAttribute("data-theme") || "dark";
+                modalImage.src =
+                  themeVal === "light"
+                    ? project.thumbnail.light
+                    : project.thumbnail.dark;
               }
-              
+
               if (modalTechStack) {
                 modalTechStack.innerHTML = "";
-                (project.technologies || []).forEach(tech => {
+                (project.technologies || []).forEach((tech) => {
                   const span = document.createElement("span");
                   span.className = "tech-pill";
                   span.textContent = tech;
@@ -648,7 +694,7 @@ const Q = document.querySelector(".modal-content-wrapper");
               }
 
               if (modalLink) modalLink.href = project.link;
-              
+
               _.classList.add("active");
               S(); // Play sound
             }
@@ -738,20 +784,31 @@ if (gallerySearch) {
   gallerySearch.addEventListener("input", (e) => {
     const searchTerm = e.target.value.toLowerCase().trim();
     const projects = document.querySelectorAll(".project-row");
-    
+
     // Toggle clear button
     if (clearSearchBtn) {
       clearSearchBtn.style.opacity = searchTerm.length > 0 ? "1" : "0";
-      clearSearchBtn.style.pointerEvents = searchTerm.length > 0 ? "auto" : "none";
+      clearSearchBtn.style.pointerEvents =
+        searchTerm.length > 0 ? "auto" : "none";
     }
 
     projects.forEach((project) => {
-      const title = project.querySelector(".project-row-title")?.textContent.toLowerCase() || "";
-      const desc = project.querySelector(".project-row-desc")?.textContent.toLowerCase() || "";
-      const tech = Array.from(project.querySelectorAll(".project-row-pill")).map(p => p.textContent.toLowerCase()).join(" ");
-      
-      const matches = title.includes(searchTerm) || desc.includes(searchTerm) || tech.includes(searchTerm);
-      
+      const title =
+        project
+          .querySelector(".project-row-title")
+          ?.textContent.toLowerCase() || "";
+      const desc =
+        project.querySelector(".project-row-desc")?.textContent.toLowerCase() ||
+        "";
+      const tech = Array.from(project.querySelectorAll(".project-row-pill"))
+        .map((p) => p.textContent.toLowerCase())
+        .join(" ");
+
+      const matches =
+        title.includes(searchTerm) ||
+        desc.includes(searchTerm) ||
+        tech.includes(searchTerm);
+
       if (matches) {
         project.style.display = "block"; // Changed from empty string to block for consistency
         project.classList.remove("filtered-out");
@@ -762,9 +819,11 @@ if (gallerySearch) {
     });
 
     // Check if no results
-    const visibleProjects = Array.from(projects).filter(p => p.style.display !== "none");
+    const visibleProjects = Array.from(projects).filter(
+      (p) => p.style.display !== "none",
+    );
     const projectsStack = document.getElementById("projectsStack");
-    
+
     let noResultsMsg = document.getElementById("noResultsMsg");
     if (visibleProjects.length === 0) {
       if (!noResultsMsg) {
