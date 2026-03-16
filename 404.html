@@ -1,356 +1,473 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>404 — Page was Not Found | Mosa Moleleki</title>
-    <meta name="description" content="The page you were looking for doesn't exist.">
-    <meta name="robots" content="noindex, nofollow">
+    <meta
+      name="description"
+      content="The page you were looking for doesn't exist."
+    />
+    <meta name="robots" content="noindex, nofollow" />
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" sizes="32x32" id="favicon-32" href="asserts/dark mode favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" id="favicon-16" href="asserts/dark mode favicon/favicon-16x16.png">
-    <link rel="shortcut icon" id="favicon-ico" href="asserts/dark mode favicon/favicon.ico">
-    <link rel="apple-touch-icon" id="favicon-apple" href="asserts/dark mode favicon/apple-touch-icon.png">
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      id="favicon-32"
+      href="asserts/dark mode favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      id="favicon-16"
+      href="asserts/dark mode favicon/favicon-16x16.png"
+    />
+    <link
+      rel="shortcut icon"
+      id="favicon-ico"
+      href="asserts/dark mode favicon/favicon.ico"
+    />
+    <link
+      rel="apple-touch-icon"
+      id="favicon-apple"
+      href="asserts/dark mode favicon/apple-touch-icon.png"
+    />
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
 
     <!-- Universal Theme System (non-deferred to prevent flash) -->
     <script src="js/min/theme.min.js"></script>
 
     <style>
-        /* =============================================
+      /* =============================================
            404 Page Specific Styles
         ============================================= */
-        html, body {
-            height: 100%;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-        .page-404 {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            width: 100%;
-            text-align: center;
-            padding: 40px 20px;
-            position: relative;
-            overflow: hidden;
-        }
+      .page-404 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        width: 100%;
+        text-align: center;
+        padding: 40px 20px;
+        position: relative;
+        overflow: hidden;
+      }
 
-        /* Ambient glow background blobs */
-        .page-404::before,
-        .page-404::after {
-            content: '';
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(120px);
-            pointer-events: none;
-            z-index: 0;
-        }
-        .page-404::before {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(0, 140, 255, 0.08) 0%, transparent 70%);
-            top: -200px;
-            right: -100px;
-        }
-        .page-404::after {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0, 140, 255, 0.05) 0%, transparent 70%);
-            bottom: -150px;
-            left: -100px;
-        }
+      /* Ambient glow background blobs */
+      .page-404::before,
+      .page-404::after {
+        content: "";
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(120px);
+        pointer-events: none;
+        z-index: 0;
+      }
+      .page-404::before {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 140, 255, 0.08) 0%,
+          transparent 70%
+        );
+        top: -200px;
+        right: -100px;
+      }
+      .page-404::after {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 140, 255, 0.05) 0%,
+          transparent 70%
+        );
+        bottom: -150px;
+        left: -100px;
+      }
 
-        .error-content {
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
-        }
+      .error-content {
+        position: relative;
+        z-index: 1;
+        max-width: 600px;
+      }
 
-        /* Giant glitch 404 */
-        .error-code {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(7rem, 20vw, 14rem);
-            font-weight: 700;
-            line-height: 1;
-            color: var(--text-light);
-            position: relative;
-            display: inline-block;
-            margin: 0;
-            user-select: none;
-        }
+      /* Giant glitch 404 */
+      .error-code {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(7rem, 20vw, 14rem);
+        font-weight: 700;
+        line-height: 1;
+        color: var(--text-light);
+        position: relative;
+        display: inline-block;
+        margin: 0;
+        user-select: none;
+      }
 
-        .error-code::before,
-        .error-code::after {
-            content: '404';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
+      .error-code::before,
+      .error-code::after {
+        content: "404";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
 
-        .error-code::before {
-            color: var(--accent-primary);
-            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
-            animation: glitch-top 3.5s infinite;
-            opacity: 0.8;
-        }
+      .error-code::before {
+        color: var(--accent-primary);
+        clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+        animation: glitch-top 3.5s infinite;
+        opacity: 0.8;
+      }
 
-        .error-code::after {
-            color: #ff4d4d;
-            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
-            animation: glitch-bottom 3.5s infinite;
-            opacity: 0.7;
-        }
+      .error-code::after {
+        color: #ff4d4d;
+        clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+        animation: glitch-bottom 3.5s infinite;
+        opacity: 0.7;
+      }
 
-        @keyframes glitch-top {
-            0%, 90%, 100% { transform: translateX(0); }
-            91% { transform: translateX(-4px); }
-            93% { transform: translateX(4px); }
-            95% { transform: translateX(-2px); }
+      @keyframes glitch-top {
+        0%,
+        90%,
+        100% {
+          transform: translateX(0);
         }
-
-        @keyframes glitch-bottom {
-            0%, 90%, 100% { transform: translateX(0); }
-            91% { transform: translateX(4px); }
-            93% { transform: translateX(-4px); }
-            95% { transform: translateX(2px); }
+        91% {
+          transform: translateX(-4px);
         }
-
-        .error-eyebrow {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--accent-primary);
-            margin-bottom: 16px;
+        93% {
+          transform: translateX(4px);
         }
-
-        .error-title {
-            font-family: 'Inter', sans-serif;
-            font-size: clamp(1.3rem, 3vw, 1.8rem);
-            font-weight: 600;
-            color: var(--text-light);
-            margin: 24px 0 12px 0;
+        95% {
+          transform: translateX(-2px);
         }
+      }
 
-        .error-desc {
-            font-size: 1rem;
-            color: var(--text-muted);
-            line-height: 1.7;
-            margin: 0 0 40px 0;
-            max-width: 420px;
-            margin-left: auto;
-            margin-right: auto;
+      @keyframes glitch-bottom {
+        0%,
+        90%,
+        100% {
+          transform: translateX(0);
         }
-
-        /* Divider line */
-        .error-divider {
-            width: 60px;
-            height: 2px;
-            background: var(--accent-primary);
-            margin: 0 auto 40px auto;
-            border-radius: 2px;
-            opacity: 0.6;
+        91% {
+          transform: translateX(4px);
         }
+        93% {
+          transform: translateX(-4px);
+        }
+        95% {
+          transform: translateX(2px);
+        }
+      }
 
-        /* Action buttons */
+      .error-eyebrow {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--accent-primary);
+        margin-bottom: 16px;
+      }
+
+      .error-title {
+        font-family: "Inter", sans-serif;
+        font-size: clamp(1.3rem, 3vw, 1.8rem);
+        font-weight: 600;
+        color: var(--text-light);
+        margin: 24px 0 12px 0;
+      }
+
+      .error-desc {
+        font-size: 1rem;
+        color: var(--text-muted);
+        line-height: 1.7;
+        margin: 0 0 40px 0;
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Divider line */
+      .error-divider {
+        width: 60px;
+        height: 2px;
+        background: var(--accent-primary);
+        margin: 0 auto 40px auto;
+        border-radius: 2px;
+        opacity: 0.6;
+      }
+
+      /* Action buttons */
+      .error-actions {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary-404 {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 32px;
+        background: var(--accent-primary);
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        font-family: "Inter", sans-serif;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          opacity 0.3s ease;
+      }
+
+      .btn-primary-404:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(0, 140, 255, 0.35);
+      }
+
+      .btn-ghost-404 {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 32px;
+        background: var(--glass-bg);
+        color: var(--text-muted);
+        border: 1px solid var(--glass-border);
+        border-radius: 50px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        font-family: "Inter", sans-serif;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      }
+
+      .btn-ghost-404:hover {
+        color: var(--text-light);
+        border-color: var(--accent-primary);
+        transform: translateY(-3px);
+      }
+
+      /* Quick nav pills below buttons */
+      .error-nav {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 40px;
+      }
+
+      .error-nav-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 7px 16px;
+        background: var(--glass-bg);
+        border: 1px solid var(--glass-border);
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: all 0.25s ease;
+      }
+
+      .error-nav-pill:hover {
+        color: var(--accent-primary);
+        border-color: var(--accent-primary);
+        transform: translateY(-2px);
+      }
+
+      .error-nav-pill i {
+        font-size: 0.7rem;
+        color: var(--accent-primary);
+      }
+
+      /* Light mode tweaks */
+      [data-theme="light"] .error-code {
+        color: #1a1a2e;
+      }
+
+      /* Floating particles */
+      .particle {
+        position: fixed;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: var(--accent-primary);
+        opacity: 0;
+        animation: float-particle linear infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      @keyframes float-particle {
+        0% {
+          opacity: 0;
+          transform: translateY(100vh) scale(0);
+        }
+        10% {
+          opacity: 0.4;
+        }
+        90% {
+          opacity: 0.2;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-20vh) scale(1.5);
+        }
+      }
+
+      @media (max-width: 600px) {
+        html,
+        body {
+          overflow: auto;
+        }
         .error-actions {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
+          flex-direction: column;
+          align-items: center;
         }
-
-        .btn-primary-404 {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 32px;
-            background: var(--accent-primary);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            font-family: 'Inter', sans-serif;
-            text-decoration: none;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
-        }
-
-        .btn-primary-404:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 140, 255, 0.35);
-        }
-
+        .btn-primary-404,
         .btn-ghost-404 {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 32px;
-            background: var(--glass-bg);
-            color: var(--text-muted);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            font-family: 'Inter', sans-serif;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+          width: 100%;
+          max-width: 280px;
+          justify-content: center;
         }
-
-        .btn-ghost-404:hover {
-            color: var(--text-light);
-            border-color: var(--accent-primary);
-            transform: translateY(-3px);
-        }
-
-        /* Quick nav pills below buttons */
-        .error-nav {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 40px;
-        }
-
-        .error-nav-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 7px 16px;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: all 0.25s ease;
-        }
-
-        .error-nav-pill:hover {
-            color: var(--accent-primary);
-            border-color: var(--accent-primary);
-            transform: translateY(-2px);
-        }
-
-        .error-nav-pill i {
-            font-size: 0.7rem;
-            color: var(--accent-primary);
-        }
-
-        /* Light mode tweaks */
-        [data-theme="light"] .error-code {
-            color: #1a1a2e;
-        }
-
-        /* Floating particles */
-        .particle {
-            position: fixed;
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: var(--accent-primary);
-            opacity: 0;
-            animation: float-particle linear infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        @keyframes float-particle {
-            0%   { opacity: 0; transform: translateY(100vh) scale(0); }
-            10%  { opacity: 0.4; }
-            90%  { opacity: 0.2; }
-            100% { opacity: 0; transform: translateY(-20vh) scale(1.5); }
-        }
-
-        @media (max-width: 600px) {
-            html, body {
-                overflow: auto;
-            }
-            .error-actions {
-                flex-direction: column;
-                align-items: center;
-            }
-            .btn-primary-404,
-            .btn-ghost-404 {
-                width: 100%;
-                max-width: 280px;
-                justify-content: center;
-            }
-        }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- Theme Toggle -->
-    <div class="utility-toggles" style="z-index: 9999;">
-        <button class="theme-toggle" data-theme-toggle aria-label="Toggle Dark Mode">
-            <i class="fa-solid fa-moon"></i>
-        </button>
+    <div class="utility-toggles" style="z-index: 9999">
+      <button
+        class="theme-toggle"
+        data-theme-toggle
+        aria-label="Toggle Dark Mode"
+      >
+        <i class="fa-solid fa-moon"></i>
+      </button>
     </div>
 
     <!-- Floating Particles -->
-    <div class="particle" style="left: 10%; animation-duration: 8s; animation-delay: 0s;"></div>
-    <div class="particle" style="left: 25%; animation-duration: 11s; animation-delay: 2s; width: 3px; height: 3px; opacity: 0.3;"></div>
-    <div class="particle" style="left: 50%; animation-duration: 9s; animation-delay: 4s;"></div>
-    <div class="particle" style="left: 75%; animation-duration: 12s; animation-delay: 1s; width: 5px; height: 5px;"></div>
-    <div class="particle" style="left: 88%; animation-duration: 10s; animation-delay: 3s; width: 3px; height: 3px;"></div>
+    <div
+      class="particle"
+      style="left: 10%; animation-duration: 8s; animation-delay: 0s"
+    ></div>
+    <div
+      class="particle"
+      style="
+        left: 25%;
+        animation-duration: 11s;
+        animation-delay: 2s;
+        width: 3px;
+        height: 3px;
+        opacity: 0.3;
+      "
+    ></div>
+    <div
+      class="particle"
+      style="left: 50%; animation-duration: 9s; animation-delay: 4s"
+    ></div>
+    <div
+      class="particle"
+      style="
+        left: 75%;
+        animation-duration: 12s;
+        animation-delay: 1s;
+        width: 5px;
+        height: 5px;
+      "
+    ></div>
+    <div
+      class="particle"
+      style="
+        left: 88%;
+        animation-duration: 10s;
+        animation-delay: 3s;
+        width: 3px;
+        height: 3px;
+      "
+    ></div>
 
     <main class="page-404">
-        <div class="error-content">
-            <span class="error-eyebrow">Error 404</span>
-            <h1 class="error-code" aria-label="404">404</h1>
-            <h2 class="error-title">Page Not Found</h2>
-            <div class="error-divider"></div>
-            <p class="error-desc">
-                The page you're looking for doesn't exist, was moved, or the URL was typed incorrectly.
-            </p>
+      <div class="error-content">
+        <span class="error-eyebrow">Error 404</span>
+        <h1 class="error-code" aria-label="404">404</h1>
+        <h2 class="error-title">Page Not Found</h2>
+        <div class="error-divider"></div>
+        <p class="error-desc">
+          The page you're looking for doesn't exist, was moved, or the URL was
+          typed incorrectly.
+        </p>
 
-            <div class="error-actions">
-                <a href="index.html" class="btn-primary-404">
-                    <i class="fa-solid fa-house"></i> Go Home
-                </a>
-                <a href="javascript:history.back()" class="btn-ghost-404">
-                    <i class="fa-solid fa-arrow-left"></i> Go Back
-                </a>
-            </div>
-
-            <!-- Quick nav pills -->
-            <nav class="error-nav" aria-label="Quick navigation">
-                <a href="index.html#projects" class="error-nav-pill"><i class="fa-regular fa-folder"></i> Projects</a>
-                <a href="index.html#blog" class="error-nav-pill"><i class="fa-solid fa-pen-nib"></i> Articles</a>
-                <a href="about.html" class="error-nav-pill"><i class="fa-regular fa-user"></i> About</a>
-                <a href="sitemap.html" class="error-nav-pill"><i class="fa-solid fa-sitemap"></i> Sitemap</a>
-                <a href="index.html#contact" class="error-nav-pill"><i class="fa-regular fa-envelope"></i> Contact</a>
-            </nav>
+        <div class="error-actions">
+          <a href="index.html" class="btn-primary-404">
+            <i class="fa-solid fa-house"></i> Go Home
+          </a>
+          <a href="javascript:history.back()" class="btn-ghost-404">
+            <i class="fa-solid fa-arrow-left"></i> Go Back
+          </a>
         </div>
+
+        <!-- Quick nav pills -->
+        <nav class="error-nav" aria-label="Quick navigation">
+          <a href="index.html#projects" class="error-nav-pill"
+            ><i class="fa-regular fa-folder"></i> Projects</a
+          >
+          <a href="index.html#blog" class="error-nav-pill"
+            ><i class="fa-solid fa-pen-nib"></i> Articles</a
+          >
+          <a href="about.html" class="error-nav-pill"
+            ><i class="fa-regular fa-user"></i> About</a
+          >
+          <a href="sitemap.html" class="error-nav-pill"
+            ><i class="fa-solid fa-sitemap"></i> Sitemap</a
+          >
+          <a href="index.html#contact" class="error-nav-pill"
+            ><i class="fa-regular fa-envelope"></i> Contact</a
+          >
+        </nav>
+      </div>
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            if (window.ThemeSystem) window.ThemeSystem.init();
-        });
+      document.addEventListener("DOMContentLoaded", function () {
+        if (window.ThemeSystem) window.ThemeSystem.init();
+      });
     </script>
-</body>
+  </body>
 </html>

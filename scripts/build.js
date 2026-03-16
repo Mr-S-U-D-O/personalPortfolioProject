@@ -150,9 +150,19 @@ blogData.forEach((post) => {
     `<script type="application/ld+json">\n${JSON.stringify(jsonLd, null, 2)}\n</script>`,
   );
 
-  // Cache Busting
-  pageHtml = pageHtml.replace(/\.css"/g, `.css?v=${VERSION}"`);
-  pageHtml = pageHtml.replace(/\.js"/g, `.js?v=${VERSION}"`);
+  // Cache Busting and Minified Paths replacement
+  pageHtml = pageHtml.replace(
+    /href="css\/style\.css"/g,
+    `href="css/min/style.min.css?v=${VERSION}"`,
+  );
+  pageHtml = pageHtml.replace(
+    /src="js\/index\.js"/g,
+    `src="js/min/index.min.js?v=${VERSION}"`,
+  );
+
+  // Generic fallback for any other .css or .js links that might be in templates
+  pageHtml = pageHtml.replace(/\.css(?!"|\?v=)/g, `.css?v=${VERSION}`);
+  pageHtml = pageHtml.replace(/\.js(?!"|\?v=)/g, `.js?v=${VERSION}`);
 
   // Previous Link
   if (post.prevSlug) {
@@ -333,9 +343,18 @@ if (projectTemplateBlock && projectsData.length > 0) {
       overviewDetailsHtml,
     );
 
-    // Cache Busting
-    pageHtml = pageHtml.replace(/\.css"/g, `.css?v=${VERSION}"`);
-    pageHtml = pageHtml.replace(/\.js"/g, `.js?v=${VERSION}"`);
+    // Cache Busting and Minified Paths replacement
+    pageHtml = pageHtml.replace(
+      /href="\.\.\/css\/style\.css"/g,
+      `href="../css/min/style.min.css?v=${VERSION}"`,
+    );
+    pageHtml = pageHtml.replace(
+      /src="\.\.\/js\/index\.js"/g,
+      `src="../js/min/index.min.js?v=${VERSION}"`,
+    );
+
+    pageHtml = pageHtml.replace(/\.css(?!"|\?v=)/g, `.css?v=${VERSION}`);
+    pageHtml = pageHtml.replace(/\.js(?!"|\?v=)/g, `.js?v=${VERSION}`);
 
     // Metrics
     let metricsHtml = "";
@@ -790,8 +809,34 @@ async function minifyFiles() {
       const inputPath = path.join(cssDir, file);
       const minPath = path.join(cssMinDir, file.replace(/\.css$/, ".min.css"));
       try {
+        const options = {
+          rebase: false,
+          inline: ["local"], // Inline local imports
+        };
+        // Special case for style.css to ensure it resolves imports relative to css dir
+        const cleaner = new CleanCSS({
+          ...options,
+          inlineRequest: {
+            hostname: "localhost", // dummy for local files
+          },
+          rebaseTo: cssDir,
+        });
+
         const inputCss = fs.readFileSync(inputPath, "utf8");
-        const output = new CleanCSS({}).minify(inputCss);
+        // We tell clean-css the path of the file so it can resolve @import
+        const output = cleaner.minify({
+          [inputPath]: {
+            styles: inputCss,
+          },
+        });
+
+        if (output.errors.length > 0) {
+          console.error(`Errors minifying ${file}:`, output.errors);
+        }
+        if (output.warnings.length > 0) {
+          console.warn(`Warnings minifying ${file}:`, output.warnings);
+        }
+
         fs.writeFileSync(minPath, output.styles, "utf8");
         console.log(
           `Minified CSS: ${file} -> css/min/${path.basename(minPath)}`,
@@ -801,6 +846,63 @@ async function minifyFiles() {
       }
     });
   }
+
+  // Handle asset replacement for ALL HTML files in the project
+  const htmlFiles = [];
+  const findHtmlFiles = (dir) => {
+    fs.readdirSync(dir).forEach((file) => {
+      const fullPath = path.join(dir, file);
+      if (fs.statSync(fullPath).isDirectory()) {
+        if (file !== "node_modules" && file !== ".git") findHtmlFiles(fullPath);
+      } else if (file.endsWith(".html")) {
+        htmlFiles.push(fullPath);
+      }
+    });
+  };
+  findHtmlFiles(path.join(__dirname, "../"));
+
+  htmlFiles.forEach((htmlPath) => {
+    try {
+      let content = fs.readFileSync(htmlPath, "utf8");
+
+      // 1. Rename Font Awesome
+      content = content.replace(/all\.min\.css/g, "font-awesome.min.css");
+
+      // 2. Resolve relative paths for CSS/JS replacements
+      const isRoot = path.dirname(htmlPath) === path.join(__dirname, "../");
+      const prefix = isRoot ? "" : "../";
+
+      // Replace style.css with bundled minified version
+      const styleRegex = new RegExp(`href="${prefix}css/style\\.css"`, "g");
+      content = content.replace(
+        styleRegex,
+        `href="${prefix}css/min/style.min.css?v=${VERSION}"`,
+      );
+
+      // Update theme.js and index.js versioning
+      const themeRegex = new RegExp(
+        `src="${prefix}js/min/theme\\.min\\.js(\\?v=\\d+)?"`,
+        "g",
+      );
+      content = content.replace(
+        themeRegex,
+        `src="${prefix}js/min/theme.min.js?v=${VERSION}"`,
+      );
+
+      const indexRegex = new RegExp(`src="${prefix}js/index\\.js"`, "g");
+      content = content.replace(
+        indexRegex,
+        `src="${prefix}js/min/index.min.js?v=${VERSION}"`,
+      );
+
+      fs.writeFileSync(htmlPath, content, "utf8");
+      console.log(
+        `Updated assets in: ${path.relative(path.join(__dirname, "../"), htmlPath)}`,
+      );
+    } catch (err) {
+      console.error(`Error updating ${htmlPath}:`, err);
+    }
+  });
 
   // Minify JS
   if (fs.existsSync(jsDir)) {
