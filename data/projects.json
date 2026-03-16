@@ -356,11 +356,11 @@
             "tablet": "../projects/king-law/mockup-frames/mockup-tablet-framed.png",
             "mobile": "../projects/king-law/mockup-frames/mockup-mobile-framed.png"
         },
-        "githubLink": "https://github.com/username/king-law",
-        "liveLink": "https://kinglawfirm.demo.com",
+        "githubLink": "https://github.com/Mr-S-U-D-O/king-law-firm",
+        "liveLink": "https://mr-s-u-d-o.github.io/king-law-firm/",
         "thumbnail": {
             "light": "../projects/king-law/preview-img/king-law-preview-light.png",
-            "dark": "../projects/king-law/preview-img/king-law-preview-dark.jpeg"
+            "dark": "../projects/king-law/preview-img/king-law-preview-dark.png"
         },
         "fullImage": "../projects/king-law/mockup-frames/mockup-desktop-framed.png",
         "technologies": [
