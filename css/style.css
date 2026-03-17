@@ -153,7 +153,7 @@ html {
   transform: translateY(20px);
   transition:
     opacity 1s ease,
-    transform 2s ease;
+    transform 3s ease;
   padding: 0 100px;
 }
 .quote-container.show {
@@ -188,7 +188,7 @@ html {
   opacity: 0;
   pointer-events: none;
   transition:
-    transform 2.5s cubic-bezier(0.9, 0, 0.1, 1),
+    transform 2.9s cubic-bezier(0.9, 0, 0.1, 1),
     opacity 0.8s ease-in 1.4s;
 }
 .content-overlay {
@@ -619,13 +619,14 @@ html {
 }
 .about-subtitle {
   display: block;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  letter-spacing: 3px;
+  font-family: "Fira Code", monospace;
+  font-size: 1rem;
+  letter-spacing: 5px;
+  color: var(--accent-primary);
+  margin-bottom: 20px;
   text-transform: uppercase;
-  margin-bottom: 5px;
-  font-family: Inter, sans-serif;
   font-weight: 600;
+  opacity: 0.8;
 }
 .about-title {
   position: relative;
@@ -803,7 +804,7 @@ html {
 }
 .st-date {
   color: var(--text-muted);
-  font-family: Inter, sans-serif;
+  font-family: "Fira Code", monospace;
   font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 5px;
@@ -814,7 +815,7 @@ html {
 }
 .st-topic {
   color: var(--text-light);
-  font-family: Inter, sans-serif;
+  font-family: "Fira Code", monospace;
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 15px;
@@ -982,12 +983,14 @@ html {
 .projects-subtitle,
 .blog-subtitle {
   display: block;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  letter-spacing: 3px;
+  font-family: "Fira Code", monospace;
+  font-size: 1rem;
+  letter-spacing: 5px;
+  color: var(--accent-primary);
+  margin-bottom: 20px;
   text-transform: uppercase;
-  margin-bottom: 5px;
   font-weight: 600;
+  opacity: 0.8;
 }
 .projects-title,
 .blog-title {
@@ -1011,7 +1014,7 @@ html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: clamp(3.5rem, 10vw, 7rem);
+  font-size: clamp(5rem, 15vw, 10rem);
   font-weight: 800;
   color: var(--text-muted);
   opacity: var(--ghost-opacity);
@@ -1714,14 +1717,12 @@ html {
 
 .contact-main-text {
   position: relative;
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 800;
-  color: var(--text-light);
-  line-height: 1;
-  text-transform: uppercase;
-  letter-spacing: -1px;
+  bottom: 0px;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--accent-primary);
   z-index: 2;
-  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  word-break: break-word;
 }
 
 .contact-ghost-text {
@@ -1831,42 +1832,91 @@ html {
   font-weight: 300;
 }
 
+/* ========================================= */
+/* NEW INDUSTRIAL LETS TALK BUTTON (TEMPLATE INSPIRED) */
+/* ========================================= */
 .lets-talk-btn {
-  background: var(--accent-primary);
-  color: #fff;
-  font-family: "Inter", sans-serif;
-  font-size: 0.9rem;
-  font-weight: 700;
-  padding: 18px 40px;
-  border: none;
-  border-radius: 2px; /* Super sharp */
-  cursor: pointer;
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 15px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-  box-shadow: 0 10px 30px rgba(0, 140, 255, 0.2);
+  padding: 12px 24px;
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  overflow: visible;
+  color: var(--text-light);
+  line-height: 1;
+  border-radius: 50px;
+}
+
+.lets-talk-btn::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: block;
+  border-radius: 50px;
+  background: var(--accent-primary);
+  width: 44px;
+  height: 44px;
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  opacity: 0.1;
+  z-index: 1;
+}
+
+[data-theme="light"] .lets-talk-btn::before {
+  background: var(--accent-primary);
+  opacity: 0.1;
+}
+
+.lets-talk-btn span {
   position: relative;
-  overflow: hidden;
-  border-left: 4px solid rgba(255, 255, 255, 0.3);
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--text-light) !important;
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  margin-left: 14px;
+  z-index: 2;
+  text-transform: uppercase;
 }
 
-.lets-talk-btn:hover {
-  background: #0077d9;
-  transform: translateY(-5px) translateX(2px);
-  box-shadow: 0 20px 50px rgba(0, 140, 255, 0.4);
-  border-left-color: #fff;
+.lets-talk-btn svg {
+  position: relative;
+  top: 0;
+  margin-left: 10px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: var(--accent-primary);
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
 }
 
-.lets-talk-btn i {
-  font-size: 1.2rem;
-  transition: transform 0.3s ease;
+.lets-talk-btn:hover::before {
+  width: 100%;
+
+  border-radius: 50px;
+  background: var(--accent-primary);
 }
 
-.lets-talk-btn:hover i {
-  transform: translateX(5px) rotate(-10deg);
+lets-talk-btn:hover span {
+  color: #ffffff !important;
+  margin-left: 18px;
+}
+
+lets-talk-btn:hover svg {
+  transform: translateX(0);
+}
+
+.lets-talk-btn:active {
+  transform: scale(0.96);
 }
 
 .contact-methods-panel {

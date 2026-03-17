@@ -57,7 +57,7 @@
       "@type": "Person",
       "name": "Mosa Moleleki",
       "url": "https://mr-sudo.dev/",
-      "image": "https://mr-sudo.dev/my pictures/dark mode.webp",
+      "image": "https://mr-sudo.dev/my pictures/light mode.webp",
       "jobTitle": "Self-Taught Front-End Web Developer",
       "sameAs": [
         "https://github.com/Mr-S-U-D-O",
@@ -76,6 +76,9 @@
     <!-- ===================================================== -->
     <link rel="stylesheet" href="css/min/style.min.css?v=1773703218328">
     <link rel="stylesheet" href="css/font-awesome.min.css?v=1773556329307">
+    
+
+    
 
     <!-- Universal Theme System (non-deferred — applies theme before first paint) -->
     <script src="js/min/theme.min.js?v=1773703218328"></script>
@@ -197,7 +200,7 @@
     <!-- ========================================= -->
     <!-- Main Hero Section                         -->
     <!-- ========================================= -->
-    <div class="hero-scroll-rig">
+    
         <main class="hero-section" id="heroSection">
         
         <!-- Central Group (Allows perfect vertical centering) -->
@@ -272,7 +275,7 @@
                 </div>
             </div>
         </main>
-    </div>
+    
 
     <!-- ========================================= -->
     <!-- About Section                             -->
@@ -527,7 +530,10 @@
             </div>
 
             <div style="text-align: center; margin-top: 4rem;">
-                <a href="projects.html" class="lets-talk-btn" style="display: inline-block; text-decoration: none;">View All Projects</a>
+                <a href="projects.html" class="lets-talk-btn"><span>View All Projects</span><svg width="15px" height="10px" viewBox="0 0 13 10">
+                    <path d="M1,5 L11,5"></path>
+                    <polyline points="8 1 12 5 8 9"></polyline>
+                  </svg></a>
             </div>
         </div>
     </section>
@@ -582,7 +588,19 @@
                         
                         <div class="contact-action">
                             <button class="lets-talk-btn" id="openContactBtn">
-                                Initialize Chat <i class="fa-regular fa-paper-plane"></i>
+                                <span style="
+                                font-family: 'Inter', sans-serif;
+                                font-size: 0.95rem;
+                                font-weight: 700;
+                                letter-spacing: 0.05em;
+                                color: var(--text-light) !important;
+                              
+                               
+                              
+                                text-transform: uppercase;">Initialize Chat</span><svg width="15px" height="10px" viewBox="0 0 13 10">
+                                    <path d="M1,5 L11,5"></path>
+                                    <polyline points="8 1 12 5 8 9"></polyline>
+                                  </svg>
                             </button>
                         </div>
                     </div>
@@ -640,7 +658,10 @@
                 </div>
                 <div class="footer-cta-action">
                     <button class="lets-talk-btn" onclick="document.getElementById('openContactBtn').click()">
-                        Initialize Chat <i class="fa-regular fa-paper-plane"></i>
+                        <span></span>Initialize Chat</span> <svg width="15px" height="10px" viewBox="0 0 13 10">
+                        <path d="M1,5 L11,5"></path>
+                        <polyline points="8 1 12 5 8 9"></polyline>
+                      </svg>
                     </button>
                 </div>
             </div>
