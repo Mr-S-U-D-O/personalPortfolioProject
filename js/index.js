@@ -279,8 +279,8 @@ const I = () => ({ height: window.innerHeight, width: window.innerWidth }),
                         setTimeout(() => {
                           i.style.display = "none";
                         }, 500));
-                    }, 500));
-                }, 2000));
+                    }, 600)); // Added a bit more for zoom-into transition
+                }, 3000)); // INCREASED FROM 2000 TO 6000 FOR BETTER READABILITY
             }, 800));
         }, 2500));
     }
@@ -513,9 +513,9 @@ window.addEventListener("scroll", () => {
       t = G.offsetHeight - window.innerHeight;
     let o = 0;
     t > 0 && (o = Math.max(0, Math.min(1, -e.top / t)));
-    const n = Math.pow(81, o);
+    const n = Math.pow(25, o); // REDUCED FROM 81 TO 25 FOR BETTER CONTROL
     let s = 1;
-    (o > 0.6 && ((s = 1 - (o - 0.6) / 0.3), (s = Math.max(0, Math.min(1, s)))),
+    (o > 0.6 && ((s = 1 - (o - 0.6) / 0.4), (s = Math.max(0, Math.min(1, s)))), // INCREASED OPACITY FADE WINDOW
       (H.style.transform = `scale(${n})`),
       (H.style.opacity = s));
     const i = document.querySelector(".tech-carousel-wrapper");
