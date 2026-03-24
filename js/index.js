@@ -276,6 +276,8 @@ const I = () => ({ height: window.innerHeight, width: window.innerWidth }),
                         (document.body.style.overflowX = "hidden"),
                         (document.documentElement.style.height = "auto"),
                         (document.body.style.height = "auto"),
+                        // Force initial calculation of scroll-based animations
+                        refreshScrollAnims(),
                         setTimeout(() => {
                           i.style.display = "none";
                         }, 500));
@@ -350,11 +352,18 @@ const z = () => {
       setTimeout(() => {
         const target = document.querySelector(window.location.hash);
         target?.scrollIntoView();
+        // Trigger animations once scroll position is restored
+        refreshScrollAnims();
       }, 100);
+    } else {
+        // Even without hash, trigger animations once for restored scroll position
+        refreshScrollAnims();
     }
   } else {
     // Show splash screen and start animation
     sessionStorage.setItem("introPlayed", "true");
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
     setTimeout(() => {
       (async () => {
         const gltfLoader = new o();
@@ -507,55 +516,80 @@ const G = document.getElementById("heroScrollRig"),
 // =========================================================================
 // SCROLL ANIMATIONS (HERO RIG & TIMELINE)
 // =========================================================================
-window.addEventListener("scroll", () => {
-  if (G && H) {
-    const e = G.getBoundingClientRect(),
-      t = G.offsetHeight - window.innerHeight;
-    let o = 0;
-    t > 0 && (o = Math.max(0, Math.min(1, -e.top / t)));
-    const n = Math.pow(25, o); // REDUCED FROM 81 TO 25 FOR BETTER CONTROL
-    let s = 1;
-    (o > 0.6 && ((s = 1 - (o - 0.6) / 0.4), (s = Math.max(0, Math.min(1, s)))), // INCREASED OPACITY FADE WINDOW
-      (H.style.transform = `scale(${n})`),
-      (H.style.opacity = s));
-    const i = document.querySelector(".tech-carousel-wrapper");
-    if (i) {
-      let e = 1 - 2.5 * o;
-      i.style.opacity = Math.max(0, e);
+// Reusable function to update all scroll-based animations
+// Reusable function to update all scroll-based animations
+const refreshScrollAnims = () => {
+    const rig = document.getElementById("heroScrollRig");
+    const content = document.getElementById("heroContentGroup");
+    
+    if (rig && content) {
+      const rect = rig.getBoundingClientRect();
+      const scrollRange = rig.offsetHeight - window.innerHeight;
+      let progress = 0;
+      if (scrollRange > 0) {
+        progress = Math.max(0, Math.min(1, -rect.top / scrollRange));
+      }
+      
+      const scale = Math.pow(25, progress);
+      let opacity = 1;
+      if (progress > 0.6) {
+        opacity = Math.max(0, Math.min(1, 1 - (progress - 0.6) / 0.4));
+      }
+      
+      content.style.transform = `scale(${scale})`;
+      content.style.opacity = opacity;
+      
+      const carousel = document.querySelector(".tech-carousel-wrapper");
+      if (carousel) {
+        let carouselOpacity = Math.max(0, 1 - 2.5 * progress);
+        carousel.style.opacity = carouselOpacity;
+      }
     }
-  }
-  const e = document.querySelectorAll(".st-node, .st-turn"),
-    t = window.innerHeight / 2;
-  e.forEach((e) => {
-    const o = e.getBoundingClientRect(),
-      n = (t + 50 - o.top) / o.height,
-      s = Math.max(0, Math.min(1, n));
-    if (e.classList.contains("st-node")) {
-      const t = e.querySelector(".st-v .st-fill");
-      t && (t.style.transform = `scaleY(${s})`);
-      const o = e.querySelector(".st-dot"),
-        i = e.querySelector(".st-content");
-      n >= 0.5
-        ? (o && o.classList.add("filled"), i && i.classList.add("visible"))
-        : (o && o.classList.remove("filled"),
-          i && i.classList.remove("visible"));
-    } else if (e.classList.contains("st-turn")) {
-      const t =
-          e.querySelector(".st-top-left .st-fill") ||
-          e.querySelector(".st-top-right .st-fill"),
-        o = e.querySelector(".st-h .st-fill"),
-        n =
-          e.querySelector(".st-bottom-right .st-fill") ||
-          e.querySelector(".st-bottom-left .st-fill");
-      let i = s / 0.2,
-        a = (s - 0.2) / 0.6,
-        l = (s - 0.8) / 0.2;
-      (t && (t.style.transform = `scaleY(${Math.max(0, Math.min(1, i))})`),
-        o && (o.style.transform = `scaleX(${Math.max(0, Math.min(1, a))})`),
-        n && (n.style.transform = `scaleY(${Math.max(0, Math.min(1, l))})`));
-    }
-  });
+
+    const midPoint = window.innerHeight / 2;
+    const timelineNodes = document.querySelectorAll(".st-node, .st-turn");
+    
+    timelineNodes.forEach((node) => {
+      const rect = node.getBoundingClientRect();
+      const relativeProgress = (midPoint + 50 - rect.top) / rect.height;
+      const fillProgress = Math.max(0, Math.min(1, relativeProgress));
+      
+      if (node.classList.contains("st-node")) {
+        const fill = node.querySelector(".st-v .st-fill");
+        if (fill) fill.style.transform = `scaleY(${fillProgress})`;
+        
+        const dot = node.querySelector(".st-dot");
+        const content = node.querySelector(".st-content");
+        
+        if (relativeProgress >= 0.5) {
+          if (dot) dot.classList.add("filled");
+          if (content) content.classList.add("visible");
+        } else {
+          if (dot) dot.classList.remove("filled");
+          if (content) content.classList.remove("visible");
+        }
+      } else if (node.classList.contains("st-turn")) {
+        const topFill = node.querySelector(".st-top-left .st-fill") || node.querySelector(".st-top-right .st-fill");
+        const horizontalFill = node.querySelector(".st-h .st-fill");
+        const bottomFill = node.querySelector(".st-bottom-right .st-fill") || node.querySelector(".st-bottom-left .st-fill");
+        
+        let topSection = Math.max(0, Math.min(1, fillProgress / 0.2));
+        let midSection = Math.max(0, Math.min(1, (fillProgress - 0.2) / 0.6));
+        let botSection = Math.max(0, Math.min(1, (fillProgress - 0.8) / 0.2));
+        
+        if (topFill) topFill.style.transform = `scaleY(${topSection})`;
+        if (horizontalFill) horizontalFill.style.transform = `scaleX(${midSection})`;
+        if (bottomFill) bottomFill.style.transform = `scaleY(${botSection})`;
+      }
+    });
+};
+
+// Handle bfcache restoration
+window.addEventListener("pageshow", (event) => {
+    refreshScrollAnims();
 });
+
+window.addEventListener("scroll", refreshScrollAnims);
 // =========================================================================
 // INTERSECTION OBSERVERS (FADE IN EFFECTS)
 // =========================================================================
