@@ -586,7 +586,11 @@ const refreshScrollAnims = () => {
 
 // Handle bfcache restoration
 window.addEventListener("pageshow", (event) => {
+    // Immediate refresh
     refreshScrollAnims();
+    // Delayed refresh to ensure layout flow is complete
+    setTimeout(refreshScrollAnims, 100);
+    setTimeout(refreshScrollAnims, 500); // Brute force fallback for slower systems
 });
 
 window.addEventListener("scroll", refreshScrollAnims);
@@ -804,70 +808,112 @@ ie &&
 const gallerySearch = document.getElementById("gallerySearch");
 const clearSearchBtn = document.getElementById("clearSearch");
 
-if (gallerySearch) {
-  gallerySearch.addEventListener("input", (e) => {
-    const searchTerm = e.target.value.toLowerCase().trim();
-    const projects = document.querySelectorAll(".project-row");
+// Helper: Debounce function to limit execution frequency
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
 
-    // Toggle clear button
-    if (clearSearchBtn) {
-      clearSearchBtn.style.opacity = searchTerm.length > 0 ? "1" : "0";
-      clearSearchBtn.style.pointerEvents =
-        searchTerm.length > 0 ? "auto" : "none";
-    }
+// Function to perform search and filter
+const performSearch = (searchTerm = "") => {
+  const query = searchTerm.toLowerCase().trim();
+  const keywords = query.split(/\s+/).filter(k => k.length > 0);
+  const projects = document.querySelectorAll(".project-row");
 
-    projects.forEach((project) => {
-      const title =
-        project
-          .querySelector(".project-row-title")
-          ?.textContent.toLowerCase() || "";
-      const desc =
-        project.querySelector(".project-row-desc")?.textContent.toLowerCase() ||
-        "";
-      const tech = Array.from(project.querySelectorAll(".project-row-pill"))
-        .map((p) => p.textContent.toLowerCase())
-        .join(" ");
+  // Toggle clear button
+  if (clearSearchBtn) {
+    const isSearchEmpty = query.length === 0;
+    clearSearchBtn.style.opacity = isSearchEmpty ? "0" : "1";
+    clearSearchBtn.style.pointerEvents = isSearchEmpty ? "none" : "auto";
+  }
 
-      const matches =
-        title.includes(searchTerm) ||
-        desc.includes(searchTerm) ||
-        tech.includes(searchTerm);
+  projects.forEach((project) => {
+    const title = project.querySelector(".project-row-title")?.textContent.toLowerCase() || "";
+    const desc = project.querySelector(".project-row-desc")?.textContent.toLowerCase() || "";
+    const tech = Array.from(project.querySelectorAll(".project-row-pill"))
+      .map((p) => p.textContent.toLowerCase())
+      .join(" ");
 
-      if (matches) {
-        project.style.display = "block"; // Changed from empty string to block for consistency
-        project.classList.remove("filtered-out");
-      } else {
-        project.style.display = "none";
-        project.classList.add("filtered-out");
-      }
-    });
-
-    // Check if no results
-    const visibleProjects = Array.from(projects).filter(
-      (p) => p.style.display !== "none",
+    // Check if ALL keywords match at least one field (multi-keyword AND search)
+    const matchesAllKeywords = keywords.every(kw => 
+      title.includes(kw) || desc.includes(kw) || tech.includes(kw)
     );
-    const projectsStack = document.getElementById("projectsStack");
 
-    let noResultsMsg = document.getElementById("noResultsMsg");
-    if (visibleProjects.length === 0) {
-      if (!noResultsMsg) {
-        noResultsMsg = document.createElement("div");
-        noResultsMsg.id = "noResultsMsg";
-        noResultsMsg.className = "no-results-message fade-element";
-        noResultsMsg.innerHTML = `
-          <div class="no-results-content">
-            <i class="fa-solid fa-face-frown"></i>
-            <h3>No projects found</h3>
-            <p>Try searching for different keywords or check back later.</p>
-          </div>
-        `;
-        projectsStack?.appendChild(noResultsMsg);
-        setTimeout(() => noResultsMsg.classList.add("visible"), 10);
-      }
+    const matches = keywords.length === 0 || matchesAllKeywords;
+
+    if (matches) {
+      project.style.display = "block";
+      project.classList.remove("filtered-out");
+      // Optional: Add a subtle animation/transition
+      project.animate([
+        { opacity: 0, transform: "translateY(10px)" },
+        { opacity: 1, transform: "translateY(0)" }
+      ], { duration: 300, easing: "ease-out", fill: "both" });
     } else {
-      if (noResultsMsg) {
-        noResultsMsg.remove();
-      }
+      project.style.display = "none";
+      project.classList.add("filtered-out");
+    }
+  });
+
+  // Check if no results
+  const visibleProjects = Array.from(projects).filter(p => p.style.display !== "none");
+  const projectsStack = document.getElementById("projectsStack");
+  let noResultsMsg = document.getElementById("noResultsMsg");
+
+  if (visibleProjects.length === 0 && query.length > 0) {
+    if (!noResultsMsg) {
+      noResultsMsg = document.createElement("div");
+      noResultsMsg.id = "noResultsMsg";
+      noResultsMsg.className = "no-results-message fade-element visible";
+      noResultsMsg.innerHTML = `
+        <div class="no-results-content">
+          <i class="fa-solid fa-magnifying-glass-chart" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+          <h3>No matches for "${searchTerm}"</h3>
+          <p>Try different keywords or browse our full collection below.</p>
+        </div>
+      `;
+      projectsStack?.appendChild(noResultsMsg);
+    } else {
+      noResultsMsg.querySelector("h3").textContent = `No matches for "${searchTerm}"`;
+    }
+  } else {
+    noResultsMsg?.remove();
+  }
+
+  // Update URL search param without reloading
+  if (window.location.pathname.endsWith("projects.html")) {
+    const url = new URL(window.location);
+    if (query) {
+      url.searchParams.set("q", query);
+    } else {
+      url.searchParams.delete("q");
+    }
+    window.history.replaceState({}, "", url);
+  }
+};
+
+// Main search listener with debouncing
+if (gallerySearch) {
+  const debouncedSearch = debounce((e) => {
+    performSearch(e.target.value);
+  }, 250);
+
+  gallerySearch.addEventListener("input", debouncedSearch);
+
+  // Initial check from URL parameters
+  window.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const initialQuery = params.get("q");
+    if (initialQuery) {
+      gallerySearch.value = initialQuery;
+      performSearch(initialQuery);
     }
   });
 }
@@ -875,7 +921,7 @@ if (gallerySearch) {
 if (clearSearchBtn && gallerySearch) {
   clearSearchBtn.addEventListener("click", () => {
     gallerySearch.value = "";
-    gallerySearch.dispatchEvent(new Event("input"));
+    performSearch(""); // Execute immediately without debounce
     gallerySearch.focus();
   });
 }
