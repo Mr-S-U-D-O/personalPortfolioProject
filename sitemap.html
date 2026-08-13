@@ -5,10 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sitemap | File Tree</title>
     <!-- FontAwesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/font-awesome.min.css"
-    />
+    
     <link
       href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
@@ -159,7 +156,8 @@
         margin-bottom: 40px;
       }
     </style>
-  </head>
+      <script src="https://unpkg.com/lucide@latest"></script>
+</head>
   <body>
     <!-- Utility Toggles -->
     <div class="utility-toggles">
@@ -168,7 +166,7 @@
         class="theme-toggle"
         aria-label="Toggle Dark Mode"
       >
-        <i class="fa-solid fa-moon"></i>
+        <i data-lucide="moon"></i>
       </button>
     </div>
 
@@ -195,7 +193,7 @@
 
         <div class="file-tree-container">
           <div class="project-root">
-            <i class="fa-solid fa-globe"></i> www.sudo.co.za
+            <i data-lucide="globe"></i> www.sudo.co.za
           </div>
           <ul class="tree-branch" style="--level: 0;">
   <li class="tree-item ">
@@ -288,18 +286,18 @@
       // Initial check
       if (localStorage.getItem("portfolio-theme") === "light") {
         document.body.setAttribute("data-theme", "light");
-        themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+        themeToggleBtn.innerHTML = '<i data-lucide="sun"></i>';
       }
 
       themeToggleBtn.addEventListener("click", () => {
         if (document.body.getAttribute("data-theme") === "light") {
           document.body.removeAttribute("data-theme");
           localStorage.setItem("portfolio-theme", "dark");
-          themeToggleBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+          themeToggleBtn.innerHTML = '<i data-lucide="moon"></i>';
         } else {
           document.body.setAttribute("data-theme", "light");
           localStorage.setItem("portfolio-theme", "light");
-          themeToggleBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+          themeToggleBtn.innerHTML = '<i data-lucide="sun"></i>';
         }
       });
     </script>
@@ -308,7 +306,7 @@
     <!-- Back to Top                               -->
     <!-- ========================================= -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
-      <i class="fa-solid fa-chevron-up"></i>
+      <i data-lucide="chevron-up"></i>
     </button>
   </body>
 </html>

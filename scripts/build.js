@@ -878,12 +878,25 @@ async function minifyFiles() {
     try {
       let content = fs.readFileSync(htmlPath, "utf8");
 
-      // 1. Rename Font Awesome
-      content = content.replace(/all\.min\.css/g, "font-awesome.min.css");
+      // 1. Remove Font Awesome and inject Lucide script
+      content = content.replace(/<link[^>]*href="[^"]*font-awesome\.min\.css"[^>]*>/g, "");
+      if (!content.includes("unpkg.com/lucide")) {
+         // Insert Lucide before closing head tag
+         content = content.replace(/<\/head>/i, '    <script src="https://unpkg.com/lucide@latest"></script>\n</head>');
+      }
 
-      // 2. Resolve relative paths for CSS/JS replacements
+      // 1.5 Inject Global Footer
       const isRoot = path.dirname(htmlPath) === path.join(__dirname, "../");
       const prefix = isRoot ? "" : "../";
+      
+      const footerTemplatePath = path.join(__dirname, "../templates/footer-template.html");
+      if (fs.existsSync(footerTemplatePath)) {
+          let footerTemplate = fs.readFileSync(footerTemplatePath, "utf8");
+          footerTemplate = footerTemplate.replace(/{{BASE_URL}}/g, prefix);
+          content = content.replace(/<!-- INJECT_GLOBAL_FOOTER -->/g, footerTemplate);
+      }
+
+      // 2. Resolve relative paths for CSS/JS replacements
 
       // Replace style.css with bundled minified version
       const styleRegex = new RegExp(`href="${prefix}css/style\\.css"`, "g");

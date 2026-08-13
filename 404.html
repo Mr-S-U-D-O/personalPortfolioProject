@@ -46,7 +46,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    
 
     <!-- Universal Theme System (non-deferred to prevent flash) -->
     <script src="js/min/theme.min.js"></script>
@@ -369,7 +369,8 @@
         }
       }
     </style>
-  </head>
+      <script src="https://unpkg.com/lucide@latest"></script>
+</head>
   <body>
     <!-- Theme Toggle -->
     <div class="utility-toggles" style="z-index: 9999">
@@ -378,7 +379,7 @@
         data-theme-toggle
         aria-label="Toggle Dark Mode"
       >
-        <i class="fa-solid fa-moon"></i>
+        <i data-lucide="moon"></i>
       </button>
     </div>
 
@@ -436,10 +437,10 @@
 
         <div class="error-actions">
           <a href="index.html" class="btn-primary-404">
-            <i class="fa-solid fa-house"></i> Go Home
+            <i data-lucide="home"></i> Go Home
           </a>
           <a href="javascript:history.back()" class="btn-ghost-404">
-            <i class="fa-solid fa-arrow-left"></i> Go Back
+            <i data-lucide="arrow-left"></i> Go Back
           </a>
         </div>
 
@@ -449,13 +450,13 @@
             ><i class="fa-regular fa-folder"></i> Projects</a
           >
           <a href="index.html#blog" class="error-nav-pill"
-            ><i class="fa-solid fa-pen-nib"></i> Articles</a
+            ><i data-lucide="pen-tool"></i> Articles</a
           >
           <a href="about.html" class="error-nav-pill"
             ><i class="fa-regular fa-user"></i> About</a
           >
           <a href="sitemap.html" class="error-nav-pill"
-            ><i class="fa-solid fa-sitemap"></i> Sitemap</a
+            ><i data-lucide="sitemap"></i> Sitemap</a
           >
           <a href="index.html#contact" class="error-nav-pill"
             ><i class="fa-regular fa-envelope"></i> Contact</a

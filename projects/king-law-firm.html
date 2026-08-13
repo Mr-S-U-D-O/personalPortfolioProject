@@ -19,14 +19,15 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" as="script">
     <link rel="preload" as="image" href="../../projects/king-law/mockup-frames/mockup-desktop-framed.png">
     <link rel="stylesheet" href="../css/min/style.min.css?v=1773704459909">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    
     <link rel="stylesheet" href="../css/min/project.min.css">
     <!-- Universal Theme System (must be non-deferred to prevent flash) -->
-    <script src="../js/min/theme.min.js?v=1774388869482"></script>
+    <script src="../js/min/theme.min.js?v=1785989917706"></script>
 
     <!-- GSAP for scroll animations -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="project-detail-page">
     
@@ -36,10 +37,10 @@
     <!-- Utility Toggles -->
     <div class="utility-toggles">
         <button id="muteToggle" class="mute-toggle" aria-label="Toggle Audio">
-            <i class="fa-solid fa-volume-high"></i>
+            <i data-lucide="volume-high"></i>
         </button>
         <button class="theme-toggle" data-theme-toggle aria-label="Toggle Dark Mode">
-            <i class="fa-solid fa-moon"></i>
+            <i data-lucide="moon"></i>
         </button>
     </div>
 
@@ -49,7 +50,7 @@
             <li class="nav-item">
                 <a href="../cv/mosa_moleleki_cv.pdf" download="Mosa_Moleleki_CV.pdf" target="_blank" class="nav-link cv-link" id="resumeLink">
                     <span class="nav-text">Resume</span>
-                    <i class="fa-solid fa-download nav-icon"></i>
+                    <i data-lucide="download nav-icon"></i>
                 </a>
             </li>
         </ul>
@@ -60,7 +61,7 @@
     <div class="project-container">
         
         <!-- Back Button -->
-        <a href="../index.html#projects" class="back-home-btn animate-fade-in"><i class="fa-solid fa-arrow-left"></i> Back to Projects</a>
+        <a href="../index.html#projects" class="back-home-btn animate-fade-in"><i data-lucide="arrow-left"></i> Back to Projects</a>
 
         <!-- Premium Minimalist Hero Section -->
         <header class="project-hero premium-hero animate-slide-up">
@@ -301,28 +302,86 @@
         <!-- Site Footer (Merged Socials)              -->
         <!-- ========================================= -->
         <footer class="site-footer">
-          
-            <div class="footer-content">
-                
-                
-    
-                <!-- Footer Bottom Row: Copyright and Navigation -->
-                <div class="footer-row footer-bottom">
-                    <div class="footer-copyright">
-                        &copy; <span class="copyright-year">2026</span> <span class="stylized-name">Mosa "S.U.D.O" Moleleki</span>. All Rights Reserved. &mdash; <a href="https://github.com/Mr-S-U-D-O/personalPortfolioProject/blob/main/LICENSE" target="_blank" rel="noopener noreferrer" style="color: inherit; opacity: 0.6; text-decoration: underline; text-underline-offset: 3px;">License</a>
-                    </div>
-                    <!-- Navigation links matched with site sections -->
-                    <nav class="footer-nav">
-                        <a href="#heroSection" class="footer-nav-link">Home</a>
-                        <a href="#about" class="footer-nav-link">About</a>
-                        <a href="#projects" class="footer-nav-link">Projects</a>
-                        <a href="blog.html" class="footer-nav-link">Articles</a>
-                        <a href="#contact" class="footer-nav-link">Contact</a>
-                        <a href="sitemap.html" class="footer-nav-link">Sitemap</a>
-                    </nav>
+    <div class="footer-container">
+        <!-- CTA Section -->
+        <div class="footer-cta">
+            <div class="footer-cta-text">
+                <h3>Ready to build something serious?</h3>
+                <p>Let's collaborate to bring your digital vision to life.</p>
+            </div>
+            <div class="footer-cta-action">
+                <button class="lets-talk-btn" onclick="document.getElementById('openContactBtn').click()">
+                    <span>Send a Message</span>
+                    <i data-lucide="arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Footer Links Grid -->
+        <div class="footer-main-grid">
+            <!-- Navigation Column -->
+            <nav class="footer-column" aria-label="Footer Navigation">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="../#heroSection"><i data-lucide="chevron-right"></i> Home</a></li>
+                    <li><a href="../#about"><i data-lucide="chevron-right"></i> About</a></li>
+                    <li><a href="../#projects"><i data-lucide="chevron-right"></i> Projects</a></li>
+                    <li><a href="../#blog"><i data-lucide="chevron-right"></i> Articles</a></li>
+                    <li><a href="../#contact"><i data-lucide="chevron-right"></i> Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Resources Column -->
+            <nav class="footer-column" aria-label="Secondary Navigation">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="../projects.html"><i data-lucide="chevron-right"></i> Case Studies</a></li>
+                    <li><a href="../cv/mosa_moleleki_cv.pdf" target="_blank"><i data-lucide="chevron-right"></i> Digital Resume</a></li>
+                    <li><a href="../sitemap.html"><i data-lucide="chevron-right"></i> Sitemap</a></li>
+                    <li><a href="https://github.com/Mr-S-U-D-O/personalPortfolioProject/blob/main/LICENSE" target="_blank"><i data-lucide="chevron-right"></i> Legal License</a></li>
+                </ul>
+            </nav>
+
+            <!-- Connect Column -->
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <div class="footer-social-links">
+                    <a href="https://github.com/Mr-S-U-D-O" class="footer-social-btn" target="_blank" aria-label="GitHub Profile">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/mosa-moleleki" class="footer-social-btn" target="_blank" aria-label="LinkedIn Profile">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                </div>
+                <!-- Preserved GitHub Star Button -->
+                <div class="footer-github-star">
+                    <button class="premium-github-btn" onclick="window.open('https://github.com/Mr-S-U-D-O/personalPortfolioProject', '_blank')">
+                        <div class="btn-icon"><i data-lucide="github"></i></div>
+                        <div class="btn-text-content">
+                            <span class="btn-title">Star on GitHub</span>
+                            <span class="btn-value">
+                                <i data-lucide="star" class="star-icon"></i>
+                                <span id="github-star-count">0</span>
+                            </span>
+                        </div>
+                    </button>
                 </div>
             </div>
-        </footer>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="footer-bottom">
+            <div class="footer-copyright">
+                <p>&copy; 2026 <strong>Mosa "S.U.D.O" Moleleki</strong>. All Rights Reserved.</p>
+            </div>
+            <div class="footer-bottom-links">
+                <a href="mailto:molelekishoez@gmail.com">molelekishoez@gmail.com</a>
+                <a href="../#contact">Base: Johannesburg, RSA</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
     </div>
 
     <!-- Scripts -->
@@ -526,7 +585,7 @@
                 }, 500);
             });
 
-            // 7. Theme Toggle — wired via universal ThemeSystem (theme.js?v=1774388869482 loaded in <head>)
+            // 7. Theme Toggle — wired via universal ThemeSystem (theme.js?v=1785989917706 loaded in <head>)
             if (window.ThemeSystem) window.ThemeSystem.init();
         });
     </script>
@@ -539,7 +598,7 @@
     <!-- Image Modal -->
     <div id="imageModal" class="project-image-modal" aria-hidden="true">
         <div class="modal-overlay"></div>
-        <button class="modal-close" aria-label="Close modal"><i class="fa-solid fa-xmark"></i></button>
+        <button class="modal-close" aria-label="Close modal"><i data-lucide="x"></i></button>
         <div class="modal-content">
             <img id="modalImage" src="" alt="Project Visual">
         </div>

@@ -373,9 +373,11 @@
     },
   };
 
-  // Auto-initialize when the DOM is fully loaded
   document.addEventListener("DOMContentLoaded", function () {
     window.ThemeSystem.init();
     window.ThemeSystem.fetchGitHubStars();
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    }
   });
 })();

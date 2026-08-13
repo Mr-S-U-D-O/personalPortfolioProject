@@ -62,12 +62,13 @@
     />
     <link rel="preload" as="image" href="../my pictures/dark mode.webp" />
     <link rel="stylesheet" href="../css/min/style.min.css?v=1773704459909" />
-    <link rel="stylesheet" href="../css/font-awesome.min.css" />
+    
     <!-- Universal Theme System (non-deferred to prevent flash) -->
 
-    <script src="../js/min/theme.min.js?v=1774388869482"></script>
+    <script src="../js/min/theme.min.js?v=1785989917706"></script>
 
-  </head>
+      <script src="https://unpkg.com/lucide@latest"></script>
+</head>
   <body class="blog-post-page">
     <!-- Post Progress Bar -->
     <div class="post-progress-container">
@@ -79,7 +80,7 @@
       <aside class="blog-sidebar-v2">
         <div class="sidebar-top-v2">
           <a href="../index.html#blog" class="blog-back-btn-v2"
-            ><i class="fa-solid fa-arrow-left"></i> ALL POSTS</a
+            ><i data-lucide="arrow-left"></i> ALL POSTS</a
           >
         </div>
 
@@ -148,7 +149,7 @@
                 ><i class="fa-brands fa-linkedin-in"></i
               ></a>
               <button id="copyLinkBtn" aria-label="Copy Link">
-                <i class="fa-solid fa-link"></i>
+                <i data-lucide="link"></i>
               </button>
             </div>
           </div>
@@ -362,158 +363,92 @@ const setupFluidGrid = (containerId) => {
 
     <!-- Redesigned Footer Section -->
     <footer class="site-footer">
-      <div class="footer-container">
+    <div class="footer-container">
         <!-- CTA Section -->
         <div class="footer-cta">
-          <div class="cta-corner tl"></div>
-          <div class="cta-corner tr"></div>
-          <div class="cta-corner bl"></div>
-          <div class="cta-corner br"></div>
-
-          <div class="footer-cta-text">
-            <h3>Ready to build something serious?</h3>
-            <p>Let's collaborate to bring your digital vision to life.</p>
-          </div>
-          <div class="footer-cta-action">
-            <a href="../index.html#contact" class="lets-talk-btn">
-              <span>Initialize Chat</span>
-              <svg width="15px" height="10px" viewBox="0 0 13 10">
-                <path d="M1,5 L11,5"></path>
-                <polyline points="8 1 12 5 8 9"></polyline>
-              </svg>
-            </a>
-          </div>
+            <div class="footer-cta-text">
+                <h3>Ready to build something serious?</h3>
+                <p>Let's collaborate to bring your digital vision to life.</p>
+            </div>
+            <div class="footer-cta-action">
+                <button class="lets-talk-btn" onclick="document.getElementById('openContactBtn').click()">
+                    <span>Send a Message</span>
+                    <i data-lucide="arrow-right"></i>
+                </button>
+            </div>
         </div>
 
         <!-- Main Footer Links Grid -->
         <div class="footer-main-grid">
-          <!-- Navigation Column -->
-          <nav class="footer-column" aria-label="Footer Navigation">
-            <h4>Navigation</h4>
-            <ul class="footer-links">
-              <li>
-                <a href="../index.html#home"
-                  ><i class="fa-solid fa-chevron-right"></i> Home</a
-                >
-              </li>
-              <li>
-                <a href="../index.html#about"
-                  ><i class="fa-solid fa-chevron-right"></i> About</a
-                >
-              </li>
-              <li>
-                <a href="../index.html#projects"
-                  ><i class="fa-solid fa-chevron-right"></i> Projects</a
-                >
-              </li>
-              <li>
-                <a href="../index.html#blog"
-                  ><i class="fa-solid fa-chevron-right"></i> Articles</a
-                >
-              </li>
-              <li>
-                <a href="../index.html#contact"
-                  ><i class="fa-solid fa-chevron-right"></i> Contact</a
-                >
-              </li>
-            </ul>
-          </nav>
+            <!-- Navigation Column -->
+            <nav class="footer-column" aria-label="Footer Navigation">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="../#heroSection"><i data-lucide="chevron-right"></i> Home</a></li>
+                    <li><a href="../#about"><i data-lucide="chevron-right"></i> About</a></li>
+                    <li><a href="../#projects"><i data-lucide="chevron-right"></i> Projects</a></li>
+                    <li><a href="../#blog"><i data-lucide="chevron-right"></i> Articles</a></li>
+                    <li><a href="../#contact"><i data-lucide="chevron-right"></i> Contact</a></li>
+                </ul>
+            </nav>
 
-          <!-- Resources Column -->
-          <nav class="footer-column" aria-label="Secondary Navigation">
-            <h4>Resources</h4>
-            <ul class="footer-links">
-              <li>
-                <a href="../projects.html"
-                  ><i class="fa-solid fa-chevron-right"></i> Case Studies</a
-                >
-              </li>
-              <li>
-                <a href="../cv/mosa_moleleki_cv.pdf" target="_blank"
-                  ><i class="fa-solid fa-chevron-right"></i> Digital Resume</a
-                >
-              </li>
-              <li>
-                <a href="../sitemap.html"
-                  ><i class="fa-solid fa-chevron-right"></i> Sitemap</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://github.com/Mr-S-U-D-O/personalPortfolioProject/blob/main/LICENSE"
-                  target="_blank"
-                  ><i class="fa-solid fa-chevron-right"></i> Legal License</a
-                >
-              </li>
-            </ul>
-          </nav>
+            <!-- Resources Column -->
+            <nav class="footer-column" aria-label="Secondary Navigation">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="../projects.html"><i data-lucide="chevron-right"></i> Case Studies</a></li>
+                    <li><a href="../cv/mosa_moleleki_cv.pdf" target="_blank"><i data-lucide="chevron-right"></i> Digital Resume</a></li>
+                    <li><a href="../sitemap.html"><i data-lucide="chevron-right"></i> Sitemap</a></li>
+                    <li><a href="https://github.com/Mr-S-U-D-O/personalPortfolioProject/blob/main/LICENSE" target="_blank"><i data-lucide="chevron-right"></i> Legal License</a></li>
+                </ul>
+            </nav>
 
-          <!-- Connect Column -->
-          <div class="footer-column">
-            <h4>Connect</h4>
-            <div class="footer-social-links">
-              <a
-                href="https://github.com/Mr-S-U-D-O"
-                class="footer-social-btn"
-                target="_blank"
-                aria-label="GitHub Profile"
-              >
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a
-                href="https://linkedin.com/in/mosa-moleleki"
-                class="footer-social-btn"
-                target="_blank"
-                aria-label="LinkedIn Profile"
-              >
-                <i class="fa-brands fa-linkedin-in"></i>
-              </a>
-            </div>
-            <!-- Preserved GitHub Star Button -->
-            <div class="footer-github-star">
-              <button
-                class="premium-github-btn"
-                onclick="
-                  window.open(
-                    'https://github.com/Mr-S-U-D-O/personalPortfolioProject',
-                    '_blank',
-                  )
-                "
-              >
-                <div class="btn-icon"><i class="fa-brands fa-github"></i></div>
-                <div class="btn-text-content">
-                  <span class="btn-title">Star on GitHub</span>
-                  <span class="btn-value">
-                    <i class="fa-solid fa-star star-icon"></i>
-                    <span id="github-star-count">0</span>
-                  </span>
+            <!-- Connect Column -->
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <div class="footer-social-links">
+                    <a href="https://github.com/Mr-S-U-D-O" class="footer-social-btn" target="_blank" aria-label="GitHub Profile">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/mosa-moleleki" class="footer-social-btn" target="_blank" aria-label="LinkedIn Profile">
+                        <i data-lucide="linkedin"></i>
+                    </a>
                 </div>
-              </button>
+                <!-- Preserved GitHub Star Button -->
+                <div class="footer-github-star">
+                    <button class="premium-github-btn" onclick="window.open('https://github.com/Mr-S-U-D-O/personalPortfolioProject', '_blank')">
+                        <div class="btn-icon"><i data-lucide="github"></i></div>
+                        <div class="btn-text-content">
+                            <span class="btn-title">Star on GitHub</span>
+                            <span class="btn-value">
+                                <i data-lucide="star" class="star-icon"></i>
+                                <span id="github-star-count">0</span>
+                            </span>
+                        </div>
+                    </button>
+                </div>
             </div>
-          </div>
         </div>
 
         <!-- Bottom Bar -->
         <div class="footer-bottom">
-          <div class="footer-copyright">
-            <p>
-              &copy; 2026 <strong>Mosa "S.U.D.O" Moleleki</strong>. All Rights
-              Reserved.
-            </p>
-          </div>
-          <div class="footer-bottom-links">
-            <a href="mailto:molelekishoez@gmail.com">molelekishoez@gmail.com</a>
-            <a href="../index.html#contact">Base: Johannesburg, RSA</a>
-          </div>
+            <div class="footer-copyright">
+                <p>&copy; 2026 <strong>Mosa "S.U.D.O" Moleleki</strong>. All Rights Reserved.</p>
+            </div>
+            <div class="footer-bottom-links">
+                <a href="mailto:molelekishoez@gmail.com">molelekishoez@gmail.com</a>
+                <a href="../#contact">Base: Johannesburg, RSA</a>
+            </div>
         </div>
-      </div>
-    </footer>
+    </div>
+</footer>
+
 
     <!-- ========================================= -->
     <!-- Back to Top                               -->
     <!-- ========================================= -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
-      <i class="fa-solid fa-chevron-up"></i>
+      <i data-lucide="chevron-up"></i>
     </button>
   </body>
 </html>

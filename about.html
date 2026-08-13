@@ -78,7 +78,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" /><!-- ===================== Universal Theme System (sync — prevents flash) ===================== -->
+    <!-- ===================== Universal Theme System (sync — prevents flash) ===================== -->
     <script src="js/min/theme.min.js"></script>
 
     <!-- ===================== Scroll Unlock (inline — before paint) ===================== -->
@@ -88,7 +88,8 @@
       document.documentElement.style.overflow = "auto";
       document.documentElement.style.height = "auto";
     </script>
-  </head>
+      <script src="https://unpkg.com/lucide@latest"></script>
+</head>
   <body class="about-page">
     <script>
       // Reinforce now that body exists in the DOM
@@ -112,7 +113,7 @@
     <!-- ========================================= -->
     <header class="about-topbar">
       <a href="index.html#about" class="about-back-link">
-        <i class="fa-solid fa-arrow-left"></i>
+        <i data-lucide="arrow-left"></i>
         Back
       </a>
       <span class="about-topbar-name">Mosa Moleleki</span>
@@ -151,19 +152,19 @@
         <!-- Pill badges -->
         <div class="about-hero-pills ap-fade ap-fade-delay-2">
           <span class="about-pill">
-            <i class="fa-solid fa-code"></i>
+            <i data-lucide="code"></i>
             Self-taught
           </span>
           <span class="about-pill">
-            <i class="fa-solid fa-location-dot"></i>
+            <i data-lucide="map-pin"></i>
             Based in JHB
           </span>
           <span class="about-pill">
-            <i class="fa-solid fa-earth-africa"></i>
+            <i data-lucide="earth-africa"></i>
             Open to remote
           </span>
           <span class="about-pill">
-            <i class="fa-solid fa-rocket"></i>
+            <i data-lucide="rocket"></i>
             Founder, LaunchPad Studio
           </span>
         </div>
@@ -369,7 +370,7 @@
 
         <div class="about-philosophy-grid">
           <div class="about-philo-card ap-fade ap-fade-delay-1">
-            <i class="fa-solid fa-magnifying-glass about-philo-icon"></i>
+            <i data-lucide="magnifying-glass about-philo-icon"></i>
             <h3 class="about-philo-title">First, understand.</h3>
             <p class="about-philo-desc">
               I don't write a single line of code before I've understood the
@@ -388,7 +389,7 @@
             </p>
           </div>
           <div class="about-philo-card ap-fade ap-fade-delay-3">
-            <i class="fa-solid fa-arrows-spin about-philo-icon"></i>
+            <i data-lucide="arrows-spin about-philo-icon"></i>
             <h3 class="about-philo-title">Iterate without ego.</h3>
             <p class="about-philo-desc">
               Feedback isn't criticism — it's data. The work either solves the
@@ -418,29 +419,29 @@
           <h3 class="about-skills-subheading">Fundamentals</h3>
           <div class="about-skills-grid">
             <div class="skill-card">
-              <i class="fa-solid fa-brain skill-icon"></i>
+              <i data-lucide="brain skill-icon"></i>
               <span class="skill-text"
                 >Analytical mindset &amp; problem-solving</span
               >
             </div>
             <div class="skill-card">
-              <i class="fa-solid fa-eye skill-icon"></i>
+              <i data-lucide="eye skill-icon"></i>
               <span class="skill-text"
                 >Detail-oriented with a strong design sense</span
               >
             </div>
             <div class="skill-card">
-              <i class="fa-solid fa-bolt skill-icon"></i>
+              <i data-lucide="bolt skill-icon"></i>
               <span class="skill-text"
                 >Performance optimization &amp; scalability</span
               >
             </div>
             <div class="skill-card">
-              <i class="fa-solid fa-vial skill-icon"></i>
+              <i data-lucide="vial skill-icon"></i>
               <span class="skill-text">Automated testing &amp; unit tests</span>
             </div>
             <div class="skill-card">
-              <i class="fa-solid fa-layer-group skill-icon"></i>
+              <i data-lucide="layer-group skill-icon"></i>
               <span class="skill-text"
                 >Bridging design and technical implementation</span
               >
@@ -453,21 +454,21 @@
           <h3 class="about-skills-subheading">Additional Knowledge</h3>
           <div class="about-skills-grid">
             <div class="skill-card">
-              <i class="fa-brands fa-js skill-icon"></i>
+              <i data-lucide="js skill-icon"></i>
               <span class="skill-text"
                 >Frontend JS Frameworks (React, Vue, Angular)</span
               >
             </div>
             <div class="skill-card">
-              <i class="fa-solid fa-code-branch skill-icon"></i>
+              <i data-lucide="code-branch skill-icon"></i>
               <span class="skill-text">CI/CD practices</span>
             </div>
             <div class="skill-card">
-              <i class="fa-solid fa-globe skill-icon"></i>
+              <i data-lucide="globe skill-icon"></i>
               <span class="skill-text">Cross-browser compatibility</span>
             </div>
             <div class="skill-card">
-              <i class="fa-brands fa-sass skill-icon"></i>
+              <i data-lucide="sass skill-icon"></i>
               <span class="skill-text">Server-side CSS pre-processing</span>
             </div>
           </div>
@@ -491,13 +492,13 @@
             <div class="about-stack-row-label">Core</div>
             <div class="about-stack-row">
               <span class="about-tech-pill"
-                ><i class="fa-brands fa-html5"></i> HTML5</span
+                ><i data-lucide="html5"></i> HTML5</span
               >
               <span class="about-tech-pill"
-                ><i class="fa-brands fa-css3-alt"></i> CSS3</span
+                ><i data-lucide="css3-alt"></i> CSS3</span
               >
               <span class="about-tech-pill"
-                ><i class="fa-brands fa-js"></i> JavaScript</span
+                ><i data-lucide="js"></i> JavaScript</span
               >
               <span class="about-tech-pill">
                 <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
@@ -508,7 +509,7 @@
                 Three.js
               </span>
               <span class="about-tech-pill"
-                ><i class="fa-brands fa-node-js"></i> Node.js</span
+                ><i data-lucide="node-js"></i> Node.js</span
               >
             </div>
           </div>
@@ -520,10 +521,10 @@
             <div class="about-stack-row-label">Tooling &amp; Deployment</div>
             <div class="about-stack-row">
               <span class="about-tech-pill"
-                ><i class="fa-brands fa-git-alt"></i> Git</span
+                ><i data-lucide="git-alt"></i> Git</span
               >
               <span class="about-tech-pill"
-                ><i class="fa-brands fa-github"></i> GitHub</span
+                ><i data-lucide="github"></i> GitHub</span
               >
               <span class="about-tech-pill">
                 <svg
@@ -572,16 +573,16 @@
             <div class="about-stack-row-label">Exploring / Learning</div>
             <div class="about-stack-row">
               <span class="about-tech-pill exploring"
-                ><i class="fa-brands fa-react"></i> React</span
+                ><i data-lucide="react"></i> React</span
               >
               <span class="about-tech-pill exploring"
-                ><i class="fa-brands fa-vuejs"></i> Vue</span
+                ><i data-lucide="vuejs"></i> Vue</span
               >
               <span class="about-tech-pill exploring"
-                ><i class="fa-brands fa-sass"></i> Sass / SCSS</span
+                ><i data-lucide="sass"></i> Sass / SCSS</span
               >
               <span class="about-tech-pill exploring"
-                ><i class="fa-solid fa-database"></i> SQL basics</span
+                ><i data-lucide="database"></i> SQL basics</span
               >
             </div>
           </div>
@@ -621,169 +622,92 @@
     <!-- Site Footer (Unified Redesign)            -->
     <!-- ========================================= -->
     <footer class="site-footer">
-      <div class="footer-container">
+    <div class="footer-container">
         <!-- CTA Section -->
-        <div class="footer-cta fade-in-section">
-          <div class="cta-corner tl"></div>
-          <div class="cta-corner tr"></div>
-          <div class="cta-corner bl"></div>
-          <div class="cta-corner br"></div>
-
-          <div class="footer-cta-text">
-            <h3>Ready to build something serious?</h3>
-            <p>Let's collaborate to bring your digital vision to life.</p>
-          </div>
-          <div class="footer-cta-action">
-            <a href="index.html#contact" class="lets-talk-btn">
-              Initialize Chat <i class="fa-regular fa-paper-plane"></i>
-            </a>
-          </div>
+        <div class="footer-cta">
+            <div class="footer-cta-text">
+                <h3>Ready to build something serious?</h3>
+                <p>Let's collaborate to bring your digital vision to life.</p>
+            </div>
+            <div class="footer-cta-action">
+                <button class="lets-talk-btn" onclick="document.getElementById('openContactBtn').click()">
+                    <span>Send a Message</span>
+                    <i data-lucide="arrow-right"></i>
+                </button>
+            </div>
         </div>
 
         <!-- Main Footer Links Grid -->
         <div class="footer-main-grid">
-          <!-- Brand Column -->
-          <div class="footer-brand">
-            <div class="footer-logo">
-              <span class="sudo-text">S.U.D.O.</span>
-              <span class="sudo-expansion"
-                >Success Usually Demands Obsession</span
-              >
-            </div>
-            <p class="footer-tagline">
-              Engineering high-performance web applications with a focus on
-              technical excellence and immersive user experiences. Based in
-              Johannesburg, moving globally.
-            </p>
-          </div>
+            <!-- Navigation Column -->
+            <nav class="footer-column" aria-label="Footer Navigation">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="../#heroSection"><i data-lucide="chevron-right"></i> Home</a></li>
+                    <li><a href="../#about"><i data-lucide="chevron-right"></i> About</a></li>
+                    <li><a href="../#projects"><i data-lucide="chevron-right"></i> Projects</a></li>
+                    <li><a href="../#blog"><i data-lucide="chevron-right"></i> Articles</a></li>
+                    <li><a href="../#contact"><i data-lucide="chevron-right"></i> Contact</a></li>
+                </ul>
+            </nav>
 
-          <!-- Navigation Column -->
-          <nav class="footer-column" aria-label="Footer Navigation">
-            <h4>Navigation</h4>
-            <ul class="footer-links">
-              <li>
-                <a href="index.html#home"
-                  ><i class="fa-solid fa-chevron-right"></i> Home</a
-                >
-              </li>
-              <li>
-                <a href="index.html#about"
-                  ><i class="fa-solid fa-chevron-right"></i> About</a
-                >
-              </li>
-              <li>
-                <a href="index.html#projects"
-                  ><i class="fa-solid fa-chevron-right"></i> Projects</a
-                >
-              </li>
-              <li>
-                <a href="index.html#blog"
-                  ><i class="fa-solid fa-chevron-right"></i> Articles</a
-                >
-              </li>
-              <li>
-                <a href="index.html#contact"
-                  ><i class="fa-solid fa-chevron-right"></i> Contact</a
-                >
-              </li>
-            </ul>
-          </nav>
+            <!-- Resources Column -->
+            <nav class="footer-column" aria-label="Secondary Navigation">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="../projects.html"><i data-lucide="chevron-right"></i> Case Studies</a></li>
+                    <li><a href="../cv/mosa_moleleki_cv.pdf" target="_blank"><i data-lucide="chevron-right"></i> Digital Resume</a></li>
+                    <li><a href="../sitemap.html"><i data-lucide="chevron-right"></i> Sitemap</a></li>
+                    <li><a href="https://github.com/Mr-S-U-D-O/personalPortfolioProject/blob/main/LICENSE" target="_blank"><i data-lucide="chevron-right"></i> Legal License</a></li>
+                </ul>
+            </nav>
 
-          <!-- Resources Column -->
-          <nav class="footer-column" aria-label="Secondary Navigation">
-            <h4>Resources</h4>
-            <ul class="footer-links">
-              <li>
-                <a href="projects.html"
-                  ><i class="fa-solid fa-chevron-right"></i> Case Studies</a
-                >
-              </li>
-              <li>
-                <a href="./cv/mosa_moleleki_cv.pdf" target="_blank"
-                  ><i class="fa-solid fa-chevron-right"></i> Digital Resume</a
-                >
-              </li>
-              <li>
-                <a href="sitemap.html"
-                  ><i class="fa-solid fa-chevron-right"></i> Sitemap</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://github.com/Mr-S-U-D-O/personalPortfolioProject/blob/main/LICENSE"
-                  target="_blank"
-                  ><i class="fa-solid fa-chevron-right"></i> Legal License</a
-                >
-              </li>
-            </ul>
-          </nav>
-
-          <!-- Connect Column -->
-          <div class="footer-column">
-            <h4>Connect</h4>
-            <div class="footer-social-links">
-              <a
-                href="https://github.com/Mr-S-U-D-O"
-                class="footer-social-btn"
-                target="_blank"
-                aria-label="GitHub Profile"
-              >
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a
-                href="https://linkedin.com/in/mosa-moleleki"
-                class="footer-social-btn"
-                target="_blank"
-                aria-label="LinkedIn Profile"
-              >
-                <i class="fa-brands fa-linkedin-in"></i>
-              </a>
-            </div>
-            <!-- Preserved GitHub Star Button -->
-            <div class="footer-github-star">
-              <button
-                class="premium-github-btn"
-                onclick="
-                  window.open(
-                    'https://github.com/Mr-S-U-D-O/personalPortfolioProject',
-                    '_blank',
-                  )
-                "
-              >
-                <div class="btn-icon"><i class="fa-brands fa-github"></i></div>
-                <div class="btn-text-content">
-                  <span class="btn-title">Star on GitHub</span>
-                  <span class="btn-value">
-                    <i class="fa-solid fa-star star-icon"></i>
-                    <span id="github-star-count">0</span>
-                  </span>
+            <!-- Connect Column -->
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <div class="footer-social-links">
+                    <a href="https://github.com/Mr-S-U-D-O" class="footer-social-btn" target="_blank" aria-label="GitHub Profile">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/mosa-moleleki" class="footer-social-btn" target="_blank" aria-label="LinkedIn Profile">
+                        <i data-lucide="linkedin"></i>
+                    </a>
                 </div>
-              </button>
+                <!-- Preserved GitHub Star Button -->
+                <div class="footer-github-star">
+                    <button class="premium-github-btn" onclick="window.open('https://github.com/Mr-S-U-D-O/personalPortfolioProject', '_blank')">
+                        <div class="btn-icon"><i data-lucide="github"></i></div>
+                        <div class="btn-text-content">
+                            <span class="btn-title">Star on GitHub</span>
+                            <span class="btn-value">
+                                <i data-lucide="star" class="star-icon"></i>
+                                <span id="github-star-count">0</span>
+                            </span>
+                        </div>
+                    </button>
+                </div>
             </div>
-          </div>
         </div>
 
         <!-- Bottom Bar -->
         <div class="footer-bottom">
-          <div class="footer-copyright">
-            <p>
-              &copy; 2026 <strong>Mosa "S.U.D.O" Moleleki</strong>. All Rights
-              Reserved.
-            </p>
-          </div>
-          <div class="footer-bottom-links">
-            <a href="mailto:molelekishoez@gmail.com">molelekishoez@gmail.com</a>
-            <a href="index.html#contact">Base: Johannesburg, RSA</a>
-          </div>
+            <div class="footer-copyright">
+                <p>&copy; 2026 <strong>Mosa "S.U.D.O" Moleleki</strong>. All Rights Reserved.</p>
+            </div>
+            <div class="footer-bottom-links">
+                <a href="mailto:molelekishoez@gmail.com">molelekishoez@gmail.com</a>
+                <a href="../#contact">Base: Johannesburg, RSA</a>
+            </div>
         </div>
-      </div>
-    </footer>
+    </div>
+</footer>
+
 
     <!-- ========================================= -->
     <!-- Back to Top                               -->
     <!-- ========================================= -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
-      <i class="fa-solid fa-chevron-up"></i>
+      <i data-lucide="chevron-up"></i>
     </button>
 
     <!-- ========================================= -->

@@ -1703,14 +1703,13 @@ html {
 
 .contact-subtitle {
   display: block;
-  font-family: "Fira Code", monospace;
-  font-size: 0.8rem;
-  letter-spacing: 5px;
+  font-family: "Inter", sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
   color: var(--accent-primary);
   margin-bottom: 20px;
   text-transform: uppercase;
   font-weight: 600;
-  opacity: 0.8;
 }
 
 .contact-title {
@@ -1754,12 +1753,11 @@ html {
 
 .contact-main-card {
   background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
   position: relative;
-  overflow: visible;
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
 }
 
 [data-theme="light"] .contact-main-card {
@@ -1777,40 +1775,7 @@ html {
   font-weight: 400;
 }
 
-/* Industrial Corner Markers */
-.corner-marker {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--accent-primary);
-  z-index: 10;
-  opacity: 0.6;
-}
-
-.corner-marker.top-left {
-  top: -2px;
-  left: -2px;
-  border-right: none;
-  border-bottom: none;
-}
-.corner-marker.top-right {
-  top: -2px;
-  right: -2px;
-  border-left: none;
-  border-bottom: none;
-}
-.corner-marker.bottom-left {
-  bottom: -2px;
-  left: -2px;
-  border-right: none;
-  border-top: none;
-}
-.corner-marker.bottom-right {
-  bottom: -2px;
-  right: -2px;
-  border-left: none;
-  border-top: none;
-}
+/* Corner markers removed */
 
 .contact-layout {
   display: grid;
@@ -1948,7 +1913,7 @@ html {
   gap: 30px;
   padding: 50px 60px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
   position: relative;
 }
 
@@ -1957,22 +1922,7 @@ html {
 }
 
 .contact-method-item:hover {
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.contact-method-item::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 3px;
-  height: 0;
-  background: var(--accent-primary);
-  transition: height 0.3s ease;
-}
-
-.contact-method-item:hover::after {
-  height: 100%;
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .method-icon {
@@ -2002,10 +1952,10 @@ html {
 }
 
 .method-label {
-  font-family: "Fira Code", monospace;
-  font-size: 0.75rem;
+  font-family: "Inter", sans-serif;
+  font-size: 0.8rem;
   font-weight: 500;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   color: var(--text-muted);
   text-transform: uppercase;
 }

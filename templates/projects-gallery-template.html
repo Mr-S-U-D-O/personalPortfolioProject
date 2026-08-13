@@ -17,19 +17,20 @@
     <link rel="stylesheet" href="css/min/project.min.css?v={{VERSION}}" />
     <!-- Universal Theme System -->
     <script src="js/min/theme.min.js?v={{VERSION}}"></script>
-  </head>
+      <script src="https://unpkg.com/lucide@latest"></script>
+</head>
   <body class="projects-gallery-page">
     <!-- Persistent Utility Toggles -->
     <div class="utility-toggles">
       <button id="muteToggle" class="mute-toggle" aria-label="Toggle Audio">
-        <i class="fa-solid fa-volume-high"></i>
+        <i data-lucide="volume-high"></i>
       </button>
       <button
         class="theme-toggle"
         data-theme-toggle
         aria-label="Toggle Dark Mode"
       >
-        <i class="fa-solid fa-moon"></i>
+        <i data-lucide="moon"></i>
       </button>
     </div>
 
@@ -45,7 +46,7 @@
             id="resumeLink"
           >
             <span class="nav-text">Resume</span>
-            <i class="fa-solid fa-download nav-icon"></i>
+            <i data-lucide="download nav-icon"></i>
           </a>
         </li>
       </ul>
@@ -56,7 +57,7 @@
       href="index.html#projects"
       class="back-home-btn"
       style="position: fixed; top: 2rem; left: 2rem; z-index: 100"
-      ><i class="fa-solid fa-arrow-left"></i> Back to Home</a
+      ><i data-lucide="arrow-left"></i> Back to Home</a
     >
 
     <section class="gallery-section">
@@ -71,7 +72,7 @@
 
         <div class="gallery-search-container">
           <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <i data-lucide="magnifying-glass search-icon"></i>
             <input
               type="text"
               id="gallerySearch"
@@ -83,7 +84,7 @@
               class="clear-search-btn"
               aria-label="Clear Search"
             >
-              <i class="fa-solid fa-circle-xmark"></i>
+              <i data-lucide="circle-xmark"></i>
             </button>
           </div>
         </div>
@@ -103,7 +104,7 @@
           id="modalCloseBtn"
           aria-label="Close Modal"
         >
-          <i class="fa-solid fa-xmark"></i>
+          <i data-lucide="x"></i>
         </button>
         <div class="modal-image-container">
           <img src="" alt="Project Image" id="modalImage" />
@@ -174,7 +175,7 @@
     <!-- Back to Top                               -->
     <!-- ========================================= -->
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
-      <i class="fa-solid fa-chevron-up"></i>
+      <i data-lucide="chevron-up"></i>
     </button>
   </body>
 </html>
