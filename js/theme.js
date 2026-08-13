@@ -36,7 +36,7 @@
     const depth = (window.location.pathname.match(/\//g) || []).length - 1;
     const basePath =
       (depth > 1 ? "../" : "") +
-      "asserts/" +
+      "assets/" +
       (theme === "dark" ? "dark mode favicon" : "light mode favicon") +
       "/";
 

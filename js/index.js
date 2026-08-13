@@ -67,10 +67,10 @@ let y = null;
 // =========================================================================
 // AUDIO SYSTEM & SOUND EFFECTS
 // =========================================================================
-const p = new Audio("./audio sounds/startup sound.mp3"),
-  g = new Audio("./audio sounds/initial quote appearance sound.mp3"),
-  f = new Audio("./audio sounds/menu open.mp3"),
-  w = new Audio("./audio sounds/button hover.mp3"),
+const p = new Audio("./audio/startup sound.mp3"),
+  g = new Audio("./audio/initial quote appearance sound.mp3"),
+  f = new Audio("./audio/menu open.mp3"),
+  w = new Audio("./audio/button hover.mp3"),
   v = [p, g, f, w];
 v.forEach((e) => {
   ((e.volume = 0), e.load());
