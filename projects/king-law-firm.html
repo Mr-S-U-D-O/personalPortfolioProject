@@ -18,11 +18,11 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" as="script">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" as="script">
     <link rel="preload" as="image" href="../../projects/king-law/mockup-frames/mockup-desktop-framed.png">
-    <link rel="stylesheet" href="../css/min/style.min.css?v=1773704459909">
+    <link rel="stylesheet" href="../css/min/style.min.css?v=1786646534064">
     
-    <link rel="stylesheet" href="../css/min/project.min.css">
+    <link rel="stylesheet" href="../css/min/project.min.css?v=1786646534064">
     <!-- Universal Theme System (must be non-deferred to prevent flash) -->
-    <script src="../js/min/theme.min.js?v=1785989917706"></script>
+    <script src="../js/min/theme.min.js?v=1786646534064"></script>
 
     <!-- GSAP for scroll animations -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -50,7 +50,7 @@
             <li class="nav-item">
                 <a href="../cv/mosa_moleleki_cv.pdf" download="Mosa_Moleleki_CV.pdf" target="_blank" class="nav-link cv-link" id="resumeLink">
                     <span class="nav-text">Resume</span>
-                    <i data-lucide="download nav-icon"></i>
+                    <i data-lucide="download" class="nav-icon"></i>
                 </a>
             </li>
         </ul>
@@ -585,7 +585,7 @@
                 }, 500);
             });
 
-            // 7. Theme Toggle — wired via universal ThemeSystem (theme.js?v=1785989917706 loaded in <head>)
+            // 7. Theme Toggle — wired via universal ThemeSystem (theme.js loaded in <head>)
             if (window.ThemeSystem) window.ThemeSystem.init();
         });
     </script>

@@ -85,11 +85,11 @@ const x = () => {
     }),
     E)
   ) {
-    const e = E.querySelector("i");
-    e &&
-      (e.className = L
-        ? "fa-solid fa-volume-xmark"
-        : "fa-solid fa-volume-high");
+    const iconName = L ? "volume-x" : "volume-2";
+    E.innerHTML = `<i data-lucide="${iconName}"></i>`;
+    if (window.lucide && window.lucide.createIcons) {
+      window.lucide.createIcons({ root: E });
+    }
   }
   (sessionStorage.setItem("isMuted", L),
     L ||

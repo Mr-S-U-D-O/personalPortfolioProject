@@ -1,7 +1,7 @@
 /* ==========================================================================
    FONTS & GLOBAL IMPORTS
    ========================================================================== */
-@import url(https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap);
+/* Fonts are loaded in HTML head via <link> tags for performance */
 @import url("footer.css");
 @import url("blog-grid.css");
 @import url("blog-post-v2.css");
@@ -44,6 +44,9 @@
 /* ==========================================================================
    BASE DOM STYLES & LAYOUT RESETS
    ========================================================================== */
+html {
+  scroll-behavior: smooth;
+}
 body,
 html {
   margin: 0;
@@ -660,6 +663,23 @@ html {
   user-select: none;
   pointer-events: none;
 }
+/* ==========================================================================
+   ABOUT SUMMARY LOGIC
+   ========================================================================== */
+.about-summary {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 20px;
+}
+.about-summary p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  white-space: normal;
+  word-wrap: break-word;
+}
+
 /* ==========================================================================
    TIMELINE / SNAKE ANIMATION LOGIC
    ========================================================================== */

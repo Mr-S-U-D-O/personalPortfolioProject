@@ -160,9 +160,9 @@ blogData.forEach((post) => {
     `src="js/min/index.min.js?v=${VERSION}"`,
   );
 
-  // Generic fallback for any other .css or .js links that might be in templates
-  pageHtml = pageHtml.replace(/\.css(?!"|\?v=)/g, `.css?v=${VERSION}`);
-  pageHtml = pageHtml.replace(/\.js(?!"|\?v=)/g, `.js?v=${VERSION}`);
+  // Generic fallback: only append version to local asset paths (css/, js/, assets/)
+  pageHtml = pageHtml.replace(/(href="(?:css|assets|js)\/[^"]*?\.css)"/g, `$1?v=${VERSION}"`);
+  pageHtml = pageHtml.replace(/(src="(?:js|assets|css)\/[^"]*?\.js)"/g, `$1?v=${VERSION}"`);
 
   // Previous Link
   if (post.prevSlug) {
@@ -353,8 +353,9 @@ if (projectTemplateBlock && projectsData.length > 0) {
       `src="../js/min/index.min.js?v=${VERSION}"`,
     );
 
-    pageHtml = pageHtml.replace(/\.css(?!"|\?v=)/g, `.css?v=${VERSION}`);
-    pageHtml = pageHtml.replace(/\.js(?!"|\?v=)/g, `.js?v=${VERSION}`);
+    // Generic fallback: only append version to local asset paths (handling ../ prefixes)
+    pageHtml = pageHtml.replace(/(href="\.\.\/(?:css|assets|js)\/[^"]*?\.css)"/g, `$1?v=${VERSION}"`);
+    pageHtml = pageHtml.replace(/(src="\.\.\/(?:js|assets|css)\/[^"]*?\.js)"/g, `$1?v=${VERSION}"`);
 
     // Metrics
     let metricsHtml = "";
@@ -898,11 +899,11 @@ async function minifyFiles() {
 
       // 2. Resolve relative paths for CSS/JS replacements
 
-      // Replace style.css with bundled minified version
-      const styleRegex = new RegExp(`href="${prefix}css/style\\.css"`, "g");
+      // Replace minified CSS with versioned versions
+      const styleRegex = new RegExp(`href="${prefix}css/min/(style|footer|blog-grid|project)\\.min\\.css(?:\\?v=\\d+)?"`, "g");
       content = content.replace(
         styleRegex,
-        `href="${prefix}css/min/style.min.css?v=${VERSION}"`,
+        `href="${prefix}css/min/$1.min.css?v=${VERSION}"`,
       );
 
       // Update theme.js and index.js versioning

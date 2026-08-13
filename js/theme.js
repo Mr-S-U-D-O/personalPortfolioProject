@@ -90,10 +90,10 @@
 
       // Update UI for all toggle buttons
       document.querySelectorAll("[data-theme-toggle]").forEach((btn) => {
-        const icon = btn.querySelector("i");
-        if (icon) {
-          icon.className =
-            themeName === "light" ? "fa-solid fa-sun" : "fa-solid fa-moon";
+        const iconName = themeName === "light" ? "sun" : "moon";
+        btn.innerHTML = `<i data-lucide="${iconName}"></i>`;
+        if (window.lucide && window.lucide.createIcons) {
+          window.lucide.createIcons({ root: btn });
         }
       });
 
