@@ -78,10 +78,6 @@
     <link rel="stylesheet" href="css/min/footer.min.css?v=1773703218328">
     <link rel="stylesheet" href="css/min/blog-grid.min.css?v=1773703218328">
     <link rel="stylesheet" href="css/min/project.min.css?v=1773703218328">
-    <link rel="stylesheet" href="css/min/footer.min.css?v=1773703218328">
-    <link rel="stylesheet" href="css/min/blog-grid.min.css?v=1773703218328">
-    <link rel="stylesheet" href="css/min/project.min.css?v=1773703218328">
-    
 
     <!-- Universal Theme System (non-deferred — applies theme before first paint) -->
     <script src="js/min/theme.min.js?v=1773703218328"></script>
@@ -98,6 +94,69 @@
         <button class="theme-toggle" data-theme-toggle aria-label="Toggle Dark Mode">
             <i data-lucide="moon"></i>
         </button>
+    </div>
+
+    <!-- Persistent CV Download -->
+    <nav class="sidebar-nav cv-nav">
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="./cv/mosa_moleleki_cv.pdf" download="Mosa_Moleleki_CV.pdf" target="_blank" class="nav-link cv-link" id="resumeLink">
+                    <span class="nav-text">Resume</span>
+                    <i data-lucide="download"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- ========================================= -->
+    <!-- Splash Screen Overlay                     -->
+    <!-- ========================================= -->
+    <div class="splash-screen" id="splashScreen">
+        <!-- Quote Container -->
+        <div class="quote-container" id="quoteContainer">
+            <h1 class="quote-text">"If <span style="color: var(--accent-primary);">curiosity</span> is the mother of learning, then <span style="color: var(--accent-primary);">obsession</span> is the father of mastery."</h1>
+            <p class="quote-author"><span class="quote-dash">&mdash;</span>Me</p>
+        </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Global Nav & Overlays                     -->
+    <!-- ========================================= -->
+    <div class="global-ui" id="globalUi">
+        <!-- Global Blur Overlay -->
+        <div class="content-overlay" id="blurOverlay"></div>
+
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#heroSection" class="nav-link">
+                        <i data-lucide="house"></i>
+                        <span class="nav-text">Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">
+                        <i data-lucide="user"></i>
+                        <span class="nav-text">About</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link">
+                        <i data-lucide="folder"></i>
+                        <span class="nav-text">Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#blog" class="nav-link">
+                        <i data-lucide="pen-tool"></i>
+                        <span class="nav-text">Articles</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">
+                        <i data-lucide="mail"></i>
+                        <span class="nav-text">Contact</span>
                     </a>
                 </li>
             </ul>
@@ -584,17 +643,6 @@
     <!-- ========================================= -->
     <!-- Scripts                                   -->
     <!-- ========================================= -->
-    <script type="importmap">
-        {
-            "imports": {
-                "three": "./js/min/three.module.min.js?v=1773556329307",
-                "three-buffer-geometry-utils": "./js/min/BufferGeometryUtils.min.js?v=1773556329307",
-                "three-css-3d-renderer": "./js/min/CSS3DRenderer.min.js?v=1773556329307",
-                "three-draco-loader": "./js/min/DRACOLoader.min.js?v=1773556329307",
-                "three-gltf-loader": "./js/min/GLTFLoader.min.js?v=1773556329307"
-            }
-        }
-    </script>
     <script src="js/min/index.min.js?v=1773703218328" type="module"></script>
 
     <!-- Favicon + Theme Toggle wired via universal ThemeSystem (theme.js?v=1773556329307 loaded in <head>) -->

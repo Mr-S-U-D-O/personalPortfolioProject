@@ -62,7 +62,7 @@ html {
     color 0.4s ease;
 }
 /* ==========================================================================
-   SPLASH SCREEN & ANIMATED INTRO
+   SPLASH SCREEN & INTRO QUOTE
    ========================================================================== */
 .splash-screen {
   position: fixed;
@@ -75,124 +75,61 @@ html {
   align-items: center;
   background-color: var(--bg-dark);
   z-index: 9999;
-}
-#laptop,
-#laptop-screen {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.screen-content {
-  width: 416px;
-  height: 280px;
-  background-color: var(--bg-dark);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 4px;
   overflow: hidden;
+  pointer-events: auto;
 }
-.skeleton-loader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  width: 80%;
-  max-width: 300px;
-  opacity: 1;
-  transition: opacity 0.8s ease-in-out;
-}
-.skeleton-bar {
-  height: 20px;
-  background: var(--skeleton-base);
-  border-radius: 4px;
-  overflow: hidden;
-  position: relative;
-}
-.skeleton-bar.short {
-  width: 60%;
-}
-.skeleton-bar::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transform: translateX(-100%);
-  background-image: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0,
-    rgba(255, 255, 255, 0.05) 20%,
-    rgba(255, 255, 255, 0.05) 60%,
-    rgba(255, 255, 255, 0)
-  );
-}
-.skeleton-loader.active .skeleton-bar::after {
-  animation: shimmer 3s infinite;
-}
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
-.fade-out {
-  opacity: 0 !important;
-  pointer-events: none;
-}
-/* ==========================================================================
-   INTRO QUOTE ANIMATION
-   ========================================================================== */
 .quote-container {
   position: absolute;
-  width: 100vw;
-  left: 0;
+  width: 90vw;
+  max-width: 960px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, calc(-50% + 20px));
   box-sizing: border-box;
   text-align: center;
   opacity: 0;
   transform-origin: center center;
-  transform: translateY(20px);
   transition:
-    opacity 1s ease,
-    transform 3s ease;
-  padding: 0 100px;
+    opacity 1.2s ease,
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0 1.5rem;
 }
 .quote-container.show {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(-50%, -50%);
 }
 .quote-text {
   font-family: Inter, sans-serif;
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(1.75rem, 4.5vw, 3.25rem);
   font-weight: 300;
-  letter-spacing: 0.5px;
-  margin: 0 0 15px 0;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.25rem 0;
   color: var(--text-light);
 }
 .quote-author {
   font-family: Inter, sans-serif;
-  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
-  font-weight: 300;
-  letter-spacing: 4px;
+  font-size: clamp(0.85rem, 1.4vw, 1.1rem);
+  font-weight: 400;
+  letter-spacing: 3px;
   color: var(--text-muted);
   text-transform: uppercase;
-  margin: 10px 10px 0 0;
+  margin: 0;
   opacity: 0.8;
   text-align: right;
   width: 100%;
 }
 .quote-dash {
   color: var(--accent-primary);
+  margin-right: 0.25rem;
 }
 .quote-container.zoom-into {
-  transform: scale(250);
+  transform: translate(-50%, -50%) scale(30);
   opacity: 0;
   pointer-events: none;
   transition:
-    transform 2.9s cubic-bezier(0.9, 0, 0.1, 1),
-    opacity 0.8s ease-in 1.4s;
+    transform 1.2s cubic-bezier(0.7, 0, 0.2, 1),
+    opacity 0.6s ease-in 0.4s;
 }
 .content-overlay {
   position: fixed;

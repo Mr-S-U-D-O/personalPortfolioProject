@@ -10,286 +10,66 @@
     "color: #ffffff; font-size: 0.9rem; line-height: 1.8; background: #111; padding: 12px 16px; border-left: 4px solid #ff4444; border-radius: 4px;",
   ));
 // =========================================================================
-// THREE.JS IMPORTS & MODULES
-// =========================================================================
-import * as e from "three";
-import { DRACOLoader as t } from "three-draco-loader";
-import { GLTFLoader as o } from "three-gltf-loader";
-import { CSS3DRenderer as n, CSS3DObject as s } from "three-css-3d-renderer";
-// =========================================================================
-// DOM ELEMENTS & DEVICE CONFIGURATION
+// DOM ELEMENTS
 // =========================================================================
 const i = document.getElementById("splashScreen"),
   a = document.getElementById("quoteContainer"),
-  l = document.getElementById("heroSection"),
-  r = document.getElementById("laptop"),
-  c = document.getElementById("laptop-screen"),
-  d = document.getElementById("screen-content"),
-  m =
-    (window.innerWidth,
-    {
-      laptop: {
-        file: "./models/laptop.glb",
-        init: {
-          position: { x: 0, y: -400, z: 0 },
-          rotation: { x: Math.PI / 20, y: 0, z: 0 },
-          scale: { x: 50, y: 50, z: 50 },
-          targetY: -70,
-        },
-        lidClosedRotationX: Math.PI / 2,
-        lidOpenRotationX: 0,
-        hasLid: !0,
-        screenCSSOffset: { x: 0, y: 0, z: 0 },
-      },
-      iphone: {
-        file: "./models/iphone.glb",
-        init: {
-          position: { x: 0, y: -150, z: 0 },
-          rotation: { x: 0, y: Math.PI, z: 0 },
-          scale: { x: 250, y: 250, z: 250 },
-          targetY: 45,
-        },
-        hasLid: !1,
-        screenCSSOffset: { x: 0, y: -45, z: 0 },
-      },
-    }),
-  u = {
-    deviceType: "laptop",
-    geometryFile: null,
-    container: null,
-    mesh: null,
-    scene: null,
-    renderer: null,
-    camera: null,
-  },
-  h = { container: null, mesh: null, scene: null, renderer: null };
-let y = null;
+  l = document.getElementById("heroSection");
+
 // =========================================================================
 // AUDIO SYSTEM & SOUND EFFECTS
 // =========================================================================
-const p = new Audio("./audio/startup sound.mp3"),
-  g = new Audio("./audio/initial quote appearance sound.mp3"),
+const g = new Audio("./audio/initial quote appearance sound.mp3"),
   f = new Audio("./audio/menu open.mp3"),
   w = new Audio("./audio/button hover.mp3"),
-  v = [p, g, f, w];
+  v = [g, f, w];
+
 v.forEach((e) => {
-  ((e.volume = 0), e.load());
+  e.volume = 0;
+  e.load();
 });
+
 const E = document.getElementById("muteToggle"),
   b = sessionStorage.getItem("isMuted");
 let L = null === b || "true" === b;
+
 const x = () => {
-  if (
-    (v.forEach((e) => {
-      e.volume = L ? 0 : 0.2;
-    }),
-    E)
-  ) {
+  v.forEach((e) => {
+    e.volume = L ? 0 : 0.2;
+  });
+
+  if (E) {
     const iconName = L ? "volume-x" : "volume-2";
     E.innerHTML = `<i data-lucide="${iconName}"></i>`;
     if (window.lucide && window.lucide.createIcons) {
       window.lucide.createIcons({ root: E });
     }
   }
-  (sessionStorage.setItem("isMuted", L),
-    L ||
-      (a &&
-        a.classList.contains("show") &&
-        g.paused &&
-        g.play().catch((e) => console.log("Audio playback resumed:", e)),
-      i &&
-        "none" !== i.style.display &&
-        p.paused &&
-        p.play().catch((e) => console.log("Audio playback resumed:", e))));
-};
-(x(),
-  E &&
-    E.addEventListener("click", () => {
-      ((L = !L), x());
-    }));
-const S = () => {
-  ((w.currentTime = 0),
-    w.play().catch((e) => console.log("Audio playback prevented:", e)));
+
+  sessionStorage.setItem("isMuted", L);
+  if (!L) {
+    if (a && a.classList.contains("show") && g.paused) {
+      g.play().catch((e) => console.log("Audio playback resumed:", e));
+    }
+  }
 };
 
-// =========================================================================
-// THREE.JS SCENE SETUP & RENDERING LOGIC
-// =========================================================================
-const I = () => ({ height: window.innerHeight, width: window.innerWidth }),
-  B = (t) => {
-    ("Cube008_2" === t.name
-      ? (t.material.side = e.FrontSide)
-      : "keyboard" === t.name &&
-        (t.material = new e.MeshPhongMaterial({
-          color: 1710618,
-          emissive: 0,
-          specular: 1118481,
-          shininess: 100,
-          side: e.FrontSide,
-        })),
-      (t.children || []).forEach((e) => B(e)));
-  },
-  C = () => {
-    const { height: t, width: o } = I();
-    ((u.container = r),
-      (u.mesh = ((e) => {
-        const t = e.scene,
-          o = m[u.deviceType];
-        (t.position.set(
-          o.init.position.x,
-          o.init.position.y,
-          o.init.position.z,
-        ),
-          t.rotation.set(
-            o.init.rotation.x,
-            o.init.rotation.y,
-            o.init.rotation.z,
-          ),
-          t.scale.set(o.init.scale.x, o.init.scale.y, o.init.scale.z));
-        let n = null,
-          s = null;
-        return (
-          o.hasLid
-            ? (B(t),
-              (n = t.children[0]),
-              (s = n.children[0].children[2]),
-              n.rotation.set(o.lidClosedRotationX, 0, 0))
-            : ((s = t.getObjectByName("Screen")),
-              !s && t.children.length > 0 && (s = t.children[0])),
-          { base: t, lid: n, screen: s }
-        );
-      })(u.geometryFile)),
-      ((t, o) => {
-        const n = t.cloneNode(!0);
-        t.remove();
-        const i = new s(n);
-        ((o.css3dObject = i), o.add(i));
-        const a = new e.Box3().setFromObject(o),
-          l = new e.Vector3();
-        a.getSize(l);
-        const r = m[u.deviceType].init.scale.x,
-          c = l.x * r,
-          d = (l.y > l.z ? l.y : l.z) * r;
-        ((n.style.width = `${Math.floor(c)}px`),
-          (n.style.height = `${Math.floor(d)}px`),
-          (o.material = new e.MeshPhongMaterial({
-            opacity: 0.15,
-            color: new e.Color(1118481),
-            blending: e.NoBlending,
-          })));
-        const { max: h, min: y } = o.geometry.boundingBox;
-        o.geometry = new e.BoxGeometry(h.x - y.x, h.y - y.y, h.z - y.z + 0.2);
-        const p = n.querySelector(".skeleton-loader");
-        p && (p.id = "skeletonLoaderClone");
-      })(d, u.mesh.screen),
-      (u.scene = new e.Scene()),
-      (u.renderer = new e.WebGLRenderer({ alpha: !0, antialias: !0 })),
-      u.renderer.setPixelRatio(window.devicePixelRatio),
-      u.renderer.setSize(o, t),
-      r.appendChild(u.renderer.domElement),
-      (u.camera = new e.PerspectiveCamera(70, o / t, 1, 1e3)),
-      u.camera.position.set(0, 0, o < 768 ? 1100 : 750));
-    const i = new e.PointLight(16777215, 3.5, 0, 0);
-    i.position.set(0, 700, 750);
-    const a = new e.PointLight(16777215, 0.05, 0, 0);
-    (a.position.set(-300, 100, 100),
-      u.scene.add(i, a, u.mesh.base),
-      (h.container = c),
-      (h.mesh = u.mesh.screen.css3dObject),
-      (h.scene = new e.Scene()),
-      (h.renderer = new n()),
-      h.renderer.setSize(o, t),
-      (h.renderer.domElement.style.position = "absolute"),
-      (h.renderer.domElement.style.top = 0),
-      c.appendChild(h.renderer.domElement),
-      h.scene.add(h.mesh));
-  },
-  M = (t) => {
-    y || (y = t);
-    const o = t - y,
-      n = Math.max(0, o - 300),
-      s = Math.min(1, n / 5e3),
-      d = Math.min(1, s / 0.15),
-      p = ((f = d), 1 - Math.pow(1 - f, 3));
-    var f;
-    const w = m[u.deviceType].init.position.y,
-      v = m[u.deviceType].init.targetY;
-    u.mesh.base.position.y = w + (v - w) * p;
-    let E = 0;
-    s > 0.15 && (E = Math.max(0, Math.min(1, (s - 0.15) / 0.2)));
-    const b = ((e) => (e < 0.5 ? 2 * e * e : 1 - Math.pow(-2 * e + 2, 2) / 2))(
-        E,
-      ),
-      L = m[u.deviceType];
-    L.hasLid &&
-      u.mesh.lid &&
-      (u.mesh.lid.rotation.x =
-        L.lidClosedRotationX - (L.lidClosedRotationX - L.lidOpenRotationX) * b);
-    let x = 0;
-    s > 0.6 && (x = Math.max(0, Math.min(1, (s - 0.6) / 0.4)));
-    const S = ((e) => (0 === e ? 0 : Math.pow(2, 10 * e - 10)))(x),
-      I = window.innerWidth < 768 ? 1100 : 750,
-      B = I - I * S;
-    if (
-      ((u.camera.position.z = B),
-      u.renderer.render(u.scene, u.camera),
-      h.renderer.render(h.scene, u.camera),
-      (() => {
-        const t = new e.Vector3(),
-          o = new e.Quaternion();
-        (u.mesh.screen.matrixWorld.decompose(t, o, new e.Vector3()),
-          h.mesh.position.copy(t),
-          h.mesh.quaternion.copy(o));
-        const n = m[u.deviceType];
-        (n.hasLid &&
-          h.mesh.rotateOnAxis(new e.Vector3(1, 0, 0), (Math.PI / 2) * -1),
-          n.screenCSSOffset &&
-            (h.mesh.translateX(n.screenCSSOffset.x),
-            h.mesh.translateY(n.screenCSSOffset.y),
-            h.mesh.translateZ(n.screenCSSOffset.z)));
-      })(),
-      s < 1)
-    )
-      requestAnimationFrame(M);
-    else {
-      const e = document.getElementById("skeletonLoaderClone");
-      (e && e.classList.add("active"),
-        setTimeout(() => {
-          (e && e.classList.add("fade-out"),
-            setTimeout(() => {
-              ((r.style.display = "none"),
-                (c.style.display = "none"),
-                a.classList.add("show"),
-                g
-                  .play()
-                  .catch((e) => console.log("Audio playback prevented:", e)),
-                setTimeout(() => {
-                  (a.classList.add("zoom-into"),
-                    setTimeout(() => {
-                      (l.classList.add("show"),
-                        document
-                          .getElementById("globalUi")
-                          ?.classList.add("show"),
-                        (document.documentElement.style.overflowY = "auto"),
-                        (document.documentElement.style.overflowX = "hidden"),
-                        (document.body.style.overflowY = "auto"),
-                        (document.body.style.overflowX = "hidden"),
-                        (document.documentElement.style.height = "auto"),
-                        (document.body.style.height = "auto"),
-                        // Force initial calculation of scroll-based animations
-                        refreshScrollAnims(),
-                        setTimeout(() => {
-                          i.style.display = "none";
-                        }, 500));
-                    }, 600)); // Added a bit more for zoom-into transition
-                }, 3000)); // INCREASED FROM 2000 TO 6000 FOR BETTER READABILITY
-            }, 800));
-        }, 2500));
-    }
-  };
+x();
+if (E) {
+  E.addEventListener("click", () => {
+    L = !L;
+    x();
+  });
+}
+
+const S = () => {
+  w.currentTime = 0;
+  w.play().catch((e) => console.log("Audio playback prevented:", e));
+};
+
 let k = !1;
 // =========================================================================
-// INTRO ANIMATION & INITIALIZATION ROUTINE
+// INTRO ANIMATION & INITIALIZATION ROUTINE (QUOTE DIRECT START)
 // =========================================================================
 const z = () => {
   if (k) return;
@@ -299,8 +79,8 @@ const z = () => {
   const isHomePage =
     window.location.pathname === "/" ||
     window.location.pathname.endsWith("index.html");
+
   if (!isHomePage) {
-    // If not on homepage, just show content and skip splash logic
     if (i) i.style.display = "none";
     if (l) l.classList.add("show");
     document.getElementById("globalUi")?.classList.add("show");
@@ -314,7 +94,6 @@ const z = () => {
     const navEntries = performance.getEntriesByType("navigation");
     const navType = navEntries.length > 0 ? navEntries[0].type : "";
 
-    // Fallback for older browsers or inconsistent performance API
     const isReload =
       navType === "reload" ||
       (window.performance &&
@@ -329,7 +108,6 @@ const z = () => {
     const introPlayed = sessionStorage.getItem("introPlayed") === "true";
     const hasHash = !!window.location.hash;
 
-    // Skip cases:
     if (isBackForward) return true;
     if (isReload && hasHash) return true;
     if (introPlayed && !isReload) return true;
@@ -338,80 +116,79 @@ const z = () => {
   })();
 
   if (shouldSkipAnimation) {
-    if (r) r.style.display = "none";
-    if (c) c.style.display = "none";
     if (a) a.style.display = "none";
     if (i) i.style.display = "none";
     if (l) l.classList.add("show");
     document.getElementById("globalUi")?.classList.add("show");
     document.documentElement.style.overflowY = "auto";
+    document.documentElement.style.overflowX = "hidden";
     document.body.style.overflowY = "auto";
+    document.body.style.overflowX = "hidden";
 
-    // If there's a hash, scroll to it immediately
     if (window.location.hash) {
       setTimeout(() => {
         const target = document.querySelector(window.location.hash);
         target?.scrollIntoView();
-        // Trigger animations once scroll position is restored
         refreshScrollAnims();
       }, 100);
     } else {
-        // Even without hash, trigger animations once for restored scroll position
-        refreshScrollAnims();
+      refreshScrollAnims();
     }
   } else {
-    // Show splash screen and start animation
+    // Show splash screen and start directly with the quote
     sessionStorage.setItem("introPlayed", "true");
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
+
     setTimeout(() => {
-      (async () => {
-        const gltfLoader = new o();
-        const dracoLoader = new t();
-        dracoLoader.setDecoderPath(
-          "https://www.gstatic.com/draco/versioned/decoders/1.5.6/",
-        );
-        gltfLoader.setDRACOLoader(dracoLoader);
-        u.deviceType = window.innerWidth < 768 ? "iphone" : "laptop";
-        const deviceConfig = m[u.deviceType];
-        u.geometryFile = await gltfLoader.loadAsync(deviceConfig.file);
-      })().then(() => {
-        C();
-        if (!L)
-          p.play().catch((e) => console.log("Audio playback prevented:", e));
-        requestAnimationFrame(M);
-      });
-    }, 300);
+      if (a) a.classList.add("show");
+      if (!L) {
+        g.play().catch((e) => console.log("Audio playback prevented:", e));
+      }
+
+      // Allow readable pause on quote before transition into hero
+      setTimeout(() => {
+        if (a) a.classList.add("zoom-into");
+        setTimeout(() => {
+          if (l) l.classList.add("show");
+          document.getElementById("globalUi")?.classList.add("show");
+          document.documentElement.style.overflowY = "auto";
+          document.documentElement.style.overflowX = "hidden";
+          document.body.style.overflowY = "auto";
+          document.body.style.overflowX = "hidden";
+          document.documentElement.style.height = "auto";
+          document.body.style.height = "auto";
+
+          refreshScrollAnims();
+          setTimeout(() => {
+            if (i) i.style.display = "none";
+          }, 600);
+        }, 600);
+      }, 2800);
+    }, 200);
   }
 };
+
 // =========================================================================
 // GLOBAL EVENT LISTENERS & RESIZE HANDLING
 // =========================================================================
-(document.addEventListener("readystatechange", (e) => {
-  "complete" === e.target.readyState && z();
-}),
-  "complete" === document.readyState && z(),
-  window.addEventListener("resize", () => {
-    if (u.renderer) {
-      const { height: e, width: t } = I();
-      ((u.camera.aspect = t / e),
-        l.classList.contains("show") ||
-          u.camera.position.setZ(t < 768 ? 1100 : 750),
-        u.camera.updateProjectionMatrix(),
-        u.renderer.setSize(t, e),
-        h.renderer.setSize(t, e));
-    }
-  }),
-  (function () {
-    const e = document.getElementById("dynamicGreeting");
-    if (!e) return;
-    const t = new Date().getHours();
-    let o = "Good evening";
-    (t >= 5 && t < 12
-      ? (o = "Good morning")
-      : t >= 12 && t < 18 && (o = "Good afternoon"),
-      (e.textContent = o));
-  })());
+document.addEventListener("readystatechange", (e) => {
+  if (e.target.readyState === "complete") z();
+});
+if (document.readyState === "complete") z();
+
+(function () {
+  const e = document.getElementById("dynamicGreeting");
+  if (!e) return;
+  const t = new Date().getHours();
+  let o = "Good evening";
+  if (t >= 5 && t < 12) {
+    o = "Good morning";
+  } else if (t >= 12 && t < 18) {
+    o = "Good afternoon";
+  }
+  e.textContent = o;
+})();
 // =========================================================================
 // UI INTERACTIONS (BLUR, NAV, TOOLTIPS)
 // =========================================================================
