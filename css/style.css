@@ -237,11 +237,15 @@ html {
   white-space: nowrap;
   transition: color 0.3s ease;
 }
-.nav-icon {
+.nav-icon,
+.nav-link svg,
+.nav-link i {
+  width: 20px;
+  height: 20px;
   font-size: 1.2rem;
-  width: 24px;
   text-align: center;
   flex-shrink: 0;
+  stroke: currentColor;
   transition:
     color 0.3s ease,
     transform 0.3s ease;
@@ -249,7 +253,9 @@ html {
 .nav-link:hover {
   color: var(--accent-primary);
 }
-.nav-link:hover .nav-icon {
+.nav-link:hover .nav-icon,
+.nav-link:hover svg,
+.nav-link:hover i {
   transform: scale(1.1);
   color: var(--accent-primary);
 }
