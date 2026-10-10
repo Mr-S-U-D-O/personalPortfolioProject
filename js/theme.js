@@ -151,7 +151,6 @@
       this.initBackToTop();
       this.initSearch();
       this.initObservers();
-      this.initSound();
     },
 
     /**
@@ -165,16 +164,6 @@
         toggles = document.createElement("div");
         toggles.className = "utility-toggles";
         document.body.appendChild(toggles);
-      }
-
-      // Ensure Mute Toggle
-      if (!document.getElementById("muteToggle")) {
-        const muteBtn = document.createElement("button");
-        muteBtn.id = "muteToggle";
-        muteBtn.className = "mute-toggle";
-        muteBtn.setAttribute("aria-label", "Toggle Audio");
-        muteBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
-        toggles.prepend(muteBtn);
       }
 
       // Ensure Theme Toggle
@@ -228,43 +217,6 @@
           { threshold: 0.1 },
         );
         fadeSections.forEach((section) => observer.observe(section));
-      }
-    },
-
-    /**
-     * Initializes the sound system, sharing state with sessionStorage.
-     */
-    initSound: function () {
-      const muteBtn = document.getElementById("muteToggle");
-      if (!muteBtn) return;
-
-      const isMuted = sessionStorage.getItem("isMuted") === "true";
-
-      const updateMuteUI = (muted) => {
-        const icon = muteBtn.querySelector("i");
-        if (icon) {
-          icon.className = muted
-            ? "fa-solid fa-volume-xmark"
-            : "fa-solid fa-volume-high";
-        }
-      };
-
-      // Initial UI state
-      updateMuteUI(isMuted);
-
-      if (!muteBtn.dataset.soundWired) {
-        muteBtn.dataset.soundWired = "true";
-        muteBtn.addEventListener("click", () => {
-          const currentlyMuted = sessionStorage.getItem("isMuted") === "true";
-          const newState = !currentlyMuted;
-          sessionStorage.setItem("isMuted", newState);
-          updateMuteUI(newState);
-
-          // Dispatch event for other scripts (like index.js) to sync
-          document.dispatchEvent(
-            new CustomEvent("soundtoggle", { detail: { isMuted: newState } }),
-          );
-        });
       }
     },
 

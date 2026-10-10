@@ -88,9 +88,6 @@
     <!-- Utility Toggles                           -->
     <!-- ========================================= -->
     <div class="utility-toggles">
-        <button id="muteToggle" class="mute-toggle" aria-label="Toggle Audio">
-            <i data-lucide="volume-high"></i>
-        </button>
         <button class="theme-toggle" data-theme-toggle aria-label="Toggle Dark Mode">
             <i data-lucide="moon"></i>
         </button>
@@ -388,20 +385,22 @@
     <!-- ========================================= -->
     <!-- Blog / Articles Section                   -->
     <!-- ========================================= -->
-    <section id="blog" class="blog-gallery-section">
-        <div class="blog-section-header">
-            <span class="blog-subtitle">READ MORE</span>
-            <h2 class="blog-title">
-                <span class="blog-main-text">Articles</span>
-                <span class="blog-ghost-text">Articles</span>
-            </h2>
+    <section id="blog" class="articles-redesign-section">
+        <div class="articles-header">
+            <div class="articles-header-left">
+                <span class="articles-mono-tag">// PERSPECTIVES & CODE</span>
+                <h2 class="articles-headline">Writing & Dispatches</h2>
+            </div>
+            <p class="articles-lead">
+                Explorations in scalable front-end systems, internationalization, performance engineering, and modern web craft.
+            </p>
         </div>
 
-        <div class="blog-gallery-grid-v2" id="blogGalleryContainer">
-            <!-- Populated via Javascript into 5-post chunks -->
+        <div class="articles-bento-grid" id="blogGalleryContainer">
+            <!-- Dynamic articles and gamified dispatch card injected via JS -->
         </div>
-        <div class="blog-pagination-controls" id="blogPaginationControls">
-            <!-- Pagination arrows will be injected here via JS -->
+        <div class="blog-pagination-controls" id="blogPaginationControls" style="display: none;">
+            <!-- Optional pagination if > 5 posts -->
         </div>
     </section>
 

@@ -16,57 +16,6 @@ const i = document.getElementById("splashScreen"),
   a = document.getElementById("quoteContainer"),
   l = document.getElementById("heroSection");
 
-// =========================================================================
-// AUDIO SYSTEM & SOUND EFFECTS
-// =========================================================================
-const g = new Audio("./audio/initial quote appearance sound.mp3"),
-  f = new Audio("./audio/menu open.mp3"),
-  w = new Audio("./audio/button hover.mp3"),
-  v = [g, f, w];
-
-v.forEach((e) => {
-  e.volume = 0;
-  e.load();
-});
-
-const E = document.getElementById("muteToggle"),
-  b = sessionStorage.getItem("isMuted");
-let L = null === b || "true" === b;
-
-const x = () => {
-  v.forEach((e) => {
-    e.volume = L ? 0 : 0.2;
-  });
-
-  if (E) {
-    const iconName = L ? "volume-x" : "volume-2";
-    E.innerHTML = `<i data-lucide="${iconName}"></i>`;
-    if (window.lucide && window.lucide.createIcons) {
-      window.lucide.createIcons({ root: E });
-    }
-  }
-
-  sessionStorage.setItem("isMuted", L);
-  if (!L) {
-    if (a && a.classList.contains("show") && g.paused) {
-      g.play().catch((e) => console.log("Audio playback resumed:", e));
-    }
-  }
-};
-
-x();
-if (E) {
-  E.addEventListener("click", () => {
-    L = !L;
-    x();
-  });
-}
-
-const S = () => {
-  w.currentTime = 0;
-  w.play().catch((e) => console.log("Audio playback prevented:", e));
-};
-
 let k = !1;
 // =========================================================================
 // INTRO ANIMATION & INITIALIZATION ROUTINE (QUOTE DIRECT START)
@@ -142,9 +91,6 @@ const z = () => {
 
     setTimeout(() => {
       if (a) a.classList.add("show");
-      if (!L) {
-        g.play().catch((e) => console.log("Audio playback prevented:", e));
-      }
 
       // Allow readable pause on quote before transition into hero
       setTimeout(() => {
@@ -196,9 +142,7 @@ const q = document.getElementById("blurOverlay"),
   T = document.querySelector(".sidebar-nav");
 document.querySelector(".tech-carousel-wrapper");
 function A() {
-  (q && q.classList.add("active"),
-    (f.currentTime = 0),
-    f.play().catch((e) => console.log("Audio playback prevented:", e)));
+  q && q.classList.add("active");
 }
 function P() {
   q && q.classList.remove("active");
@@ -232,61 +176,43 @@ j &&
       }));
   });
 const F = document.querySelector(".cv-nav");
-(F &&
-  (F.addEventListener("mouseenter", A), F.addEventListener("mouseleave", P)),
-  // Simple CV link handled by HTML <a> tag
-  (() => {
-    // No custom JS needed, default behavior of <a> tag in index.html will handle it
-  })(),
-  document.addEventListener(
-    "mouseenter",
-    (e) => {
-      const t = e.target;
-      t.matches?.("button, a, .tech-item, .bento-item, .nav-link") && S();
-    },
-    !0,
-  ),
-  document.addEventListener("themechange", (e) => {
-    const t = e.detail.theme,
-      o = document.querySelector(".hero-profile-img");
-    o &&
-      (o.src =
-        "light" === t
-          ? "my pictures/light mode.webp"
-          : "my pictures/dark mode.webp");
-    document.querySelectorAll(".project-row-img[data-light]").forEach((img) => {
-      img.src =
-        "light" === t
-          ? img.getAttribute("data-light")
-          : img.getAttribute("data-dark");
-    });
-    document.querySelectorAll(".blog-black-cube").forEach((cube) => {
-      const imgPath =
-        t === "light"
-          ? cube.getAttribute("data-light")
-          : cube.getAttribute("data-dark");
-      if (imgPath) cube.style.backgroundImage = `url('${imgPath}')`;
-    });
-  }));
-const N = document.documentElement.getAttribute("data-theme") || "dark",
-  Y = document.querySelector(".hero-profile-img");
-Y &&
-  (Y.src =
-    "light" === N
-      ? "my pictures/light mode.webp"
-      : "my pictures/dark mode.webp");
-document.querySelectorAll(".project-row-img[data-light]").forEach((img) => {
-  img.src =
-    "light" === N
-      ? img.getAttribute("data-light")
-      : img.getAttribute("data-dark");
+if (F) {
+  F.addEventListener("mouseenter", A);
+  F.addEventListener("mouseleave", P);
+}
+
+document.addEventListener("themechange", (e) => {
+  const t = e.detail.theme;
+  const o = document.querySelector(".hero-profile-img");
+  if (o) {
+    o.src = t === "light" ? "my pictures/light mode.webp" : "my pictures/dark mode.webp";
+  }
+  document.querySelectorAll("[data-light]").forEach((el) => {
+    const targetSrc = t === "light" ? el.getAttribute("data-light") : el.getAttribute("data-dark");
+    if (targetSrc) {
+      if (el.tagName === "IMG") {
+        el.src = targetSrc;
+      } else {
+        el.style.backgroundImage = `url('${targetSrc}')`;
+      }
+    }
+  });
 });
-document.querySelectorAll(".blog-black-cube").forEach((cube) => {
-  const imgPath =
-    N === "light"
-      ? cube.getAttribute("data-light")
-      : cube.getAttribute("data-dark");
-  if (imgPath) cube.style.backgroundImage = `url('${imgPath}')`;
+
+const N = document.documentElement.getAttribute("data-theme") || "dark";
+const Y = document.querySelector(".hero-profile-img");
+if (Y) {
+  Y.src = N === "light" ? "my pictures/light mode.webp" : "my pictures/dark mode.webp";
+}
+document.querySelectorAll("[data-light]").forEach((el) => {
+  const targetSrc = N === "light" ? el.getAttribute("data-light") : el.getAttribute("data-dark");
+  if (targetSrc) {
+    if (el.tagName === "IMG") {
+      el.src = targetSrc;
+    } else {
+      el.style.backgroundImage = `url('${targetSrc}')`;
+    }
+  }
 });
 const G = document.getElementById("heroScrollRig"),
   H = document.getElementById("heroContentGroup");
@@ -491,7 +417,6 @@ const Q = document.querySelector(".modal-content-wrapper");
               if (modalLink) modalLink.href = project.link;
 
               _.classList.add("active");
-              S(); // Play sound
             }
           }
         });
@@ -521,7 +446,7 @@ function oe() {
 }
 (ee &&
   ee.addEventListener("click", function () {
-    K && (K.classList.add("active"), S());
+    K && K.classList.add("active");
   }),
   te && te.addEventListener("click", oe),
   K &&
@@ -706,108 +631,130 @@ if (clearSearchBtn && gallerySearch) {
 // =========================================================================
 // BLOG GRID PAGINATION & RENDERING
 // =========================================================================
+// =========================================================================
+// BLOG / ARTICLES RENDERING (EDITORIAL BENTO ARCHITECTURE)
+// =========================================================================
 const blogGalleryContainer = document.getElementById("blogGalleryContainer");
 const blogPaginationControls = document.getElementById(
   "blogPaginationControls",
 );
 
 let blogData = [];
-let currentBlogPage = 1;
-const blogsPerPage = 5;
 
-function createBlogCardHTML(post, isImageBlock = false) {
-  if (isImageBlock) {
-    const theme = document.documentElement.getAttribute("data-theme") || "dark";
-    const lightImg = "my pictures/light mode(gamified).png";
-    const darkImg = "my pictures/dark mode(gamified).png";
-    const currentImg = theme === "light" ? lightImg : darkImg;
-    return `
-      <div class="blog-black-cube" 
-           data-light="${lightImg}" 
-           data-dark="${darkImg}" 
-           style="background-image: url('${currentImg}'); background-size: cover; background-position: center;">
-      </div>`;
-  }
-  return `
-    <a href="${post.link}" class="blog-card-v2 glow-card">
-      <div class="card-line card-line-top"></div>
-      <div class="card-line card-line-right"></div>
-      <div class="card-line card-line-bottom"></div>
-      <div class="card-line card-line-left"></div>
-      <div class="blog-card-cat-date">
-        <span>${post.category || "Engineering"}</span>
-        <span>${post.date}</span>
-      </div>
-      <h3 class="blog-card-title">${post.topic}</h3>
-      <p class="blog-card-excerpt">${post.description}</p>
-      <div class="blog-card-footer">
-        <span>By ${post.author || "Mosa Moleleki"}</span>
-        <i class="fa-solid fa-arrow-right"></i>
-      </div>
-    </a>
-  `;
-}
-
-function renderBlogPage(page) {
+function renderBlogPage() {
   if (!blogGalleryContainer) return;
 
-  const startIndex = (page - 1) * blogsPerPage;
-  const endIndex = startIndex + blogsPerPage;
-  const pagePosts = blogData.slice(startIndex, endIndex);
-
-  if (pagePosts.length === 0) {
+  if (!blogData || blogData.length === 0) {
     blogGalleryContainer.innerHTML =
-      '<p style="text-align:center; padding: 2rem;">No articles found.</p>';
+      '<p style="text-align:center; padding: 3rem; color: var(--text-muted); font-family: monospace;">No dispatches available.</p>';
     return;
   }
 
-  let html = '<div class="blog-grid-page">';
+  const primaryPost = blogData[0];
+  const theme = document.documentElement.getAttribute("data-theme") || "dark";
+  const lightAvatar = "images/light mode(gamified).png";
+  const darkAvatar = "images/dark mode(gamified).png";
+  const currentAvatar = theme === "light" ? lightAvatar : darkAvatar;
 
-  // Quadrant 1 (Top Left) - Large single post
-  html += '<div class="blog-q1">';
-  if (pagePosts[0]) html += createBlogCardHTML(pagePosts[0]);
-  else
-    html +=
-      '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
-  html += "</div>";
+  const html = `
+    <!-- Left Column: Featured Article Card -->
+    <a href="${primaryPost.link}" class="featured-article-card glow-card">
+      <div>
+        <div class="article-card-meta">
+          <span class="article-category-badge">${primaryPost.category || "Development"}</span>
+          <span class="article-date-read">${primaryPost.date || "MARCH 2, 2026"}</span>
+          <span class="article-meta-divider">/</span>
+          <span class="article-date-read">6 MIN READ</span>
+        </div>
 
-  // Quadrant 2 (Top Right) - Split into two stacked posts
-  html += '<div class="blog-q2">';
-  if (pagePosts[1]) html += createBlogCardHTML(pagePosts[1]);
-  else
-    html +=
-      '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
-  if (pagePosts[2]) html += createBlogCardHTML(pagePosts[2]);
-  else
-    html +=
-      '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
-  html += "</div>";
+        <h3 class="article-title-link">${primaryPost.topic}</h3>
+        <p class="article-card-excerpt">${primaryPost.description}</p>
+      </div>
 
-  // Quadrant 3 (Bottom Left) - Split into two stacked posts
-  html += '<div class="blog-q3">';
-  if (pagePosts[3]) html += createBlogCardHTML(pagePosts[3]);
-  else
-    html +=
-      '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
-  if (pagePosts[4]) html += createBlogCardHTML(pagePosts[4]);
-  else
-    html +=
-      '<div class="blog-card-v2 blank-card" style="cursor: default;"></div>';
-  html += "</div>";
+      <div>
+        <div class="article-tags-cluster">
+          <span class="article-tag-item">i18n Architecture</span>
+          <span class="article-tag-item">Locale Routing</span>
+          <span class="article-tag-item">Accessibility</span>
+          <span class="article-tag-item">Modern Frontend</span>
+        </div>
 
-  // Quadrant 4 (Bottom Right) - Single large image block (usually from post 1)
-  html += '<div class="blog-q4">';
-  if (pagePosts.length > 0) {
-    html += createBlogCardHTML(pagePosts[0], true);
-  } else {
-    html += '<div class="blog-black-cube"></div>';
-  }
-  html += "</div>";
+        <div class="article-cta-action">
+          <span>Read Dispatch</span>
+          <i data-lucide="arrow-up-right"></i>
+        </div>
+      </div>
+    </a>
 
-  html += "</div>";
+    <!-- Right Column: Author Gamified Dispatch & Upcoming Matrix -->
+    <div class="articles-sidebar-stack">
+      <!-- Gamified Author Dispatch Card -->
+      <div class="author-dispatch-card glow-card">
+        <div class="gamified-avatar-frame">
+          <img src="${currentAvatar}" 
+               data-light="${lightAvatar}" 
+               data-dark="${darkAvatar}" 
+               alt="Mosa Moleleki Pixel Avatar" 
+               class="gamified-avatar-img" 
+               id="gamifiedAvatarImg" />
+        </div>
+
+        <div class="author-status-badge">
+          <span class="status-pulse-dot"></span>
+          <span>Writing & Research · 2026 Dispatches</span>
+        </div>
+
+        <p class="author-dispatch-quote">
+          "Architecture is about making the complex feel invisible, accessible, and blindingly fast."
+        </p>
+
+        <div class="author-dispatch-footer">
+          <div class="author-info-group">
+            <span class="author-name">Mosa Moleleki</span>
+            <span class="author-role">Front-End Web Developer</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Topics Matrix -->
+      <div class="topic-matrix-card glow-card">
+        <div class="topic-matrix-header">
+          <span class="topic-matrix-title">
+            <i data-lucide="sparkles"></i>
+            Upcoming Dispatches
+          </span>
+          <span class="topic-matrix-status">2026 Q2</span>
+        </div>
+
+        <ul class="topic-matrix-list">
+          <li class="topic-matrix-item">
+            <span class="topic-item-num">01</span>
+            <span class="topic-item-name">60fps Micro-Interactions & Physics</span>
+            <span class="topic-item-pill">Writing</span>
+          </li>
+          <li class="topic-matrix-item">
+            <span class="topic-item-num">02</span>
+            <span class="topic-item-name">CSS Container Queries in Design Systems</span>
+            <span class="topic-item-pill">Planned</span>
+          </li>
+          <li class="topic-matrix-item">
+            <span class="topic-item-num">03</span>
+            <span class="topic-item-name">Zero-JS Progressive Enhancement</span>
+            <span class="topic-item-pill">Drafting</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  `;
+
   blogGalleryContainer.innerHTML = html;
 
-  // Re-attach hover logic for glow effect
+  // Initialize Lucide icons on newly injected elements
+  if (window.lucide && typeof window.lucide.createIcons === "function") {
+    window.lucide.createIcons();
+  }
+
+  // Attach pointermove for glow-card effect
   blogGalleryContainer.querySelectorAll(".glow-card").forEach((card) => {
     card.addEventListener("pointermove", (e) => {
       const o = card.getBoundingClientRect();
@@ -819,41 +766,7 @@ function renderBlogPage(page) {
 
 function updateBlogPaginationControls() {
   if (!blogPaginationControls) return;
-  const totalPages = Math.ceil(blogData.length / blogsPerPage);
-
-  if (totalPages <= 1) {
-    blogPaginationControls.style.display = "none";
-    return;
-  }
-
-  blogPaginationControls.style.display = "flex";
-  blogPaginationControls.innerHTML = `
-    <button class="blog-page-btn" id="blogPrevBtn" ${currentBlogPage === 1 ? "disabled" : ""}>
-      <i class="fa-solid fa-arrow-left"></i>
-    </button>
-    <div class="blog-page-info">PAGE ${currentBlogPage} OF ${totalPages}</div>
-    <button class="blog-page-btn" id="blogNextBtn" ${currentBlogPage === totalPages ? "disabled" : ""}>
-      <i class="fa-solid fa-arrow-right"></i>
-    </button>
-  `;
-
-  document.getElementById("blogPrevBtn")?.addEventListener("click", () => {
-    if (currentBlogPage > 1) {
-      if (typeof S === "function") S(); // sound
-      currentBlogPage--;
-      renderBlogPage(currentBlogPage);
-      updateBlogPaginationControls();
-    }
-  });
-
-  document.getElementById("blogNextBtn")?.addEventListener("click", () => {
-    if (currentBlogPage < totalPages) {
-      if (typeof S === "function") S(); // sound
-      currentBlogPage++;
-      renderBlogPage(currentBlogPage);
-      updateBlogPaginationControls();
-    }
-  });
+  blogPaginationControls.style.display = "none";
 }
 
 // Fetch loop
@@ -862,8 +775,36 @@ if (blogGalleryContainer) {
     .then((res) => res.json())
     .then((data) => {
       blogData = data;
-      renderBlogPage(currentBlogPage);
-      updateBlogPaginationControls();
+      renderBlogPage();
     })
     .catch((err) => console.error("Error loading blog data:", err));
 }
+
+// ==========================================
+// ABOUT SECTION (REDESIGN) REVEAL ANIMATIONS
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+    const revealItems = document.querySelectorAll('.text-reveal-item');
+    if (revealItems.length > 0) {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('is-visible');
+                    }, index * 150); // Stagger the animation
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealItems.forEach(item => {
+            revealObserver.observe(item);
+        });
+    }
+});

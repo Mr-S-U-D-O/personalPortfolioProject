@@ -422,6 +422,18 @@ html {
 .tech-js:hover {
   color: #f7df1e;
 }
+.tech-react:hover {
+  color: #61dafb;
+}
+.tech-node:hover {
+  color: #339933;
+}
+.tech-antigravity:hover {
+  color: #b620e0;
+}
+.tech-vscode:hover {
+  color: #007acc;
+}
 .tech-git:hover {
   color: #f05032;
 }
@@ -522,7 +534,6 @@ html {
   gap: 15px;
   z-index: 10000;
 }
-.mute-toggle,
 .theme-toggle {
   width: 45px;
   height: 45px;
@@ -542,7 +553,6 @@ html {
 }
 
 
-.mute-toggle:hover,
 .theme-toggle:hover {
   transform: translateY(-3px);
   border-color: var(--accent-primary);
@@ -1446,7 +1456,6 @@ html {
     width: auto;
     justify-content: flex-end;
   }
-  .mute-toggle,
   .theme-toggle {
     width: 44px;
     height: 44px;
@@ -1465,7 +1474,6 @@ html {
   }
 
 
-  .mute-toggle:hover,
   .theme-toggle:hover {
     border-color: var(--accent-primary);
     background: var(--glass-bg);
@@ -2106,4 +2114,125 @@ a.method-link:hover {
 
 .back-to-top:active {
   transform: translateY(-2px) scale(0.95);
+}
+
+/* ==========================================================================
+   ABOUT SECTION (REDESIGNED)
+   ========================================================================== */
+.about-section-redesigned {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  
+  
+  position: relative;
+  z-index: 10;
+}
+
+.about-redesign-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 6rem;
+  align-items: center;
+  padding: 12rem 6vw; /* Increased horizontal padding */
+  padding-left: clamp(6rem, 10vw, 12rem); /* Dynamic left padding to clear sidebar */
+  padding-right: clamp(6rem, 10vw, 12rem);
+}
+
+@media (min-width: 1024px) {
+  .about-redesign-container {
+    grid-template-columns: 1.2fr 1fr;
+  }
+}
+
+.about-redesign-hook {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.about-redesign-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: var(--text-light);
+  margin: 0;
+  max-width: 15ch;
+}
+
+.inline-pill-img {
+  display: inline-block;
+  width: 120px;
+  height: 60px;
+  border-radius: 999px;
+  background-size: cover;
+  background-position: center;
+  vertical-align: middle;
+  margin: 0 0.5rem;
+  transform: translateY(-4px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.7s ease-out;
+}
+.inline-pill-img:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+@media (max-width: 768px) {
+  .inline-pill-img {
+    width: 80px;
+    height: 40px;
+    transform: translateY(-2px);
+  }
+}
+
+.about-redesign-sub {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 65ch;
+  margin: 0;
+}
+
+.about-redesign-cta {
+  margin-top: 1rem;
+}
+
+.about-redesign-meat {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  border-left: 1px solid var(--glass-line);
+  padding-left: 2rem;
+}
+
+.about-accordion-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  opacity: 0.2;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.about-accordion-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-accordion-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-light);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.about-accordion-desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
 }
