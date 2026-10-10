@@ -879,12 +879,8 @@ async function minifyFiles() {
     try {
       let content = fs.readFileSync(htmlPath, "utf8");
 
-      // 1. Remove Font Awesome and inject Lucide script
-      content = content.replace(/<link[^>]*href="[^"]*font-awesome\.min\.css"[^>]*>/g, "");
-      if (!content.includes("unpkg.com/lucide")) {
-         // Insert Lucide before closing head tag
-         content = content.replace(/<\/head>/i, '    <script src="https://unpkg.com/lucide@latest"></script>\n</head>');
-      }
+      // 1. Rename Font Awesome
+      content = content.replace(/all\.min\.css/g, "font-awesome.min.css");
 
       // 1.5 Inject Global Footer
       const isRoot = path.dirname(htmlPath) === path.join(__dirname, "../");
