@@ -656,93 +656,58 @@ function renderBlogPage() {
   const darkAvatar = "images/dark mode(gamified).png";
   const currentAvatar = theme === "light" ? lightAvatar : darkAvatar;
 
+  let listHtml = "";
+  blogData.forEach((post, index) => {
+    const num = String(index + 1).padStart(2, '0');
+    listHtml += `
+      <a href="${post.link}" class="cinematic-blog-row">
+        <div class="blog-row-meta">
+          <span class="blog-row-num">${num}</span>
+          <span class="blog-row-cat">${post.category || "Development"}</span>
+        </div>
+        <div class="blog-row-content">
+          <h3 class="blog-row-title">${post.topic}</h3>
+          <p class="blog-row-excerpt">${post.description}</p>
+        </div>
+        <div class="blog-row-action">
+          <span class="blog-row-date">${post.date || "2026"}</span>
+          <div class="blog-arrow-icon"><i data-lucide="arrow-right"></i></div>
+        </div>
+      </a>
+    `;
+  });
+
   const html = `
-    <!-- Left Column: Featured Article Card -->
-    <a href="${primaryPost.link}" class="featured-article-card glow-card">
-      <div>
-        <div class="article-card-meta">
-          <span class="article-category-badge">${primaryPost.category || "Development"}</span>
-          <span class="article-date-read">${primaryPost.date || "MARCH 2, 2026"}</span>
-          <span class="article-meta-divider">/</span>
-          <span class="article-date-read">6 MIN READ</span>
-        </div>
-
-        <h3 class="article-title-link">${primaryPost.topic}</h3>
-        <p class="article-card-excerpt">${primaryPost.description}</p>
-      </div>
-
-      <div>
-        <div class="article-tags-cluster">
-          <span class="article-tag-item">i18n Architecture</span>
-          <span class="article-tag-item">Locale Routing</span>
-          <span class="article-tag-item">Accessibility</span>
-          <span class="article-tag-item">Modern Frontend</span>
-        </div>
-
-        <div class="article-cta-action">
-          <span>Read Dispatch</span>
-          <i data-lucide="arrow-up-right"></i>
-        </div>
-      </div>
-    </a>
-
-    <!-- Right Column: Author Gamified Dispatch & Upcoming Matrix -->
-    <div class="articles-sidebar-stack">
-      <!-- Gamified Author Dispatch Card -->
-      <div class="author-dispatch-card glow-card">
-        <div class="gamified-avatar-frame">
-          <img src="${currentAvatar}" 
-               data-light="${lightAvatar}" 
-               data-dark="${darkAvatar}" 
-               alt="Mosa Moleleki Pixel Avatar" 
-               class="gamified-avatar-img" 
-               id="gamifiedAvatarImg" />
-        </div>
-
-        <div class="author-status-badge">
-          <span class="status-pulse-dot"></span>
-          <span>Writing & Research · 2026 Dispatches</span>
-        </div>
-
-        <p class="author-dispatch-quote">
-          "Architecture is about making the complex feel invisible, accessible, and blindingly fast."
-        </p>
-
-        <div class="author-dispatch-footer">
-          <div class="author-info-group">
-            <span class="author-name">Mosa Moleleki</span>
-            <span class="author-role">Front-End Web Developer</span>
+    <div class="cinematic-blog-layout">
+      <!-- Sticky Sidebar: Gamified Poster -->
+      <div class="blog-sidebar">
+        <div class="gamified-poster-card glow-card sticky-poster">
+          <div class="gamified-poster-image">
+            <img src="${currentAvatar}" 
+                 data-light="${lightAvatar}" 
+                 data-dark="${darkAvatar}" 
+                 alt="Mosa Moleleki Pixel Avatar" 
+                 class="gamified-avatar-img" 
+                 id="gamifiedAvatarImg" />
+            <div class="gamified-poster-overlay">
+              <div class="author-status-badge">
+                <span class="status-pulse-dot"></span>
+                <span>Writing & Research</span>
+              </div>
+              <div class="gamified-poster-text">
+                <span class="poster-title">SUDO</span>
+                <span class="poster-subtitle">DISPATCHES</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Upcoming Topics Matrix -->
-      <div class="topic-matrix-card glow-card">
-        <div class="topic-matrix-header">
-          <span class="topic-matrix-title">
-            <i data-lucide="sparkles"></i>
-            Upcoming Dispatches
-          </span>
-          <span class="topic-matrix-status">2026 Q2</span>
+      <!-- Scrollable List of Articles -->
+      <div class="blog-list-container">
+        <div class="blog-list">
+          ${listHtml}
         </div>
-
-        <ul class="topic-matrix-list">
-          <li class="topic-matrix-item">
-            <span class="topic-item-num">01</span>
-            <span class="topic-item-name">60fps Micro-Interactions & Physics</span>
-            <span class="topic-item-pill">Writing</span>
-          </li>
-          <li class="topic-matrix-item">
-            <span class="topic-item-num">02</span>
-            <span class="topic-item-name">CSS Container Queries in Design Systems</span>
-            <span class="topic-item-pill">Planned</span>
-          </li>
-          <li class="topic-matrix-item">
-            <span class="topic-item-num">03</span>
-            <span class="topic-item-name">Zero-JS Progressive Enhancement</span>
-            <span class="topic-item-pill">Drafting</span>
-          </li>
-        </ul>
       </div>
     </div>
   `;
@@ -808,3 +773,30 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+
+// =========================================================================
+// INTERSECTION OBSERVER FOR FADE-UP ANIMATIONS (MODERN JS PATTERNS)
+// =========================================================================
+function initScrollAnimations() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        // Optional: Stop observing once visible if you want it to trigger only once
+        // observer.unobserve(entry.target); 
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px"
+  });
+
+  document.querySelectorAll('.fade-up-element').forEach(el => {
+    observer.observe(el);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initScrollAnimations);
+// Also run it once immediately in case DOM is already loaded
+if(document.readyState !== "loading") initScrollAnimations();

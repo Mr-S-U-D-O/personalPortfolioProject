@@ -47,6 +47,24 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* ==========================================================================
+   GLOBAL CINEMATIC NOISE
+   ========================================================================== */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+[data-theme="light"] body::after {
+  opacity: 0.15;
+}
+
 body,
 html {
   margin: 0;
@@ -2235,4 +2253,303 @@ a.method-link:hover {
   color: var(--text-muted);
   line-height: 1.6;
   margin: 0;
+}
+
+/* ==========================================================================
+   CINEMATIC SECTIONS (MATCHING FOOTER AESTHETIC)
+   ========================================================================== */
+.cinematic-section {
+  position: relative;
+  width: 100%;
+  padding: 10rem 6vw !important;
+  box-sizing: border-box;
+  background: var(--bg-dark, #080808) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  z-index: 5;
+}
+
+/* Ambient noise grain overlay */
+/* removed local cinematic noise */
+
+/* Ambient glow */
+.cinematic-section::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 60vh;
+  background: radial-gradient(circle, rgba(56, 130, 246, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cinematic-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="light"] .cinematic-section {
+  background: #f8fafc !important;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+/* removed light theme cinematic noise */
+[data-theme="light"] .cinematic-section::after {
+  background: radial-gradient(circle, rgba(56, 130, 246, 0.08) 0%, transparent 60%);
+}
+
+/* ==========================================================================
+   THE PROCESS SECTION (AWWWARDS ROWS)
+   ========================================================================== */
+.methodology-header {
+  margin-bottom: 5rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.methodology-eyebrow {
+  display: block;
+  font-family: "Fira Code", monospace, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--accent-primary, #3b82f6);
+}
+
+.methodology-headline {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--text-light, #fff);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.process-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.process-row {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  background: rgba(255, 255, 255, 0.015);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+  gap: 2rem;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 768px) {
+  .process-row {
+    flex-direction: row;
+    align-items: center;
+    padding: 4rem;
+    gap: 4rem;
+  }
+}
+
+.process-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.process-num-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.process-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 3rem;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+  position: relative;
+  z-index: 2;
+  transition: all 0.5s ease;
+}
+
+.process-row:hover .process-num {
+  color: var(--accent-primary, #3b82f6);
+  -webkit-text-stroke: 1px transparent;
+}
+
+.process-num-bg {
+  position: absolute;
+  font-family: 'Outfit', sans-serif;
+  font-size: 8rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.02);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.process-row:hover .process-num-bg {
+  color: rgba(56, 130, 246, 0.05);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.process-content {
+  flex-grow: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.process-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+  font-weight: 600;
+  color: var(--text-light, #fff);
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.02em;
+}
+
+.process-desc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+  max-width: 600px;
+}
+
+.process-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.4);
+  flex-shrink: 0;
+  transition: all 0.5s ease;
+}
+
+.process-row:hover .process-icon {
+  background: rgba(56, 130, 246, 0.1);
+  border-color: rgba(56, 130, 246, 0.3);
+  color: var(--accent-primary, #3b82f6);
+  transform: scale(1.1) rotate(10deg);
+}
+
+/* Intersection Observer Fade Animations */
+.fade-up-element {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-up-element.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] .methodology-headline { color: #111; }
+[data-theme="light"] .process-row {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.05);
+}
+[data-theme="light"] .process-row:hover {
+  background: #fff;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+[data-theme="light"] .process-num {
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
+}
+[data-theme="light"] .process-row:hover .process-num {
+  color: var(--accent-primary, #3b82f6);
+  -webkit-text-stroke: 1px transparent;
+}
+[data-theme="light"] .process-num-bg {
+  color: rgba(0, 0, 0, 0.03);
+}
+[data-theme="light"] .process-row:hover .process-num-bg {
+  color: rgba(56, 130, 246, 0.05);
+}
+[data-theme="light"] .process-title { color: #111; }
+[data-theme="light"] .process-desc { color: rgba(0, 0, 0, 0.6); }
+[data-theme="light"] .process-icon {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.4);
+}
+[data-theme="light"] .process-row:hover .process-icon {
+  background: rgba(56, 130, 246, 0.1);
+  border-color: rgba(56, 130, 246, 0.2);
+}
+
+/* Global Pill Button Override */
+.lets-talk-btn, .view-project-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 100px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.lets-talk-btn:hover, .view-project-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px);
+}
+[data-theme="light"] .lets-talk-btn, [data-theme="light"] .view-project-btn {
+  color: #111;
+  border-color: rgba(0,0,0,0.1);
+}
+[data-theme="light"] .lets-talk-btn:hover, [data-theme="light"] .view-project-btn:hover {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0,0,0,0.2);
+}
+/* For svg or lucide icons inside */
+.lets-talk-btn svg, .lets-talk-btn i, .view-project-btn svg, .view-project-btn i {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+.lets-talk-btn:hover svg, .lets-talk-btn:hover i, .view-project-btn:hover svg, .view-project-btn:hover i {
+  transform: translateX(4px);
+}
+
+/* Anti-Flash Splash Screen */
+html.skip-splash #splashScreen,
+html.skip-splash #quoteContainer {
+    display: none !important;
 }

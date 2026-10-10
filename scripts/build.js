@@ -429,24 +429,32 @@ if (projectTemplateBlock && projectsData.length > 0) {
     let galleryHtml = "";
     if (proj.gallery && proj.gallery.length > 0) {
       galleryHtml = `
-                <section id="gallery" class="project-gallery-section fade-element">
-                    <div class="project-section-header">
-                        <h2 class="section-title">
-                            <span class="title-main">Gallery</span>
-                            <span class="title-ghost">Visuals</span>
-                        </h2>
-                    </div>
-                    <div class="premium-gallery-grid">
-                        ${proj.gallery
-                          .map((img) => {
-                            // Ensure path is relative to the projects/ folder
-                            const cleanPath = img.replace("../projects/", "");
-                            return `
-                            <div class="gallery-item premium-media-container">
-                                <img src="${cleanPath}" alt="Gallery Image" loading="lazy">
-                            </div>`;
-                          })
-                          .join("")}
+                <section id="gallery" class="project-gallery-section cinematic-section fade-up-element">
+                    <div class="cinematic-inner">
+                        <div class="project-section-header">
+                            <span class="methodology-eyebrow">// CINEMATIC SHOWCASE</span>
+                            <h2 class="section-title">
+                                <span class="title-main text-outline-hover" style="font-size:clamp(3rem, 5vw, 5rem); line-height:1; letter-spacing:-0.03em;">Visuals</span>
+                                <span class="title-ghost">Gallery</span>
+                            </h2>
+                        </div>
+                        <div class="awwwards-bento-gallery">
+                            ${proj.gallery
+                              .map((img, index) => {
+                                const cleanPath = img.replace("../projects/", "");
+                                const bentoClass = index % 3 === 0 ? 'bento-large' : 'bento-small';
+                                return `
+                                <div class="bento-item ${bentoClass} glow-card">
+                                    <div class="bento-image-wrapper">
+                                        <img src="${cleanPath}" alt="Gallery Visual ${index + 1}" loading="lazy">
+                                        <div class="bento-overlay">
+                                            <i data-lucide="eye"></i>
+                                        </div>
+                                    </div>
+                                </div>`;
+                              })
+                              .join("")}
+                        </div>
                     </div>
                 </section>`;
     }
@@ -459,12 +467,23 @@ if (projectTemplateBlock && projectsData.length > 0) {
     let learningsHtml = "";
     if (proj.learnings && proj.learnings.length > 0) {
       learningsHtml = `
-                <section id="key-takeaways" class="project-learnings-section fade-element">
-                    <span class="ghost-text">Insights</span>
-                    <h2 class="section-title">Key Takeaways</h2>
-                    <ul class="learnings-list">
-                        ${proj.learnings.map((l) => `<li><i class="fa-solid fa-check list-icon"></i> <span>${l}</span></li>`).join("")}
-                    </ul>
+                <section id="key-takeaways" class="project-learnings-section cinematic-section fade-element">
+                    <div class="cinematic-inner">
+                        <div class="project-section-header">
+                            <span class="methodology-eyebrow">// INSIGHTS</span>
+                            <h2 class="section-title">
+                                <span class="title-main">Key Takeaways</span>
+                                <span class="title-ghost">Insights</span>
+                            </h2>
+                        </div>
+                        <div class="glossy-cards-grid">
+                            ${proj.learnings.map((l) => `
+                                <div class="glossy-card">
+                                    <div class="glossy-card-icon"><i data-lucide="check-circle"></i></div>
+                                    <p>${l}</p>
+                                </div>`).join("")}
+                        </div>
+                    </div>
                 </section>`;
     }
     pageHtml = pageHtml.replace(/{{LEARNINGS_HTML}}/g, learningsHtml);
@@ -551,19 +570,24 @@ if (projectTemplateBlock && projectsData.length > 0) {
     }
     pageHtml = pageHtml.replace(/{{CHALLENGES_HTML}}/g, challengesHtml);
 
-    // 4. Project Outcomes — clean unordered list (no cards)
+    // 4. Project Outcomes
     let resultsHtml = `
-            <section id="outcomes" class="project-results-section fade-element">
-                <div class="project-section-header">
-                    <h2 class="section-title">
-                        <span class="title-main">Project Outcomes</span>
-                        <span class="title-ghost">Impact</span>
-                    </h2>
-                </div>
-                <div class="results-container">
-                    <ul class="results-list">
-                        ${(proj.outcomes || []).map((res) => `<li>${res}</li>`).join("\n")}
-                    </ul>
+            <section id="outcomes" class="project-results-section cinematic-section fade-element">
+                <div class="cinematic-inner">
+                    <div class="project-section-header">
+                        <span class="methodology-eyebrow">// IMPACT</span>
+                        <h2 class="section-title">
+                            <span class="title-main">Project Outcomes</span>
+                            <span class="title-ghost">Impact</span>
+                        </h2>
+                    </div>
+                    <div class="glossy-cards-grid">
+                        ${(proj.outcomes || []).map((res) => `
+                            <div class="glossy-card highlight-card">
+                                <div class="glossy-card-icon"><i data-lucide="zap"></i></div>
+                                <p>${res}</p>
+                            </div>`).join("")}
+                    </div>
                 </div>
             </section>`;
     pageHtml = pageHtml.replace(/{{RESULTS_HTML}}/g, resultsHtml);

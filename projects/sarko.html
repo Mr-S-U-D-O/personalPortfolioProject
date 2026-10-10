@@ -18,11 +18,11 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" as="script">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" as="script">
     <link rel="preload" as="image" href="../../projects/sarko/mockup-frames/mockup-desktop-framed.png">
-    <link rel="stylesheet" href="../css/min/style.min.css?v=1791653475045">
+    <link rel="stylesheet" href="../css/min/style.min.css?v=1791662762501">
     
-    <link rel="stylesheet" href="../css/min/project.min.css?v=1791653475045">
+    <link rel="stylesheet" href="../css/min/project.min.css?v=1791662762501">
     <!-- Universal Theme System (must be non-deferred to prevent flash) -->
-    <script src="../js/min/theme.min.js?v=1791653475045"></script>
+    <script src="../js/min/theme.min.js?v=1791662762501"></script>
 
     <!-- GSAP for scroll animations -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -34,11 +34,12 @@
     <!-- Scroll Progress Bar -->
     <div class="scroll-progress-bar" id="scrollProgressBar"></div>
 
-    <!-- Utility Toggles -->
+    
+
+
+        <!-- Utility Toggles -->
     <div class="utility-toggles">
-        <button class="theme-toggle" data-theme-toggle aria-label="Toggle Dark Mode">
-            <i data-lucide="moon"></i>
-        </button>
+        <!-- We keep theme toggle in the new floating nav, so maybe just the CV nav here -->
     </div>
 
     <!-- Persistent CV Download -->
@@ -53,12 +54,23 @@
         </ul>
     </nav>
 
-
     <!-- Main Container -->
     <div class="project-container">
         
-        <!-- Back Button -->
-        <a href="../index.html#projects" class="back-home-btn animate-fade-in"><i data-lucide="arrow-left"></i> Back to Projects</a>
+        <!-- Premium Floating Nav -->
+        <nav class="project-floating-nav animate-fade-in">
+            <div class="nav-inner glass-panel">
+                <a href="../index.html#projects" class="nav-back-btn">
+                    <div class="btn-icon-circle-small"><i data-lucide="arrow-left"></i></div>
+                    <span>Back to Projects</span>
+                </a>
+                <div class="nav-actions">
+                    <button class="theme-toggle" data-theme-toggle aria-label="Toggle Dark Mode">
+                        <i data-lucide="moon"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
 
         <!-- Premium Minimalist Hero Section -->
         <header class="project-hero premium-hero animate-slide-up">
@@ -205,27 +217,50 @@
                     </div>
                 </section>
                 
-                <section id="gallery" class="project-gallery-section fade-element">
-                    <div class="project-section-header">
-                        <h2 class="section-title">
-                            <span class="title-main">Gallery</span>
-                            <span class="title-ghost">Visuals</span>
-                        </h2>
-                    </div>
-                    <div class="premium-gallery-grid">
-                        
-                            <div class="gallery-item premium-media-container">
-                                <img src="sarko/gallery-images/gallery-1.jpeg" alt="Gallery Image" loading="lazy">
-                            </div>
-                            <div class="gallery-item premium-media-container">
-                                <img src="sarko/gallery-images/gallery-2.jpeg" alt="Gallery Image" loading="lazy">
-                            </div>
-                            <div class="gallery-item premium-media-container">
-                                <img src="sarko/gallery-images/gallery-3.jpeg" alt="Gallery Image" loading="lazy">
-                            </div>
-                            <div class="gallery-item premium-media-container">
-                                <img src="sarko/gallery-images/gallery-4.jpeg" alt="Gallery Image" loading="lazy">
-                            </div>
+                <section id="gallery" class="project-gallery-section cinematic-section fade-up-element">
+                    <div class="cinematic-inner">
+                        <div class="project-section-header">
+                            <span class="methodology-eyebrow">// CINEMATIC SHOWCASE</span>
+                            <h2 class="section-title">
+                                <span class="title-main text-outline-hover" style="font-size:clamp(3rem, 5vw, 5rem); line-height:1; letter-spacing:-0.03em;">Visuals</span>
+                                <span class="title-ghost">Gallery</span>
+                            </h2>
+                        </div>
+                        <div class="awwwards-bento-gallery">
+                            
+                                <div class="bento-item bento-large glow-card">
+                                    <div class="bento-image-wrapper">
+                                        <img src="sarko/gallery-images/gallery-1.jpeg" alt="Gallery Visual 1" loading="lazy">
+                                        <div class="bento-overlay">
+                                            <i data-lucide="eye"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bento-item bento-small glow-card">
+                                    <div class="bento-image-wrapper">
+                                        <img src="sarko/gallery-images/gallery-2.jpeg" alt="Gallery Visual 2" loading="lazy">
+                                        <div class="bento-overlay">
+                                            <i data-lucide="eye"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bento-item bento-small glow-card">
+                                    <div class="bento-image-wrapper">
+                                        <img src="sarko/gallery-images/gallery-3.jpeg" alt="Gallery Visual 3" loading="lazy">
+                                        <div class="bento-overlay">
+                                            <i data-lucide="eye"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bento-item bento-large glow-card">
+                                    <div class="bento-image-wrapper">
+                                        <img src="sarko/gallery-images/gallery-4.jpeg" alt="Gallery Visual 4" loading="lazy">
+                                        <div class="bento-overlay">
+                                            <i data-lucide="eye"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
                     </div>
                 </section>
                 
@@ -262,26 +297,53 @@
                     </div>
                 </section>
                 
-                <section id="key-takeaways" class="project-learnings-section fade-element">
-                    <span class="ghost-text">Insights</span>
-                    <h2 class="section-title">Key Takeaways</h2>
-                    <ul class="learnings-list">
-                        <li><i class="fa-solid fa-check list-icon"></i> <span>Engineered an interactive, expanding CSS Grid hero section utilizing translateZ(0) to force hardware acceleration and eliminate transition flicker.</span></li><li><i class="fa-solid fa-check list-icon"></i> <span>Developed a lightweight, multi-step induction wizard in Vanilla JavaScript complete with HTML5 form validation and dynamic DOM manipulation.</span></li><li><i class="fa-solid fa-check list-icon"></i> <span>Implemented an exit-intent detection system using mouseout event listeners tied to viewport coordinates to capture abandoning visitors.</span></li>
-                    </ul>
+                <section id="key-takeaways" class="project-learnings-section cinematic-section fade-element">
+                    <div class="cinematic-inner">
+                        <div class="project-section-header">
+                            <span class="methodology-eyebrow">// INSIGHTS</span>
+                            <h2 class="section-title">
+                                <span class="title-main">Key Takeaways</span>
+                                <span class="title-ghost">Insights</span>
+                            </h2>
+                        </div>
+                        <div class="glossy-cards-grid">
+                            
+                                <div class="glossy-card">
+                                    <div class="glossy-card-icon"><i data-lucide="check-circle"></i></div>
+                                    <p>Engineered an interactive, expanding CSS Grid hero section utilizing translateZ(0) to force hardware acceleration and eliminate transition flicker.</p>
+                                </div>
+                                <div class="glossy-card">
+                                    <div class="glossy-card-icon"><i data-lucide="check-circle"></i></div>
+                                    <p>Developed a lightweight, multi-step induction wizard in Vanilla JavaScript complete with HTML5 form validation and dynamic DOM manipulation.</p>
+                                </div>
+                                <div class="glossy-card">
+                                    <div class="glossy-card-icon"><i data-lucide="check-circle"></i></div>
+                                    <p>Implemented an exit-intent detection system using mouseout event listeners tied to viewport coordinates to capture abandoning visitors.</p>
+                                </div>
+                        </div>
+                    </div>
                 </section>
                 
-            <section id="outcomes" class="project-results-section fade-element">
-                <div class="project-section-header">
-                    <h2 class="section-title">
-                        <span class="title-main">Project Outcomes</span>
-                        <span class="title-ghost">Impact</span>
-                    </h2>
-                </div>
-                <div class="results-container">
-                    <ul class="results-list">
-                        <li>Delivered a robust, highly interactive platform that perfectly aligns with the 'Regal Guardian' brand identity.</li>
-<li>Created a seamless, multi-step digital membership application process, eliminating the friction of physical paperwork.</li>
-                    </ul>
+            <section id="outcomes" class="project-results-section cinematic-section fade-element">
+                <div class="cinematic-inner">
+                    <div class="project-section-header">
+                        <span class="methodology-eyebrow">// IMPACT</span>
+                        <h2 class="section-title">
+                            <span class="title-main">Project Outcomes</span>
+                            <span class="title-ghost">Impact</span>
+                        </h2>
+                    </div>
+                    <div class="glossy-cards-grid">
+                        
+                            <div class="glossy-card highlight-card">
+                                <div class="glossy-card-icon"><i data-lucide="zap"></i></div>
+                                <p>Delivered a robust, highly interactive platform that perfectly aligns with the 'Regal Guardian' brand identity.</p>
+                            </div>
+                            <div class="glossy-card highlight-card">
+                                <div class="glossy-card-icon"><i data-lucide="zap"></i></div>
+                                <p>Created a seamless, multi-step digital membership application process, eliminating the friction of physical paperwork.</p>
+                            </div>
+                    </div>
                 </div>
             </section>
             </article>
@@ -294,88 +356,84 @@
         </nav>
 
         <!-- ========================================= -->
-        <!-- Site Footer (Merged Socials)              -->
+        <!-- Site Footer — Cinematic Awwwards Edition  -->
         <!-- ========================================= -->
-        <footer class="site-footer">
-    <div class="footer-container">
-        <!-- CTA Section -->
-        <div class="footer-cta">
-            <div class="footer-cta-text">
-                <h3>Ready to build something serious?</h3>
-                <p>Let's collaborate to bring your digital vision to life.</p>
+        <footer class="site-footer-v2" id="siteFooter">
+            <!-- Availability signal strip -->
+            <div class="footer-availability-strip">
+                <span class="footer-avail-dot"></span>
+                <span class="footer-avail-text">Available for new projects &mdash; Johannesburg, RSA</span>
             </div>
-            <div class="footer-cta-action">
-                <button class="lets-talk-btn" onclick="document.getElementById('openContactBtn').click()">
-                    <span>Send a Message</span>
-                    <i data-lucide="arrow-right"></i>
-                </button>
-            </div>
-        </div>
 
-        <!-- Main Footer Links Grid -->
-        <div class="footer-main-grid">
-            <!-- Navigation Column -->
-            <nav class="footer-column" aria-label="Footer Navigation">
-                <h4>Navigation</h4>
-                <ul class="footer-links">
-                    <li><a href="../#heroSection"><i data-lucide="chevron-right"></i> Home</a></li>
-                    <li><a href="../#about"><i data-lucide="chevron-right"></i> About</a></li>
-                    <li><a href="../#projects"><i data-lucide="chevron-right"></i> Projects</a></li>
-                    <li><a href="../#blog"><i data-lucide="chevron-right"></i> Articles</a></li>
-                    <li><a href="../#contact"><i data-lucide="chevron-right"></i> Contact</a></li>
-                </ul>
-            </nav>
-
-            <!-- Resources Column -->
-            <nav class="footer-column" aria-label="Secondary Navigation">
-                <h4>Resources</h4>
-                <ul class="footer-links">
-                    <li><a href="../projects.html"><i data-lucide="chevron-right"></i> Case Studies</a></li>
-                    <li><a href="../cv/mosa_moleleki_cv.pdf" target="_blank"><i data-lucide="chevron-right"></i> Digital Resume</a></li>
-                    <li><a href="../sitemap.html"><i data-lucide="chevron-right"></i> Sitemap</a></li>
-                    <li><a href="https://github.com/Mr-S-U-D-O/personalPortfolioProject/blob/main/LICENSE" target="_blank"><i data-lucide="chevron-right"></i> Legal License</a></li>
-                </ul>
-            </nav>
-
-            <!-- Connect Column -->
-            <div class="footer-column">
-                <h4>Connect</h4>
-                <div class="footer-social-links">
-                    <a href="https://github.com/Mr-S-U-D-O" class="footer-social-btn" target="_blank" aria-label="GitHub Profile">
-                        <i data-lucide="github"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/mosa-moleleki" class="footer-social-btn" target="_blank" aria-label="LinkedIn Profile">
-                        <i data-lucide="linkedin"></i>
+            <!-- Primary CTA headline -->
+            <div class="footer-cta-section">
+                <div class="footer-cta-inner">
+                    <span class="footer-cta-eyebrow">Let's build</span>
+                    <h2 class="footer-cta-headline">
+                        Start a <em>project</em><br>with me.
+                    </h2>
+                    <a href="mailto:molelekishoez@gmail.com" class="footer-cta-pill">
+                        <span>molelekishoez@gmail.com</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </a>
                 </div>
-                <!-- Preserved GitHub Star Button -->
-                <div class="footer-github-star">
-                    <button class="premium-github-btn" onclick="window.open('https://github.com/Mr-S-U-D-O/personalPortfolioProject', '_blank')">
-                        <div class="btn-icon"><i data-lucide="github"></i></div>
-                        <div class="btn-text-content">
-                            <span class="btn-title">Star on GitHub</span>
-                            <span class="btn-value">
-                                <i data-lucide="star" class="star-icon"></i>
-                                <span id="github-star-count">0</span>
-                            </span>
-                        </div>
+            </div>
+
+            <!-- Scrolling marquee divider -->
+            <div class="footer-marquee-track" aria-hidden="true">
+                <div class="footer-marquee-inner">
+                    <span>Front-End Engineering</span>
+                    <span class="footer-marquee-dot">&bull;</span>
+                    <span>UI Design</span>
+                    <span class="footer-marquee-dot">&bull;</span>
+                    <span>Web Performance</span>
+                    <span class="footer-marquee-dot">&bull;</span>
+                    <span>Digital Strategy</span>
+                    <span class="footer-marquee-dot">&bull;</span>
+                    <span>Front-End Engineering</span>
+                    <span class="footer-marquee-dot">&bull;</span>
+                    <span>UI Design</span>
+                    <span class="footer-marquee-dot">&bull;</span>
+                    <span>Web Performance</span>
+                    <span class="footer-marquee-dot">&bull;</span>
+                    <span>Digital Strategy</span>
+                    <span class="footer-marquee-dot">&bull;</span>
+                    <span>Front-End Engineering</span>
+                    <span class="footer-marquee-dot">&bull;</span>
+                    <span>UI Design</span>
+                    <span class="footer-marquee-dot">&bull;</span>
+                </div>
+            </div>
+
+            <!-- Navigation & social row -->
+            <div class="footer-links-row">
+                <div class="footer-links-left">
+                    <a href="../index.html#heroSection" class="footer-link">Home</a>
+                    <a href="../index.html#about" class="footer-link">About</a>
+                    <a href="../index.html#projects" class="footer-link">Projects</a>
+                    <a href="../index.html#blog" class="footer-link">Articles</a>
+                    <a href="../projects.html" class="footer-link">Case Studies</a>
+                    <a href="../cv/mosa_moleleki_cv.pdf" target="_blank" class="footer-link">Resume</a>
+                </div>
+                <div class="footer-links-right">
+                    <a href="https://github.com/Mr-S-U-D-O" class="footer-icon-link" target="_blank" aria-label="GitHub">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/mosa-moleleki" class="footer-icon-link" target="_blank" aria-label="LinkedIn">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                    <button class="footer-github-star-btn" onclick="window.open('https://github.com/Mr-S-U-D-O/personalPortfolioProject','_blank')" aria-label="Star repo on GitHub">
+                        <i data-lucide="star"></i>
+                        <span id="github-star-count">0</span>
                     </button>
                 </div>
             </div>
-        </div>
 
-        <!-- Bottom Bar -->
-        <div class="footer-bottom">
-            <div class="footer-copyright">
-                <p>&copy; 2026 <strong>Mosa "S.U.D.O" Moleleki</strong>. All Rights Reserved.</p>
+            <!-- Massive cut-text wordmark -->
+            <div class="footer-wordmark-container" aria-hidden="true">
+                <div class="footer-wordmark">SUDO</div>
             </div>
-            <div class="footer-bottom-links">
-                <a href="mailto:molelekishoez@gmail.com">molelekishoez@gmail.com</a>
-                <a href="../#contact">Base: Johannesburg, RSA</a>
-            </div>
-        </div>
-    </div>
-</footer>
+        </footer>
 
     </div>
 
@@ -655,5 +713,10 @@
         });
     </script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            if (window.lucide) lucide.createIcons();
+        });
+    </script>
 </body>
 </html>
