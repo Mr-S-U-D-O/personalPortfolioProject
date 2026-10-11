@@ -81,15 +81,175 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@200;300;400;500;600;700;800;900&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/min/style.min.css?v=1791687468022">
-    <link rel="stylesheet" href="css/min/footer.min.css?v=1791687468022">
-    <link rel="stylesheet" href="css/min/blog-grid.min.css?v=1791687468022">
-    <link rel="stylesheet" href="css/min/project.min.css?v=1791687468022">
+    <link rel="stylesheet" href="css/min/style.min.css?v=1791747512999">
+    <link rel="stylesheet" href="css/min/footer.min.css?v=1791747512999">
+    <link rel="stylesheet" href="css/min/blog-grid.min.css?v=1791747512999">
+    <link rel="stylesheet" href="css/min/project.min.css?v=1791747512999">
 
     <!-- Universal Theme System (non-deferred — applies theme before first paint) -->
-    <script src="js/min/theme.min.js?v=1791687468022"></script>
+    <script src="js/min/theme.min.js?v=1791747512999"></script>
     <script src="https://unpkg.com/lucide@0.460.0"></script>
     <script>window.lucide || document.write('<script src="js/min/lucide.min.js"><\/script>')</script>
+    <style>
+    /* Critical Anti-FOUC & Media Constraints */
+    *, *::before, *::after { box-sizing: border-box; }
+    img, svg, video { max-width: 100%; height: auto; }
+    a, a:visited { text-decoration: none; }
+    .splash-screen {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #07070a;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .quote-container { opacity: 0; max-width: 980px; text-align: center; padding: 0 1.5rem; }
+    
+    /* Hero Buttons Direct Instant Styling (No flash of blue/purple visited links) */
+    .hero-cta-dock {
+        display: flex !important;
+        align-items: center !important;
+        gap: 16px !important;
+        flex-wrap: wrap !important;
+        margin-top: 10px !important;
+    }
+    .hero-btn-primary, a.hero-btn-primary, a.hero-btn-primary:visited {
+        position: relative;
+        overflow: hidden;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 14px !important;
+        padding: 13px 20px 13px 28px !important;
+        border-radius: 999px !important;
+        background: linear-gradient(135deg, rgba(56, 130, 246, 0.22) 0%, rgba(37, 99, 235, 0.12) 100%) !important;
+        border: 1px solid rgba(147, 197, 253, 0.35) !important;
+        box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.45), 0 10px 30px -5px rgba(37, 99, 235, 0.35) !important;
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        color: #ffffff !important;
+        font-family: var(--font-body, 'Outfit', sans-serif);
+        font-size: 0.98rem;
+        font-weight: 600;
+        text-decoration: none !important;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+    }
+    .hero-btn-primary .btn-icon-circle {
+        width: 36px !important;
+        height: 36px !important;
+        border-radius: 50% !important;
+        background: rgba(255, 255, 255, 0.14) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.4) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        color: #ffffff !important;
+    }
+    .hero-btn-secondary, a.hero-btn-secondary, a.hero-btn-secondary:visited {
+        position: relative;
+        overflow: hidden;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        padding: 14px 28px !important;
+        border-radius: 999px !important;
+        background: rgba(255, 255, 255, 0.04) !important;
+        border: 1px solid rgba(255, 255, 255, 0.14) !important;
+        box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.35), 0 8px 30px rgba(0, 0, 0, 0.25) !important;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        color: #ffffff !important;
+        font-family: var(--font-body, 'Outfit', sans-serif);
+        font-size: 0.98rem;
+        font-weight: 500;
+        text-decoration: none !important;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+    }
+    .hero-btn-primary:hover, a.hero-btn-primary:hover {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.35) 0%, rgba(37, 99, 235, 0.25) 100%) !important;
+        border-color: rgba(191, 219, 254, 0.65) !important;
+        transform: translateY(-3px) scale(1.02);
+        color: #ffffff !important;
+    }
+    .hero-btn-secondary:hover, a.hero-btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.09) !important;
+        border-color: rgba(255, 255, 255, 0.35) !important;
+        transform: translateY(-3px) scale(1.02);
+        color: #ffffff !important;
+    }
+    .lets-talk-btn, .about-bento-btn {
+        text-decoration: none !important;
+    }
+    .tech-item svg, .tech-glass-pill svg {
+        width: 20px !important;
+        height: 20px !important;
+        max-width: 20px !important;
+        max-height: 20px !important;
+        display: inline-block !important;
+    }
+    /* Critical Dock & Satellite Navigation Guards */
+    .sidebar-nav:not(.cv-nav) {
+        position: fixed !important;
+        left: 20px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        width: 58px;
+        border-radius: 20px !important;
+        padding: 16px 10px !important;
+        background: rgba(14, 15, 22, 0.75);
+        backdrop-filter: blur(28px);
+        -webkit-backdrop-filter: blur(28px);
+        border: 1px solid rgba(255, 255, 255, 0.09) !important;
+        box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.28), 0 24px 48px -12px rgba(0, 0, 0, 0.65) !important;
+        z-index: 9999 !important;
+    }
+    .utility-toggles {
+        position: fixed !important;
+        top: 24px !important;
+        right: 24px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 12px !important;
+        z-index: 10000 !important;
+    }
+    .theme-toggle {
+        width: 44px !important;
+        height: 44px !important;
+        border-radius: 50% !important;
+        background: rgba(14, 15, 22, 0.75);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.09) !important;
+        box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.28) !important;
+        color: #f4f4f7 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+    }
+    .sidebar-nav.cv-nav, .cv-nav {
+        position: fixed !important;
+        top: auto !important;
+        bottom: 24px !important;
+        left: auto !important;
+        right: 24px !important;
+        transform: none !important;
+        width: auto !important;
+        border-radius: 999px !important;
+        padding: 10px 20px !important;
+        background: rgba(14, 15, 22, 0.75);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.09) !important;
+        box-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.28) !important;
+        z-index: 10000 !important;
+    }
+    </style>
 </head>
 <body>
     <!-- ========================================= -->
@@ -172,8 +332,7 @@
     <!-- Main Hero Section                         -->
     <!-- ========================================= -->
 
-    <div id="heroScrollRig" class="hero-scroll-rig">
-        <main class="hero-section" id="heroSection">
+    <main class="hero-section" id="heroSection">
 
         <!-- Central Group (Allows perfect vertical centering) -->
         <div class="hero-content-group" id="heroContentGroup">
@@ -209,7 +368,7 @@
                     <div class="hero-cta-dock">
                         <a href="#projects" class="hero-btn-primary">
                             <span>Explore Portfolio</span>
-                            <div class="btn-icon-circle"><i data-lucide="arrow-down-right"></i></div>
+                            <span class="btn-icon-circle"><i data-lucide="arrow-down-right"></i></span>
                         </a>
                         <a href="#contact" class="hero-btn-secondary">
                             <span>Initiate Contact</span>
@@ -277,39 +436,38 @@
                 </div>
             </div>
         </main>
-    </div>
 
     <!-- ========================================= -->
-    <!-- Kinetic Awwwards Typography Marquee       -->
+    <!-- Kinetic Typography Marquee                -->
     <!-- ========================================= -->
-    <section class="kinetic-marquee-section" aria-label="Creative Disciplines">
+    <section class="kinetic-marquee-section" aria-label="Developer Disciplines">
         <div class="kinetic-marquee-track">
             <div class="kinetic-marquee-group">
-                <span class="marquee-bold">ARCHITECTURAL FRONT-END</span>
+                <span class="marquee-bold">FRONT-END ARCHITECT</span>
                 <span class="marquee-glint">✦</span>
-                <span class="marquee-thin">LIQUID MOTION</span>
+                <span class="marquee-thin">PERFORMANCE ENGINEER</span>
                 <span class="marquee-glint">✦</span>
-                <span class="marquee-bold">CREATIVE ENGINEERING</span>
+                <span class="marquee-bold">CREATIVE DEVELOPER</span>
                 <span class="marquee-glint">✦</span>
-                <span class="marquee-thin">AWWWARDS AESTHETIC</span>
+                <span class="marquee-thin">FULL-STACK BUILDER</span>
                 <span class="marquee-glint">✦</span>
-                <span class="marquee-bold">SPECULAR GLOSS</span>
+                <span class="marquee-bold">SYSTEMS ARCHITECT</span>
                 <span class="marquee-glint">✦</span>
-                <span class="marquee-thin">HIGH CONVERSION</span>
+                <span class="marquee-thin">TECHNICAL PROBLEM SOLVER</span>
                 <span class="marquee-glint">✦</span>
             </div>
             <div class="kinetic-marquee-group" aria-hidden="true">
-                <span class="marquee-bold">ARCHITECTURAL FRONT-END</span>
+                <span class="marquee-bold">FRONT-END ARCHITECT</span>
                 <span class="marquee-glint">✦</span>
-                <span class="marquee-thin">LIQUID MOTION</span>
+                <span class="marquee-thin">PERFORMANCE ENGINEER</span>
                 <span class="marquee-glint">✦</span>
-                <span class="marquee-bold">CREATIVE ENGINEERING</span>
+                <span class="marquee-bold">CREATIVE DEVELOPER</span>
                 <span class="marquee-glint">✦</span>
-                <span class="marquee-thin">AWWWARDS AESTHETIC</span>
+                <span class="marquee-thin">FULL-STACK BUILDER</span>
                 <span class="marquee-glint">✦</span>
-                <span class="marquee-bold">SPECULAR GLOSS</span>
+                <span class="marquee-bold">SYSTEMS ARCHITECT</span>
                 <span class="marquee-glint">✦</span>
-                <span class="marquee-thin">HIGH CONVERSION</span>
+                <span class="marquee-thin">TECHNICAL PROBLEM SOLVER</span>
                 <span class="marquee-glint">✦</span>
             </div>
         </div>
@@ -317,34 +475,187 @@
 
 
     <!-- ========================================= -->
-    <!-- About Section                             -->
+    <!-- About Section — Bento Board               -->
     <!-- ========================================= -->
-        <section id="about" class="about-section cinematic-section fade-up-element">
+    <section id="about" class="about-section cinematic-section fade-up-element" aria-label="About the Architect">
         <div class="cinematic-inner">
-            <div class="about-grid-awwwards">
-                <div class="about-left-col">
-                    <span class="methodology-eyebrow">// THE ARCHITECT</span>
-                    <h2 class="about-massive-title">
-                        I engineer<br/>
-                        <span class="text-outline-hover">unfair</span><br/>
-                        advantages.
-                    </h2>
-                </div>
-                <div class="about-right-col">
-                    <div class="about-bio-glass glow-card">
+            <!-- Bento Board Container Grid -->
+            <div class="about-bento-grid">
+                
+                <!-- Bento Cell 1: Master Ethos (Double Span, Dominant) -->
+                <div class="bento-card bento-card-hero glow-card">
+                    <div class="bento-card-header">
+                        <span class="bento-eyebrow">CORE PHILOSOPHY</span>
+                        <div class="bento-card-badge">
+                            <span class="kicker-pulse-dot"></span>
+                            <span>FOUNDER & DEVELOPER</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bento-hero-lockup">
+                        <h2 class="about-massive-title">
+                            I engineer<br/>
+                            <span class="text-outline-hover">unfair</span><br/>
+                            advantages.
+                        </h2>
+                    </div>
+
+                    <div class="bento-hero-narrative">
                         <p class="about-lead">
-                            I'm Mosa "S.U.D.O" Moleleki. I don't build generic websites; I architect high-performance interfaces designed to capture attention and convert traffic into revenue.
+                            I’m Mosa "S.U.D.O" Moleleki. I design and build high-performance web interfaces that capture attention, feel effortless to navigate, and turn visitors into active clients.
                         </p>
                         <p class="about-sub">
-                            Your digital presence is your most valuable asset. I partner with ambitious brands to replace user friction with fluid motion, and high bounce rates with deep, meaningful engagement. By fusing elite front-end engineering with immersive, Awwwards-tier design, I create web experiences that make your competitors look obsolete.
+                            Every detail matters. I partner with founders and product teams to craft digital experiences with precision motion, clean typography, and sub-second performance.
                         </p>
+                    </div>
 
-                        <a href="#methodology" class="about-explore-btn" style="margin-top: 1.5rem;">
-                            <span>Explore My Process</span>
-                            <div class="btn-icon-circle"><i data-lucide="arrow-down"></i></div>
+                    <div class="bento-hero-footer">
+                        <a href="about.html" class="about-bento-btn">
+                            <span>Deep Dive My Journey</span>
+                            <div class="btn-icon-circle"><i data-lucide="arrow-up-right"></i></div>
+                        </a>
+                        <span class="bento-meta-tag">LAUNCHPAD STUDIO · EST. 2024</span>
+                    </div>
+                </div>
+
+                <!-- Bento Cell 2: Performance Vitals (Single Column, Tall) -->
+                <div class="bento-card bento-card-vitals glow-card">
+                    <div class="bento-card-header">
+                        <span class="bento-eyebrow">PERFORMANCE VITALS</span>
+                        <i data-lucide="activity" class="bento-icon-subtle"></i>
+                    </div>
+                    
+                    <h3 class="bento-card-title">Measured Precision</h3>
+
+                    <div class="bento-metrics-stack">
+                        <div class="bento-metric-row">
+                            <div class="bento-metric-number">
+                                <span class="metric-num">99</span><span class="metric-symbol">+</span>
+                            </div>
+                            <div class="bento-metric-desc">
+                                <span class="metric-primary-label">Lighthouse Performance</span>
+                                <span class="metric-secondary-label">Clean Core Web Vitals</span>
+                            </div>
+                        </div>
+
+                        <div class="bento-metric-divider"></div>
+
+                        <div class="bento-metric-row">
+                            <div class="bento-metric-number">
+                                <span class="metric-num">60</span><span class="metric-unit">FPS</span>
+                            </div>
+                            <div class="bento-metric-desc">
+                                <span class="metric-primary-label">Fluid Motion</span>
+                                <span class="metric-secondary-label">GPU-Accelerated Renders</span>
+                            </div>
+                        </div>
+
+                        <div class="bento-metric-divider"></div>
+
+                        <div class="bento-metric-row">
+                            <div class="bento-metric-number">
+                                <span class="metric-num">&lt;100</span><span class="metric-unit">ms</span>
+                            </div>
+                            <div class="bento-metric-desc">
+                                <span class="metric-primary-label">Interaction to Next Paint</span>
+                                <span class="metric-secondary-label">Sub-frame Responsiveness</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bento-live-badge">
+                        <span class="bento-live-dot"></span>
+                        <span>PRODUCTION BENCHMARKS</span>
+                    </div>
+                </div>
+
+                <!-- Bento Cell 3: Craft & Capabilities (Single Column) -->
+                <div class="bento-card bento-card-craft glow-card">
+                    <div class="bento-card-header">
+                        <span class="bento-eyebrow">CORE DISCIPLINES</span>
+                        <i data-lucide="compass" class="bento-icon-subtle"></i>
+                    </div>
+
+                    <h3 class="bento-card-title">Specialized Focus</h3>
+
+                    <ul class="bento-craft-list">
+                        <li class="bento-craft-item">
+                            <span class="craft-index">01</span>
+                            <div class="craft-info">
+                                <span class="craft-name">Front-End Architecture</span>
+                                <span class="craft-desc">Modular design tokens & component systems</span>
+                            </div>
+                        </li>
+                        <li class="bento-craft-item">
+                            <span class="craft-index">02</span>
+                            <div class="craft-info">
+                                <span class="craft-name">Interactive Motion</span>
+                                <span class="craft-desc">Natural physics, tactile feedback & micro-interactions</span>
+                            </div>
+                        </li>
+                        <li class="bento-craft-item">
+                            <span class="craft-index">03</span>
+                            <div class="craft-info">
+                                <span class="craft-name">High-Conversion UX</span>
+                                <span class="craft-desc">Clear information hierarchy & smooth user flows</span>
+                            </div>
+                        </li>
+                        <li class="bento-craft-item">
+                            <span class="craft-index">04</span>
+                            <div class="craft-info">
+                                <span class="craft-name">Pure Web Performance</span>
+                                <span class="craft-desc">Minimal payload, instant paint & accessible markup</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Bento Cell 4: Studio Origin & Global Reach (Single Column) -->
+                <div class="bento-card bento-card-origin glow-card">
+                    <div class="bento-card-header">
+                        <span class="bento-eyebrow">LOCATION & REACH</span>
+                        <div class="bento-location-pill">
+                            <i data-lucide="globe"></i>
+                            <span>GMT+2 · SOUTH AFRICA</span>
+                        </div>
+                    </div>
+
+                    <div class="bento-origin-content">
+                        <div class="bento-origin-text">
+                            <h3 class="bento-card-title">Johannesburg ➔ Global</h3>
+                            <p class="bento-sub">
+                                Operating from South Africa with international velocity. Partnering remotely with visionaries, startups, and agencies across the US, UK, and Europe.
+                            </p>
+                        </div>
+                        <div class="bento-origin-status">
+                            <div class="bento-avail-pill">
+                                <span class="kicker-pulse-dot"></span>
+                                <span>AVAILABLE WORLDWIDE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bento Cell 5: Quick Contact Trigger (Single Column) -->
+                <div class="bento-card bento-card-action glow-card">
+                    <div class="bento-card-header">
+                        <span class="bento-eyebrow">COLLABORATION</span>
+                        <i data-lucide="sparkles" class="bento-icon-subtle"></i>
+                    </div>
+
+                    <h3 class="bento-card-title">Have a project in mind?</h3>
+                    <p class="bento-sub">
+                        Let's build an exceptional digital experience together.
+                    </p>
+
+                    <div class="bento-action-dock">
+                        <a href="#contact" class="lets-talk-btn bento-cta-btn">
+                            <span>Start a Project</span>
+                            <i data-lucide="arrow-right"></i>
                         </a>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -369,7 +680,7 @@
 
                 <div class="project-row glow-card" data-index="1">
                     <div class="project-row-img-container">
-                        <img src="../projects/sarko/preview-img/sarko-preview-dark.png" alt="SARKO" class="project-row-img" data-light="../projects/sarko/preview-img/sarko-preview-light.png" data-dark="../projects/sarko/preview-img/sarko-preview-dark.png" loading="lazy">
+                        <img src="projects/sarko/preview-img/sarko-preview-dark.png" alt="SARKO" class="project-row-img" data-light="projects/sarko/preview-img/sarko-preview-light.png" data-dark="projects/sarko/preview-img/sarko-preview-dark.png" loading="lazy">
                         
                     </div>
                     <div class="project-row-content">
@@ -396,7 +707,7 @@
                 </div>
                 <div class="project-row glow-card" data-index="2">
                     <div class="project-row-img-container">
-                        <img src="../projects/rn-inc/preview-img/rn-inc-preview-dark.jpeg" alt="RN Inc" class="project-row-img" data-light="../projects/rn-inc/preview-img/rn-inc-preview-light.png" data-dark="../projects/rn-inc/preview-img/rn-inc-preview-dark.jpeg" loading="lazy">
+                        <img src="projects/rn-inc/preview-img/rn-inc-preview-dark.jpeg" alt="RN Inc" class="project-row-img" data-light="projects/rn-inc/preview-img/rn-inc-preview-light.png" data-dark="projects/rn-inc/preview-img/rn-inc-preview-dark.jpeg" loading="lazy">
                         
                     </div>
                     <div class="project-row-content">
@@ -423,7 +734,7 @@
                 </div>
                 <div class="project-row glow-card" data-index="3">
                     <div class="project-row-img-container">
-                        <img src="../projects/mcleod/preview-img/mcleod-preview-dark.png" alt="McLeod & Associates" class="project-row-img" data-light="../projects/mcleod/preview-img/mcleod-preview-light.png" data-dark="../projects/mcleod/preview-img/mcleod-preview-dark.png" loading="lazy">
+                        <img src="projects/mcleod/preview-img/mcleod-preview-dark.png" alt="McLeod & Associates" class="project-row-img" data-light="projects/mcleod/preview-img/mcleod-preview-light.png" data-dark="projects/mcleod/preview-img/mcleod-preview-dark.png" loading="lazy">
                         
                     </div>
                     <div class="project-row-content">
@@ -467,7 +778,7 @@
 
         <div class="articles-header">
             <div class="articles-header-left">
-                <span class="articles-mono-tag">// PERSPECTIVES & CODE</span>
+                <span class="articles-mono-tag">SELECTED WRITING</span>
                 <h2 class="articles-headline">Writing & Dispatches</h2>
             </div>
             <p class="articles-lead">
@@ -486,12 +797,12 @@
     </section>
 
         <!-- ========================================= -->
-    <!-- Station 004: Methodology Section          -->
+    <!-- Methodology Section                       -->
     <!-- ========================================= -->
         <section id="methodology" class="methodology-section cinematic-section">
         <div class="cinematic-inner">
             <div class="methodology-header">
-                <span class="methodology-eyebrow">// THE PROCESS</span>
+                <span class="methodology-eyebrow">WORK PROCESS</span>
                 <h2 class="methodology-headline">
                     Engineering digital excellence.
                 </h2>
@@ -581,23 +892,23 @@
             <div class="footer-marquee-inner">
                 <span>Front-End Engineering</span>
                 <span class="footer-marquee-dot">&bull;</span>
-                <span>UI Design</span>
+                <span>Full-Stack Development</span>
                 <span class="footer-marquee-dot">&bull;</span>
                 <span>Web Performance</span>
                 <span class="footer-marquee-dot">&bull;</span>
-                <span>Digital Strategy</span>
+                <span>Creative Coding</span>
                 <span class="footer-marquee-dot">&bull;</span>
                 <span>Front-End Engineering</span>
                 <span class="footer-marquee-dot">&bull;</span>
-                <span>UI Design</span>
+                <span>Full-Stack Development</span>
                 <span class="footer-marquee-dot">&bull;</span>
                 <span>Web Performance</span>
                 <span class="footer-marquee-dot">&bull;</span>
-                <span>Digital Strategy</span>
+                <span>Creative Coding</span>
                 <span class="footer-marquee-dot">&bull;</span>
                 <span>Front-End Engineering</span>
                 <span class="footer-marquee-dot">&bull;</span>
-                <span>UI Design</span>
+                <span>Full-Stack Development</span>
                 <span class="footer-marquee-dot">&bull;</span>
             </div>
         </div>
@@ -605,11 +916,12 @@
         <!-- Navigation & social row -->
         <div class="footer-links-row">
             <div class="footer-links-left">
-                <a href="#heroSection" class="footer-link">Home</a>
-                <a href="#about" class="footer-link">About</a>
-                <a href="#projects" class="footer-link">Projects</a>
-                <a href="#blog" class="footer-link">Articles</a>
+                <a href="index.html#heroSection" class="footer-link">Home</a>
+                <a href="index.html#about" class="footer-link">About</a>
+                <a href="index.html#projects" class="footer-link">Projects</a>
+                <a href="index.html#blog" class="footer-link">Articles</a>
                 <a href="projects.html" class="footer-link">Case Studies</a>
+                <a href="sitemap.html" class="footer-link">Sitemap</a>
                 <a href="cv/mosa_moleleki_cv.pdf" target="_blank" class="footer-link">Resume</a>
             </div>
             <div class="footer-links-right">

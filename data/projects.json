@@ -6,7 +6,7 @@
         "role": "Frontend Developer",
         "year": "2026",
         "description": "A digital political mobilization platform for the South African Royal Kingdoms Organization (SARKO), bridging traditional monarchical authority with modern governance.",
-        "overview": "The SARKO project was a complete transformation of a static brochure site into an interactive Political Mobilization Platform. Designed around the 'Regal Guardian' brand archetype, the application utilizes a 'Statutory yet Soulful' tone, featuring complex native CSS grid architectures, an interactive membership wizard, and high-performance animations without the bloat of heavy JavaScript frameworks.",
+        "overview": "The SARKO project was a complete transformation of a static brochure site into an interactive Political Mobilization Platform. Designed around the 'Regal Guardian' brand archetype, the application utilizes a 'Statutory yet Soulful' tone, featuring complex native CSS grid architectures, an interactive membership wizard, and high-performance animations built with clean vanilla web architecture.",
         "overviewDetails": {
             "duration": "3 Weeks",
             "teamSize": "Solo Developer",

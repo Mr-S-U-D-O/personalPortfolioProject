@@ -43,7 +43,14 @@ function createSlug(text) {
 }
 
 // Track all generated pages for the sitemap
-const sitePages = ["index.html"];
+const sitePages = [
+  "index.html",
+  "about.html",
+  "projects.html",
+  "sitemap.html",
+  "sitemap.xml",
+  "404.html",
+];
 
 // 1. Read Data
 let blogData = [];
@@ -195,7 +202,9 @@ blogData.forEach((post) => {
   console.log(`Generated page: ${post.link}`);
 
   // Track page for sitemaps
-  sitePages.push(post.link);
+  if (!sitePages.includes(post.link)) {
+    sitePages.push(post.link);
+  }
 });
 
 // 5. Removed legacy blog.html generation (now handled centrally in index.html grid logic).
@@ -429,32 +438,29 @@ if (projectTemplateBlock && projectsData.length > 0) {
     let galleryHtml = "";
     if (proj.gallery && proj.gallery.length > 0) {
       galleryHtml = `
-                <section id="gallery" class="project-gallery-section cinematic-section fade-up-element">
-                    <div class="cinematic-inner">
-                        <div class="project-section-header">
-                            <span class="methodology-eyebrow">// CINEMATIC SHOWCASE</span>
-                            <h2 class="section-title">
-                                <span class="title-main text-outline-hover" style="font-size:clamp(3rem, 5vw, 5rem); line-height:1; letter-spacing:-0.03em;">Visuals</span>
-                                <span class="title-ghost">Gallery</span>
-                            </h2>
-                        </div>
-                        <div class="awwwards-bento-gallery">
-                            ${proj.gallery
-                              .map((img, index) => {
-                                const cleanPath = img.replace("../projects/", "");
-                                const bentoClass = index % 3 === 0 ? 'bento-large' : 'bento-small';
-                                return `
-                                <div class="bento-item ${bentoClass} glow-card">
-                                    <div class="bento-image-wrapper">
-                                        <img src="${cleanPath}" alt="Gallery Visual ${index + 1}" loading="lazy">
-                                        <div class="bento-overlay">
-                                            <i data-lucide="eye"></i>
-                                        </div>
+                <section id="visuals" class="project-gallery-section fade-element">
+                    <div class="project-section-header">
+                        <h2 class="section-title" id="visuals-heading">
+                            <span class="title-main">Visuals</span>
+                            <span class="title-ghost">Gallery</span>
+                        </h2>
+                    </div>
+                    <div class="awwwards-bento-gallery">
+                        ${proj.gallery
+                          .map((img, index) => {
+                            const cleanPath = img.replace("../projects/", "");
+                            const bentoClass = index % 3 === 0 ? 'bento-large' : 'bento-small';
+                            return `
+                            <div class="bento-item ${bentoClass} glow-card">
+                                <div class="bento-image-wrapper">
+                                    <img src="${cleanPath}" alt="Gallery Visual ${index + 1}" loading="lazy">
+                                    <div class="bento-overlay">
+                                        <i data-lucide="eye"></i>
                                     </div>
-                                </div>`;
-                              })
-                              .join("")}
-                        </div>
+                                </div>
+                            </div>`;
+                          })
+                          .join("")}
                     </div>
                 </section>`;
     }
@@ -470,7 +476,7 @@ if (projectTemplateBlock && projectsData.length > 0) {
                 <section id="key-takeaways" class="project-learnings-section cinematic-section fade-element">
                     <div class="cinematic-inner">
                         <div class="project-section-header">
-                            <span class="methodology-eyebrow">// INSIGHTS</span>
+                            <span class="methodology-eyebrow">KEY TAKEAWAYS</span>
                             <h2 class="section-title">
                                 <span class="title-main">Key Takeaways</span>
                                 <span class="title-ghost">Insights</span>
@@ -575,7 +581,7 @@ if (projectTemplateBlock && projectsData.length > 0) {
             <section id="outcomes" class="project-results-section cinematic-section fade-element">
                 <div class="cinematic-inner">
                     <div class="project-section-header">
-                        <span class="methodology-eyebrow">// IMPACT</span>
+                        <span class="methodology-eyebrow">PROJECT IMPACT</span>
                         <h2 class="section-title">
                             <span class="title-main">Project Outcomes</span>
                             <span class="title-ghost">Impact</span>
@@ -617,7 +623,9 @@ if (projectTemplateBlock && projectsData.length > 0) {
     fs.writeFileSync(outputPath, pageHtml, "utf8");
     console.log(`Generated project page: ${proj.link}`);
 
-    sitePages.push(proj.link);
+    if (!sitePages.includes(proj.link)) {
+      sitePages.push(proj.link);
+    }
   });
 }
 console.log("Project generation complete!");
@@ -639,11 +647,14 @@ function generateProjectCard(proj, isGallery = false) {
     .map((tech) => `<span class="project-row-pill">${tech}</span>`)
     .join("");
 
+  const thumbDark = (proj.thumbnail && proj.thumbnail.dark ? proj.thumbnail.dark : "").replace(/^\.\.\//, "");
+  const thumbLight = (proj.thumbnail && proj.thumbnail.light ? proj.thumbnail.light : "").replace(/^\.\.\//, "");
+
   // We use the same structure as the dynamic rendering but as static HTML
   return `
                 <div class="project-row glow-card" data-index="${proj.id}">
                     <div class="project-row-img-container">
-                        <img src="${proj.thumbnail.dark}" alt="${proj.title}" class="project-row-img" data-light="${proj.thumbnail.light}" data-dark="${proj.thumbnail.dark}" loading="lazy">
+                        <img src="${thumbDark}" alt="${proj.title}" class="project-row-img" data-light="${thumbLight}" data-dark="${thumbDark}" loading="lazy">
                         ${proj.desktopVideoUrl ? `<video class="project-row-video" src="${proj.desktopVideoUrl}" muted loop playsinline></video>` : ""}
                     </div>
                     <div class="project-row-content">
@@ -721,7 +732,9 @@ try {
     "utf8",
   );
   console.log("Successfully generated projects.html");
-  sitePages.push("projects.html");
+  if (!sitePages.includes("projects.html")) {
+    sitePages.push("projects.html");
+  }
 } catch (err) {
   console.error("Error generating projects.html:", err);
 }
@@ -731,6 +744,7 @@ try {
   let xmlContent = fs.readFileSync(SITEMAP_XML_TEMPLATE_PATH, "utf8");
   let urlSetHtml = "";
   sitePages.forEach((page) => {
+    if (page === "404.html" || page.endsWith(".xml")) return;
     const loc = `${BASE_URL}/${page}`;
     urlSetHtml += `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${new Date().toISOString().split("T")[0]}</lastmod>\n  </url>\n`;
   });
@@ -781,18 +795,46 @@ function renderTreeBranch(node, level = 0) {
     html += `      <span class="tree-line"></span>\n`;
 
     if (hasChildren) {
-      html += `      <i data-lucide="folder" class="tree-icon directory"></i>\n`;
-      html += `      <span class="tree-label">${key}</span>\n`;
+      html += `      <div class="tree-node-left">\n`;
+      html += `        <i data-lucide="folder" class="tree-icon directory"></i>\n`;
+      html += `        <span class="tree-label directory-label">${key}/</span>\n`;
+      html += `      </div>\n`;
+      html += `      <div class="tree-node-right">\n`;
+      html += `        <span class="tree-badge dir-badge">DIRECTORY</span>\n`;
+      html += `      </div>\n`;
       html += `    </div>\n`;
       html += renderTreeBranch(item._children, level + 1);
     } else {
       const ext = key.split(".").pop();
-      let iconClass = "fa-file-code";
-      if (ext === "html") iconClass = "fa-file-code html-file";
-      else if (ext === "xml") iconClass = "fa-file-code xml-file";
+      let iconName = "file-text";
+      let typeLabel = "PAGE";
+      let badgeClass = "html-badge";
+      if (ext === "xml") {
+        iconName = "rss";
+        typeLabel = "FEED";
+        badgeClass = "xml-badge";
+      } else if (item._path.startsWith("projects/")) {
+        iconName = "layers";
+        typeLabel = "CASE STUDY";
+      } else if (item._path.startsWith("posts/")) {
+        iconName = "book-open";
+        typeLabel = "ARTICLE";
+      } else if (item._path === "404.html") {
+        iconName = "alert-circle";
+        typeLabel = "EXCEPTION";
+      }
 
-      html += `      <i data-lucide="file-code" class="tree-icon file ${ext}-file"></i>\n`;
-      html += `      <a href="/${item._path}" class="tree-label">${key}</a>\n`;
+      html += `      <div class="tree-node-left">\n`;
+      html += `        <i data-lucide="${iconName}" class="tree-icon ${ext}-file"></i>\n`;
+      html += `        <a href="${item._path}" class="tree-label" data-route-path="${item._path}">${key}</a>\n`;
+      html += `      </div>\n`;
+      html += `      <div class="tree-node-right">\n`;
+      html += `        <span class="tree-route-path">/${item._path}</span>\n`;
+      html += `        <span class="tree-badge ${badgeClass}">${typeLabel}</span>\n`;
+      html += `        <a href="${item._path}" class="tree-visit-btn" aria-label="Visit ${key}">\n`;
+      html += `          <i data-lucide="arrow-up-right"></i>\n`;
+      html += `        </a>\n`;
+      html += `      </div>\n`;
       html += `    </div>\n`;
     }
     html += `  </li>\n`;
@@ -885,7 +927,7 @@ async function minifyFiles() {
     fs.readdirSync(dir).forEach((file) => {
       const fullPath = path.join(dir, file);
       if (fs.statSync(fullPath).isDirectory()) {
-        if (file !== "node_modules" && file !== ".git") findHtmlFiles(fullPath);
+        if (file !== "node_modules" && file !== ".git" && file !== "templates") findHtmlFiles(fullPath);
       } else if (file.endsWith(".html")) {
         htmlFiles.push(fullPath);
       }
@@ -915,7 +957,7 @@ async function minifyFiles() {
           let footerTemplate = fs.readFileSync(footerTemplatePath, "utf8");
           footerTemplate = footerTemplate.replace(/{{BASE_URL}}/g, prefix);
           
-          const footerRegex = /<!-- INJECT_GLOBAL_FOOTER -->|<footer class="site-footer-v2" id="siteFooter"[\s\S]*?<\/footer>|<footer class="site-footer(?:-v2)?"[\s\S]*?<\/footer>/gi;
+          const footerRegex = /<!-- INJECT_GLOBAL_FOOTER -->|(?:[ \t]*<!--[ \t]*={5,}[ \t]*-->\s*)*[ \t]*<!--[ \t]*Site Footer[^\n]*-->\s*(?:[ \t]*<!--[ \t]*={5,}[ \t]*-->\s*)*<footer class="site-footer-v2" id="siteFooter"[\s\S]*?<\/footer>|<footer class="site-footer-v2" id="siteFooter"[\s\S]*?<\/footer>|<footer class="site-footer(?:-v2)?"[\s\S]*?<\/footer>/gi;
           if (footerRegex.test(content)) {
               content = content.replace(footerRegex, footerTemplate);
           } else {
@@ -935,7 +977,7 @@ async function minifyFiles() {
       // 2. Resolve relative paths for CSS/JS replacements
 
       // Replace minified CSS with versioned versions
-      const styleRegex = new RegExp(`href="${prefix}css/min/(style|footer|blog-grid|project)\\.min\\.css(?:\\?v=\\d+)?"`, "g");
+      const styleRegex = new RegExp(`href="${prefix}css/min/(style|footer|blog-grid|project|about|sitemap)\\.min\\.css(?:\\?v=\\d+)?"`, "g");
       content = content.replace(
         styleRegex,
         `href="${prefix}css/min/$1.min.css?v=${VERSION}"`,

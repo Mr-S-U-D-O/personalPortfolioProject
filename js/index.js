@@ -214,40 +214,11 @@ document.querySelectorAll("[data-light]").forEach((el) => {
     }
   }
 });
-const G = document.getElementById("heroScrollRig"),
-  H = document.getElementById("heroContentGroup");
 // =========================================================================
-// SCROLL ANIMATIONS (HERO RIG & TIMELINE)
+// SCROLL ANIMATIONS (TIMELINE SNAKE FILL)
 // =========================================================================
-// Reusable function to update all scroll-based animations
 // Reusable function to update all scroll-based animations
 const refreshScrollAnims = () => {
-    const rig = document.getElementById("heroScrollRig");
-    const content = document.getElementById("heroContentGroup");
-    
-    if (rig && content) {
-      const rect = rig.getBoundingClientRect();
-      const scrollRange = rig.offsetHeight - window.innerHeight;
-      let progress = 0;
-      if (scrollRange > 0) {
-        progress = Math.max(0, Math.min(1, -rect.top / scrollRange));
-      }
-      
-      const scale = Math.pow(25, progress);
-      let opacity = 1;
-      if (progress > 0.6) {
-        opacity = Math.max(0, Math.min(1, 1 - (progress - 0.6) / 0.4));
-      }
-      
-      content.style.transform = `scale(${scale})`;
-      content.style.opacity = opacity;
-      
-      const carousel = document.querySelector(".tech-carousel-wrapper");
-      if (carousel) {
-        let carouselOpacity = Math.max(0, 1 - 2.5 * progress);
-        carousel.style.opacity = carouselOpacity;
-      }
-    }
 
     const midPoint = window.innerHeight / 2;
     const timelineNodes = document.querySelectorAll(".st-node, .st-turn");
@@ -288,12 +259,8 @@ const refreshScrollAnims = () => {
 };
 
 // Handle bfcache restoration
-window.addEventListener("pageshow", (event) => {
-    // Immediate refresh
+window.addEventListener("pageshow", () => {
     refreshScrollAnims();
-    // Delayed refresh to ensure layout flow is complete
-    setTimeout(refreshScrollAnims, 100);
-    setTimeout(refreshScrollAnims, 500); // Brute force fallback for slower systems
 });
 
 window.addEventListener("scroll", refreshScrollAnims);

@@ -3,238 +3,474 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sitemap | File Tree</title>
-    <!-- FontAwesome -->
-    
+    <title>System Directory &amp; Sitemap — Mosa Moleleki</title>
+    <meta name="description" content="Visual atlas and complete system directory of all live routes, engineering case studies, technical articles, and documents across Mosa Moleleki's portfolio." />
+    <link rel="canonical" href="https://mr-sudo.dev/sitemap.html" />
+
     <!-- Google Fonts: Syne, Outfit, JetBrains Mono -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@200;300;400;500;600;700;800;900&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@200;300;400;500;600;700;800;900&family=Syne:wght@500;700;800&display=swap" rel="stylesheet" />
 
     <!-- Global Styles -->
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/min/blog.min.css" />
-    <link rel="stylesheet" href="/css/min/footer.min.css" />
+    <link rel="stylesheet" href="css/min/style.min.css?v={{VERSION}}" />
+    <link rel="stylesheet" href="css/min/project.min.css?v={{VERSION}}" />
+    <link rel="stylesheet" href="css/min/sitemap.min.css?v={{VERSION}}" />
+    <link rel="stylesheet" href="css/min/footer.min.css?v={{VERSION}}" />
 
-    <style>
-      /* Sitemap Specific Overrides */
-      body {
-        /* Handled by style.css but ensure un-hide on load */
-        overflow: auto;
-      }
-
-      .sitemap-wrapper {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 0 20px;
-      }
-
-      /* Tree Layout */
-      .file-tree-container {
-        font-family: "Fira Code", monospace;
-        font-size: 0.95rem;
-        background: var(--skeleton-base);
-        border: 1px solid var(--glass-border);
-        border-radius: 12px;
-        padding: 30px;
-        overflow-x: auto;
-        margin-top: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      }
-
-      .tree-branch {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        position: relative;
-      }
-
-      .tree-branch[style*="--level: 0"] > .tree-item > .tree-row > .tree-line {
-        display: none; /* No lines for root level */
-      }
-
-      .tree-branch:not([style*="--level: 0"]) {
-        padding-left: 24px;
-        margin-left: -4px;
-        border-left: 1px dotted var(--glass-border);
-      }
-
-      .tree-item {
-        position: relative;
-      }
-
-      .tree-row {
-        display: flex;
-        align-items: center;
-        padding: 8px 10px;
-        border-radius: 6px;
-        margin: 2px 0;
-        transition:
-          background 0.2s,
-          transform 0.2s;
-        position: relative;
-      }
-
-      .tree-row:hover {
-        background-color: var(--glass-bg);
-        transform: translateX(2px);
-      }
-
-      /* The horizontal branch line */
-      .tree-line {
-        position: absolute;
-        left: -24px;
-        top: 50%;
-        width: 20px;
-        border-top: 1px dotted var(--glass-border);
-        z-index: 0;
-      }
-
-      /* Hide bottom tail of vertical line for last items */
-      .tree-item.is-last > .tree-row::before {
-        content: "";
-        position: absolute;
-        left: -25px;
-        top: 50%;
-        bottom: -200px; /* Cover any continuing border */
-        width: 4px;
-        background: var(--skeleton-base); /* Match container background */
-        z-index: -1;
-        transition: background 0.4s ease;
-      }
-
-      .tree-icon {
-        margin-right: 12px;
-        font-size: 1.1em;
-        width: 16px;
-        text-align: center;
-        z-index: 1;
-      }
-
-      .directory {
-        color: #d2a8ff;
-      } /* Keeping vibrant colors for file icons */
-      .html-file {
-        color: #e34c26;
-      }
-      .xml-file {
-        color: #2ea043;
-      }
-
-      .tree-label {
-        color: var(--text-light);
-        text-decoration: none;
-        cursor: pointer;
-        z-index: 1;
-        transition: color 0.2s;
-      }
-
-      a.tree-label:hover {
-        color: var(--accent-primary);
-      }
-
-      .project-root {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        font-weight: 600;
-        color: var(--text-light);
-        border-bottom: 1px solid var(--glass-border);
-        margin-bottom: 15px;
-        gap: 12px;
-        font-size: 1.05rem;
-      }
-      .project-root i {
-        color: var(--accent-primary);
-      }
-
-      .build-subtitle {
-        color: var(--text-muted);
-        font-family: "Fira Code", monospace;
-        font-size: 0.9rem;
-        text-align: center;
-        margin-bottom: 40px;
-      }
-    </style>
+    <!-- Universal Theme System (synchronous — prevents theme flash) -->
     <script src="js/min/theme.min.js?v={{VERSION}}"></script>
     <script src="https://unpkg.com/lucide@0.460.0"></script>
     <script>window.lucide || document.write('<script src="js/min/lucide.min.js"><\/script>')</script>
-</head>
-  <body>
-    <!-- Utility Toggles -->
-    <div class="utility-toggles">
-      <button
-        id="themeToggle"
-        class="theme-toggle"
-        data-theme-toggle
-        aria-label="Toggle Dark Mode"
-      >
-        <i data-lucide="moon"></i>
-      </button>
-    </div>
+  </head>
+  <body class="sitemap-page">
 
-    <section class="blog-gallery-section" style="padding-top: 100px">
-      <div class="sitemap-wrapper">
-        <div class="blog-section-header">
-          <h2 class="blog-title">
-            <span
-              class="blog-main-text"
-              style="font-size: clamp(2rem, 5vw, 3.5rem)"
-              ><i
-                class="fa-solid fa-sitemap"
-                style="color: var(--accent-primary); margin-right: 15px"
-              ></i
-              >Project Architecture</span
-            >
-            <span class="blog-ghost-text">Sitemap</span>
-          </h2>
+    <!-- Floating Glass Nav -->
+    <nav class="project-floating-nav animate-fade-in" style="z-index: 1000;" aria-label="Global Navigation">
+      <div class="nav-inner glass-panel">
+        <a href="index.html" class="nav-back-btn">
+          <div class="btn-icon-circle-small"><i data-lucide="arrow-left"></i></div>
+          <span>Return Home</span>
+        </a>
+        <div class="nav-status-badge">
+          <span class="status-pulse-dot"></span>
+          <span class="status-badge-text">SYSTEM DIRECTORY · LIVE</span>
         </div>
-
-        <div class="build-subtitle">
-          Generated dynamically via build.js &bull; Directory Map
-        </div>
-
-        <div class="file-tree-container">
-          <div class="project-root">
-            <i data-lucide="globe"></i> www.sudo.co.za
-          </div>
-          {{FILE_TREE_HTML}}
-        </div>
-
-        <div style="text-align: center; margin-top: 60px">
-          <a href="/index.html" class="lets-talk-btn">
-            <span>Back to Home</span>
-            <svg width="15px" height="10px" viewBox="0 0 13 10">
-              <path d="M1,5 L11,5"></path>
-              <polyline points="8 1 12 5 8 9"></polyline>
-            </svg>
-          </a>
+        <div class="nav-actions">
+          <button class="theme-toggle" data-theme-toggle aria-label="Toggle Dark Mode">
+            <i data-lucide="moon"></i>
+          </button>
         </div>
       </div>
-    </section>
+    </nav>
 
+    <!-- Background Ambience & Lighting -->
+    <div class="sitemap-ambient-glow" aria-hidden="true"></div>
+
+    <main class="sitemap-container">
+
+      <!-- ========================================= -->
+      <!-- Hero Section                              -->
+      <!-- ========================================= -->
+      <header class="sitemap-hero">
+        <div class="sitemap-eyebrow">
+          <i data-lucide="compass" style="width: 14px; height: 14px;"></i>
+          <span>SYSTEM ARCHITECTURE</span>
+        </div>
+
+        <h1 class="sitemap-title">
+          Visual Atlas &amp;<br />
+          <span class="text-outline-hover">System Directory</span>
+        </h1>
+
+        <p class="sitemap-lead">
+          A structural overview of all live routes, case studies, technical articles, and system endpoints across the portfolio. Built with semantic HTML5, pure CSS architecture, and sub-second performance.
+        </p>
+
+        <!-- Metric Glass Capsules -->
+        <div class="sitemap-capsules-grid" aria-label="System Metrics">
+          <div class="sitemap-capsule">
+            <span class="sitemap-capsule-dot"></span>
+            <span class="sitemap-capsule-label">Status</span>
+            <span class="sitemap-capsule-val">Active Index</span>
+          </div>
+          <div class="sitemap-capsule">
+            <i data-lucide="layers" style="width: 14px; height: 14px; color: var(--accent-primary);"></i>
+            <span class="sitemap-capsule-label">Architecture</span>
+            <span class="sitemap-capsule-val">Semantic HTML5 &middot; Vanilla CSS</span>
+          </div>
+          <div class="sitemap-capsule">
+            <i data-lucide="zap" style="width: 14px; height: 14px; color: var(--accent-cyan, #00f0ff);"></i>
+            <span class="sitemap-capsule-label">Performance</span>
+            <span class="sitemap-capsule-val">Zero Hydration Overhead</span>
+          </div>
+          <div class="sitemap-capsule">
+            <i data-lucide="calendar" style="width: 14px; height: 14px; color: var(--text-muted);"></i>
+            <span class="sitemap-capsule-label">Version</span>
+            <span class="sitemap-capsule-val">2026 Edition</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- ========================================= -->
+      <!-- Kinetic Typography Marquee                -->
+      <!-- ========================================= -->
+      <section class="sitemap-marquee-section" aria-hidden="true">
+        <div class="sitemap-marquee-track">
+          <div class="sitemap-marquee-content">
+            <span class="sitemap-marquee-item">SYSTEM DIRECTORY <span class="sitemap-marquee-glyph">✦</span></span>
+            <span class="sitemap-marquee-item">FRONT-END ARCHITECTURE <span class="sitemap-marquee-glyph">✦</span></span>
+            <span class="sitemap-marquee-item">PRODUCTION CASE STUDIES <span class="sitemap-marquee-glyph">✦</span></span>
+            <span class="sitemap-marquee-item">TECHNICAL DISPATCHES <span class="sitemap-marquee-glyph">✦</span></span>
+            <span class="sitemap-marquee-item">SUB-SECOND LATENCY <span class="sitemap-marquee-glyph">✦</span></span>
+            <span class="sitemap-marquee-item">ACCESSIBLE WCAG 2.1 <span class="sitemap-marquee-glyph">✦</span></span>
+            <span class="sitemap-marquee-item">LIQUID GLASS FINISH <span class="sitemap-marquee-glyph">✦</span></span>
+            <span class="sitemap-marquee-item">REACTIVE MICRO-INTERACTIONS <span class="sitemap-marquee-glyph">✦</span></span>
+          </div>
+          <div class="sitemap-marquee-content">
+            <span class="sitemap-marquee-item">SYSTEM DIRECTORY <span class="sitemap-marquee-glyph">✦</span></span>
+            <span class="sitemap-marquee-item">FRONT-END ARCHITECTURE <span class="sitemap-marquee-glyph">✦</span></span>
+            <span class="sitemap-marquee-item">PRODUCTION CASE STUDIES <span class="sitemap-marquee-glyph">✦</span></span>
+            <span class="sitemap-marquee-item">TECHNICAL DISPATCHES <span class="sitemap-marquee-glyph">✦</span></span>
+            <span class="sitemap-marquee-item">SUB-SECOND LATENCY <span class="sitemap-marquee-glyph">✦</span></span>
+            <span class="sitemap-marquee-item">ACCESSIBLE WCAG 2.1 <span class="sitemap-marquee-glyph">✦</span></span>
+            <span class="sitemap-marquee-item">LIQUID GLASS FINISH <span class="sitemap-marquee-glyph">✦</span></span>
+            <span class="sitemap-marquee-item">REACTIVE MICRO-INTERACTIONS <span class="sitemap-marquee-glyph">✦</span></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========================================= -->
+      <!-- Visual Route Hubs (Bento Showcase)       -->
+      <!-- ========================================= -->
+      <section class="sitemap-bento-section" aria-label="Route Hubs">
+        <div class="sitemap-section-header">
+          <span class="sitemap-section-eyebrow">PORTFOLIO LANDMARKS</span>
+          <h2 class="sitemap-section-title">Directory Navigation Hubs</h2>
+        </div>
+
+        <div class="sitemap-bento-grid">
+          <!-- Hub 1: Root & Profile -->
+          <article class="bento-route-card">
+            <div>
+              <div class="bento-card-top">
+                <div class="bento-icon-box">
+                  <i data-lucide="home"></i>
+                </div>
+                <span class="bento-tag-pill">ROOT</span>
+              </div>
+              <h3 class="bento-card-title">Core Portfolio</h3>
+              <p class="bento-card-desc">
+                Primary public landing hubs, identity narrative, and master engineering philosophy.
+              </p>
+            </div>
+            <div class="bento-route-list">
+              <a href="index.html" class="bento-route-link">
+                <span>Interactive Home</span>
+                <i data-lucide="arrow-up-right"></i>
+              </a>
+              <a href="about.html" class="bento-route-link">
+                <span>About &amp; Journey</span>
+                <i data-lucide="arrow-up-right"></i>
+              </a>
+              <a href="index.html#contact" class="bento-route-link">
+                <span>Contact &amp; Inquiries</span>
+                <i data-lucide="arrow-up-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Hub 2: Case Studies -->
+          <article class="bento-route-card">
+            <div>
+              <div class="bento-card-top">
+                <div class="bento-icon-box">
+                  <i data-lucide="layers"></i>
+                </div>
+                <span class="bento-tag-pill">CASE STUDIES</span>
+              </div>
+              <h3 class="bento-card-title">Featured Work</h3>
+              <p class="bento-card-desc">
+                Comprehensive architectural breakdowns of high-impact production web applications.
+              </p>
+            </div>
+            <div class="bento-route-list">
+              <a href="projects.html" class="bento-route-link">
+                <span>Case Studies Gallery</span>
+                <i data-lucide="arrow-up-right"></i>
+              </a>
+              <a href="projects/sarko.html" class="bento-route-link">
+                <span>SARKO Platform</span>
+                <i data-lucide="arrow-up-right"></i>
+              </a>
+              <a href="projects/rn-inc.html" class="bento-route-link">
+                <span>RN Inc E-Commerce</span>
+                <i data-lucide="arrow-up-right"></i>
+              </a>
+              <a href="projects/mcleod-associates.html" class="bento-route-link">
+                <span>McLeod Law Firm</span>
+                <i data-lucide="arrow-up-right"></i>
+              </a>
+              <a href="projects/king-law-firm.html" class="bento-route-link">
+                <span>King Law Firm</span>
+                <i data-lucide="arrow-up-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Hub 3: Articles & Research -->
+          <article class="bento-route-card">
+            <div>
+              <div class="bento-card-top">
+                <div class="bento-icon-box">
+                  <i data-lucide="book-open"></i>
+                </div>
+                <span class="bento-tag-pill">DISPATCHES</span>
+              </div>
+              <h3 class="bento-card-title">Writing &amp; Craft</h3>
+              <p class="bento-card-desc">
+                Deep dives into scalable front-end systems, internationalization, and web performance.
+              </p>
+            </div>
+            <div class="bento-route-list">
+              <a href="index.html#blog" class="bento-route-link">
+                <span>Writing Overview</span>
+                <i data-lucide="arrow-up-right"></i>
+              </a>
+              <a href="posts/multilingual-websites.html" class="bento-route-link">
+                <span>Multilingual Web Systems</span>
+                <i data-lucide="arrow-up-right"></i>
+              </a>
+            </div>
+          </article>
+
+          <!-- Hub 4: System & Machine Index -->
+          <article class="bento-route-card">
+            <div>
+              <div class="bento-card-top">
+                <div class="bento-icon-box">
+                  <i data-lucide="file-code"></i>
+                </div>
+                <span class="bento-tag-pill">FEEDS &amp; DOCS</span>
+              </div>
+              <h3 class="bento-card-title">System Assets</h3>
+              <p class="bento-card-desc">
+                Search engine machine manifests, resume credentials, and fallback routing endpoints.
+              </p>
+            </div>
+            <div class="bento-route-list">
+              <a href="sitemap.xml" target="_blank" class="bento-route-link">
+                <span>sitemap.xml (Feed)</span>
+                <i data-lucide="arrow-up-right"></i>
+              </a>
+              <a href="cv/mosa_moleleki_cv.pdf" target="_blank" class="bento-route-link">
+                <span>Curriculum Vitae (PDF)</span>
+                <i data-lucide="arrow-up-right"></i>
+              </a>
+              <a href="404.html" class="bento-route-link">
+                <span>404 Exception Page</span>
+                <i data-lucide="arrow-up-right"></i>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ========================================= -->
+      <!-- Interactive Repository Console (Tree)     -->
+      <!-- ========================================= -->
+      <section class="sitemap-console-section" aria-label="Route Hierarchy Inspector">
+        <div class="sitemap-section-header">
+          <span class="sitemap-section-eyebrow">REPOSITORY INSPECTOR</span>
+          <h2 class="sitemap-section-title">Hierarchical Route Map</h2>
+        </div>
+
+        <div class="sitemap-console">
+          <!-- Console Top Bar -->
+          <div class="console-topbar">
+            <div class="console-meta-left">
+              <div class="window-dots" aria-hidden="true">
+                <span class="window-dot dot-red"></span>
+                <span class="window-dot dot-yellow"></span>
+                <span class="window-dot dot-green"></span>
+              </div>
+              <div class="console-breadcrumb">
+                <i data-lucide="folder-git-2"></i>
+                <span>mr-sudo.dev / routes</span>
+              </div>
+            </div>
+
+            <!-- Live Search Bar -->
+            <div class="console-search-wrapper">
+              <i data-lucide="search" class="console-search-icon"></i>
+              <input
+                type="text"
+                id="routeSearchInput"
+                class="console-search-input"
+                placeholder="Filter indexed routes..."
+                aria-label="Filter indexed routes"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+
+            <!-- Filter Pills -->
+            <div class="console-filter-tabs" role="tablist" aria-label="Filter by type">
+              <button class="filter-tab-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+              <button class="filter-tab-btn" data-filter="page" role="tab" aria-selected="false">Pages</button>
+              <button class="filter-tab-btn" data-filter="project" role="tab" aria-selected="false">Case Studies</button>
+              <button class="filter-tab-btn" data-filter="post" role="tab" aria-selected="false">Articles</button>
+              <button class="filter-tab-btn" data-filter="xml" role="tab" aria-selected="false">Feeds</button>
+            </div>
+          </div>
+
+          <!-- Console Tree Body -->
+          <div class="console-body">
+            <div class="file-tree-container" id="fileTreeContainer">
+              <div class="project-root">
+                <i data-lucide="globe"></i>
+                <span>https://mr-sudo.dev</span>
+              </div>
+              {{FILE_TREE_HTML}}
+            </div>
+
+            <!-- Empty State for Filters -->
+            <div id="treeEmptyState" class="tree-empty-state">
+              <i data-lucide="search-x"></i>
+              <p>No matching routes found for your filter query.</p>
+            </div>
+          </div>
+
+          <!-- Console Footer Actions -->
+          <div class="console-footer-dock">
+            <span class="console-stat-note" id="routeCountStatus">
+              10 active routes indexed &bull; Continuous static build
+            </span>
+            <div class="console-actions-group">
+              <a href="sitemap.xml" target="_blank" class="sitemap-gloss-btn primary">
+                <i data-lucide="rss" style="width: 16px; height: 16px;"></i>
+                <span>View sitemap.xml</span>
+              </a>
+              <a href="index.html" class="sitemap-gloss-btn secondary">
+                <i data-lucide="corner-up-left" style="width: 16px; height: 16px;"></i>
+                <span>Return to Home</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Global Footer Injected via Build Process -->
     <!-- INJECT_GLOBAL_FOOTER -->
 
-    <!-- Theme & Icon Logic -->
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+      <i data-lucide="chevron-up"></i>
+    </button>
+
+    <!-- Interactive Console Filtering & Lucide Icons -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         if (window.ThemeSystem) window.ThemeSystem.init();
         if (typeof lucide !== "undefined" && typeof lucide.createIcons === "function") {
           lucide.createIcons();
         }
+
+        // Live Route Filter Logic
+        const searchInput = document.getElementById("routeSearchInput");
+        const filterBtns = document.querySelectorAll(".filter-tab-btn");
+        const treeItems = document.querySelectorAll(".tree-item");
+        const emptyState = document.getElementById("treeEmptyState");
+        const countStatus = document.getElementById("routeCountStatus");
+
+        let activeFilter = "all";
+        let searchQuery = "";
+
+        function filterRoutes() {
+          let visibleCount = 0;
+          let fileItemCount = 0;
+
+          treeItems.forEach(function (item) {
+            const labelLink = item.querySelector("a.tree-label");
+            const hasChildren = item.querySelector(".tree-branch") !== null;
+
+            // If it's a directory node
+            if (hasChildren) {
+              return; // We handle directories based on children visibility
+            }
+
+            fileItemCount++;
+            if (!labelLink) return;
+
+            const routePath = (labelLink.getAttribute("data-route-path") || labelLink.getAttribute("href") || "").toLowerCase();
+            const labelText = labelLink.textContent.toLowerCase();
+
+            // Type filter match
+            let matchesType = true;
+            if (activeFilter === "page") {
+              matchesType = !routePath.includes("projects/") && !routePath.includes("posts/") && !routePath.endsWith(".xml");
+            } else if (activeFilter === "project") {
+              matchesType = routePath.includes("projects/");
+            } else if (activeFilter === "post") {
+              matchesType = routePath.includes("posts/");
+            } else if (activeFilter === "xml") {
+              matchesType = routePath.endsWith(".xml");
+            }
+
+            // Search query match
+            const matchesSearch = !searchQuery || routePath.includes(searchQuery) || labelText.includes(searchQuery);
+
+            if (matchesType && matchesSearch) {
+              item.style.display = "";
+              visibleCount++;
+            } else {
+              item.style.display = "none";
+            }
+          });
+
+          // Update directories visibility based on whether any child is visible
+          treeItems.forEach(function (item) {
+            const branch = item.querySelector(".tree-branch");
+            if (branch) {
+              const visibleChildren = branch.querySelectorAll(".tree-item:not([style*='display: none'])");
+              if (visibleChildren.length > 0 || (!searchQuery && activeFilter === "all")) {
+                item.style.display = "";
+              } else {
+                item.style.display = "none";
+              }
+            }
+          });
+
+          // Empty state handling
+          if (visibleCount === 0 && fileItemCount > 0) {
+            if (emptyState) emptyState.style.display = "block";
+          } else {
+            if (emptyState) emptyState.style.display = "none";
+          }
+
+          if (countStatus) {
+            if (searchQuery || activeFilter !== "all") {
+              countStatus.textContent = visibleCount + " matching routes &bull; Filtered view";
+            } else {
+              countStatus.textContent = fileItemCount + " active routes indexed &bull; Continuous static build";
+            }
+          }
+        }
+
+        if (searchInput) {
+          searchInput.addEventListener("input", function (e) {
+            searchQuery = e.target.value.trim().toLowerCase();
+            filterRoutes();
+          });
+        }
+
+        filterBtns.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            filterBtns.forEach(function (b) {
+              b.classList.remove("active");
+              b.setAttribute("aria-selected", "false");
+            });
+            btn.classList.add("active");
+            btn.setAttribute("aria-selected", "true");
+            activeFilter = btn.getAttribute("data-filter") || "all";
+            filterRoutes();
+          });
+        });
+
+        // Initial count
+        const totalFiles = document.querySelectorAll(".tree-row a.tree-label").length;
+        if (countStatus && totalFiles > 0) {
+          countStatus.textContent = totalFiles + " active routes indexed &bull; Continuous static build";
+        }
       });
+
       window.addEventListener("load", function () {
         if (typeof lucide !== "undefined" && typeof lucide.createIcons === "function") {
           lucide.createIcons();
         }
       });
     </script>
-
-    <!-- ========================================= -->
-    <!-- Back to Top                               -->
-    <!-- ========================================= -->
-    <button class="back-to-top" id="backToTop" aria-label="Back to top">
-      <i data-lucide="chevron-up"></i>
-    </button>
   </body>
 </html>
