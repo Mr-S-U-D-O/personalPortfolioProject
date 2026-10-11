@@ -28,7 +28,7 @@
 }
 
 .about-massive-title {
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(3.5rem, 6vw, 6rem);
   font-weight: 800;
   line-height: 0.95;
@@ -58,15 +58,21 @@
 
 .about-bio-glass {
   padding: 3rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--glass-bg);
+  border: var(--hairline);
   border-radius: 24px;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: var(--glass-highlight), var(--glass-shadow);
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-bio-glass:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-highlight), 0 24px 60px -15px var(--accent-glow);
 }
 
 .about-lead {
@@ -80,7 +86,7 @@
 .about-sub {
   font-size: 1.05rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--text-muted);
   margin: 0;
 }
 
@@ -89,20 +95,28 @@
   align-items: center;
   gap: 1rem;
   text-decoration: none;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font-body);
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-light, #fff);
   margin-top: 1rem;
   width: fit-content;
+  transition: transform 0.3s ease;
+}
+
+.about-explore-btn:hover {
+  transform: translateX(4px);
 }
 
 .btn-icon-circle {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.03);
+  border: var(--hairline);
+  background: var(--glass-bg);
+  box-shadow: var(--glass-highlight);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;

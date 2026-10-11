@@ -129,11 +129,8 @@
         .querySelectorAll("[data-theme-toggle], .theme-toggle")
         .forEach((btn) => {
           btn.setAttribute("data-theme-toggle", "");
-          const icon = btn.querySelector("i");
-          if (icon) {
-            icon.className =
-              currentTheme === "light" ? "fa-solid fa-sun" : "fa-solid fa-moon";
-          }
+          const iconName = currentTheme === "light" ? "sun" : "moon";
+          btn.innerHTML = `<i data-lucide="${iconName}"></i>`;
 
           // Prevent attaching multiple event listeners to the same button
           if (!btn.dataset.themeWired) {
@@ -168,11 +165,13 @@
 
       // Ensure Theme Toggle
       if (!document.querySelector(".theme-toggle, [data-theme-toggle]")) {
+        const currentTheme =
+          document.documentElement.getAttribute("data-theme") || "dark";
         const themeBtn = document.createElement("button");
         themeBtn.className = "theme-toggle";
         themeBtn.setAttribute("data-theme-toggle", "");
         themeBtn.setAttribute("aria-label", "Toggle Dark Mode");
-        themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+        themeBtn.innerHTML = `<i data-lucide="${currentTheme === 'light' ? 'sun' : 'moon'}"></i>`;
         toggles.appendChild(themeBtn);
       }
 
@@ -190,7 +189,7 @@
             <li class="nav-item">
               <a href="${basePath}cv/mosa_moleleki_cv.pdf" download="Mosa_Moleleki_CV.pdf" target="_blank" class="nav-link cv-link" id="resumeLink">
                 <span class="nav-text">Resume</span>
-                <i class="fa-solid fa-download nav-icon"></i>
+                <i data-lucide="download" class="nav-icon"></i>
               </a>
             </li>
           </ul>
@@ -323,13 +322,31 @@
         console.error("Error fetching GitHub stars:", error);
       }
     },
+
+    renderIcons: renderLucideIcons,
   };
 
-  document.addEventListener("DOMContentLoaded", function () {
+  function renderLucideIcons() {
+    if (typeof lucide !== "undefined" && typeof lucide.createIcons === "function") {
+      try {
+        lucide.createIcons();
+      } catch (err) {
+        console.warn("Lucide render error:", err);
+      }
+    }
+  }
+
+  function handleReady() {
     window.ThemeSystem.init();
     window.ThemeSystem.fetchGitHubStars();
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-  });
+    renderLucideIcons();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", handleReady);
+  } else {
+    handleReady();
+  }
+
+  window.addEventListener("load", renderLucideIcons);
 })();

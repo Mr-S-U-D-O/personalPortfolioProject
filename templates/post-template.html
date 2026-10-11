@@ -39,13 +39,20 @@
       as="script"
     />
     <link rel="preload" as="image" href="{{HERO_IMAGE}}" />
-    <link rel="stylesheet" href="../css/min/style.min.css?v=1791662762501" />
+    <!-- Google Fonts: Syne, Outfit, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@200;300;400;500;600;700;800;900&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/min/style.min.css?v=1791687468022" />
     
     <!-- Universal Theme System (non-deferred to prevent flash) -->
 
-    <script src="../js/min/theme.min.js?v=1791662762501"></script>
+    <script src="../js/min/theme.min.js?v=1791687468022"></script>
 
-      <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="../css/min/footer.min.css?v=1791687468022">
+    <script src="https://unpkg.com/lucide@0.460.0"></script>
+    <script>window.lucide || document.write('<script src="../js/min/lucide.min.js"><\/script>')</script>
 </head>
   <body class="blog-post-page">
     <!-- Post Progress Bar -->
@@ -185,7 +192,10 @@
         const wpm = 225; // Average reading speed
         const time = Math.max(1, Math.ceil(words / wpm));
         document.getElementById("readingTime").innerHTML =
-          `<i class="fa-regular fa-clock"></i> ${time} min read`;
+          `<i data-lucide="clock"></i> ${time} min read`;
+        if (window.lucide && typeof lucide.createIcons === 'function') {
+          lucide.createIcons({ root: document.getElementById("readingTime") });
+        }
 
         if (headings.length === 0) {
           document.querySelector(".post-toc").style.display = "none";
@@ -402,5 +412,17 @@
     <button class="back-to-top" id="backToTop" aria-label="Back to top">
       <i data-lucide="chevron-up"></i>
     </button>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (window.lucide && typeof lucide.createIcons === "function") {
+          lucide.createIcons();
+        }
+      });
+      window.addEventListener("load", () => {
+        if (window.lucide && typeof lucide.createIcons === "function") {
+          lucide.createIcons();
+        }
+      });
+    </script>
   </body>
 </html>

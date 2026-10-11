@@ -75,15 +75,21 @@
     </script>
     <!-- ===================================================== -->
     
+    <!-- Google Fonts: Syne, Outfit, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Outfit:wght@200;300;400;500;600;700;800;900&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/min/style.min.css?v=1773703218328">
-    <link rel="stylesheet" href="css/min/footer.min.css?v=1773703218328">
-    <link rel="stylesheet" href="css/min/blog-grid.min.css?v=1773703218328">
-    <link rel="stylesheet" href="css/min/project.min.css?v=1773703218328">
+    <link rel="stylesheet" href="css/min/style.min.css?v=1791687468022">
+    <link rel="stylesheet" href="css/min/footer.min.css?v=1791687468022">
+    <link rel="stylesheet" href="css/min/blog-grid.min.css?v=1791687468022">
+    <link rel="stylesheet" href="css/min/project.min.css?v=1791687468022">
 
     <!-- Universal Theme System (non-deferred — applies theme before first paint) -->
-    <script src="js/min/theme.min.js?v=1773703218328"></script>
+    <script src="js/min/theme.min.js?v=1791687468022"></script>
     <script src="https://unpkg.com/lucide@0.460.0"></script>
+    <script>window.lucide || document.write('<script src="js/min/lucide.min.js"><\/script>')</script>
 </head>
 <body>
     <!-- ========================================= -->
@@ -180,13 +186,35 @@
                     <img src="images/dark-mode.webp" data-light="images/light-mode.webp" data-dark="images/dark-mode.webp" alt="Profile Image" class="hero-profile-img" fetchpriority="high">
                 </div>
 
-                <!-- 5-Line Text Content -->
+                <!-- Editorial High-Contrast Headline Lockup -->
                 <div class="hero-text-content">
-                    <p class="hero-line line-small"><span id="dynamicGreeting">Good morning</span>, my name is...</p>
-                    <h1 class="hero-line line-large gradient-text">Mosa Moleleki</h1>
-                    <p class="hero-line line-small">AKA <span class="text-primary">"S.U.D.O"</span> and I am a...</p>
-                    <h2 class="hero-line line-large text-primary">Front-End Web Developer</h2>
-                    <p class="hero-line line-small text-muted">based in <span style="color: var(--accent-primary);">Johannesburg.</span></p>
+                    <div class="hero-kicker-strip">
+                        <span class="hero-kicker-pill"><span class="hero-kicker-pulse"></span> Available for selective work</span>
+                        <span class="hero-kicker-meta"><span id="dynamicGreeting">Good morning</span> &mdash; EST. 2024</span>
+                    </div>
+                    <div class="hero-headline-lockup">
+                        <h1 class="hero-name-row">
+                            <span class="name-thin">Mosa</span>
+                            <span class="name-bold">Moleleki</span>
+                        </h1>
+                        <div class="hero-role-row">
+                            <span class="hero-alias-pill">S.U.D.O</span>
+                            <h2 class="hero-role-title">FRONT-END ARCHITECT</h2>
+                        </div>
+                    </div>
+                    <p class="hero-description">
+                        Engineering cinematic, high-conversion web interfaces with liquid motion, specular gloss physics, and zero compromises on performance.
+                        <span class="hero-location-text">Johannesburg, South Africa</span>
+                    </p>
+                    <div class="hero-cta-dock">
+                        <a href="#projects" class="hero-btn-primary">
+                            <span>Explore Portfolio</span>
+                            <div class="btn-icon-circle"><i data-lucide="arrow-down-right"></i></div>
+                        </a>
+                        <a href="#contact" class="hero-btn-secondary">
+                            <span>Initiate Contact</span>
+                        </a>
+                    </div>
                 </div>
 
             </div>
@@ -199,49 +227,93 @@
                 <div class="tech-scroller">
                     <div class="tech-track">
                         <!-- Set 1 -->
-                        <div class="tech-item tech-html" data-tooltip="HTML5"><i class="fa-brands fa-html5"></i></div>
-                        <div class="tech-item tech-css" data-tooltip="CSS3"><i class="fa-brands fa-css3-alt"></i></div>
-                        <div class="tech-item tech-js" data-tooltip="JavaScript"><i class="fa-brands fa-js"></i></div>
-                        <div class="tech-item tech-git" data-tooltip="Git"><i class="fa-brands fa-git-alt"></i></div>
-                        <div class="tech-item tech-github" data-tooltip="GitHub"><i class="fa-brands fa-github"></i></div>
-                        <div class="tech-item tech-nodejs" data-tooltip="Node.js"><i class="fa-brands fa-node-js"></i></div>
-                        <div class="tech-item tech-cloudflare" data-tooltip="Cloudflare">
+                        <div class="tech-item tech-glass-pill tech-html" data-tooltip="HTML5"><i class="fa-brands fa-html5"></i><span class="tech-pill-name">HTML5</span></div>
+                        <div class="tech-item tech-glass-pill tech-css" data-tooltip="CSS3"><i class="fa-brands fa-css3-alt"></i><span class="tech-pill-name">CSS3</span></div>
+                        <div class="tech-item tech-glass-pill tech-js" data-tooltip="JavaScript"><i class="fa-brands fa-js"></i><span class="tech-pill-name">JavaScript</span></div>
+                        <div class="tech-item tech-glass-pill tech-git" data-tooltip="Git"><i class="fa-brands fa-git-alt"></i><span class="tech-pill-name">Git</span></div>
+                        <div class="tech-item tech-glass-pill tech-github" data-tooltip="GitHub"><i class="fa-brands fa-github"></i><span class="tech-pill-name">GitHub</span></div>
+                        <div class="tech-item tech-glass-pill tech-nodejs" data-tooltip="Node.js"><i class="fa-brands fa-node-js"></i><span class="tech-pill-name">Node.js</span></div>
+                        <div class="tech-item tech-glass-pill tech-cloudflare" data-tooltip="Cloudflare">
                             <svg viewBox="0 0 128 128" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M116.3 64.8c-.3-.9-1-1.5-1.9-1.7l-1.8-.3c.7-1.8 1.1-3.7 1.1-5.6 0-8.5-7-15.3-15.7-15.3-1.4 0-2.7.2-4 .5C92.2 37 87 33.5 81 33.5c-8.4 0-15.3 6.4-15.9 14.6-.8-.1-1.5-.2-2.3-.2-7.3 0-13.2 5.8-13.2 13s5.9 13 13.2 13h51.6c1 0 1.9-.6 2.2-1.6l-.3.5z"/><path d="M85.3 72.7c.5-.5.7-1.2.5-1.9-.2-.7-.8-1.2-1.5-1.3l-2-.3c1.1-2.5 1.7-5.2 1.7-7.9 0-11.2-9.2-20.3-20.7-20.3-9.9 0-18.3 7-20.2 16.3-1.3-.5-2.7-.8-4.1-.8-6.5 0-11.8 5.2-11.8 11.6S32.5 80 39 80h44c.8 0 1.5-.4 2-.9l.3-.4z"/></svg>
+                            <span class="tech-pill-name">Cloudflare</span>
                         </div>
-                        <div class="tech-item tech-vercel" data-tooltip="Vercel">
+                        <div class="tech-item tech-glass-pill tech-vercel" data-tooltip="Vercel">
                             <svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M256 48L496 464H16L256 48z"/></svg>
+                            <span class="tech-pill-name">Vercel</span>
                         </div>
-                        <div class="tech-item tech-gh-actions" data-tooltip="GitHub Actions">
+                        <div class="tech-item tech-glass-pill tech-gh-actions" data-tooltip="GitHub Actions">
                             <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M10.984 13.836a.5.5 0 0 1-.353-.146l-3.5-3.5a.5.5 0 0 1 .707-.707l3.146 3.146 7.14-7.14a.5.5 0 0 1 .707.707l-7.494 7.494a.5.5 0 0 1-.353.146zm-2.14 6.578a.5.5 0 0 1-.354-.147L5 16.777a.5.5 0 1 1 .707-.707l3.49 3.49a.5.5 0 0 1-.354.854zM12 2C6.477 2 2 6.477 2 12a10 10 0 0 0 6.834 9.486c.5.09.683-.216.683-.482 0-.238-.009-.869-.013-1.705-2.782.605-3.369-1.341-3.369-1.341-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.087 2.91.831.091-.646.349-1.086.635-1.337-2.22-.253-4.555-1.112-4.555-4.944 0-1.091.39-1.984 1.029-2.682-.103-.254-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.336c1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.394.1 2.646.64.699 1.026 1.591 1.026 2.682 0 3.841-2.337 4.687-4.565 4.935.359.307.679.917.679 1.852 0 1.335-.012 2.415-.012 2.741 0 .269.18.579.688.481A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                            <span class="tech-pill-name">Actions</span>
                         </div>
-                        <div class="tech-item tech-prettier" data-tooltip="Prettier">
+                        <div class="tech-item tech-glass-pill tech-prettier" data-tooltip="Prettier">
                             <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8.571 23.429A.571.571 0 0 1 8 24H2.286a.571.571 0 0 1 0-1.143H8c.316 0 .571.256.571.572zM8 20.57H6.857a.571.571 0 0 0 0 1.143H8a.571.571 0 0 0 0-1.143zm-5.714 1.143H4.57a.571.571 0 0 0 0-1.143H2.286a.571.571 0 0 0 0 1.143zM8 18.286H2.286a.571.571 0 0 0 0 1.142H8a.571.571 0 0 0 0-1.142zM16 16H2.286a.571.571 0 0 0 0 1.143H16A.571.571 0 0 0 16 16zm0-2.286H2.286a.571.571 0 0 0 0 1.143H16a.571.571 0 0 0 0-1.143zM21.714 11.43H2.286a.571.571 0 0 0 0 1.142h19.428a.571.571 0 0 0 0-1.142zm0-2.287H2.286a.571.571 0 0 0 0 1.143h19.428a.571.571 0 0 0 0-1.143zm0-2.286H2.286a.571.571 0 0 0 0 1.143h19.428a.571.571 0 0 0 0-1.143zm0-2.286H2.286a.571.571 0 0 0 0 1.143h19.428a.571.571 0 0 0 0-1.143zM16 2.286H2.286a.571.571 0 0 0 0 1.143H16a.571.571 0 0 0 0-1.143zM8 0H2.286a.571.571 0 0 0 0 1.143H8A.571.571 0 0 0 8 0z"/></svg>
+                            <span class="tech-pill-name">Prettier</span>
                         </div>
 
                         <!-- Set 2 (duplicate for seamless scroll) -->
-                        <div class="tech-item tech-html" data-tooltip="HTML5"><i class="fa-brands fa-html5"></i></div>
-                        <div class="tech-item tech-css" data-tooltip="CSS3"><i class="fa-brands fa-css3-alt"></i></div>
-                        <div class="tech-item tech-js" data-tooltip="JavaScript"><i class="fa-brands fa-js"></i></div>
-                        <div class="tech-item tech-git" data-tooltip="Git"><i class="fa-brands fa-git-alt"></i></div>
-                        <div class="tech-item tech-github" data-tooltip="GitHub"><i class="fa-brands fa-github"></i></div>
-                        <div class="tech-item tech-nodejs" data-tooltip="Node.js"><i class="fa-brands fa-node-js"></i></div>
-                        <div class="tech-item tech-cloudflare" data-tooltip="Cloudflare">
+                        <div class="tech-item tech-glass-pill tech-html" data-tooltip="HTML5"><i class="fa-brands fa-html5"></i><span class="tech-pill-name">HTML5</span></div>
+                        <div class="tech-item tech-glass-pill tech-css" data-tooltip="CSS3"><i class="fa-brands fa-css3-alt"></i><span class="tech-pill-name">CSS3</span></div>
+                        <div class="tech-item tech-glass-pill tech-js" data-tooltip="JavaScript"><i class="fa-brands fa-js"></i><span class="tech-pill-name">JavaScript</span></div>
+                        <div class="tech-item tech-glass-pill tech-git" data-tooltip="Git"><i class="fa-brands fa-git-alt"></i><span class="tech-pill-name">Git</span></div>
+                        <div class="tech-item tech-glass-pill tech-github" data-tooltip="GitHub"><i class="fa-brands fa-github"></i><span class="tech-pill-name">GitHub</span></div>
+                        <div class="tech-item tech-glass-pill tech-nodejs" data-tooltip="Node.js"><i class="fa-brands fa-node-js"></i><span class="tech-pill-name">Node.js</span></div>
+                        <div class="tech-item tech-glass-pill tech-cloudflare" data-tooltip="Cloudflare">
                             <svg viewBox="0 0 128 128" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M116.3 64.8c-.3-.9-1-1.5-1.9-1.7l-1.8-.3c.7-1.8 1.1-3.7 1.1-5.6 0-8.5-7-15.3-15.7-15.3-1.4 0-2.7.2-4 .5C92.2 37 87 33.5 81 33.5c-8.4 0-15.3 6.4-15.9 14.6-.8-.1-1.5-.2-2.3-.2-7.3 0-13.2 5.8-13.2 13s5.9 13 13.2 13h51.6c1 0 1.9-.6 2.2-1.6l-.3.5z"/><path d="M85.3 72.7c.5-.5.7-1.2.5-1.9-.2-.7-.8-1.2-1.5-1.3l-2-.3c1.1-2.5 1.7-5.2 1.7-7.9 0-11.2-9.2-20.3-20.7-20.3-9.9 0-18.3 7-20.2 16.3-1.3-.5-2.7-.8-4.1-.8-6.5 0-11.8 5.2-11.8 11.6S32.5 80 39 80h44c.8 0 1.5-.4 2-.9l.3-.4z"/></svg>
+                            <span class="tech-pill-name">Cloudflare</span>
                         </div>
-                        <div class="tech-item tech-vercel" data-tooltip="Vercel">
+                        <div class="tech-item tech-glass-pill tech-vercel" data-tooltip="Vercel">
                             <svg viewBox="0 0 512 512" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M256 48L496 464H16L256 48z"/></svg>
+                            <span class="tech-pill-name">Vercel</span>
                         </div>
-                        <div class="tech-item tech-gh-actions" data-tooltip="GitHub Actions">
+                        <div class="tech-item tech-glass-pill tech-gh-actions" data-tooltip="GitHub Actions">
                             <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M10.984 13.836a.5.5 0 0 1-.353-.146l-3.5-3.5a.5.5 0 0 1 .707-.707l3.146 3.146 7.14-7.14a.5.5 0 0 1 .707.707l-7.494 7.494a.5.5 0 0 1-.353.146zm-2.14 6.578a.5.5 0 0 1-.354-.147L5 16.777a.5.5 0 1 1 .707-.707l3.49 3.49a.5.5 0 0 1-.354.854zM12 2C6.477 2 2 6.477 2 12a10 10 0 0 0 6.834 9.486c.5.09.683-.216.683-.482 0-.238-.009-.869-.013-1.705-2.782.605-3.369-1.341-3.369-1.341-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.529 2.341 1.087 2.91.831.091-.646.349-1.086.635-1.337-2.22-.253-4.555-1.112-4.555-4.944 0-1.091.39-1.984 1.029-2.682-.103-.254-.446-1.27.098-2.646 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.336c1.909-1.294 2.747-1.025 2.747-1.025.546 1.376.202 2.394.1 2.646.64.699 1.026 1.591 1.026 2.682 0 3.841-2.337 4.687-4.565 4.935.359.307.679.917.679 1.852 0 1.335-.012 2.415-.012 2.741 0 .269.18.579.688.481A10.001 10.001 0 0 0 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                            <span class="tech-pill-name">Actions</span>
                         </div>
-                        <div class="tech-item tech-prettier" data-tooltip="Prettier">
+                        <div class="tech-item tech-glass-pill tech-prettier" data-tooltip="Prettier">
                             <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8.571 23.429A.571.571 0 0 1 8 24H2.286a.571.571 0 0 1 0-1.143H8c.316 0 .571.256.571.572zM8 20.57H6.857a.571.571 0 0 0 0 1.143H8a.571.571 0 0 0 0-1.143zm-5.714 1.143H4.57a.571.571 0 0 0 0-1.143H2.286a.571.571 0 0 0 0 1.143zM8 18.286H2.286a.571.571 0 0 0 0 1.142H8a.571.571 0 0 0 0-1.142zM16 16H2.286a.571.571 0 0 0 0 1.143H16A.571.571 0 0 0 16 16zm0-2.286H2.286a.571.571 0 0 0 0 1.143H16a.571.571 0 0 0 0-1.143zM21.714 11.43H2.286a.571.571 0 0 0 0 1.142h19.428a.571.571 0 0 0 0-1.142zm0-2.287H2.286a.571.571 0 0 0 0 1.143h19.428a.571.571 0 0 0 0-1.143zm0-2.286H2.286a.571.571 0 0 0 0 1.143h19.428a.571.571 0 0 0 0-1.143zm0-2.286H2.286a.571.571 0 0 0 0 1.143h19.428a.571.571 0 0 0 0-1.143zM16 2.286H2.286a.571.571 0 0 0 0 1.143H16a.571.571 0 0 0 0-1.143zM8 0H2.286a.571.571 0 0 0 0 1.143H8A.571.571 0 0 0 8 0z"/></svg>
+                            <span class="tech-pill-name">Prettier</span>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
+
+    <!-- ========================================= -->
+    <!-- Kinetic Awwwards Typography Marquee       -->
+    <!-- ========================================= -->
+    <section class="kinetic-marquee-section" aria-label="Creative Disciplines">
+        <div class="kinetic-marquee-track">
+            <div class="kinetic-marquee-group">
+                <span class="marquee-bold">ARCHITECTURAL FRONT-END</span>
+                <span class="marquee-glint">✦</span>
+                <span class="marquee-thin">LIQUID MOTION</span>
+                <span class="marquee-glint">✦</span>
+                <span class="marquee-bold">CREATIVE ENGINEERING</span>
+                <span class="marquee-glint">✦</span>
+                <span class="marquee-thin">AWWWARDS AESTHETIC</span>
+                <span class="marquee-glint">✦</span>
+                <span class="marquee-bold">SPECULAR GLOSS</span>
+                <span class="marquee-glint">✦</span>
+                <span class="marquee-thin">HIGH CONVERSION</span>
+                <span class="marquee-glint">✦</span>
+            </div>
+            <div class="kinetic-marquee-group" aria-hidden="true">
+                <span class="marquee-bold">ARCHITECTURAL FRONT-END</span>
+                <span class="marquee-glint">✦</span>
+                <span class="marquee-thin">LIQUID MOTION</span>
+                <span class="marquee-glint">✦</span>
+                <span class="marquee-bold">CREATIVE ENGINEERING</span>
+                <span class="marquee-glint">✦</span>
+                <span class="marquee-thin">AWWWARDS AESTHETIC</span>
+                <span class="marquee-glint">✦</span>
+                <span class="marquee-bold">SPECULAR GLOSS</span>
+                <span class="marquee-glint">✦</span>
+                <span class="marquee-thin">HIGH CONVERSION</span>
+                <span class="marquee-glint">✦</span>
+            </div>
+        </div>
+    </section>
 
 
     <!-- ========================================= -->
@@ -312,18 +384,12 @@
                         <div class="project-row-actions">
                             <a href="projects/sarko.html" class="lets-talk-btn">
                                 <span>Learn More</span>
-                                <svg width="15px" height="10px" viewBox="0 0 13 10">
-                                    <path d="M1,5 L11,5"></path>
-                                    <polyline points="8 1 12 5 8 9"></polyline>
-                                </svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </a>
                             
                             <a href="https://github.com/Mr-S.U.D.O" class="lets-talk-btn" target="_blank" rel="noopener noreferrer">
                                 <span>View Source</span>
-                                <svg width="15px" height="10px" viewBox="0 0 13 10">
-                                    <path d="M1,5 L11,5"></path>
-                                    <polyline points="8 1 12 5 8 9"></polyline>
-                                </svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </a>
                         </div>
                     </div>
@@ -345,18 +411,12 @@
                         <div class="project-row-actions">
                             <a href="projects/rn-inc.html" class="lets-talk-btn">
                                 <span>Learn More</span>
-                                <svg width="15px" height="10px" viewBox="0 0 13 10">
-                                    <path d="M1,5 L11,5"></path>
-                                    <polyline points="8 1 12 5 8 9"></polyline>
-                                </svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </a>
                             
                             <a href="https://github.com/Mr-S-U-D-O/RN-INC-FIRM-SITE" class="lets-talk-btn" target="_blank" rel="noopener noreferrer">
                                 <span>View Source</span>
-                                <svg width="15px" height="10px" viewBox="0 0 13 10">
-                                    <path d="M1,5 L11,5"></path>
-                                    <polyline points="8 1 12 5 8 9"></polyline>
-                                </svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </a>
                         </div>
                     </div>
@@ -378,22 +438,23 @@
                         <div class="project-row-actions">
                             <a href="projects/mcleod-associates.html" class="lets-talk-btn">
                                 <span>Learn More</span>
-                                <svg width="15px" height="10px" viewBox="0 0 13 10">
-                                    <path d="M1,5 L11,5"></path>
-                                    <polyline points="8 1 12 5 8 9"></polyline>
-                                </svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </a>
                             
                             <a href="/* Add GitHub repository link here */" class="lets-talk-btn" target="_blank" rel="noopener noreferrer">
                                 <span>View Source</span>
-                                <svg width="15px" height="10px" viewBox="0 0 13 10">
-                                    <path d="M1,5 L11,5"></path>
-                                    <polyline points="8 1 12 5 8 9"></polyline>
-                                </svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </a>
                         </div>
                     </div>
                 </div><!-- PROJECTS_END -->
+            </div>
+            
+            <div class="see-more-projects-wrapper" style="display: flex; justify-content: center; padding-top: 4rem; width: 100%;">
+                <a href="projects.html" class="lets-talk-btn">
+                    <span>See All Projects</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
             </div>
         </div>
     </section>
@@ -615,10 +676,7 @@
 
                     <button type="submit" class="lets-talk-btn btn-centered" style="width: 100%; justify-content: center; margin-top: 2rem;">
                         <span>Send Message</span>
-                        <svg width="15px" height="10px" viewBox="0 0 13 10">
-                            <path d="M1,5 L11,5"></path>
-                            <polyline points="8 1 12 5 8 9"></polyline>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </button>
                 </form>
             </div>
@@ -646,10 +704,7 @@
                 </div>
                 <a href="#" class="lets-talk-btn" id="modalLink" target="_blank" style="margin-top: 2rem;">
                     <span>See Details</span>
-                    <svg width="15px" height="10px" viewBox="0 0 13 10">
-                        <path d="M1,5 L11,5"></path>
-                        <polyline points="8 1 12 5 8 9"></polyline>
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
             </div>
         </div>
@@ -724,10 +779,7 @@
 
                     <button type="submit" class="lets-talk-btn btn-centered" style="width: 100%; justify-content: center; margin-top: 2rem;">
                         <span>Send Message</span>
-                        <svg width="15px" height="10px" viewBox="0 0 13 10">
-                            <path d="M1,5 L11,5"></path>
-                            <polyline points="8 1 12 5 8 9"></polyline>
-                        </svg>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </button>
                 </form>
             </div>
@@ -755,10 +807,7 @@
                 </div>
                 <a href="#" class="lets-talk-btn" id="modalLink" target="_blank" style="margin-top: 2rem;">
                     <span>See Details</span>
-                    <svg width="15px" height="10px" viewBox="0 0 13 10">
-                        <path d="M1,5 L11,5"></path>
-                        <polyline points="8 1 12 5 8 9"></polyline>
-                    </svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
             </div>
         </div>

@@ -297,11 +297,11 @@ if (projectTemplateBlock && projectsData.length > 0) {
     // Links
     let liveLinkHtml =
       proj.liveLink && proj.liveLink !== "#"
-        ? `<a href="${proj.liveLink}" target="_blank" rel="noopener noreferrer" class="lets-talk-btn"><span>Live Demo</span><svg width="15px" height="10px" viewBox="0 0 13 10"><path d="M1,5 L11,5"></path><polyline points="8 1 12 5 8 9"></polyline></svg></a>`
+        ? `<a href="${proj.liveLink}" target="_blank" rel="noopener noreferrer" class="lets-talk-btn"><span>Live Demo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>`
         : "";
     let githubLinkHtml =
       proj.githubLink && proj.githubLink !== "#"
-        ? `<a href="${proj.githubLink}" target="_blank" rel="noopener noreferrer" class="lets-talk-btn"><span>GitHub Repo</span><svg width="15px" height="10px" viewBox="0 0 13 10"><path d="M1,5 L11,5"></path><polyline points="8 1 12 5 8 9"></polyline></svg></a>`
+        ? `<a href="${proj.githubLink}" target="_blank" rel="noopener noreferrer" class="lets-talk-btn"><span>GitHub Repo</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>`
         : "";
     pageHtml = pageHtml.replace(/{{LIVE_LINK_HTML}}/g, liveLinkHtml);
     pageHtml = pageHtml.replace(/{{GITHUB_LINK_HTML}}/g, githubLinkHtml);
@@ -506,7 +506,7 @@ if (projectTemplateBlock && projectsData.length > 0) {
                                 <img class="comparison-img before" src="../${proj.beforeAfter.before}" alt="Initial Version">
                                 <img class="comparison-img after" src="../${proj.beforeAfter.after}" alt="Final Version">
                                 <div class="slider-handle">
-                                    <i class="fa-solid fa-arrows-left-right"></i>
+                                    <i data-lucide="arrow-left-right"></i>
                                 </div>
                             </div>
                         </div>
@@ -658,18 +658,12 @@ function generateProjectCard(proj, isGallery = false) {
                         <div class="project-row-actions">
                             <a href="${proj.link}" class="lets-talk-btn">
                                 <span>Learn More</span>
-                                <svg width="15px" height="10px" viewBox="0 0 13 10">
-                                    <path d="M1,5 L11,5"></path>
-                                    <polyline points="8 1 12 5 8 9"></polyline>
-                                </svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </a>
                             ${proj.githubLink && proj.githubLink !== "#" ? `
                             <a href="${proj.githubLink}" class="lets-talk-btn" target="_blank" rel="noopener noreferrer">
                                 <span>View Source</span>
-                                <svg width="15px" height="10px" viewBox="0 0 13 10">
-                                    <path d="M1,5 L11,5"></path>
-                                    <polyline points="8 1 12 5 8 9"></polyline>
-                                </svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </a>` : ""}
                         </div>
                     </div>
@@ -787,7 +781,7 @@ function renderTreeBranch(node, level = 0) {
     html += `      <span class="tree-line"></span>\n`;
 
     if (hasChildren) {
-      html += `      <i class="fa-solid fa-folder tree-icon directory"></i>\n`;
+      html += `      <i data-lucide="folder" class="tree-icon directory"></i>\n`;
       html += `      <span class="tree-label">${key}</span>\n`;
       html += `    </div>\n`;
       html += renderTreeBranch(item._children, level + 1);
@@ -797,7 +791,7 @@ function renderTreeBranch(node, level = 0) {
       if (ext === "html") iconClass = "fa-file-code html-file";
       else if (ext === "xml") iconClass = "fa-file-code xml-file";
 
-      html += `      <i class="fa-solid ${iconClass} tree-icon file"></i>\n`;
+      html += `      <i data-lucide="file-code" class="tree-icon file ${ext}-file"></i>\n`;
       html += `      <a href="/${item._path}" class="tree-label">${key}</a>\n`;
       html += `    </div>\n`;
     }
@@ -905,9 +899,15 @@ async function minifyFiles() {
 
       // 1. Rename Font Awesome
       content = content.replace(/all\.min\.css/g, "font-awesome.min.css");
+      content = content.replace(/https:\/\/unpkg\.com\/lucide@latest/g, "https://unpkg.com/lucide@0.460.0");
+      content = content.replace(/data-lucide="magnifying-glass"/g, 'data-lucide="search"');
+      content = content.replace(/data-lucide="circle-xmark"/g, 'data-lucide="x-circle"');
+      content = content.replace(/data-lucide="earth-africa"/g, 'data-lucide="globe"');
+      content = content.replace(/data-lucide="arrows-spin"/g, 'data-lucide="refresh-cw"');
+      content = content.replace(/data-lucide="bolt"/g, 'data-lucide="zap"');
 
       // 1.5 Inject Global Footer
-      const isRoot = path.dirname(htmlPath) === path.join(__dirname, "../");
+      const isRoot = path.resolve(path.dirname(htmlPath)) === path.resolve(__dirname, "../");
       const prefix = isRoot ? "" : "../";
       
       const footerTemplatePath = path.join(__dirname, "../templates/footer-template.html");
