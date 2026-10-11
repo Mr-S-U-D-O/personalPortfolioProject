@@ -906,7 +906,7 @@ async function minifyFiles() {
       content = content.replace(/data-lucide="arrows-spin"/g, 'data-lucide="refresh-cw"');
       content = content.replace(/data-lucide="bolt"/g, 'data-lucide="zap"');
 
-      // 1.5 Inject Global Footer
+      // 1.5 Inject Global Footer & Ensure Footer Stylesheet
       const isRoot = path.resolve(path.dirname(htmlPath)) === path.resolve(__dirname, "../");
       const prefix = isRoot ? "" : "../";
       
@@ -914,7 +914,22 @@ async function minifyFiles() {
       if (fs.existsSync(footerTemplatePath)) {
           let footerTemplate = fs.readFileSync(footerTemplatePath, "utf8");
           footerTemplate = footerTemplate.replace(/{{BASE_URL}}/g, prefix);
-          content = content.replace(/<!-- INJECT_GLOBAL_FOOTER -->/g, footerTemplate);
+          
+          const footerRegex = /<!-- INJECT_GLOBAL_FOOTER -->|<footer class="site-footer-v2" id="siteFooter"[\s\S]*?<\/footer>|<footer class="site-footer(?:-v2)?"[\s\S]*?<\/footer>/gi;
+          if (footerRegex.test(content)) {
+              content = content.replace(footerRegex, footerTemplate);
+          } else {
+              if (content.includes('<button class="back-to-top"')) {
+                  content = content.replace('<button class="back-to-top"', `${footerTemplate}\n\n    <button class="back-to-top"`);
+              } else if (content.includes('</body>')) {
+                  content = content.replace('</body>', `${footerTemplate}\n</body>`);
+              }
+          }
+      }
+
+      // Ensure footer.min.css is included in <head>
+      if (!content.includes('footer.min.css') && !content.includes('footer.css')) {
+          content = content.replace('</head>', `    <link rel="stylesheet" href="${prefix}css/min/footer.min.css?v=${VERSION}" />\n</head>`);
       }
 
       // 2. Resolve relative paths for CSS/JS replacements
